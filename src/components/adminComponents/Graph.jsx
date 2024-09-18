@@ -1,23 +1,24 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,BarChart, Bar, AreaChart, Area } from 'recharts';
 
-const Graph = ({type,data,Xaxis,line=[]}) => {
+const Graph = ({type,data,Xaxis,line=[],style}) => {
  const colors=['#FB7D5B','#FCC43E']
+ const lineColors=['#2D045F','#7C9CF5']
  
 const renderChart=()=>{
     switch(type){
         case 'line':
             return (
                 <LineChart data={data} >
-                <CartesianGrid strokeDasharray="none" horizontal={false}  stroke='#A098AE' />
-                <XAxis dataKey={Xaxis} axisLine={false} stroke='#A098AE'/>
-                <YAxis stroke='#A098AE'/>
+                <CartesianGrid strokeDasharray="none"   stroke='#A098AE' />
+                <XAxis dataKey={Xaxis} axisLine={false} stroke='#000'/>
+                <YAxis stroke='#000' axisLine={false}/>
                
                {
                   line.map((para,index)=>
                     <>
                    
-                      <Line key={index} type="monotone" dataKey={para} stroke={colors[index%colors.length]} strokeWidth={5} dot={null} />
+                      <Line key={index} type="monotone" dataKey={para} stroke={lineColors[index%lineColors.length]} strokeWidth={1} />
                     </>
                   )
                }
@@ -68,7 +69,7 @@ const renderChart=()=>{
 
 }
   return (
-    <div className='container mx-auto flex justify-center items-center w-full h-96 my-20'>
+    <div className='container mx-auto flex justify-center items-center  my-20' style={style}>
       <ResponsiveContainer>
        {renderChart()}
       </ResponsiveContainer>
