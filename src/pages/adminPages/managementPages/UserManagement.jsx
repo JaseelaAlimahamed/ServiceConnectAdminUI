@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Table from '../../../components/reUsableComnponent/reUsableComponents/Table'
+import Table from '../../../components/reUsableComnponent/Table'
 
 const UserManagement = () => {
 
