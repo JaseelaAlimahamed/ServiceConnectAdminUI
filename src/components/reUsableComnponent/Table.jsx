@@ -90,7 +90,7 @@ const handleSearchChange = (e) => {
         </div>
       )}
 
-      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto min-h-[700px]">
+      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto min-h-[770px]">
         <table className="w-full text-left border-collapse ">
           {tableConfig.title && 
           <caption className="p-8 text-3xl font-semibold text-left rtl:text-right text-blue">
