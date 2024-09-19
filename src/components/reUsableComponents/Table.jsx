@@ -78,7 +78,7 @@ const handleCheckboxChange = (id) => {
   };
 
   return (
-    <div className="flex flex-col font-table">
+    <div className="flex flex-col font-poppins">
       {(userManagement || serviceProviderMangement || serviceSubcription) && (
         <div className="flex flex-wrap justify-between">
           <span className="relative rounded-full overflow-hidden h-16 mb-2">
