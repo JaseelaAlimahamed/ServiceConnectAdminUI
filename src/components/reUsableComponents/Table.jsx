@@ -185,7 +185,7 @@ const handleCheckboxChange = (id) => {
                 }
 
                 {(userManagement || serviceProviderMangement || paymentsLog) && (
-                  <td className=" text-sm text-gray-500">
+                  <td className="px-6 text-sm text-gray-500">
                     <div className="mr-2">
                     <span className="whitespace-nowrap">{data.date}</span> {data.time}
                     </div>
