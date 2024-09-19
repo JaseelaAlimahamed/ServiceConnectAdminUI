@@ -14,6 +14,7 @@ module.exports = {
         default: ["Jost", "sans-serif"],
         heading: ["Aldrich", "sans-serif"],
         input: ["Mulish", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
 
       colors: {
