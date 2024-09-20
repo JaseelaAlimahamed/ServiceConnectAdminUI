@@ -78,8 +78,8 @@ const handleCheckboxChange = (id) => {
   };
 
   return (
-    <div className="flex flex-col font-poppins">
-      {(userManagement || serviceProviderMangement || serviceSubcription) && (
+    <div className="flex flex-col font-poppins ">
+      {(userManagement || serviceProviderMangement ) && (
         <div className="flex flex-wrap justify-between">
           <span className="relative rounded-full overflow-hidden h-16 mb-2">
             <img
@@ -114,7 +114,7 @@ const handleCheckboxChange = (id) => {
         </div>
       )}
 
-      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto min-h-[770px] pb-20">
+      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto pb-20 h-full">
         <table className="w-full text-left border-collapse ">
           {tableConfig.title && 
           <caption className="p-8 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
@@ -151,7 +151,7 @@ const handleCheckboxChange = (id) => {
                   </td>
                 )}
                 {data.name && (
-                  <td className={`px-6 ${(userManagement || serviceProviderMangement || serviceSubcription) && "py-10"}`}>
+                  <td className={`px-6 py-6 ${(userManagement || serviceProviderMangement ) && "py-8"}` }>
                     <div className="flex items-center gap-4 mr-6 lg:mr-0">
                       <img src={data.image} alt="" />
                       <span className="text-lg text-dark_blue font-bold">{data.name}</span>
@@ -215,7 +215,7 @@ const handleCheckboxChange = (id) => {
                    {data.paymentFor}
                 </td>
                 )}
-                {data.paymentAmount && (
+                {paymentsLog && (
                   <td className="px-6 py-4 text-lg text-dark_blue font-bold">
                     ${data.paymentAmount}
                   </td>
@@ -256,7 +256,7 @@ const handleCheckboxChange = (id) => {
                 )}
                   {(paymentsLog || complaintsLog) && (
                   <td
-                    className={`p-6 text-lg font-bold ${
+                    className={`px-6 py-4 text-lg font-bold ${
                       (data.paymentStatus === "Complete" || data.serviceStatus === "Complete")
                         ? "text-lite_green"
                         : (data.paymentStatus === "Pending" || data.serviceStatus === "Pending")
