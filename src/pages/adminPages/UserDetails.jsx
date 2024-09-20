@@ -1,5 +1,5 @@
 import React from "react";
-
+import Card from "../../components/reUsableComponents/Card";
 import { CiLocationOn } from "react-icons/ci";
 
 const userdetails = {
@@ -10,8 +10,8 @@ const userdetails = {
 };
 const UserDetails = () => {
   return (
-    <div className="py-12 mx-5">
-      <div className="container mx-auto border max-w-screen-lg   rounded-xl overflow-hidden">
+    <div className="py-12  flex max-lg:flex-col gap-4 justify-around  p-4">
+      <div className="container border max-w-screen-lg  rounded-xl overflow-hidden h-fit">
         <div className="bg-violet w-full h-36 relative">
           <div className="absolute aspect-square z-20  rounded-full m-2 p-2 w-48  bg-primary left-10 top-6">
             <div className="w-full bg-blue_gray h-full rounded-full"></div>
@@ -33,10 +33,10 @@ const UserDetails = () => {
           </div>
           <div className="flex max-md:flex-col  gap-6 p-6">
             <div className="flex flex-col gap-2">
-                <div className="flex px-4">
+              <div className="flex px-4">
                 <p className="userdetails_tag ">Location:</p>
-                </div>
-              
+              </div>
+
               <div className="flex gap-3 justify-center items-center max-md:justify-start">
                 <div className="bg-orange w-fit rounded-full p-3">
                   <CiLocationOn style={{ color: "#fff", fontSize: "1.5rem" }} />
@@ -46,9 +46,9 @@ const UserDetails = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-            <div className="flex px-4">
+              <div className="flex px-4">
                 <p className="userdetails_tag ">Address:</p>
-                </div>
+              </div>
               <div className="flex justify-center items-center gap-2 max-md:justify-start">
                 <div className="bg-orange w-fit rounded-full p-3">
                   <CiLocationOn style={{ color: "#fff", fontSize: "1.5rem" }} />
@@ -57,9 +57,9 @@ const UserDetails = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-            <div className="flex px-4">
+              <div className="flex px-4">
                 <p className="userdetails_tag ">Phone:</p>
-                </div>
+              </div>
               <div className="flex justify-center items-center gap-2 max-md:justify-start">
                 <div className="bg-orange w-fit rounded-full p-3">
                   <CiLocationOn style={{ color: "#fff", fontSize: "1.5rem" }} />
@@ -68,9 +68,9 @@ const UserDetails = () => {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-            <div className="flex px-4 ">
+              <div className="flex px-4 ">
                 <p className="userdetails_tag ">Email:</p>
-                </div>
+              </div>
               <div className="flex justify-center items-center gap-2 max-md:justify-start">
                 <div className="bg-orange w-fit rounded-full p-3">
                   <CiLocationOn style={{ color: "#fff", fontSize: "1.5rem" }} />
@@ -79,6 +79,47 @@ const UserDetails = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="lg:w-[26rem]">
+        <div className="flex flex-col gap-5">
+          <Card title="Recent Service Details" variant="medium" subtitle="Thursday,10th April,2021" />
+          <Card
+            title="Tap Repair"
+            subtitle="Booked"
+            sideColor={"bg-blue-800"}
+            variant="large"
+            date="March 20,2021"
+            time="09.00-10.00 AM"
+            name="Keshvan"
+          />
+          <Card
+            title="Drain Blockage"
+            subtitle="Complaint"
+            sideColor={"bg-orange"}
+            variant="large"
+            date="March 20,2021"
+            time="09.00-10.00 AM"
+            name="Keshavan"
+          />
+          <Card
+            title="Light Change"
+            subtitle="Booked"
+            sideColor={"bg-yellow"}
+            variant="large"
+            date="March 20,2021"
+            time="09.00-10.00 AM"
+            name="Keshavan"
+          />
+          <Card
+            title="Fan Repair"
+            subtitle="Booked"
+            sideColor={"bg-dark_blue"}
+            variant="large"
+            date="March 20,2021"
+            time="09.00-10.00 AM"
+            name="Thomas"
+          />
         </div>
       </div>
     </div>
