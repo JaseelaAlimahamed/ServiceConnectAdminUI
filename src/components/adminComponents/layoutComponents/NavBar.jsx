@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FiBell, FiSettings } from 'react-icons/fi';
 
-const DashboardNavBar = () => {
+const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null); // Ref for the dropdown container
 
@@ -85,4 +85,4 @@ const DashboardNavBar = () => {
   );
 };
 
-export default DashboardNavBar;
+export default NavBar;
