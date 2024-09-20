@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import logo from "/LOGO.png";
-import { FaApple } from "react-icons/fa";
-import Auth from '../../components/ReUsableComponents/GoogleAuth';
 import InputField from '../ReUsableComponents/InputField';
 import SubmitButton from '../ReUsableComponents/SubmitButton';
 
@@ -53,13 +51,6 @@ const SignInForm = () => {
         <SubmitButton text="Sign In" />
       </form>
 
-      <div className='mt-10'>
-        <p className='text-sm text-center'>Or Continue With</p>
-        <div className='flex gap-10 mt-5'>
-          <Auth/>
-          <FaApple className='w-9 h-9 mt-1'/>
-        </div>
-      </div>
     </div>
   );
 };
