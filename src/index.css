@@ -7,3 +7,12 @@ body {
   margin: 0;
 }
 
+@layer components{
+  .userdetails_tag {
+    @apply text-light_gray font-poppins text-lg font-medium
+   
+  }
+  .userdetails_sub{
+    @apply font-poppins font-semibold text-lg text-dark_blue 
+  }
+}
