@@ -5,7 +5,7 @@ import UserDetails from '../../pages/adminPages/UserDetails'
 function RouteAdmin() {
   
   return (
-    <div>
+    <div className='bg-blue_bg'>
       <UserDetails/>
     </div>
   )
