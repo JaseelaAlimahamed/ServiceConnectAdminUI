@@ -114,7 +114,7 @@ const handleCheckboxChange = (id) => {
         </div>
       )}
 
-      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto min-h-[770px] pb-20">
+      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto pb-20">
         <table className="w-full text-left border-collapse ">
           {tableConfig.title && 
           <caption className="p-8 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
