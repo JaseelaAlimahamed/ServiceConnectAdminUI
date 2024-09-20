@@ -30,7 +30,7 @@ module.exports = {
         sky_blue:"#28B5E1",
         dark_blue:"#303972",
         lite_blue:"#5570F1",
-        orange:"#FD7D5B",
+        orange:"#FB7D5B",
         lite_red:"#DC3546",
         red:"#E20000",
         soft_red:"#FF3D00",
