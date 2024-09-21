@@ -9,7 +9,7 @@ const lavender='#A098AE'
     switch (type) {
       case 'line':
         return (
-          <LineChart data={data}>
+          <LineChart data={data }>
             <CartesianGrid strokeDasharray="none" stroke={lavender} />
             <XAxis dataKey={Xaxis} axisLine={false} stroke='#000' />
             <YAxis stroke='#000' axisLine={false} />
@@ -54,9 +54,10 @@ const lavender='#A098AE'
               right: 30,
               left: 0,
               bottom: 0,
+              
             }}
           >
-            <CartesianGrid strokeDasharray="none" horizontal={false} stroke={lavender}/>
+            <CartesianGrid strokeDasharray="none" horizontal={false} stroke={lavender} fill='#fff'/>
             <XAxis dataKey={Xaxis} axisLine={false} stroke={lavender}/>
             <YAxis stroke={lavender}/>
             <Tooltip />

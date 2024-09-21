@@ -1,5 +1,7 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import RouteAdmin from './routes/adminRoutes/RouteAdmin';
+import UserDetails from './pages/adminPages/UserDetails';
+import SignInForm from './components/adminComponents/AdminSignIn';
 
 // import'./App.css';
 
@@ -8,7 +10,9 @@ function App() {
 
   return (
     <Routes>
+      <Route path='/signIn'element={<SignInForm/>}/>
       <Route path="/admin" element={<RouteAdmin/>} />
+      <Route path='/userdetails' element={<UserDetails/>}/>
     </Routes>
   );
 }
