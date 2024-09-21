@@ -32,7 +32,7 @@ const NavBar = ({toggleSidebar}) => {
       <nav className="flex items-center justify-between px-4 md:px-8 h-full">
         {/* User Name */}
         <div className='flex items-center'>
-        <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 sm:hidden' onClick={toggleSidebar}/>
+        <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 md:hidden' onClick={toggleSidebar}/>
         <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">User Management</h1>
 
         </div>
@@ -71,6 +71,12 @@ const NavBar = ({toggleSidebar}) => {
             {/* Dropdown Menu */}
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-10">
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 sm:hidden"
+                >
+                  Profile
+                </a>
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 sm:hidden"
