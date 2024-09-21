@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { menuItems,Mainicon } from "./sidebarComponents";
+import { SlMenu } from "react-icons/sl";
 
   const Sidebar = () => {
     const [activeItem, setActiveItem] = useState("Dashboard");
@@ -12,10 +13,10 @@ import { menuItems,Mainicon } from "./sidebarComponents";
     };
   
     return (
-      <div className="relative">
+      <div className="relative ">
         {/* Toggle Button */}
         <button
-          className="sm:hidden text-white p-3 fixed top-4 left-4 z-50"
+          className="md:hidden text-white p-3 fixed top-4 left-4 z-50 hover:border-none focus:outline-none "
           onClick={toggleSidebar}
           
         >
@@ -25,8 +26,11 @@ import { menuItems,Mainicon } from "./sidebarComponents";
             height="40" 
           >  
           </svg>
-          ) : (
-            <Mainicon/>
+          ) : (<div className="flex items-center justify-between ">
+          <Mainicon/>
+          <SlMenu className="text-violet ml-1"/>
+          </div>
+            
           )}
         </button>
   
