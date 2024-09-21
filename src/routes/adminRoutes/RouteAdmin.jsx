@@ -1,7 +1,8 @@
 import React from 'react'
 import Graph from '../../components/adminComponents/Graph'
 import UserDetails from '../../pages/adminPages/UserDetails'
-import SignIn from '../../components/adminComponents/AdminSignIn';
+import { Route, Routes } from 'react-router-dom';
+import SignInForm from '../../components/adminComponents/AdminSignIn';
 
 function RouteAdmin() {
   const data = [
@@ -14,9 +15,15 @@ function RouteAdmin() {
     { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
   ];
   return (
-    <div className='bg-blue_bg'>
+    
+      <Routes>
+
       
-    </div>
+      <Route path='/userdetails' element={<UserDetails/>}/>
+      <Route path='/signIn'element={<SignInForm/>}/>
+
+      </Routes>
+    
   )
 }
 

@@ -10,9 +10,8 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/signIn'element={<SignInForm/>}/>
-      <Route path="/admin" element={<RouteAdmin/>} />
-      <Route path='/userdetails' element={<UserDetails/>}/>
+      <Route path="/admin/*" element={<RouteAdmin/>} />
+      
     </Routes>
   );
 }
