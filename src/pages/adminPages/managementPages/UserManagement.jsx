@@ -11,7 +11,7 @@ const UserManagement = () => {
     {
         name: "Samanta William",
         id: "#129876543",
-        date: "may 25, 2024",
+        date: "May 25, 2024",
         totalCompletedWork: "10",
         location: "Sydney",
         image:"/tableimage.png",
@@ -22,7 +22,7 @@ const UserManagement = () => {
     {
         name: "Michael Smith",
         id: "#122345343",
-        date: "december 25, 2023",
+        date: "December 25, 2023",
         image:"/tableimage.png",
         totalCompletedWork: "10",
         location: "Sydney",
@@ -72,16 +72,37 @@ const UserManagement = () => {
 ];
 
 const tableColConfig = ["Name","ID","Date","Total Completed Services","Location","Contact","Status","Action"]
-    
-  
-    
+
+const cardConfig = [
+  {title:"22K",subtitle:"Total Users", iconBg:"bg-[#6F4FF2]"},
+  {title:"82K",subtitle:"Online", iconBg:"bg-[#50BB25]"},
+  {title:"200",subtitle:"Service Requests", iconBg:"bg-[#F9D62C]"},
+  {title:"89",subtitle:"Lead Requests", iconBg:"bg-[#28B5E1]"},
+  {title:"89",subtitle:"Active Services", iconBg:"bg-[#167F71]"},
+  {title:"89",subtitle:"Complaints", iconBg:"bg-[#DC3546]"},
+]
   return (
-      <div className="w-full bg-[#F3F4FF] p-10">
+      <div className="w-full font-poppins px-6 pb-10 lg:px-10">
+        <div className="flex flex-wrap gap-5 pb-10">
+          {cardConfig.map((item,index)=>(
+            <div key={index} className='flex w-56 bg-primary rounded-xl px-4 py-3'>
+              <span className={`flex items-center justify-center h-14 w-14 mr-4 rounded-full ${item.iconBg}`}>
+              <img src='/card-icon.svg' alt="" />
+              </span>
+              <div>
+              <h2 className='text-lg font-bold mb-1'>{item.title}</h2>
+              <p className='text-sm text-[#68676E]'>{item.subtitle}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
       <Table
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}
       />
+    
      
     </div>
     
