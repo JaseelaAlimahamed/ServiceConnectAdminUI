@@ -1,5 +1,7 @@
 import React from 'react'
 import { CiLocationOn } from "react-icons/ci";
+import { FiPhone } from "react-icons/fi";
+import { CiMail } from "react-icons/ci";
 
 const UserProfile = ({name,location,address,phone,email}) => {
   return (
@@ -58,7 +60,7 @@ const UserProfile = ({name,location,address,phone,email}) => {
           </div>
           <div className="flex justify-center items-center gap-2 max-md:justify-start">
             <div className="bg-orange w-fit rounded-full p-3">
-              <CiLocationOn
+            <FiPhone 
                 style={{ color: "#fff", fontSize: "1.5rem" }}
               />
             </div>
@@ -71,7 +73,7 @@ const UserProfile = ({name,location,address,phone,email}) => {
           </div>
           <div className="flex justify-center items-center gap-2 max-md:justify-start">
             <div className="bg-orange w-fit rounded-full p-3">
-              <CiLocationOn
+              <CiMail 
                 style={{ color: "#fff", fontSize: "1.5rem" }}
               />
             </div>
