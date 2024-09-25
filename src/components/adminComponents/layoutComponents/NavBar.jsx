@@ -1,14 +1,37 @@
 import { useState, useEffect, useRef } from 'react';
 import { FiBell, FiSettings } from 'react-icons/fi';
 import { FaBars } from "react-icons/fa";
+import { useLocation } from 'react-router-dom';
 
-const NavBar = ({toggleSidebar}) => {
+const NavBar = ({ toggleSidebar }) => {
+
+  const location = useLocation()
+  const [heading, setHeading] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null); // Ref for the dropdown container
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+ useEffect(() => {
+       const getHeading = () => {
+      if (location && location.pathname) { 
+        const pathParts = location.pathname.split('/');
+        const lastPart = pathParts[pathParts.length - 1]; 
+        const formattedHeading = lastPart
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) 
+        .join(' ');
+
+      return formattedHeading;
+      
+      }
+      return "ADMIN"; 
+    };
+
+    setHeading(getHeading());
+  }, [location.pathname]);
 
   // Close dropdown if clicked outside
   useEffect(() => {
@@ -17,6 +40,8 @@ const NavBar = ({toggleSidebar}) => {
         setDropdownOpen(false);
       }
     };
+
+
 
     // Add event listener for clicks
     document.addEventListener('mousedown', handleClickOutside);
@@ -32,8 +57,8 @@ const NavBar = ({toggleSidebar}) => {
       <nav className="flex items-center justify-between px-4 md:px-8 h-full">
         {/* User Name */}
         <div className='flex items-center'>
-        <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 md:hidden' onClick={toggleSidebar}/>
-        <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">User Management</h1>
+          <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 md:hidden' onClick={toggleSidebar} />
+          <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">{heading}</h1>
 
         </div>
 
