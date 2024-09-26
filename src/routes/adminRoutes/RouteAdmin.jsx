@@ -3,7 +3,9 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout'
 import UserManagement from '../../pages/adminPages/managementPages/UserManagement'
-
+import UserDetails from '../../pages/adminPages/UserDetails'
+import SignInForm from '../../components/adminComponents/AdminSignIn'
+import ServiceType from '../../pages/adminPages/ServiceType'
 function RouteAdmin() {
 
 
@@ -14,6 +16,8 @@ function RouteAdmin() {
            
       <Route path='/userdetails' element={<UserDetails/>}/>
       <Route path='/signIn'element={<SignInForm/>}/>
+      <Route path='/servicetype'element={<ServiceType/>}/>
+
       </Route>
     </Routes>
 
