@@ -1,7 +1,5 @@
 
-
-
-import { useState } from 'react';
+import React, { useState } from 'react'; 
 import { BsPlusLg } from 'react-icons/bs';
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
@@ -12,7 +10,7 @@ const SubCategory = () => {
     const [sortOpen, setSortOpen] = useState(false);
     const [selectedSort, setSelectedSort] = useState('Sort');
     const [selectedStatus, setSelectedStatus] = useState('Cleaning');
-    const [searchQuery,setSearchQuery ] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const mockCategories = [
         { id: 1, name: "Home Cleaning", image: "https://via.placeholder.com/250x150", description: "Services to maintain and enhance your home." },
@@ -75,13 +73,13 @@ const SubCategory = () => {
                         {sortOpen && (
                             <div className="absolute right-0 mt-1 w-48 bg-white border-violet rounded-md shadow-lg z-50">
                                 <button
-                                    onClick={() => handleSortChange('By Date')}
+                                    onClick={() => handleSortChange('High Price')}
                                     className="block w-full px-2 py-1 text-left hover:bg-violet-100"
                                 >
                                     High Price
                                 </button>
                                 <button
-                                    onClick={() => handleSortChange('By Name')}
+                                    onClick={() => handleSortChange('Low Price')}
                                     className="block w-full px-2 py-1 text-left hover:bg-violet-100"
                                 >
                                     Low Price
