@@ -1,7 +1,6 @@
 
 
-
-import { useState } from 'react';
+import React,{ useState } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 import { FaRegEdit, FaRegTrashAlt } from "react-icons/fa";
 import { MdOutlineRemoveRedEye } from 'react-icons/md';

@@ -1,7 +1,7 @@
 
 
 
-import { useState } from "react";
+import React,{ useState } from "react";
 import { FaChevronDown, FaChevronUp, } from 'react-icons/fa';
 
 const NewSubCategory = () => {

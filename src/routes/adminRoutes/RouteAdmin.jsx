@@ -12,8 +12,8 @@ function RouteAdmin() {
     <Routes>
       <Route element={<AdminLayout/>}>
         <Route path='usermanagement' element={<UserManagement/>}/>
-{/*            
-      <Route path='/userdetails' element={<UserDetails/>}/>
+           
+      {/* <Route path='/userdetails' element={<UserDetails/>}/>
       <Route path='/signIn'element={<SignInForm/>}/> */}
        <Route path='editsubcategory' element={<EditSubCategory/>}/>
        <Route path='addsubcategory' element={<AddSubCategory/>}/>
