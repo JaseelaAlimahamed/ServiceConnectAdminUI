@@ -1,6 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const AddCategory = () => {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Active");
@@ -8,6 +12,8 @@ const AddCategory = () => {
 
   const handleSave = () => {
     console.log(`Category Saved with  Imagepath:${image} ,Title:${title}, Description: ${description}, Status: ${status}`);
+    navigate("/admin/categories");
+    
   };
 
   const handleDelete = () => {
