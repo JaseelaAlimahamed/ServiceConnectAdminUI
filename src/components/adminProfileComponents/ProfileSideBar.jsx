@@ -2,14 +2,18 @@
 const ProfileSidebar = ({ user }) => (
   <div className="w-full max-w-xs p-4 bg-white rounded-lg shadow-md sm:max-w-md lg:max-w-lg overflow-hidden">
     <div className="text-center">
-      <div className="relative w-36 h-36 mx-auto p-2 sm:w-44 sm:h-44"> {/* Adjust size for larger screens */}
-        <img 
-          src={user.image} 
-          alt={user.name} 
-          className="w-full h-full rounded-full object-cover" 
-        />
-        <div className="absolute top-0 left-0 right-0 bottom-0 rounded-full border-[3px] border-[#ED2590]"></div>
-      </div>
+    <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-60 xl:h-60 mx-auto p-2">
+  {/* Responsive image with smooth transition */}
+  <img 
+    src={user.image} 
+    alt={user.name} 
+    className="w-full h-full rounded-full object-cover transition-all duration-300"
+  />
+  <div className="absolute inset-0 rounded-full border-[3px] border-[#ED2590] transition-all duration-300"></div>
+</div>
+
+
+
       
       <div className="mt-4">
         <span className="-mt-5 font-roboto text-base sm:text-lg font-bold leading-6 tracking-wide text-center">{user.name}</span><br />
@@ -27,7 +31,7 @@ const ProfileSidebar = ({ user }) => (
       </svg>
     </span>
     {user.role}
-  </p>
+  </p> <br/>
 
   <p className="inline-flex items-center mt-2 hover:border-t hover:border-b hover:border-gray-300 p-4">
     <span className="mr-3">
@@ -36,7 +40,7 @@ const ProfileSidebar = ({ user }) => (
       </svg>
     </span>
     {user.phone}
-  </p>
+  </p> <br/>
 
   <p className="inline-flex items-center mt-2 hover:border-t hover:border-b hover:border-gray-300 p-4">
     <span className="mr-3">

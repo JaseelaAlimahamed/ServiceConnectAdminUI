@@ -18,6 +18,8 @@ module.exports = {
         roboto:["font-roboto"],
         nunito:["font-nunito"],
         inter: ['Inter', 'sans-serif'],
+        bodySmall: 'var(--BodySmallFont)',
+        jost: ['Jost', 'sans-serif'],
       },
 
       colors: {
@@ -49,9 +51,14 @@ module.exports = {
       },
       fontSize: {
         '15px': '15px',
+        bodySmall: 'var(--BodySmallSize)',
       },
       lineHeight: {
         '10px': '10px',
+        bodySmall: 'var(--BodySmallLineHeight)',
+      },
+      letterSpacing: {
+        bodySmall: 'var(--BodySmallTracking)', // Custom letter spacing
       },
 
     },
