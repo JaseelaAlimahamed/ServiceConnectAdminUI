@@ -15,6 +15,11 @@ module.exports = {
         heading: ["Aldrich", "sans-serif"],
         input: ["Mulish", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        roboto:["font-roboto"],
+        nunito:["font-nunito"],
+        inter: ['Inter', 'sans-serif'],
+        bodySmall: 'var(--BodySmallFont)',
+        jost: ['Jost', 'sans-serif'],
       },
 
       colors: {
@@ -41,7 +46,21 @@ module.exports = {
         medium_dark_gray:'#4B5563',
         blue_bg:"#F3F4FF",
         dark_yellow:"#FCC43E",
+        custom_gray:'#4B4B4B',
+        button_blue:'#5BAFC0',
+        text_blue:'#238899'
         
+      },
+      fontSize: {
+        '15px': '15px',
+        bodySmall: 'var(--BodySmallSize)',
+      },
+      lineHeight: {
+        '10px': '10px',
+        bodySmall: 'var(--BodySmallLineHeight)',
+      },
+      letterSpacing: {
+        bodySmall: 'var(--BodySmallTracking)', // Custom letter spacing
       },
 
     },

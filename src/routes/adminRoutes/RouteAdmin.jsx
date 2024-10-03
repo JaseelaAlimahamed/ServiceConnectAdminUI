@@ -2,8 +2,10 @@
 
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import AdminLayout from '../../layouts/AdminLayout'
-import UserManagement from '../../pages/adminPages/managementPages/UserManagement'
+import AdminLayout from '../../layouts/AdminLayout.jsx'
+import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
+import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
+import BookingDetailsPage from '../../pages/BookingDetailsPage.jsx'
 
 import AddCategory from '../../components/CategorySubCategory/AddEditCategory/AddCategory'
 import EditCategory from '../../components/CategorySubCategory/AddEditCategory/EditCategory'
@@ -24,6 +26,10 @@ function RouteAdmin() {
 
   return (
     <Routes>
+
+      <Route path='profile' element={<AdminProfilePage/>}/>
+      <Route path='bookingdetails' element={<BookingDetailsPage/>}/>
+      
       <Route element={<AdminLayout/>}>
 
         <Route path='usermanagement' element={<UserManagement/>}/>
@@ -39,6 +45,7 @@ function RouteAdmin() {
       <Route path='subcategories' element={<SubCategoryPage/>}/>
       <Route path='newads' element={<NewAdsPage/>}/>
       {/* <Route path='/signIn'element={<SignInForm/>}/> */}
+
 
 
       </Route>
