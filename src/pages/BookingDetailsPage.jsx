@@ -52,7 +52,7 @@ const bookingData = {
 
 const BookingDetailsPage = () => {
   return (
-    <div className="ml-6 mr-8 container bg-white border rounded-lg  p-6  w-[1000px] h-[1300px]">
+    <div className="ml-6 mr-8 container  bg-white border rounded-lg  p-6  w-[1000px] h-vh">
       <div className="ml-3 grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <UserInfo user={bookingData.user} />

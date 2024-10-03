@@ -5,19 +5,19 @@ import AdminLayout from '../../layouts/AdminLayout.jsx'
 import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 import BookingDetailsPage from '../../pages/BookingDetailsPage.jsx'
-
+import UserDetails from '../../pages/adminPages/UserDetails.jsx'
 function RouteAdmin() {
 
 
   return (
     <Routes>
       <Route  element={<AdminLayout/>}>
-       {/* <Route path='/usermanagement' element={<UserManagement/>}/>
+       <Route path='/usermanagement' element={<UserManagement/>}/>
            
       <Route path='/userdetails' element={<UserDetails/>}/>
-      <Route path='/signIn'element={<SignInForm/>}/>  */} 
+      {/*<Route path='/signIn'element={<SignInForm/>}/> */}
       <Route path='profile' element={<AdminProfilePage/>}/>
-      <Route path='bookingdetails' element={<BookingDetailsPage/>}/>
+      <Route path='Bookingdetails' element={<BookingDetailsPage/>}/>
       
 
       
