@@ -13,6 +13,8 @@ import FranchiseeProfile from '../../components/FranchiseComponents/FranchiseDet
 import EditSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory.jsx'
 import AddSubCategory  from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory.jsx'
 
+import ServiceType from '../../pages/adminPages/ServiceType.jsx'
+
 import UserDetails from '../../pages/adminPages/UserDetails'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
@@ -33,6 +35,11 @@ function RouteAdmin() {
       <Route element={<AdminLayout/>}>
 
         <Route path='usermanagement' element={<UserManagement/>}/>
+
+           
+     
+       <Route path='/servicetype' element={<ServiceType/>}/>
+
          <Route path='/userdetails' element={<UserDetails/>}/>
          <Route path='/signIn'element={<SignInForm/>}/>
          <Route path='AddCategory' element={<AddCategory/>}/>

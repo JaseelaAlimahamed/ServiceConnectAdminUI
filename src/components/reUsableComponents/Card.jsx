@@ -20,14 +20,15 @@ function Card({ variant = "small", ...rest }) {
     );
 }
 
-function SmallCard({ title, subtitle, iconBg, icon }) {
-    return (
-        <div className="flex px-5 py-6 gap-2  items-center w-[14rem] h-[5.25rem] ">
-            <div
-                className={`w-[2.5rem] aspect-square rounded-full flex justify-center items-center ${iconBg}`}
-            >
-                {icon && <>{icon}</>}
-            </div>
+function SmallCard({ title, subtitle, iconBg ,icon}) {
+  return (
+    <div className="flex px-4 py-4 gap-4 items-center w-[14rem] h-[5.25rem]">
+      <div
+        className={`w-[3rem] aspect-square rounded-full flex justify-center items-center ${iconBg}`}
+      >
+       {icon && <>{icon}</>} 
+      </div>
+
 
             <section className="flex flex-col">
                 <span className="font-normal text-sm text-[#68676E]">{subtitle}</span>
