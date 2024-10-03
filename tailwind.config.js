@@ -20,7 +20,8 @@ module.exports = {
       colors: {
         primary: "#FFFFFF",
         secondary: "#000000",
-
+        gray:"#E5E7EB",
+        id_gray:"#797C7B",
         violet:"#4D44B5",
         purple:"#65558F",
         fluracent_green:"#64FC3E",
