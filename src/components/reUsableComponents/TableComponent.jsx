@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react';
-import { LuTrendingUp } from "react-icons/lu";  
+import React, { useState} from "react";
 
-const Table = ({ tableDataConfig,tableColConfig,tableConfig}) => {
+
+const TableComponent = ({tableDataConfig,tableColConfig,tableConfig}) => {
 
   const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(5);
@@ -17,6 +17,7 @@ const Table = ({ tableDataConfig,tableColConfig,tableConfig}) => {
     const expensesLog = tableConfig.type === "expenseslog" 
     const serviceSubcription = tableConfig.type === "servicesubcription" 
     const serviceProviderMangement = tableConfig.type === "serviceprovidermangement" 
+    const franchiseePaymentLog = tableConfig.type === "franchiseepaymentlog" 
 
 
     
@@ -78,7 +79,7 @@ const handleCheckboxChange = (id) => {
   };
 
   return (
-    <div className="flex flex-col font-poppins text-black ">
+    <div className="flex flex-col font-poppins ">
       {(userManagement || serviceProviderMangement ) && (
         <div className="flex flex-wrap justify-between">
           <span className="relative rounded-full overflow-hidden h-16 mb-2">
@@ -115,7 +116,7 @@ const handleCheckboxChange = (id) => {
       )}
 
       <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto pb-20 h-full">
-        <table className="w-full text-center border-collapse ">
+        <table className="w-full text-left border-collapse">
           {tableConfig.title && 
           <caption className="p-8 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
             {tableConfig.title}
@@ -124,16 +125,17 @@ const handleCheckboxChange = (id) => {
           <thead>
             <tr>
             {(userManagement || serviceProviderMangement) && 
-              <th><span className="px-4 py-10"><input type="checkbox"/></span></th>
+              <th><span className="px-6"><input type="checkbox" className="w-5 h-5"/></span></th>
             }
               {tableColConfig?.map((col, index) => (
-                <th
-                  key={index}
-                  scope="col"
-                  className="p-5 text-dark_blue font-bold"
-                >
-                  {col}
-                </th>
+               <th
+               key={index}
+               scope="col"
+               className="py-5 pr-4 text-dark_blue font-bold"
+             >
+
+               {col}
+             </th>
               ))}
             </tr>
           </thead>
@@ -142,30 +144,30 @@ const handleCheckboxChange = (id) => {
             {currentUsers.map((data, index) => (
               <tr key={index} className={`${(userManagement || serviceProviderMangement) && "border-t"}`}>
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="p-4">
+                  <td className="px-6">
                     <input
                       type="checkbox"
+                      className="w-5 h-5"
                       checked={selectedRows.includes(data.id)}
                       onChange={() => handleCheckboxChange(data.id)}
                     />
                   </td>
                 )}
                 {data.name && (
-                  <td className={`px-6 py-6 ${(userManagement || serviceProviderMangement ) && "py-8"}` }>
-                    <div className="flex items-center gap-4 mr-6 lg:mr-0">
+                  <td className={`py-6 pr-4 ${(userManagement || serviceProviderMangement ) && "py-8"}` }>
+                    <div className="flex items-center gap-4 mr-12 ">
                       <img src={data.image} alt="" />
                       <span className="text-lg text-dark_blue font-bold">{data.name}</span>
                     </div>
                   </td>
                 )}
                 {(complaintsLog || expensesLog || paymentsLog) && (
-                  <td className="px-6 py-4">
-                    <div className="flex ">
-                    <div className='bg-lite_red text-white pt-3 rounded-full w-10 h-10 flex justify-center me-2'>
-                      <LuTrendingUp /></div>
+                  <td className="pl-6 pr-12 py-4">
+                    <div className="flex items-center">
+                        <img src="/trending-icon.svg" alt="" />
 
-                        <div className="flex flex-col px-5">
-                      <span className="text-lg text-violet font-bold pt-2 ">
+                        <div className="flex flex-col px-5 py-0">
+                      <span className="text-lg text-violet font-bold mb-1">
                         {data.paymentId}
                       </span>
                       {(complaintsLog || expensesLog ) && 
@@ -173,31 +175,34 @@ const handleCheckboxChange = (id) => {
                     {data.date} {data.time}
                   </span> 
                  }
+
                         </div>
                     </div>
                   </td>
                 )}
                 {(userManagement || serviceProviderMangement || serviceSubcription) && 
-                <td className="p-6 text-lg text-violet font-bold "><span className="">{data.id}</span></td>
+                <td className="py-6 pr-4 text-lg text-violet font-bold "><span className="">{data.id}</span></td>
                 }
                 {( serviceSubcription) && 
-                <td className="p-6 text-lg text-dark_blue font-bold "><span className="">{data.role}</span></td>
+                <td className="py-6 pr-4 text-lg text-dark_blue font-bold "><span className="">{data.role}</span></td>
                 }
 
                 {(userManagement || serviceProviderMangement || paymentsLog) && (
-                  <td className="px-6 text-sm text-gray-500">
-                    <div className="mr-2">
-                    <span className="whitespace-nowrap">{data.date}</span> {data.time}
+                  <td className="py-4 pr-4 text-sm text-gray-500">
+                    <div className="">
+                    <span className="mr-2">{data.date}</span>{data.time}
                     </div>
                   </td>
                 )}
-                {paymentsLog || serviceProviderMangement && (
-                  <td className="text-sm text-gray-500">
+
+                {franchiseePaymentLog && (
+                  <td className="py-4 pr-4 text-sm text-gray-500">
                     {data.description}
                   </td>
                 )}
+
                 {incompletedBookings && 
-                <td className="p-6 ">
+                <td className="py-6 pr-4">
                 <div className="flex items-center">
                     <img src={data.userImage} alt="" />
 
@@ -211,33 +216,36 @@ const handleCheckboxChange = (id) => {
                 }
                 
                 {expensesLog && (
-                <td className="px-6 py-4 text-sm text-dark_blue font-bold">
+                <td className="py-4 pr-4 text-sm text-dark_blue font-bold">
                    {data.paymentFor}
                 </td>
                 )}
+
                 {paymentsLog && (
-                  <td className="px-6 py-4 text-lg text-dark_blue font-bold">
+                  <td className="py-4 pr-4 text-lg text-dark_blue font-bold">
                     ${data.paymentAmount}
                   </td>
                 )}
 
                 {userManagement && (
-                  <td className="px-6 py-4 text-dark_blue text-center font-semibold">
+                  <td className="py-6 pr-4 text-dark_blue text-center font-semibold">
                     {data.totalCompletedWork}
                   </td>
                 )}
+
                 {(serviceProviderMangement) && (
-                  <td className="px-6 py-4 text-dark_blue font-semibold">
+                  <td className="py-6 pr-4 text-dark_blue font-semibold">
                     {data.verifiedBy}
                   </td>
                 )}
+
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="px-6 py-4 text-dark_blue font-semibold">
+                  <td className="py-6 pr-4 text-dark_blue font-semibold">
                     {data.location}
                   </td>
                 )}
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="px-6 py-4">
+                  <td className="py-6 pr-4">
                     <div className="flex gap-2">
                       <a
                         href={`tel:${data.contact?.phone}`}
@@ -254,9 +262,10 @@ const handleCheckboxChange = (id) => {
                     </div>
                   </td>
                 )}
+
                   {(paymentsLog || complaintsLog) && (
                   <td
-                    className={`px-6 py-4 text-lg font-bold ${
+                    className={`pr-4 py-4 text-lg font-bold ${
                       (data.paymentStatus === "Complete" || data.serviceStatus === "Complete")
                         ? "text-lite_green"
                         : (data.paymentStatus === "Pending" || data.serviceStatus === "Pending")
@@ -269,8 +278,9 @@ const handleCheckboxChange = (id) => {
                     {data.paymentStatus || data.serviceStatus}
                   </td>
                 )}
+
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="px-6 py-4">
+                  <td className="py-6 pr-4">
                     <span
                       className={`flex items-center justify-center ${
                         data.status ===  "Active" ? "bg-fluracent_green" : "bg-orange"
@@ -280,8 +290,9 @@ const handleCheckboxChange = (id) => {
                     </span>
                   </td>
                 )}
+
                 {(userManagement || serviceProviderMangement || serviceSubcription) && (
-                  <td className="p-6">
+                  <td className="py-6 pr-4">
                     <div className="relative">
                       <span onClick={()=> toggleAction(data.id)}>
                       <img
@@ -290,7 +301,7 @@ const handleCheckboxChange = (id) => {
                         alt="action"
                       />
                       </span>
-                        <ul className={`absolute z-10 top-6 right-6 shadow-md rounded-lg overflow-hidden ${
+                        <ul className={`absolute z-10 top-4 right-6 shadow-md rounded-lg overflow-hidden ${
                             openActionId === data.id ? "block" : "hidden"}`}>
                           <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleView}>view</li>
                           <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleEdit}>edit</li>
@@ -300,6 +311,7 @@ const handleCheckboxChange = (id) => {
                     </div>
                   </td>
                 )}
+                
               </tr>
             ))}
           </tbody>
@@ -356,4 +368,4 @@ const handleCheckboxChange = (id) => {
   );
 };
 
-export default Table;
+export default TableComponent;
