@@ -2,7 +2,7 @@ import React from 'react';
 import { BiShow } from "react-icons/bi";
 import { GrHide } from "react-icons/gr";
 
-const InputField = ({ type, placeholder, value, onChange, isPassword, showPassword, toggleShowPassword }) => {
+const InputFieldComponent = ({ type, placeholder, value, onChange, isPassword, showPassword, toggleShowPassword }) => {
   return (
     <div className="relative">
       <input
@@ -23,4 +23,4 @@ const InputField = ({ type, placeholder, value, onChange, isPassword, showPasswo
   );
 };
 
-export default InputField;
+export default InputFieldComponent;

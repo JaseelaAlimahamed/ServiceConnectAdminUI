@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout'
@@ -8,6 +9,7 @@ import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Sub
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 
 
+
 function RouteAdmin() {
 
 
@@ -15,12 +17,13 @@ function RouteAdmin() {
     <Routes>
       <Route element={<AdminLayout/>}>
         <Route path='user-management' element={<UserManagement/>}/>
-           
+
       <Route path='/userdetails' element={<UserDetails/>}/>
       <Route path='categories' element={<CategoryPage/>}/>
       <Route path='subcategories' element={<SubCategoryPage/>}/>
       <Route path='newads' element={<NewAdsPage/>}/>
       {/* <Route path='/signIn'element={<SignInForm/>}/> */}
+
       </Route>
     </Routes>
 
