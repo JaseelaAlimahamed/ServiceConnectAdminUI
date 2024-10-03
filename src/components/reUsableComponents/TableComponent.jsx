@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 
 
 const TableComponent = ({tableDataConfig,tableColConfig,tableConfig}) => {
@@ -133,6 +133,7 @@ const handleCheckboxChange = (id) => {
                scope="col"
                className="py-5 pr-4 text-dark_blue font-bold"
              >
+
                {col}
              </th>
               ))}
