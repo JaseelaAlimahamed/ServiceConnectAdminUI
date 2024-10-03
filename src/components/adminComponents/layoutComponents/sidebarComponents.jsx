@@ -9,30 +9,34 @@ export const menuItems = [
 
   },
   {
-    name: "categories",
+
+    name: "Categories",
     to: "/admin/categories",
     icon:
-<svg width="43" height="41" viewBox="0 0 43 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M20 0H0V19.6458H20V0ZM43 21.3542H23V41H43V21.3542ZM23 5.125H43V17.9375H23V5.125ZM20 24.7708H0V37.5833H20V24.7708Z" fill="white"/>
-</svg>
+      <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="12" height="12" fill="#C1BBEB" />
+        <rect x="23" y="5" width="12" height="12" fill="#C1BBEB" />
+        <rect x="5" y="23" width="12" height="12" fill="#C1BBEB" />
+        <rect x="23" y="23" width="12" height="12" fill="#C1BBEB" />
+      </svg>
+
+
 
   }, {
-    name: "subcategories",
+    name: "Subcategories",
     to: "/admin/subcategories",
     icon:
-<svg width="40" height="42" viewBox="0 0 40 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="14" y="28" width="11" height="11" fill="white"/>
-<rect x="28" y="28" width="11" height="11" fill="white"/>
-<rect width="11" height="11" fill="white"/>
-<rect y="28" width="11" height="11" fill="white"/>
-<rect x="28" y="14" width="11" height="11" fill="white"/>
-<rect x="14" y="14" width="11" height="11" fill="white"/>
-<rect y="14" width="11" height="11" fill="white"/>
-<rect x="28" width="11" height="11" fill="white"/>
-<rect x="14" width="11" height="11" fill="white"/>
-</svg>
-
-
+      <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="8" height="8" fill="#C1BBEB" />
+        <rect x="16" y="5" width="8" height="8" fill="#C1BBEB" />
+        <rect x="27" y="5" width="8" height="8" fill="#C1BBEB" />
+        <rect x="5" y="16" width="8" height="8" fill="#C1BBEB" />
+        <rect x="16" y="16" width="8" height="8" fill="#C1BBEB" />
+        <rect x="27" y="16" width="8" height="8" fill="#C1BBEB" />
+        <rect x="5" y="27" width="8" height="8" fill="#C1BBEB" />
+        <rect x="16" y="27" width="8" height="8" fill="#C1BBEB" />
+        <rect x="27" y="27" width="8" height="8" fill="#C1BBEB" />
+      </svg>
 
 
   },
@@ -53,7 +57,7 @@ export const menuItems = [
   },
   {
     name: "Service Providers",
-    to: "/admin/service-providers",
+    to: "/admin/Service-Providers",
     icon: <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_327_5886)">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M5 35C5 37.0713 6.67875 38.75 8.75 38.75H31.25C33.3212 38.75 35 37.0713 35 35C35 32.0825 35 27.3125 35 24.5863C35 22.7738 33.7038 21.2213 31.9213 20.8975C29.2788 20.4163 24.7225 19.5875 22.145 19.12C20.7263 18.8612 19.2737 18.8612 17.855 19.12C15.2775 19.5875 10.7212 20.4163 8.07875 20.8975C6.29625 21.2213 5 22.7738 5 24.5863V35ZM22.885 21.795L24.7612 28.9288C25.0075 29.865 24.6775 30.8588 23.92 31.4638C23.28 31.9738 22.2713 32.7788 21.5713 33.3388C20.6525 34.0713 19.3475 34.0713 18.4287 33.3388C17.7287 32.7788 16.72 31.9738 16.08 31.4638C15.3225 30.8588 14.9925 29.865 15.2388 28.9288L17.115 21.795L8.52625 23.3562C7.9325 23.465 7.5 23.9825 7.5 24.5863V35C7.5 35.69 8.06 36.25 8.75 36.25C13.98 36.25 26.02 36.25 31.25 36.25C31.94 36.25 32.5 35.69 32.5 35C32.5 32.0825 32.5 27.3125 32.5 24.5863C32.5 23.9825 32.0675 23.465 31.4738 23.3562L22.885 21.795ZM20.2038 21.4288C20.0675 21.425 19.9325 21.425 19.7962 21.4288L17.6663 29.5312L19.9887 31.3837C19.995 31.39 20.005 31.39 20.0113 31.3837L22.3337 29.5312L20.2038 21.4288ZM20 1.25C15.5163 1.25 11.875 4.89125 11.875 9.375C11.875 13.8587 15.5163 17.5 20 17.5C24.4837 17.5 28.125 13.8587 28.125 9.375C28.125 4.89125 24.4837 1.25 20 1.25ZM20 3.75C23.105 3.75 25.625 6.27 25.625 9.375C25.625 12.48 23.105 15 20 15C16.895 15 14.375 12.48 14.375 9.375C14.375 6.27 16.895 3.75 20 3.75Z" fill="#C1BBEB" />
@@ -123,6 +127,7 @@ export const menuItems = [
   {
     name: "Service Management",
     to: "/admin/service-management",
+
     icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M9 8H15V6H9V8ZM2 20V15H6V16H8V15H16V16H18V15H22V20H2ZM2 14V8H7V4H17V8H22V14H18V12H16V14H8V12H6V14H2Z" fill="#C1BBEB" />
     </svg>
@@ -131,7 +136,8 @@ export const menuItems = [
   },
   {
     name: "Ads Management",
-    to: "/admin/ads-management",
+    to: "/admin/adsmanagement",
+
     icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3 7C3 6.46957 3.21071 5.96086 3.58579 5.58579C3.96086 5.21071 4.46957 5 5 5H19C19.5304 5 20.0391 5.21071 20.4142 5.58579C20.7893 5.96086 21 6.46957 21 7V17C21 17.5304 20.7893 18.0391 20.4142 18.4142C20.0391 18.7893 19.5304 19 19 19H5C4.46957 19 3.96086 18.7893 3.58579 18.4142C3.21071 18.0391 3 17.5304 3 17V7Z" stroke="#C1BBEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M7 15V11C7 10.4696 7.21071 9.96086 7.58579 9.58579C7.96086 9.21071 8.46957 9 9 9C9.53043 9 10.0391 9.21071 10.4142 9.58579C10.7893 9.96086 11 10.4696 11 11V15M7 13H11M17 9V15H15.5C15.2033 15 14.9133 14.912 14.6666 14.7472C14.42 14.5824 14.2277 14.3481 14.1142 14.074C14.0006 13.7999 13.9709 13.4983 14.0288 13.2074C14.0867 12.9164 14.2296 12.6491 14.4393 12.4393C14.6491 12.2296 14.9164 12.0867 15.2074 12.0288C15.4983 11.9709 15.7999 12.0006 16.074 12.1142C16.3481 12.2277 16.5824 12.42 16.7472 12.6666C16.912 12.9133 17 13.2033 17 13.5" stroke="#C1BBEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
