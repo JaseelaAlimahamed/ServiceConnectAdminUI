@@ -70,7 +70,7 @@ const DropButtons = ({ categories, onCategorySelect }) => {
                             {categories.map((category) => (
                                 <li
                                     key={category.id}
-                                    className="px-4 py-2 hover:bg-gray-200 cursor-pointer"
+                                    className="px-4 py-2 hover:bg-light_gray cursor-pointer"
                                     onClick={() => handleCategorySelect(category)}
                                 >
                                     {category.name}

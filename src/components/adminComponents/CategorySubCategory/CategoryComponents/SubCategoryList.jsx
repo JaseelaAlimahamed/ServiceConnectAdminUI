@@ -149,7 +149,7 @@ const SubCategoryList = () => {
                     }
                     {/* Add Category Button */}
                     <div className="bg-blue_bg min-h-[250px] shadow-lg rounded-lg flex justify-center items-center p-4 w-full">
-                        <button className="text-8xl font-bold text-gray-400"><BsPlusLg /></button>
+                        <button className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></button>
                     </div>
                 </div>
             </div>

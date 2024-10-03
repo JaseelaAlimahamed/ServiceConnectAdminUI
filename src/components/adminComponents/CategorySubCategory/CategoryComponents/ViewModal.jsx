@@ -15,7 +15,7 @@ const ViewModal = ({ isOpen, onClose, category }) => {
                 <p className='text-violet font-bold'>Category ID: {category.id}</p>
                 <p className='text-lg font-semibold  mt-2'>{category.description}</p>
                 <div className="mt-4 flex justify-end">
-                    <button onClick={onClose} className="px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+                    <button onClick={onClose} className="px-4 py-2 bg-sky_blue text-white rounded">Close</button>
                 </div>
             </div>
         </div>

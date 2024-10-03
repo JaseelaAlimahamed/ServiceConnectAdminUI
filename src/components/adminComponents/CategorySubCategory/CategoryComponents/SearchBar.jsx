@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa';
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
     return (
         <div className="flex items-center border border-violet rounded-full overflow-hidden px-6">
-            <button type="submit" className="bg-white text-gray-600 p-4">
+            <button type="submit" className="bg-white text-medium_dark_gray p-4">
                 <FaSearch />
             </button>
             <input
