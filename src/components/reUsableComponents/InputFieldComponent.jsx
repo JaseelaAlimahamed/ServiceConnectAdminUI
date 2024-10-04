@@ -6,16 +6,16 @@ import 'react-phone-input-2/lib/style.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const InputField = ({
-  type,
+const InputFieldComponent = ({
+  type = 'text',
   placeholder,
   value,
   onChange,
   isPassword,
   showPassword,
   toggleShowPassword,
-  color = 'bg-gray-500',
   name,
+  color = 'bg-light_gray', // Default color
 }) => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);  // State to hold image preview URL
@@ -25,7 +25,7 @@ const InputField = ({
       const selectedFile = e.target.files[0];
       setFile(selectedFile);
       onChange(selectedFile); // Pass only the file object to parent component
-      
+
       // Generate image preview URL using FileReader
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -48,7 +48,6 @@ const InputField = ({
         <>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
             <label className="block text-sm font-medium text-gray-700 mb-2">Photo *</label>
-            
             <div className="flex items-center justify-center h-32 w-full">
               {preview ? (
                 <img src={preview} alt="Preview" className="h-full w-auto object-cover" />
@@ -57,7 +56,6 @@ const InputField = ({
               )}
             </div>
           </div>
-          
           <input
             type="file"
             onChange={handleInputChange}
@@ -70,19 +68,19 @@ const InputField = ({
           country={'us'}
           value={value}
           onChange={onChange} // Pass the phone input value to the parent
-          inputClass="p-4 w-full rounded-2xl bg-gray-100 pl-12 text-lg focus:outline-none focus:ring-2 focus:ring-primary"
+          inputClass={`p-4 w-full rounded-2xl ${color} pl-12 text-lg focus:outline-none focus:ring-2 focus:ring-primary`}
           buttonClass="absolute left-4 top-4 h-full flex items-center justify-center rounded-l-2xl"
           containerClass="relative w-full border-1 border-gray-300 rounded-lg pl-12 relative"
           placeholder={placeholder}
           inputStyle={{
-            border: 'none', // Removes the inner border
-            boxShadow: 'none', // Removes any box shadow
+            border: 'none',
+            boxShadow: 'none',
             paddingLeft: '4.5rem',
           }}
           inputProps={{
             required: true,
             autoFocus: false,
-            name: name // Ensure the name prop is passed here
+            name: name || '', // Ensure the name prop is passed here
           }}
         />
       ) : type === 'date' ? (
@@ -100,7 +98,7 @@ const InputField = ({
             type={showPassword ? "text" : "password"}
             placeholder={placeholder}
             value={value}
-            name={name} // Pass name prop correctly
+            name={name || ''} // Pass name prop correctly
             onChange={handleInputChange}
             className={`p-4 w-full rounded-2xl ${color}`}
             required
@@ -114,7 +112,7 @@ const InputField = ({
           type={type}
           placeholder={placeholder}
           value={value}
-          name={name} 
+          name={name || ''}
           onChange={handleInputChange} // Update parent with onChange
           className={`p-4 w-full rounded-2xl ${color}`}
           required
@@ -124,4 +122,4 @@ const InputField = ({
   );
 };
 
-export default InputField;
+export default InputFieldComponent;
