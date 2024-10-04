@@ -57,7 +57,7 @@ const NewSubCategory = () => {
         />
         <button
           onClick={handleEditImage}
-          className="ml-0 p-2 bg-transparent border-none cursor-pointer text-gray-600"
+          className="ml-0 p-2 bg-transparent border-none cursor-pointer text-gray"
         >
           <img src={EditSubCategoryIcon} alt="Edit Subcategory" width="24" height="24" />
         </button>
