@@ -5,7 +5,7 @@ import AdminLayout from '../../layouts/AdminLayout'
 import UserManagement from '../../pages/adminPages/managementPages/UserManagement'
 import EditSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory'
 import AddSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory'
-
+import Accounts from '../../components/franchaseeComponets/Edit/Accounts'
 import EditAddFranchiseeType from '../../components/franchaseeComponets/Edit/Add Franchasee Type'
 
 
@@ -22,7 +22,8 @@ function RouteAdmin() {
               <Route path='editsubcategory' element={<EditSubCategory/>}/>
               <Route path='addsubcategory' element={<AddSubCategory/>}/>
               <Route path='Editaddfranchiseetype' element={<EditAddFranchiseeType />}/>
-
+              <Route path='accounts'   element={<Accounts/>}/>
+             
       </Route>
     </Routes>
 

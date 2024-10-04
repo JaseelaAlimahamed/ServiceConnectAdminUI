@@ -1,6 +1,6 @@
-
 import { useState } from "react";
-import { FaChevronDown, FaChevronUp, } from 'react-icons/fa';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import EditSubCategoryIcon from '../../../../assets/icons/EditSubCategory.svg';
 
 const NewSubCategory = () => {
   const [title, setTitle] = useState('');
@@ -10,13 +10,14 @@ const NewSubCategory = () => {
   const [status, setStatus] = useState('Status');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [image] = useState(null);
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
 
   const handleStatusChange = (newStatus) => {
     setStatus(newStatus);
-    setDropdownOpen(false); 
+    setDropdownOpen(false);
   };
 
   const handleSave = () => {
@@ -30,8 +31,6 @@ const NewSubCategory = () => {
     console.log(newSubCategory);
   };
 
-
-  
   const handleEditImage = () => {
     const newImage = prompt("Enter new image URL");
     if (newImage) {
@@ -40,71 +39,51 @@ const NewSubCategory = () => {
   };
 
   const handleDelete = () => {
-        setTitle("");
-        setDescription("");
-        setStatus("Active");
-        // setImage("https://via.placeholder.com/300");
-        alert("SubCategory Deleted");
-      };
-
+    setTitle("");
+    setDescription("");
+    setStatus("Active");
+    alert("SubCategory Deleted");
+  };
 
   return (
-    
-<div className="max-w-3xl mx-auto p-4 sm:p-8 bg-white shadow-lg rounded-lg flex flex-col  h-2xl space-y-6">
+    <div className="max-w-3xl mx-auto p-4 sm:p-8 bg-white shadow-lg rounded-lg flex flex-col space-y-6">
+      <h2 className="text-2xl font-bold text-dark_blue">Add Category Details</h2>
 
-<h2 className="text-2xl font-bold text-violet">Add Category Details</h2>
-
-
-
-
-  <div className="flex items-start ">
+      <div className="flex items-start">
         <img
-          src={image|| "https://via.placeholder.com/250x150"}
+          src={image || "https://via.placeholder.com/250x150"}
           alt="Category"
           className="w-64 h-64 object-cover rounded-lg mt-6"
         />
         <button
           onClick={handleEditImage}
-          className="ml-0 p-2  bg-transparent border-none cursor-pointer text-gray-600"
+          className="ml-0 p-2 bg-transparent border-none cursor-pointer text-gray-600"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11 4.00023H4C3.46957 4.00023 2.96086 4.21094 2.58579 4.58601C2.21071 4.96109 2 5.46979 2 6.00023V20.0002C2 20.5307 2.21071 21.0394 2.58579 21.4144C2.96086 21.7895 3.46957 22.0002 4 22.0002H18C18.5304 22.0002 19.0391 21.7895 19.4142 21.4144C19.7893 21.0394 20 20.5307 20 20.0002V13.0002M18.5 2.50023C18.8978 2.1024 19.4374 1.87891 20 1.87891C20.5626 1.87891 21.1022 2.1024 21.5 2.50023C21.8978 2.89805 22.1213 3.43762 22.1213 4.00023C22.1213 4.56284 21.8978 5.1024 21.5 5.50023L12 15.0002L8 16.0002L9 12.0002L18.5 2.50023Z"
-              stroke="#1E1E1E"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <img src={EditSubCategoryIcon} alt="Edit Subcategory" width="24" height="24" />
         </button>
       </div>
 
-       {/* Title Input */}
+      {/* Title Input */}
       <div>
-        <label className="block font-semibold mb-1 text-gray-200"></label> 
+        <label className="block font-semibold mb-1 text-id-gray"></label>
         <input
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-48 p-1 mx-3 border border-gray-300 rounded-md text-gray-700 h-8" 
+          className="w-48 p-1 mx-3 border border-gray rounded-md text-secondary h-8 placeholder-id_gray"
         />
       </div>
 
       {/* Description Input */}
       <div>
-        <label className="block font-semibold mb-1 text-gray-200"></label> 
+        <label className="block font-semibold mb-1 text-id_gray"></label>
         <input
           type="text"
           placeholder="Description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-48 p-1 mx-3 border border-gray-300 rounded-md text-gray-700 h-8" 
+          className="w-48 p-1 mx-3 border border-gray rounded-md text-secondary placeholder-id_gray h-8"
+       
         />
       </div>
 
@@ -114,95 +93,93 @@ const NewSubCategory = () => {
         <select
           value={serviceType}
           onChange={(e) => setServiceType(e.target.value)}
-          className="w-48 p-1 mx-3 border border-gray-300 rounded-md text-gray-400 h-8" 
+          className="w-48 p-1 mx-3 border border-gray rounded-md text-id_gray h-8"
+       
         >
-          <option value="">Select Service Type</option>
-          <option value="cleaning">Cleaning</option>
-          <option value="plumbing">Plumbing</option>
+          <option value="" className="text-id_gray">Select Service Type</option>
+          <option value="cleaning" className="text-id_gray">Cleaning</option>
+          <option value="plumbing" className="text-id_gray">Plumbing</option>
         </select>
       </div>
 
       {/* Collar Dropdown */}
       <div>
-        <label className="block font-semibold mb-1 text-gray-200 item-center"></label>
+        <label className="block font-semibold mb-1 text-gray-200"></label>
         <select
           value={collar}
           onChange={(e) => setCollar(e.target.value)}
-          className="w-48 p-1  mx-3 border border-gray-300 rounded-md text-gray-400 h-8" 
+          className="w-48 p-1 mx-3 border border-gray rounded-md text-id_gray h-8"
+          // Applied the same text color to the dropdown
         >
-          <option value="">Select Collar</option>
-          <option value="white">White Collar</option>
-          <option value="blue">Blue Collar</option>
-          <option value="blue">Yellow Collar</option>
+          <option value="" className="text-id_gray">Select Collar</option>
+          <option value="white" className="text-id_gray">White Collar</option>
+          <option value="blue" className="text-id_gray">Blue Collar</option>
+          <option value="yellow" className="text-id_gray">Yellow Collar</option>
         </select>
       </div>
 
-     {/* buttons */}
-    
-     <div className="flex justify-end items-end mt-4 py-40">
+      {/* Buttons */}
+      <div className="flex justify-end items-end mt-4 space-x-2">
         {/* Status Dropdown */}
         <div className="relative">
           <button
             onClick={toggleDropdown}
-            className="border border-violet-600 text-violet px-3 py-1 rounded-full flex" 
+            className="border border-violet text-violet px-3 py-1 rounded-full flex"
           >
             {status}
             {dropdownOpen ? (
-              <FaChevronUp className="ml-1 " />
+              <FaChevronUp className="ml-1 text-id_gray" />
             ) : (
-              <FaChevronDown className="ml-1" />
+              <FaChevronDown className="ml-1 text-id_gray" />
             )}
+           
           </button>
 
           {dropdownOpen && (
             <div className="absolute right-0 mt-1 w-48 bg-white border rounded-md shadow-lg">
               <button
-                onClick={() => handleStatusChange('active')}
-                className="block w-full px-2 py-1 text-left hover:bg-violet-100" 
+                onClick={() => handleStatusChange('Active')}
+                className="block w-full px-2 py-1 text-left hover:bg-blue_bg"
               >
                 Active
               </button>
               <button
-                onClick={() => handleStatusChange('inactive')}
-                className="block w-full px-2 py-1 text-left hover:bg-violet-100" 
+                onClick={() => handleStatusChange('Inactive')}
+                className="block w-full px-2 py-1 text-left hover:bg-blue_bg"
               >
                 Inactive
               </button>
               <button
-                onClick={() => handleStatusChange('inactive')}
-                className="block w-full px-2 py-1 text-left hover:bg-violet-100" 
+                onClick={() => handleStatusChange('Completed')}
+                className="block w-full px-2 py-1 text-left hover:bg-blue_bg"
               >
-                Complited
+                Completed
               </button>
               <button
-                onClick={() => handleStatusChange('inactive')}
-                className="block w-full px-2 py-1 text-left hover:bg-violet-100" 
+                onClick={() => handleStatusChange('Cancelled')}
+                className="block w-full px-2 py-1 text-left hover:bg-blue_bg"
               >
-                cancelled
+                Cancelled
               </button>
             </div>
           )}
         </div>
-   
 
         <button
           onClick={handleDelete}
-          className=" bg-red text-white border border-violet-300 text-violet-300 px-3 py-1 rounded-full flex"
+          className="bg-soft_red text-white px-3 py-1 rounded-full"
         >
           Delete
         </button>
         <button
           onClick={handleSave}
-          className=" w-24   bg-violet text-white border border-violet-300 text-violet-300 px-3 py-1 rounded-full flex"
+          className="bg-violet text-primary px-3 py-1 rounded-full"
         >
           Save
         </button>
-        </div>
-        </div>
-        
-
+      </div>
+    </div>
   );
 };
 
 export default NewSubCategory;
-
