@@ -19,6 +19,7 @@ import UserDetails from '../../pages/adminPages/UserDetails'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+import FranchiseeList from '../../components/FranchiseComponents/FranchiseDetails/FranchiseeList.jsx'
 
 
 
@@ -47,6 +48,7 @@ function RouteAdmin() {
          <Route path='FranchiseeDetails' element={<FranchiseeProfile/>}/>
          <Route path='editsubcategory' element={<EditSubCategory/>}/>
          <Route path='addsubcategory' element={<AddSubCategory/>}/>
+         <Route path='Franchisee' element={<FranchiseeList/>}/>
 
       <Route path='categories' element={<CategoryPage/>}/>
       <Route path='subcategories' element={<SubCategoryPage/>}/>
