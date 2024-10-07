@@ -6,6 +6,7 @@ import UserManagement from '../../pages/adminPages/managementPages/UserManagemen
 import EditSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory.jsx'
 import AddSubCategory  from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory.jsx'
 import ServiceType from '../../pages/adminPages/ServiceType.jsx'
+import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 function RouteAdmin() {
 
 
@@ -19,6 +20,7 @@ function RouteAdmin() {
        <Route path='editsubcategory' element={<EditSubCategory/>}/>
        <Route path='addsubcategory' element={<AddSubCategory/>}/>
        <Route path='/servicetype' element={<ServiceType/>}/>
+       <Route path='/adsmanagement' element={<AdsManagement/>}/>
 
       </Route>
     </Routes>
