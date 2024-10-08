@@ -4,7 +4,7 @@ import Card from '../../ReUsableComponents/Card'
 function AdsCards() {
   return (
     <>
-    <div className="flex flex-wrap xl:justify-between w-full px-6 pb-10 justify-around gap-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 w-full px-6 pb-10">
           <Card
             variant="ads"
             heading="Total Ads"

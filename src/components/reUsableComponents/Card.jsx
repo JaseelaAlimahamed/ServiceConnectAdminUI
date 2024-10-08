@@ -22,7 +22,7 @@ function Card({ variant = "small", ...rest }) {
   }
 
   return (
-    <div className="relative font-poppins rounded-[1.25rem] h-fit bg-white">
+    <div className="relative font-poppins rounded-[1.25rem] bg-white w-full max-w-[350px]">
       {cardComponent}
     </div>
   );
@@ -107,9 +107,9 @@ function AdsCard({ heading, title, subtitle, iconBg, percent }) {
   const percentColor = numericPercent > 0 ? "text-green-500" : "text-red";
   return (
     <>
-      <div className="flex gap-4 px-4 py-4 items-center max-xl:w-[350px] ">
+      <div className="flex gap-4 px-4 py-4 items-center">
         <div
-          className={`w-[3rem] aspect-square rounded-full flex justify-center items-center ${iconBg}`}
+          className={`w-[3rem] h-[3rem] rounded-full flex justify-center items-center ${iconBg}`}
         >
           <LiaUserTieSolid size="2rem" color="white" />
         </div>
@@ -145,9 +145,13 @@ function AdsType({ type, title, ad_id, views, hits }) {
             <h1 className="font-semibold text-base text-[#202244]">{title}</h1>
             <h2 className="font-medium text-base text-[#797C7B]">{ad_id}</h2>
             <div className="flex gap-7 justify-center">
-              <span className="font-bold text-xs text-[#202244]">{views} Views</span>
+              <span className="font-bold text-xs text-[#202244]">
+                {views} Views
+              </span>
               <span className="font-bold text-xs text-[#202244]">|</span>
-              <span className="font-bold text-xs text-[#202244]">{hits} Hits</span>
+              <span className="font-bold text-xs text-[#202244]">
+                {hits} Hits
+              </span>
             </div>
           </div>
         </div>
