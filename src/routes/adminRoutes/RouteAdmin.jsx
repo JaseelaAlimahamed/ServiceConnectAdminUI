@@ -39,6 +39,7 @@ function RouteAdmin() {
            
      
        <Route path='/servicetype' element={<ServiceType/>}/>
+       <Route path='/adsmanagement' element={<AdsManagement/>}/>
 
          <Route path='/userdetails' element={<UserDetails/>}/>
          <Route path='/signIn'element={<SignInForm/>}/>
