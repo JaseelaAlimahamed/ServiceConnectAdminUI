@@ -37,59 +37,59 @@ function SmallCard({ title, subtitle, iconBg, icon }) {
         {icon && <>{icon}</>}
       </div>
 
-      <section className="flex flex-col">
-        <span className="font-semibold text-lg">{title}</span>
-        <span className="font-normal text-sm text-[#68676E]">{subtitle}</span>
-      </section>
-    </div>
-  );
+
+            <section className="flex flex-col">
+                <span className="font-normal text-sm text-[#68676E]">{subtitle}</span>
+                <span className="font-extrabold text-xl text-violet">{title}</span>
+            </section>
+        </div>
+    );
 }
 function LargeCard({
-  title,
-  titleSize = "text-lg",
-  subtitle,
-  date,
-  time,
-  sideColor,
-  name,
+    title,
+    titleSize = "text-lg",
+    subtitle,
+    date,
+    time,
+    sideColor,
+    name,
 }) {
-  return (
-    <>
-      {sideColor && (
-        <span
-          className={`absolute top-0 left-0 w-[1.5rem] h-full rounded-s-[1.25rem] ${sideColor} `}
-        ></span>
-      )}
-      <div
-        className={`${
-          sideColor ? "ml-8" : "mr-8"
-        } px-4 py-5 flex flex-col gap-2 justify-center text-[#A098AE]`}
-      >
-        <span className={`font-semibold ${titleSize} text-dark_blue`}>
-          {title}
-        </span>
-        <div className="flex gap-2 items-center">
-          {name && (
-            <div className="w-[2rem] aspect-square rounded-full bg-blue_gray"></div>
-          )}
-          <span className="font-normal text-sm">{name}</span>
-        </div>
-        <span className="font-normal text-sm">{subtitle}</span>
-        {date && (
-          <div className="flex gap-2">
-            <IoCalendarClearOutline color="orange" />
-            <span className="font-normal text-sm">{date}</span>
-          </div>
-        )}
-        {time && (
-          <div className="flex gap-2">
-            <LuClock3 color="#FCC43E" />
-            <span className="font-normal text-sm">{time}</span>
-          </div>
-        )}
-      </div>
-    </>
-  );
+    return (
+        <>
+            {sideColor && (
+                <span
+                    className={`absolute top-0 left-0 w-[1.5rem] h-full rounded-s-[1.25rem] ${sideColor} `}
+                ></span>
+            )}
+            <div
+                className={`${sideColor ? "ml-8" : "mr-8"
+                    } px-4 py-5 flex flex-col gap-2 justify-center text-[#A098AE]`}
+            >
+                <span className={`font-semibold ${titleSize} text-dark_blue`}>
+                    {title}
+                </span>
+                <div className="flex gap-2 items-center">
+                    {name && (
+                        <div className="w-[2rem] aspect-square rounded-full bg-blue_gray"></div>
+                    )}
+                    <span className="font-normal text-sm">{name}</span>
+                </div>
+                <span className="font-normal text-sm">{subtitle}</span>
+                {date && (
+                    <div className="flex gap-2">
+                        <IoCalendarClearOutline color="orange" />
+                        <span className="font-normal text-sm">{date}</span>
+                    </div>
+                )}
+                {time && (
+                    <div className="flex gap-2">
+                        <LuClock3 color="#FCC43E" />
+                        <span className="font-normal text-sm">{time}</span>
+                    </div>
+                )}
+            </div>
+        </>
+    );
 }
 
 function TitleCard({ title, subtitle }) {
