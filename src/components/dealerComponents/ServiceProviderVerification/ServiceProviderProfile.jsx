@@ -35,13 +35,13 @@ const UserProfile = ({name,franchise,address,phone,email,username}) => {
         </div>
         <p className="text-lg font-semibold text-light_gray">{username}</p>
       </div>
-      <div className="flex max-md:flex-col  gap-10 p-6">
-        <div className="flex flex-col gap-2">
+      <div className="grid grid-cols-4 max-sm:grid-cols-1 max-lg:grid-cols-2  gap-10 p-6">
+        <div className="flex flex-col gap-2 ">
           <div className="flex px-4">
             <p className="userdetails_tag ">Franchise:</p>
           </div>
 
-          <div className="flex gap-3 justify-center items-center max-md:justify-start">
+          <div className="flex gap-3 justify-start items-center max-md:justify-start">
             <div className="bg-orange w-fit rounded-full p-3">
             <FaRegUser
                 style={{ color: "#fff", fontSize: "1.5rem" }}
@@ -52,11 +52,11 @@ const UserProfile = ({name,franchise,address,phone,email,username}) => {
             <h3 className="userdetails_sub">{franchise}</h3>
           </div>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 ">
           <div className="flex px-4">
             <p className="userdetails_tag ">Address:</p>
           </div>
-          <div className="flex justify-center items-center gap-2 max-md:justify-start">
+          <div className="flex justify-start items-center gap-2 max-md:justify-start">
             <div className="bg-orange w-fit rounded-full p-3">
               <CiLocationOn
                 style={{ color: "#fff", fontSize: "1.5rem" }}
@@ -69,7 +69,7 @@ const UserProfile = ({name,franchise,address,phone,email,username}) => {
           <div className="flex px-4">
             <p className="userdetails_tag ">Phone:</p>
           </div>
-          <div className="flex justify-center items-center gap-2 max-md:justify-start">
+          <div className="flex justify-start items-center gap-2 max-md:justify-start">
             <div className="bg-orange w-fit rounded-full p-3">
             <FiPhone 
                 style={{ color: "#fff", fontSize: "1.5rem" }}
@@ -82,7 +82,7 @@ const UserProfile = ({name,franchise,address,phone,email,username}) => {
           <div className="flex px-4 ">
             <p className="userdetails_tag ">Email:</p>
           </div>
-          <div className="flex justify-center items-center gap-2 max-md:justify-start">
+          <div className="flex justify-start items-center gap-2 max-md:justify-start">
             <div className="bg-orange w-fit rounded-full p-3">
               <CiMail 
                 style={{ color: "#fff", fontSize: "1.5rem" }}
