@@ -1,7 +1,7 @@
 import React from "react";
-import Card from "../../components/reUsableComponents/Card";
-import Table from "../../components/reUsableComponents/TableComponent"
-import UserProfile from "../../components/adminComponents/UserProfile";
+import Card from "../../../components/reUsableComponents/Card";
+import Table from "../../../components/ReUsableComponents/Table";
+import UserProfile from "../../../components/adminComponents/UserProfile";
 
 const userdetails = {
   name:'Karen Hope',

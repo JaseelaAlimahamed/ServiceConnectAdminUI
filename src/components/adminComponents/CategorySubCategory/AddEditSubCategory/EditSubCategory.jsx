@@ -3,7 +3,7 @@
 import React,{ useState } from "react";
 import { FaChevronDown, FaChevronUp, } from 'react-icons/fa';
 
-import { useState } from "react";
+
 import ImageUpload from "../editSubcategoryItems/ImageUpload";
 import TitleInput from "../editSubcategoryItems/TitleInput";
 import DescriptionInput from "../editSubcategoryItems/DescriptionInput";
