@@ -11,35 +11,35 @@ function AddServiceProvider(){
             placeholder : 'Full Name',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]',
         },
         {
             name : 'address',
             placeholder : 'Address',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl flex placeholder:text-[#A098AE]',
         },
         {
             name : 'dob',
-            placeholder : 'Enter Your date of birth ',
             type : 'date',
+            placeholder : 'Date of Birth',
             required : true,
-            className : 'my-3 p-3 w-full  bg-white border-none rounded-xl flex placeholder:text-black',
+            className : 'my-3 p-3 w-full  bg-white border-none rounded-xl flex text-[#A098AE] focus:placeholder',
         },
         {
             name : 'email',
             placeholder : 'Email',
             type : 'email',
             required : true,
-            className : 'my-3 p-3 w-full block bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full block bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]',
         },
         {
             name : 'mobile',
             placeholder : 'Mobile number',
             type : 'tel',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]',
         },
         {
             name : 'franchiseename',
@@ -47,14 +47,14 @@ function AddServiceProvider(){
             type : 'dropdown',
             option : ['franchisee name 1','franchisee name 2','franchisee name 3'],
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black'
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex text-[#A098AE] list-item'
         },
         {
             name : 'password',
             placeholder : 'Password',
             type : 'password',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black'
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]'
         },
         {
             name : 'gender',
@@ -62,42 +62,42 @@ function AddServiceProvider(){
             type : 'dropdown',
             option : ['Male','Female'],
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black ',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex text-[#A098AE]',
         },
         {
             name : 'housename',
             placeholder : 'House name',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]',
         },
         {
             name : 'landmark',
             placeholder : 'Landmark',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black ',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE] ',
         },
         {
             name : 'pincode',
             placeholder : 'Pincode',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]',
         },
         {
             name : 'district',
             placeholder : 'District',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black ',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE] ',
         },
         {
             name : 'state',
             placeholder : 'State',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]',
         },
         {
             name : 'verificationId',
@@ -105,14 +105,14 @@ function AddServiceProvider(){
             type : 'dropdown',
             option : ['Aadhar','Voter-ID','Passport','Pan-card'],
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex text-[#A098AE]',
         },
         {
             name : 'verificationNo',
             placeholder : 'Verification Number',
             type : 'text',
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-[#A098AE]',
         },
         {
             name : 'type',
@@ -120,7 +120,7 @@ function AddServiceProvider(){
             type : 'dropdown',
             option : ['type 1','type 2','type 3','type 4'],
             required : true,
-            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex placeholder:text-black',
+            className : 'my-3 p-3 w-full bg-white border-none rounded-xl text-justify flex text-[#A098AE]',
         },
     ];
 
@@ -163,12 +163,12 @@ function AddServiceProvider(){
                     <h1 className="text-primary text-2xl py-2 px-3 text-justify m-auto">Service Provider Details</h1>
                 </div>
 
-                <div className="justify-start md:flex gap-8 grid">
+                <div className="justify-start md:flex grid">
 
-                    <div className="w-48 h-52 px-8" onClick={handleImageClick}>
+                    <div className="w-48 h-52 mx-8 mt-8" onClick={handleImageClick}>
                         <h1 className="text-dark_blue text-lg font-semibold">Photo *</h1>
 
-                        <div className="bg-primary w-40 h-40 flex justify-center items-center rounded-md border border-[#A098AE] border-dashed">
+                        <div className="bg-primary w-40 h-40 flex justify-center items-center rounded-md border border-[#A098AE] border-dashed cursor-pointer">
                             <p className="text-center text-[#A098AE] text-sm">Drag and drop or click here to select file</p>
                         </div>
 
@@ -176,7 +176,7 @@ function AddServiceProvider(){
                         
                     </div>
 
-                    <div className="px-8">
+                    <div className="px-8 mt-8 w-auto">
                         <FormComponent
                             fieldConfig = {fieldConfig}
                             onSubmit = {HandleSubmit}
