@@ -1,7 +1,10 @@
 import React from 'react';
-import cardIcon1 from "../../FranchiseComponents/FranchiceeReuseableComponents/FranchiseeIcons/cardIcon1.png";
-import cardIcon2 from "../../FranchiseComponents/FranchiceeReuseableComponents/FranchiseeIcons/cardIcon2.png";
-import FranchiseeCard from '../FranchiceeReuseableComponents/FranchiseeCard';
+import cardIcon1 from '../../../assets/AdminAssets/cardIcon1.png';
+import cardIcon2 from '../../../assets/AdminAssets/cardIcon2.png';
+
+import FranchiseeCard from '../../adminComponents/FranchiseManagement/FranchiseeCard';
+
+
 
 
 const FranchiseeCardDashboard = () => {
