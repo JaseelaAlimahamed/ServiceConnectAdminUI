@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function DealerTable({tableHeadings , tableData , page}) {
+
+    const [showActionOverlay , setShowActionOverlay] = useState("");
+    console.log(showActionOverlay)
 
   return (
   <div className="px-5 pt-5  bg-gray-100">
@@ -34,7 +37,19 @@ function DealerTable({tableHeadings , tableData , page}) {
                 <span
                   className={`p-1.5 text-xs font-medium tracking-wider text-white ${status != "Active" ? 'bg-orange': "bg-fluracent_green"} rounded-full `}>{status}</span>
               </td>
-              <td className="p-3 text-lg  text-light_gray whitespace-nowrap text-center cursor-pointer ">{actionIcon}</td>
+              <td className="p-3 text-lg relative text-light_gray  text-center  ">
+                <div 
+                className='cursor-pointer'
+                onClick={() => setShowActionOverlay(showActionOverlay === id ? "" : id)}
+>
+                {actionIcon}
+                </div>
+                {showActionOverlay === id && <ul className={`absolute z-10 top-6 right-12 shadow-md rounded-lg overflow-hidden text-sm `}>
+                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</li>
+                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</li>
+                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</li>
+                </ul>}
+              </td>
             </tr>
             ))}
         </tbody>
@@ -62,8 +77,18 @@ function DealerTable({tableHeadings , tableData , page}) {
           </div>
           <div className="text-sm font-medium text-black flex justify-between">
             {contact}
-            <div>
-              {actionIcon}  
+            <div className='relative text-center text-light_gray'>
+            <div 
+                className='cursor-pointer'
+                onClick={() => setShowActionOverlay(showActionOverlay === id ? "" : id)}
+                >
+                {actionIcon}
+                </div>
+                {showActionOverlay === id && <ul className={`absolute z-10  right-4 shadow-md rounded-lg overflow-hidden `}>
+                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</li>
+                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</li>
+                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</li>
+                </ul>}  
            </div> 
           </div>
         </div>
@@ -74,4 +99,3 @@ function DealerTable({tableHeadings , tableData , page}) {
 }
 
 export default DealerTable
-

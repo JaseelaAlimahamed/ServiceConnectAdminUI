@@ -1,12 +1,13 @@
 import React from 'react'
-import DealerTable from '../dealersComponents/DealerTable'
-import DealerCard from '../dealersComponents/DealerCard'
+import DealerTable from '../../components/franchiseComponents/dealers/DealerTable';
+import DealerCard from '../../components/franchiseComponents/dealers/DealerCard';
+import DealerDropdown from '../../components/franchiseComponents/dealers/DealerDropdown';
+import DealerPagination from '../../components/franchiseComponents/dealers/DealerPagination';
+import DealerSearchBar from '../../components/franchiseComponents/dealers/DealerSearchBar';
+import AddDealerButton from '../../components/franchiseComponents/dealers/AddDealerButton';
 import { IoPersonOutline , IoCallOutline , IoMailOutline  } from "react-icons/io5";
-import DealerDropdown from '../dealersComponents/DealerDropdown';
-import AddDealerButton from '../dealersComponents/AddDealerButton';
-import DealerSearchBar from '../dealersComponents/DealerSearchBar';
 import { BsThreeDots } from "react-icons/bs";
-import DealerPagination from '../dealersComponents/DealerPagination';
+
 
 
 function DealersPage() {
@@ -28,7 +29,7 @@ function DealersPage() {
   } ,{
     checkBox : <input type='checkbox'></input>,
     name : "Samanta William",
-    id : "#123456780",
+    id : "#123456789",
     serviceProviders: 2,
     location: "Jakarta",
     contact: <div className='flex items-center justify-center gap-3'>
@@ -40,7 +41,7 @@ function DealersPage() {
   } ,{
     checkBox : <input type='checkbox'></input>,
     name : "Samanta William",
-    id : "#124567890",
+    id : "#234567890",
     serviceProviders: 2,
     location: "Jakarta",
     contact: <div className='flex items-center justify-center gap-3'>
