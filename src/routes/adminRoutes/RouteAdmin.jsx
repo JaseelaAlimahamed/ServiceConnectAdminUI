@@ -40,7 +40,7 @@ function RouteAdmin() {
               <Route path='accounts'   element={<Accounts/>}/>
        <Route path='/servicetype' element={<ServiceType/>}/>
          <Route path='/userdetails' element={<UserDetails/>}/>
-         <Route path='/signIn'element={<SignInForm/>}/>
+         {/* <Route path='/signIn'element={<SignInForm/>}/> */}
          <Route path='AddCategory' element={<AddCategory/>}/>
          <Route path='EditCategory' element={<EditCategory/>}/>
          <Route path='FranchiseeDetails' element={<FranchiseeProfile/>}/>
