@@ -29,7 +29,6 @@ function RouteAdmin() {
 
   return (
     <Routes>
-
       <Route element={<AdminLayout/>}>
       <Route path='profile' element={<AdminProfilePage/>}/>
       <Route path='bookingdetails' element={<BookingDetailsPage/>}/>
