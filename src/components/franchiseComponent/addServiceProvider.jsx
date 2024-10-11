@@ -157,15 +157,15 @@ function AddServiceProvider(){
     };
 
     return(
-            <div className=" h-max m-5 bg-lite_blue2 rounded-b-md shadow-md">
+            <div className=" h-max m-2 bg-lite_blue2 rounded-b-md shadow-md">
 
-                <div className=" h-1/6 bg-dark_blue rounded-t-md">
+                <div className=" h-1/6 bg-[#4D44B5] rounded-t-md">
                     <h1 className="text-primary text-2xl py-2 px-3 text-justify m-auto">Service Provider Details</h1>
                 </div>
 
-                <div className="justify-start md:flex grid">
+                <div className="justify-start sm:flex grid">
 
-                    <div className="w-48 h-52 mx-8 mt-8" onClick={handleImageClick}>
+                    <div className="w-auto h-52 mx-8 mt-8 grid sm:w-48" onClick={handleImageClick}>
                         <h1 className="text-dark_blue text-lg font-semibold">Photo *</h1>
 
                         <div className="bg-primary w-40 h-40 flex justify-center items-center rounded-md border border-[#A098AE] border-dashed cursor-pointer">
@@ -176,12 +176,13 @@ function AddServiceProvider(){
                         
                     </div>
 
-                    <div className="px-8 mt-8 w-auto">
+                    <div className="px-4 mt-8 w-80 sm:w-96 sm:px-8">
                         <FormComponent
                             fieldConfig = {fieldConfig}
                             onSubmit = {HandleSubmit}
                             handlerChange = {handleChange}  
                         />
+                        <p className="font-semibold text-sm flex justify-center p-2">#Other info as required</p>
                     </div> 
                 </div>
             </div>
