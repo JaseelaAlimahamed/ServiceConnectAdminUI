@@ -1,9 +1,9 @@
-import React from 'react'
 import ServiceProviderProfile from "../../../../components/dealerComponents/ServiceProviderVerification/ServiceProviderProfile"
+import AnalyticsComponent from '../../../../components/dealerComponents/ServiceProviderVerification/AnalyticsComponent'
 
 const ServiceProviderVerification = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center h-full flex-col gap-5 bg-blue_bg'>
         <ServiceProviderProfile 
             name="Karen Hope"
             username="Plumber"
@@ -13,6 +13,7 @@ const ServiceProviderVerification = () => {
             email="hope@gmail.com"
   
         />
+        <AnalyticsComponent />
     </div>
   )
 }
