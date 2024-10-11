@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function DealerTable({tableHeadings , tableData , page}) {
 
@@ -44,11 +45,11 @@ function DealerTable({tableHeadings , tableData , page}) {
 >
                 {actionIcon}
                 </div>
-                {showActionOverlay === id && <ul className={`absolute z-10 top-6 right-12 shadow-md rounded-lg overflow-hidden text-sm `}>
-                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</li>
-                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</li>
-                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</li>
-                </ul>}
+                {showActionOverlay === id && <div className={`absolute z-10 top-6 right-16 shadow-md rounded-lg overflow-hidden text-sm flex flex-col `}>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</Link>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</Link>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</Link>
+                </div>}
               </td>
             </tr>
             ))}
@@ -84,11 +85,11 @@ function DealerTable({tableHeadings , tableData , page}) {
                 >
                 {actionIcon}
                 </div>
-                {showActionOverlay === id && <ul className={`absolute z-10  right-4 shadow-md rounded-lg overflow-hidden `}>
-                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</li>
-                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</li>
-                    <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</li>
-                </ul>}  
+                {showActionOverlay === id && <div className={`absolute z-10  right-3 shadow-md rounded-lg overflow-hidden flex flex-col `}>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</Link>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</Link>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</Link>
+                </div>}  
            </div> 
           </div>
         </div>
