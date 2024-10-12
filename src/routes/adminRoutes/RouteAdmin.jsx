@@ -19,7 +19,6 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
-import ServiceProviderVerification from '../../pages/adminPages/dealerPages/serviceProviderVerification/ServiceProviderVerification.jsx'
 
 function RouteAdmin() {
 
@@ -29,8 +28,6 @@ function RouteAdmin() {
     <Routes>
 
      
-      <Route path="/serviceproviderverification" element={<ServiceProviderVerification/>} />
-
 
       <Route path="/" element={<Navigate to="/admin/signIn"/>} />
       <Route path='/signIn' element={<SignInForm />} />

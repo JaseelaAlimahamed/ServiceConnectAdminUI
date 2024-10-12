@@ -7,7 +7,7 @@ import { PiStarFill } from 'react-icons/pi';
 
 const UserProfile = ({name,franchise,address,phone,email,username}) => {
   return (
-    <div className="container shadow-md max-w-screen-lg  rounded-xl overflow-hidden h-fit">
+    <div className="container shadow-md max-w-screen-lg  rounded-xl overflow-hidden h-fit bg-white">
     <div className="bg-violet w-full h-36 relative">
       <div className="absolute aspect-square z-20  rounded-full m-2 p-2 w-48  bg-primary left-10 top-6">
         <div className="w-full bg-blue_gray h-full rounded-full"></div>
