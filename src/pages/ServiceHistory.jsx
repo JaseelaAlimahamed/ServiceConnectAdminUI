@@ -1,10 +1,58 @@
-import React from 'react'
-import Table from '../components/reUsableComponents/Table'
+import React, { useState } from 'react';
+import TableComponent from '../components/serviceHistoryComponent/TableComponent';
+import CardsComponent from '../components/serviceHistoryComponent/CardsComponent'
 
 const ServiceHistory = () => {
-
-    const tableDataConfig = [
-        {
+    const tableData = [
+      {
+        jobId: "FRDLSE1201",
+        date: "March 25, 2021",
+        franchise: "Recto C",
+        agent: "Jackop R",
+        serviceProviderId:"R01A01S1002",
+        customerId:"R01A01S1002",
+        customerType:"Service Provider",
+        jobType:"One Time Lead",
+        status:"Active",
+        action:"..."
+      },
+      {
+          jobId: "FRDLSE1201",
+          date: "March 25, 2021",
+          franchise: "Recto C",
+          agent: "Jackop R",
+          serviceProviderId:"R01A01S1002",
+          customerId:"GLO21002",
+          customerType:"Customer", 
+          jobType:"Daily work",
+          status:"Completed",
+          action:"..."
+      },
+      {
+          jobId: "FRDLSE1201",
+        date: "March 25, 2021",
+        franchise: "Recto C",
+        agent: "Jackop R",
+        serviceProviderId:"R01A01S1002",
+        customerId:"R01A01S1002",
+        customerType:"Service Provider",
+        jobType:"One Time Lead",
+        status:"Active",
+        action:"..."
+      },
+      {
+          jobId: "FRDLSE1201",
+        date: "March 25, 2021",
+        franchise: "Recto C",
+        agent: "Jackop R",
+        serviceProviderId:"R01A01S1002",
+        customerId:"R01A01S1002",
+        customerType:"Service Provider",
+        jobType:"One Time Lead",
+        status:"Active",
+        action:"..."
+      },
+      {
           jobId: "FRDLSE1201",
           date: "March 25, 2021",
           franchise: "Recto C",
@@ -15,21 +63,9 @@ const ServiceHistory = () => {
           jobType:"One Time Lead",
           status:"Active",
           action:"..."
-        },
-        {
-            jobId: "FRDLSE1201",
-            date: "March 25, 2021",
-            franchise: "Recto C",
-            agent: "Jackop R",
-            serviceProviderId:"R01A01S1002",
-            customerId:"GLO21002",
-            customerType:"Customer", 
-            jobTytpe:"One Time Lead",
-            status:"Completed",
-            action:"..."
-        },
-        {
-            jobId: "FRDLSE1201",
+      },
+      {
+          jobId: "FRDLSE1201",
           date: "March 25, 2021",
           franchise: "Recto C",
           agent: "Jackop R",
@@ -39,61 +75,21 @@ const ServiceHistory = () => {
           jobType:"One Time Lead",
           status:"Active",
           action:"..."
-        },
-        {
-            jobId: "FRDLSE1201",
-          date: "March 25, 2021",
-          franchise: "Recto C",
-          agent: "Jackop R",
-          serviceProviderId:"R01A01S1002",
-          customerId:"R01A01S1002",
-          customerType:"Service Provider",
-          jobType:"One Time Lead",
-          status:"Active",
-          action:"..."
-        },
-        {
-            jobId: "FRDLSE1201",
-            date: "March 25, 2021",
-            franchise: "Recto C",
-            agent: "Jackop R",
-            serviceProviderId:"R01A01S1002",
-            customerId:"R01A01S1002",
-            customerType:"Service Provider",
-            jobType:"One Time Lead",
-            status:"Active",
-            action:"..."
-        },
-        {
-            jobId: "FRDLSE1201",
-            date: "March 25, 2021",
-            franchise: "Recto C",
-            agent: "Jackop R",
-            serviceProviderId:"R01A01S1002",
-            customerId:"R01A01S1002",
-            customerType:"Service Provider",
-            jobType:"One Time Lead",
-            status:"Active",
-            action:"..."
-        },
-      ];
+      },
+    ];
 
-      const tableColConfig = ["Job_Id", "Date", "Franchise", "Agent","Service Provider Id","Customer Id","Customer Type","Job Type","Status","Action"];
-      const tableConfig = {type: "servicehistory" };
-  
+    
 
 
-
-  return (
-    <div className="w-full p-5">
-    <Table
-      tableColConfig={tableColConfig}
-      tableDataConfig={tableDataConfig}
-      tableConfig={tableConfig}
+    return (
       
-    />
-  </div>
-  )
-}
+  
+        <div>
+         <div><CardsComponent/></div>
+         <TableComponent data={tableData} />
 
-export default ServiceHistory
+        </div>
+    );
+};
+
+export default ServiceHistory;
