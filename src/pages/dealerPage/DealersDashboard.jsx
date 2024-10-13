@@ -104,7 +104,7 @@ function DealersDashboard() {
     <div>
 
       <div className="flex">
-<div className="grid grid-cols-3 gap-5  ml-10 w-[55em] ">
+<div className="grid grid-cols-3  max-[1300px]:grid-cols-2  max-[1000px]:grid-cols-1 gap-5  ml-10 w-[55em] ">
 
      
         <Dealerinfocard title={"Total Earnings"} number={434} percentage={10}></Dealerinfocard>
