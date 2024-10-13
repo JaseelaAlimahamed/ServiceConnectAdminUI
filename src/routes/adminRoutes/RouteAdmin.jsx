@@ -19,6 +19,7 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+import DealersDashboard from '../../pages/dealerPage/DealersDashboard.jsx'
 
 function RouteAdmin() {
 
@@ -45,6 +46,8 @@ function RouteAdmin() {
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/subcategories' element={<SubCategoryPage />} />
         <Route path='/newads' element={<NewAdsPage />} />
+        <Route path='/dealerdashboard' element={ <DealersDashboard></DealersDashboard>} />
+
 
       </Route>
     </Routes>
