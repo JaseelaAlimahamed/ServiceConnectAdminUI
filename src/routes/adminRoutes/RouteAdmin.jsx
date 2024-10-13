@@ -42,6 +42,9 @@ function RouteAdmin() {
               <Route path='Editaddfranchiseetype' element={<EditAddFranchiseeType />}/>
               <Route path='accounts'   element={<Accounts/>}/>
        <Route path='/servicetype' element={<ServiceType/>}/>
+
+       <Route path='/adsmanagement' element={<AdsManagement/>}/>
+
          <Route path='/userdetails' element={<UserDetails/>}/>
          {/* <Route path='/signIn'element={<SignInForm/>}/> */}
          <Route path='AddCategory' element={<AddCategory/>}/>
