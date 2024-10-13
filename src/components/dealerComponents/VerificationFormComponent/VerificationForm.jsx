@@ -87,10 +87,24 @@ function ServiceProviderVerificationForm() {
                       onChange={(e)=>{setsupportingDocument(e.target.value)}}  
                       value={supportingDocument}      >
                       <option value="" disabled >select</option>
-                      <option value="aadhar">Aadhar</option>
-                      <option value="drivingLicense">Driver's License</option>
-                      <option value="votersId">Voter's ID</option>
+                      <option value="License">License</option>
+                      <option value="certification">certification</option>
+                      <option value="id"> ID</option>
               </select>         
+         </div>
+         <div className='leading-8'>
+                <label>Documents Upload  </label>
+                <InputFieldComponent
+                type="file"
+                placeholder=" upload "
+                value={verificationDate}
+                onChange={(date) => {
+                                    const d = new Date(date).toLocaleDateString('fr-FR')
+                                    setverificationDate(d)
+                                    }
+                          }
+               color="bg-[#FFFFFF] border-2 border-[#E5E7EB]  rounded-lg  "
+                />
          </div>
          <div className='leading-8'>
                     <label>verification Status   </label>
@@ -99,9 +113,9 @@ function ServiceProviderVerificationForm() {
                             onChange={(e)=>{setverificationStatus(e.target.value)}  }
                             value={verificationStatus}            >
                             <option value="" disabled >select</option>
-                            <option value="option1">option:1</option>
-                            <option value="option2">option:2</option>
-                            <option value="option3">option:3 </option>
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected </option>
                      </select>  
         </div>
    </div>
