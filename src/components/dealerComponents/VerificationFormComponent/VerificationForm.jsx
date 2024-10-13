@@ -31,7 +31,8 @@ function ServiceProviderVerificationForm() {
    
     
   return (
-    <form className='   w-3/4 sm:w-2/3 md:3/5  lg:w-6/12 xl:w-1/3 mx-10 shadow-2xl   rounded-xl bg-[#FFFFFF]'>
+    <div className='flex w-full justify-center mt-5'>
+    <form className='   flex flex-col justify-center w-3/4 sm:w-2/3 md:3/5  lg:w-6/12 xl:w-2/5  shadow-2xl   rounded-xl bg-[#FFFFFF]'>
       <div className=' w-3/4  flex  flex-col justify-center  p-6 ml-8   gap-4 '> 
          <div className='leading-8'>
            <label >Inspector Name  </label>
@@ -105,13 +106,14 @@ function ServiceProviderVerificationForm() {
         </div>
    </div>
  
-   <div className=' flex gap-x-10 p-8 mt-20 '>
+   <div className=' flex gap-x-6 lg:gap-x-16 p-8 mt-8 '>
       <button className=' rounded-xl px-5 py-0.5 bg-[#DC3546] text-[#FFFFFF]' onClick={clearField}>Cancel</button>
             <button  type ="submit" className=' rounded-xl px-5 py-0.5 bg-[#65558F] text-[#FFFFFF]' onClick={OnSubmit}>Confirm</button>
       
    </div>
       
  </form>
+ </div>
   )
 }
 
