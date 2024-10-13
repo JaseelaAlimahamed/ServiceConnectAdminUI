@@ -1,10 +1,10 @@
-import ServiceProviderProfile from "../../../../components/dealerComponents/ServiceProviderVerification/ServiceProviderProfile";
-import AnalyticsComponent from "../../../../components/dealerComponents/ServiceProviderVerification/AnalyticsComponent";
-import ButtonComponent from "../../../../components/dealerComponents/ServiceProviderVerification/ButtonComponent";
+import ServiceProviderProfile from "../../components/dealerComponents/ServiceProviderVerification/ServiceProviderProfile";
+import AnalyticsComponent from "../../components/dealerComponents/ServiceProviderVerification/AnalyticsComponent";
+import ButtonComponent from "../../components/dealerComponents/ServiceProviderVerification/ButtonComponent";
 
 const ServiceProviderVerification = () => {
   return (
-    <div className="flex lg justify-center items-center w-full flex-col gap-5 bg-blue_bg p-8">
+    <div className="flex p-10 justify-center items-center  flex-col gap-5 ">
       <ServiceProviderProfile
         name="Karen Hope"
         username="Plumber"
