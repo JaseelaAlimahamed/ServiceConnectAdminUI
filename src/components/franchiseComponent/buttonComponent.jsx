@@ -10,6 +10,7 @@ const ButtonComponent = ({
 }) => {
     return (
         <div className="mt-3">
+            
             <button
                 type={type}
                 onClick={onClick}
