@@ -1,5 +1,8 @@
 import React, { useState,useEffect } from 'react';
-import { LuTrendingUp } from "react-icons/lu";  
+import { LuTrendingUp } from "react-icons/lu"; 
+import { IoIosArrowDropdownCircle } from "react-icons/io"; 
+
+
 
 const Table = ({ tableDataConfig,tableColConfig,tableConfig}) => {
 
@@ -17,6 +20,7 @@ const Table = ({ tableDataConfig,tableColConfig,tableConfig}) => {
     const expensesLog = tableConfig.type === "expenseslog" 
     const serviceSubcription = tableConfig.type === "servicesubcription" 
     const serviceProviderMangement = tableConfig.type === "serviceprovidermangement" 
+    
 
 
     
@@ -80,8 +84,24 @@ const handleCheckboxChange = (id) => {
   return (
     <div className="flex flex-col font-poppins text-black ">
       {(userManagement || serviceProviderMangement ) && (
+        
         <div className="flex flex-wrap justify-between">
+           {(serviceProviderMangement ) &&(
+           
+           <button
+              className="flex items-center justify-center rounded-full px-14 h-16 border-2 bg-violet gap-2"
+              
+            >
+              <span className="text-primary text-lg font-medium">Franchise</span>
+              <span className="text-primary text-lg font-medium"><IoIosArrowDropdownCircle/></span>
+             
+            </button>
+            
+          
+          )}
+         
           <span className="relative rounded-full overflow-hidden h-16 mb-2">
+         
             <img
               className="absolute left-6 top-1/2 transform -translate-y-1/2"
               src="/search-icon.svg"
@@ -184,16 +204,21 @@ const handleCheckboxChange = (id) => {
                 <td className="p-6 text-lg text-dark_blue font-bold "><span className="">{data.role}</span></td>
                 }
 
-                {(userManagement || serviceProviderMangement || paymentsLog) && (
+                {(userManagement || paymentsLog) && (
                   <td className="px-6 text-sm text-gray-500">
                     <div className="mr-2">
                     <span className="whitespace-nowrap">{data.date}</span> {data.time}
                     </div>
                   </td>
                 )}
-                {paymentsLog || serviceProviderMangement && (
+                {paymentsLog  && (
                   <td className="text-sm text-gray-500">
                     {data.description}
+                  </td>
+                )}
+                 {serviceProviderMangement  && (
+                  <td className="text-sm text-gray-500">
+                    {data.registeredServices}
                   </td>
                 )}
                 {incompletedBookings && 
@@ -228,7 +253,7 @@ const handleCheckboxChange = (id) => {
                 )}
                 {(serviceProviderMangement) && (
                   <td className="px-6 py-4 text-dark_blue font-semibold">
-                    {data.verifiedBy}
+                    {data.activeJobs}
                   </td>
                 )}
                 {(userManagement || serviceProviderMangement) && (
