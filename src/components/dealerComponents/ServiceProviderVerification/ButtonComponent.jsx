@@ -1,7 +1,7 @@
 const ButtonComponent = ({ children, onClick, className }) => {
   return (
     <button
-      className={`w-full container text-white py-2 px-3 rounded-md ${className}`}
+      className={`w-full container py-3 px-4 rounded-md ${className}`}
       onClick={onClick}
     >
       {children}

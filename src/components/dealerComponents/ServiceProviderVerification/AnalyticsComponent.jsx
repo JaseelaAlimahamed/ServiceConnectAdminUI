@@ -9,14 +9,14 @@ const AnalyticsComponent = ({ data, head, chartText, conversionText }) => {
           <h1 className="text-3xl font-bold  pb-10 text-dark_blue">{head}</h1>
           {data.map((data) => (
             <div className="flex flex-col py-5  gap-10" key={data.id}>
-              <div className="flex items-center  justify-between gap-16 max-lg:gap-5 max-sm:gap-16 max-md:gap-14 max-md:flex-col">
+              <div className="flex items-center  justify-between  max-lg:gap-5 max-sm:gap-16 max-md:gap-14 max-lg:flex-col">
                 <div className="flex items-center  gap-5 max-sm:flex-col">
                   <div className="bg-blue_gray rounded-lg h-36 w-36 "></div>
                   <h3 className="text-2xl font-bold text-dark_blue">
                     {data.title}
                   </h3>
                 </div>
-                <div className="flex px-8 max-lg:flex-col gap-12 max-md:flex-row max-sm:gap-16 max-md:gap-16 ">
+                <div className="flex px-8 max-lg:flex-row gap-12 max-sm:flex-col max-md:flex-row max-sm:gap-16 max-md:gap-16 ">
                   <div className="flex  gap-5">
                     <img src={Chart} alt="chart image" />
                     <div>

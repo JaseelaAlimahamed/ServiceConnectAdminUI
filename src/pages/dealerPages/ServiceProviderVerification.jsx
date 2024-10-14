@@ -77,8 +77,8 @@ const ServiceProviderVerification = () => {
       />
       <div className="max-w-screen-lg w-full flex flex-col gap-3">
 
-      <ButtonComponent children="VERIFY"  className="bg-dark_green " />
-      <ButtonComponent children="DECLINE"  className="bg-lite_red " />
+      <ButtonComponent children="VERIFY"  className="bg-dark_green text-white " />
+      <ButtonComponent children="DECLINE"  className="bg-lite_red  text-white" />
       </div>
     </div>
   );
