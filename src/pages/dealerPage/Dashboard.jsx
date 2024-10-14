@@ -4,7 +4,7 @@ import Franchisee from "../../components/dealerComponents/Franchisee";
 import Table from "../../components/ReUsableComponents/Table";
 import Card from "../../components/reUsableComponents/Card";
 import Graph from "../../components/dealerComponents/Graph";
-function DealersDashboard() {
+function Dashboard() {
   const tableConfig = { title: "Payment History", type: "paymentslog" };
 
   const tableDataConfig = [
@@ -171,4 +171,4 @@ function DealersDashboard() {
   );
 }
 
-export default DealersDashboard;
+export default Dashboard;
