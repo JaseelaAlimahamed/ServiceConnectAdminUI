@@ -63,6 +63,19 @@ module.exports = {
       letterSpacing: {
         bodySmall: 'var(--BodySmallTracking)', // Custom letter spacing
       },
+      width:{
+        '1098':'57.625rem',
+        '1920':'120rem'
+
+      },
+      height:{
+        '650':'31.625rem',
+        '1277':'79.813.rem'
+      },
+      translate: {
+        '110': '48rem',
+      }
+      
 
     },
   },
