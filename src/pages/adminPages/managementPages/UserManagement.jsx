@@ -1,5 +1,5 @@
 import React from 'react'
-import TableComponent from '../../../components/reUsableComponents/TableComponent';
+import Table from '../../../components/reUsableComponents/Table';
 
 const UserManagement = () => {
 
@@ -97,7 +97,7 @@ const cardConfig = [
           ))}
         </div>
         
-      <TableComponent
+      <Table
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}

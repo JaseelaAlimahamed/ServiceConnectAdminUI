@@ -1,7 +1,7 @@
 import React from "react";
-import Card from "../../components/reUsableComponents/Card";
-import UserProfile from "../../components/adminComponents/UserProfile";
-import TableComponent from "../../components/reUsableComponents/TableComponent";
+import Card from "../../../components/reUsableComponents/Card";
+import Table from "../../../components/reUsableComponents/Table";
+import UserProfile from "../../../components/adminComponents/UserProfile";
 
 const userdetails = {
   name:'Karen Hope',
@@ -107,7 +107,7 @@ const UserDetails = () => {
         <UserProfile name={userdetails.name} location={userdetails.location} address={userdetails.address} phone={userdetails.phone} email={userdetails.email}/>
 
         <div className="w-full p-5">
-          <TableComponent
+          <Table
             tableColConfig={tableColConfig}
             tableDataConfig={tableDataConfig}
             tableConfig={tableConfig}
