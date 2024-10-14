@@ -27,14 +27,14 @@ function ServiceProviderVerificationForm() {
       inspectorName :inspectorName,
       inspectorRole:inspectorRole ,
       membersName :membersName,                    // bundling states to a single object , to be sent 
-      verificationDate :verificationDate,
+      verificationDate :verificationDate,             // ** file upload option not addressed/handled ** 
       supportingDocument : supportingDocument,
       verificationStatus :verificationStatus
     }
    
 
     const OnSubmit=(e)=>{   
-      
+     
       const allValuesNotNull = Object.values(verificationFormData).every(value => value !== "" && value!==undefined);  // verification of null data on clicking submit
      if(allValuesNotNull)
         console.log(("sending data", verificationFormData))
@@ -89,7 +89,7 @@ function ServiceProviderVerificationForm() {
                 value={verificationDate}
                 onChange={(date) => {
                                     const d = new Date(date).toLocaleDateString('fr-FR')
-                                    setverificationDate(d)
+                                    setverificationDate(d)                         // converting date into required format 
                                     }
                           }
                color="bg-[#FFFFFF] border-2 border-[#E5E7EB] h-10 rounded-lg  "
@@ -110,15 +110,9 @@ function ServiceProviderVerificationForm() {
          </div>
          <div className='leading-8'>
                 <label>Documents Upload  </label>
-                <InputFieldComponent
+                <InputFieldComponent                                   //file upload option
                 type="file"
                 placeholder=" upload "
-                value={verificationDate}
-                onChange={(date) => {
-                                    const d = new Date(date).toLocaleDateString('fr-FR')
-                                    setverificationDate(d)
-                                    }
-                          }
                color="bg-[#FFFFFF] border-2 border-[#E5E7EB]  rounded-lg  "
                 />
          </div>
