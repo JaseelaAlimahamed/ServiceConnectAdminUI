@@ -23,7 +23,7 @@ function ServiceProviderVerificationForm() {
       setverificationDate()              // on clicking cancel, aal states are reset
       setsupportingDocument("")
       setverificationStatus("")
-      console.log( "data on clicking cancel , states are reset" )
+      console.log( " states are reset" )
     }
 
 
@@ -44,8 +44,14 @@ function ServiceProviderVerificationForm() {
      if(allValuesNotNull)
      {
         console.log(("sending data", verificationFormData))
-     setsubmissionModal(true)
-     }  
+        {
+            setsubmissionModal(true)
+                  { submissionModal? <VerificationSubmissionModal  modal={submissionModal} change={setsubmissionModal}/>: <></>}
+                  clearField()
+
+        }
+
+      }
      else
         console.log("form contains one or more invalid/empty data")
        
@@ -55,9 +61,9 @@ function ServiceProviderVerificationForm() {
   
     
   return (
-    <div className='flex w-full justify-center mt-5'>
-    <form className='   flex flex-col justify-center w-3/4 sm:w-2/3 md:3/5  lg:w-6/12 xl:w-2/5  shadow-2xl   rounded-xl bg-[#FFFFFF]'>
-      <div className=' w-3/4  flex  flex-col justify-center  p-6 ml-8   gap-4 '> 
+    <div className='flex  w-full justify-center '>
+    <form className='   flex flex-col justify-center w-3/4 sm:w-2/3 md:3/5  lg:w-6/12 xl:w-2/5  shadow-2xl   rounded-xl bg-[#FFFFFF] pt-5'>
+      <div className=' w-3/4  flex  flex-col justify-center  p-4 ml-8   gap-3 '> 
          <div className='leading-8'>
            <label >Inspector Name  </label>
             <InputFieldComponent
@@ -122,6 +128,7 @@ function ServiceProviderVerificationForm() {
                 type="file"
                 placeholder=" upload "
                color="bg-[#FFFFFF] border-2 border-[#E5E7EB]  rounded-lg  "
+               
                 />
          </div>
          <div className='leading-8'>
@@ -138,14 +145,14 @@ function ServiceProviderVerificationForm() {
         </div>
    </div>
  
-   <div className=' flex gap-x-6 lg:gap-x-16 p-8 mt-8 '>
+   <div className=' flex gap-x-6 lg:gap-x-16 p-4 mt-4'>
       <button className=' rounded-xl px-5 py-0.5 bg-[#DC3546] text-[#FFFFFF]' onClick={clearField}>Cancel</button>
             <button  type ="submit" className=' rounded-xl px-5 py-0.5 bg-[#65558F] text-[#FFFFFF]' onClick={OnSubmit}>Confirm</button>
       
    </div>
       
  </form>
-   { submissionModal? <VerificationSubmissionModal  modal={submissionModal}/>: <></>}
+   { submissionModal? <VerificationSubmissionModal  submissionModal={submissionModal } setsubmissionModal={setsubmissionModal}/>: <></>}
  </div>
   )
 }

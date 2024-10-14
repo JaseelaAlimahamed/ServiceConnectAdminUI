@@ -1,18 +1,17 @@
 import React from 'react'
+import { MdDoneOutline } from "react-icons/md";
 
-import { IoIosWarning } from "react-icons/io";
-
-function VerificationSubmissionModal({     }) 
+function VerificationSubmissionModal({submissionModal ,setsubmissionModal   }) 
 {
   return (
-   <div className='fixed w-screen h-screen bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center '>
-            <div className={` flex flex-col gap-5  justify-center items-center  border-4  rounded-[30px] shadow-2xl px-7 py-10`}>
-            <IoIosWarning size="4rem" />
-            <p className='font-bold text-xl'>{heading}</p>
+   <div className=' fixed  lg:left-1/5 inset-0 flex items-center justify-center   bg-[#797C7B] bg-opacity-50  '>
+            <div className={` flex flex-col gap-5 h-4/5  w-1/3   lg:w-1/5 lg:h-2/5 justify-center items-center border-4  rounded-[30px] shadow-2xl p-5 bg-[#ffffff]`}>
+            <MdDoneOutline  size="4rem" />
+            <p className='font-bold text-xl'> Submitted </p>
             <p>Verification submitted successfully</p>
-            <div className='flex  gap-5'>
-            <button onClick={()=>{ }}>OK</button>
-            </div>
+            
+            <button className='border p-3 rounded-lg ' onClick={()=>{ setsubmissionModal(false)}}>OK</button>
+           
         </div>
         </div>
        
