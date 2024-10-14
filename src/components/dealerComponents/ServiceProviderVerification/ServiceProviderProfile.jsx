@@ -31,7 +31,7 @@ const UserProfile = ({ name, franchise, address, phone, email, username }) => {
             </h2>
             <div className="flex justify-between max-sm:flex- items-center w-full">
               <div className="flex rating justify-center items-center gap-1">
-                <PiStarFill style={{ color: "#F9D62C", fontSize: "2rem" }} />
+                <PiStarFill className="text-yellow text-4xl"/>
                 <span className="text-3xl font-poppins font-bold text-dark_blue">
                   4.9
                 </span>
