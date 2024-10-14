@@ -19,6 +19,7 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+import DealersPage from '../../pages/franchisePages/DealersPage.jsx'
 
 function RouteAdmin() {
 
@@ -26,8 +27,9 @@ function RouteAdmin() {
 
   return (
     <Routes>
-
+      
       <Route path="/" element={<Navigate to="/admin/signIn"/>} />
+      <Route path="/dealers" element={<DealersPage/>} />
       <Route path='/signIn' element={<SignInForm />} />
 
       <Route element={<AdminLayout />}>
