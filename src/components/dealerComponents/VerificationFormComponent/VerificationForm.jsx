@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import InputFieldComponent from '../../reUsableComponents/InputFieldComponent'
 import Dropdown from '../../adminComponents/CategorySubCategory/AddEditSubCategory/addSubCategoryitems/SubCategoryDropDown'
+import VerificationSubmissionModal from './verificationSubmissionModal'
+
+
 
 function ServiceProviderVerificationForm() {
 
@@ -11,6 +14,7 @@ function ServiceProviderVerificationForm() {
     const [verificationDate,setverificationDate]=useState()
     const [supportingDocument,setsupportingDocument]=useState("")
     const [verificationStatus,setverificationStatus]=useState("")
+    const [submissionModal,setsubmissionModal]=useState(false)
 
     const clearField=()=>{
       setinspectorName("")
@@ -33,11 +37,15 @@ function ServiceProviderVerificationForm() {
     }
    
 
-    const OnSubmit=(e)=>{   
+    const OnSubmit=(e)=>{  
+      e.preventDefault(); 
      
       const allValuesNotNull = Object.values(verificationFormData).every(value => value !== "" && value!==undefined);  // verification of null data on clicking submit
      if(allValuesNotNull)
+     {
         console.log(("sending data", verificationFormData))
+     setsubmissionModal(true)
+     }  
      else
         console.log("form contains one or more invalid/empty data")
        
@@ -137,6 +145,7 @@ function ServiceProviderVerificationForm() {
    </div>
       
  </form>
+   { submissionModal? <VerificationSubmissionModal  modal={submissionModal}/>: <></>}
  </div>
   )
 }
