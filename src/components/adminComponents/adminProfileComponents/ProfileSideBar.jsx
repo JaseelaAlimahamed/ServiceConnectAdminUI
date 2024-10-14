@@ -1,17 +1,20 @@
 // components/ProfileSidebar.jsx
 const ProfileSidebar = ({ user }) => (
-  <div className="w-full max-w-xs p-4 bg-white rounded-lg shadow-md sm:max-w-md lg:max-w-lg overflow-hidden">
-    <div className="text-center">
-    <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 xl:w-60 xl:h-60 mx-auto p-2">
-  {/* Responsive image with smooth transition */}
-  <img 
-    src={user.image} 
-    alt={user.name} 
-    className="w-full h-full rounded-full object-cover transition-all duration-300"
-  />
-  <div className="absolute inset-0 rounded-full border-[3px] border-[#ED2590] transition-all duration-300"></div>
-</div>
+  <div className="w-[270px] h-[427px] p-4 bg-white rounded-lg shadow-md text-center  overflow-hidden">
+    <div className="flex flex-col items-center">
 
+
+    <div className="relative w-[170px] h-[170px]">
+     {/* Pink border around the image */}
+    <div className="absolute inset-0 rounded-full border-[3px] border-[#ED2590] transition-all duration-300"></div>
+  
+    {/* Responsive image with smooth transition */}
+    <img 
+    src={user.image || 'https://via.placeholder.com/150'}  
+    alt={`Profile picture of ${user.name}`} 
+    className="w-full h-full rounded-full object-cover transition-all duration-300 p-2"
+    />
+  </div>
 
 
       

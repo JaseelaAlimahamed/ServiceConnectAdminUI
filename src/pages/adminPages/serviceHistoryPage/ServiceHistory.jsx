@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TableComponent from '../components/serviceHistoryComponent/TableComponent';
-import CardsComponent from '../components/serviceHistoryComponent/CardsComponent'
+import TableComponent from '../../../components/adminComponents/serviceHistoryComponent/TableComponent'
+import CardsComponent from '../../../components/adminComponents/serviceHistoryComponent/CardsComponent'
 
 const ServiceHistory = () => {
     const tableData = [

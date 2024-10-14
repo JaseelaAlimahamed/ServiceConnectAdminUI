@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState,useEffect } from 'react';
+import { LuTrendingUp } from "react-icons/lu";  
 
-
-const Table = ({tableDataConfig,tableColConfig,tableConfig}) => {
+const Table = ({ tableDataConfig,tableColConfig,tableConfig}) => {
 
   const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(5);
@@ -13,15 +13,11 @@ const Table = ({tableDataConfig,tableColConfig,tableConfig}) => {
     const userManagement = tableConfig.type === "usermanagement"
     const incompletedBookings = tableConfig.type === "incompletedbookings" 
     const paymentsLog = tableConfig.type === "paymentslog" 
-
     const complaintsLog = tableConfig.type === "complaintslog" 
     const expensesLog = tableConfig.type === "expenseslog" 
     const serviceSubcription = tableConfig.type === "servicesubcription" 
     const serviceProviderMangement = tableConfig.type === "serviceprovidermangement" 
-    const franchiseePaymentLog = tableConfig.type === "franchiseepaymentlog" 
-////////////
-    const serviceHistory = tableConfig.type === "servicehistory"
-//////////
+
 
     
     const sortedUsers = [...tableDataConfig].sort((a, b) => {
@@ -30,18 +26,10 @@ const Table = ({tableDataConfig,tableColConfig,tableConfig}) => {
           : new Date(a.date) - new Date(b.date);
   });
 
- 
-  const filteredUsers = (userManagement || serviceProviderMangement) ? 
-  sortedUsers.filter(user => 
-  user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  ) : 
-  ///////////////
-  (serviceHistory ? 
-  sortedUsers.filter(historyItem => 
-  historyItem.jobId && historyItem.jobId.toLowerCase().includes(searchTerm.toLowerCase())
-  ) : 
-  sortedUsers
-  );
+  
+  const filteredUsers = (userManagement || serviceProviderMangement) ? sortedUsers.filter(user => 
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  ) : sortedUsers;
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
@@ -90,8 +78,8 @@ const handleCheckboxChange = (id) => {
   };
 
   return (
-    <div className="flex flex-col font-poppins ">
-      {(userManagement || serviceProviderMangement || serviceHistory ) && (
+    <div className="flex flex-col font-poppins text-black ">
+      {(userManagement || serviceProviderMangement ) && (
         <div className="flex flex-wrap justify-between">
           <span className="relative rounded-full overflow-hidden h-16 mb-2">
             <img
@@ -99,8 +87,6 @@ const handleCheckboxChange = (id) => {
               src="/search-icon.svg"
               alt="search"
             />
-            {/* ------------*/}
-            {(serviceHistory) && (
             <input
               className="outline-none px-16 py-4 pl-[70px] h-full"
               type="text"
@@ -108,13 +94,9 @@ const handleCheckboxChange = (id) => {
               value={searchTerm}
               onChange={handleSearchChange}
             />
-          )}     {/*------------- */}
           </span>
 
           <div className="flex gap-4 flex-wrap">
-                    {/* "Newest" and "New User" buttons should NOT appear in ServiceHistory */}
-        {(userManagement || serviceProviderMangement) && (
-               <>
             <button
               className="flex items-center justify-center rounded-full px-14 h-16 border-2 border-solid border-violet gap-2"
               onClick={toggleSortOrder}
@@ -128,16 +110,12 @@ const handleCheckboxChange = (id) => {
                 New User
               </span>
             </button>
-            </>
-
-           )}
           </div>
-        
         </div>
       )}
 
       <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto pb-20 h-full">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full text-center border-collapse ">
           {tableConfig.title && 
           <caption className="p-8 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
             {tableConfig.title}
@@ -145,17 +123,17 @@ const handleCheckboxChange = (id) => {
           }
           <thead>
             <tr>
-            {(userManagement || serviceProviderMangement || serviceHistory) && 
-              <th><span className="px-6"><input type="checkbox" className="w-5 h-5"/></span></th>
+            {(userManagement || serviceProviderMangement) && 
+              <th><span className="px-4 py-10"><input type="checkbox"/></span></th>
             }
               {tableColConfig?.map((col, index) => (
-               <th
-               key={index}
-               scope="col"
-               className="py-5 pr-4 text-dark_blue font-bold"
-             >
-               {col}
-             </th>
+                <th
+                  key={index}
+                  scope="col"
+                  className="p-5 text-dark_blue font-bold"
+                >
+                  {col}
+                </th>
               ))}
             </tr>
           </thead>
@@ -164,31 +142,30 @@ const handleCheckboxChange = (id) => {
             {currentUsers.map((data, index) => (
               <tr key={index} className={`${(userManagement || serviceProviderMangement) && "border-t"}`}>
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="px-6">
+                  <td className="p-4">
                     <input
                       type="checkbox"
-                      className="w-5 h-5"
                       checked={selectedRows.includes(data.id)}
                       onChange={() => handleCheckboxChange(data.id)}
                     />
                   </td>
                 )}
                 {data.name && (
-                  <td className={`py-6 pr-4 ${(userManagement || serviceProviderMangement) && "py-8"}` }>
-                    <div className="flex items-center gap-4 mr-12 ">
+                  <td className={`px-6 py-6 ${(userManagement || serviceProviderMangement ) && "py-8"}` }>
+                    <div className="flex items-center gap-4 mr-6 lg:mr-0">
                       <img src={data.image} alt="" />
                       <span className="text-lg text-dark_blue font-bold">{data.name}</span>
                     </div>
                   </td>
                 )}
-                                                                  {/*  */}
                 {(complaintsLog || expensesLog || paymentsLog) && (
-                  <td className="pl-6 pr-12 py-4">
-                    <div className="flex items-center">
-                        <img src="/trending-icon.svg" alt="" />
+                  <td className="px-6 py-4">
+                    <div className="flex ">
+                    <div className='bg-lite_red text-white pt-3 rounded-full w-10 h-10 flex justify-center me-2'>
+                      <LuTrendingUp /></div>
 
-                        <div className="flex flex-col px-5 py-0">
-                      <span className="text-lg text-violet font-bold mb-1">
+                        <div className="flex flex-col px-5">
+                      <span className="text-lg text-violet font-bold pt-2 ">
                         {data.paymentId}
                       </span>
                       {(complaintsLog || expensesLog ) && 
@@ -196,114 +173,31 @@ const handleCheckboxChange = (id) => {
                     {data.date} {data.time}
                   </span> 
                  }
-
                         </div>
                     </div>
                   </td>
                 )}
                 {(userManagement || serviceProviderMangement || serviceSubcription) && 
-                <td className="py-6 pr-4 text-lg text-violet font-bold "><span className="">{data.id}</span></td>
+                <td className="p-6 text-lg text-violet font-bold "><span className="">{data.id}</span></td>
                 }
                 {( serviceSubcription) && 
-                <td className="py-6 pr-4 text-lg text-dark_blue font-bold "><span className="">{data.role}</span></td>
+                <td className="p-6 text-lg text-dark_blue font-bold "><span className="">{data.role}</span></td>
                 }
 
                 {(userManagement || serviceProviderMangement || paymentsLog) && (
-                  <td className="py-4 pr-4 text-sm text-gray-500">
-                    <div className="">
-                    <span className="mr-2">{data.date}</span>{data.time}
+                  <td className="px-6 text-sm text-gray-500">
+                    <div className="mr-2">
+                    <span className="whitespace-nowrap">{data.date}</span> {data.time}
                     </div>
                   </td>
                 )}
-
-{/*--------------------------------------*/}
-                
-                {serviceHistory &&(
-                <td><span className="px-6"><input type="checkbox" className="w-5 h-5"/></span></td>
-                )}
-                {serviceHistory &&(
-                <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.jobId}
-               </td>
-                )}
-                {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.date}
-               </td>
-               )}
-               {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.franchise}
-               </td>
-               )}
-               {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.agent}
-               </td>
-               )}
-               {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.serviceProviderId}
-               </td>
-               )}
-               {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.customerId}
-               </td>
-               )}
-               {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.customerType}
-               </td>
-               )}
-               {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.jobType}
-               </td>
-               )}
-
-{serviceHistory && (
-  <td>
-    <div
-      className={`py-6 pr-4 text-dark_blue font-semibold ${
-        data.status === "Completed"
-          ? "bg-green-500 text-white border rounded-[40px] w-[120px] h-[40px]" // Adjusted height for better text visibility
-          : "bg-gray-100"
-      }`}
-      style={{
-        textAlign: "center",
-        backgroundColor: data.status === "Active" ? "#FB7D5B" : "",
-        color: data.status === "Active" ? "white" : "",
-        display: "flex", // Flexbox for centering
-        alignItems: "center", // Vertical centering
-        justifyContent: "center", // Horizontal centering
-        height: data.status === "Active" ? "40px" : "", // Set a larger height for Active status
-        borderRadius: data.status === "Active" ? "40px" : "" // Optional, round for Active
-      }}
-    >
-      {data.status}
-    </div>
-  </td>
-)}
-
-               {serviceHistory &&(
-               <td className="py-6 pr-4 text-dark_blue font-semibold">
-                {data.action}
-               </td>
-               )}
-
-
-               
-{/*--------------------------------------*/}
-
-                {franchiseePaymentLog && (
-                  <td className="py-4 pr-4 text-sm text-gray-500">
+                {paymentsLog || serviceProviderMangement && (
+                  <td className="text-sm text-gray-500">
                     {data.description}
                   </td>
                 )}
-
                 {incompletedBookings && 
-                <td className="py-6 pr-4">
+                <td className="p-6 ">
                 <div className="flex items-center">
                     <img src={data.userImage} alt="" />
 
@@ -317,39 +211,33 @@ const handleCheckboxChange = (id) => {
                 }
                 
                 {expensesLog && (
-                <td className="py-4 pr-4 text-sm text-dark_blue font-bold">
+                <td className="px-6 py-4 text-sm text-dark_blue font-bold">
                    {data.paymentFor}
                 </td>
                 )}
-
                 {paymentsLog && (
-                  <td className="py-4 pr-4 text-lg text-dark_blue font-bold">
+                  <td className="px-6 py-4 text-lg text-dark_blue font-bold">
                     ${data.paymentAmount}
                   </td>
                 )}
 
                 {userManagement && (
-                  <td className="py-6 pr-4 text-dark_blue text-center font-semibold">
+                  <td className="px-6 py-4 text-dark_blue text-center font-semibold">
                     {data.totalCompletedWork}
                   </td>
                 )}
-
                 {(serviceProviderMangement) && (
-                  <td className="py-6 pr-4 text-dark_blue font-semibold">
+                  <td className="px-6 py-4 text-dark_blue font-semibold">
                     {data.verifiedBy}
                   </td>
                 )}
-
-               
-
-
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="py-6 pr-4 text-dark_blue font-semibold">
+                  <td className="px-6 py-4 text-dark_blue font-semibold">
                     {data.location}
                   </td>
                 )}
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="py-6 pr-4">
+                  <td className="px-6 py-4">
                     <div className="flex gap-2">
                       <a
                         href={`tel:${data.contact?.phone}`}
@@ -366,10 +254,9 @@ const handleCheckboxChange = (id) => {
                     </div>
                   </td>
                 )}
-
                   {(paymentsLog || complaintsLog) && (
                   <td
-                    className={`pr-4 py-4 text-lg font-bold ${
+                    className={`px-6 py-4 text-lg font-bold ${
                       (data.paymentStatus === "Complete" || data.serviceStatus === "Complete")
                         ? "text-lite_green"
                         : (data.paymentStatus === "Pending" || data.serviceStatus === "Pending")
@@ -382,9 +269,8 @@ const handleCheckboxChange = (id) => {
                     {data.paymentStatus || data.serviceStatus}
                   </td>
                 )}
-
                 {(userManagement || serviceProviderMangement) && (
-                  <td className="py-6 pr-4">
+                  <td className="px-6 py-4">
                     <span
                       className={`flex items-center justify-center ${
                         data.status ===  "Active" ? "bg-fluracent_green" : "bg-orange"
@@ -394,9 +280,8 @@ const handleCheckboxChange = (id) => {
                     </span>
                   </td>
                 )}
-
                 {(userManagement || serviceProviderMangement || serviceSubcription) && (
-                  <td className="py-6 pr-4">
+                  <td className="p-6">
                     <div className="relative">
                       <span onClick={()=> toggleAction(data.id)}>
                       <img
@@ -405,7 +290,7 @@ const handleCheckboxChange = (id) => {
                         alt="action"
                       />
                       </span>
-                        <ul className={`absolute z-10 top-4 right-6 shadow-md rounded-lg overflow-hidden ${
+                        <ul className={`absolute z-10 top-6 right-6 shadow-md rounded-lg overflow-hidden ${
                             openActionId === data.id ? "block" : "hidden"}`}>
                           <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleView}>view</li>
                           <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleEdit}>edit</li>
@@ -415,7 +300,6 @@ const handleCheckboxChange = (id) => {
                     </div>
                   </td>
                 )}
-                
               </tr>
             ))}
           </tbody>

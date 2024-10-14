@@ -60,7 +60,7 @@ import { IoMdClose } from "react-icons/io";
                   activeItem === item.name ? "bg-primary text-violet" : "text-white"
                 }`}
                 onClick={() => setActiveItem(item.name)}
-              ><Link to={item.to ? `/admin/${item.to}` : "#"} className="flex items-center w-full">
+              ><Link  to={`/admin/${item.to}`}className="flex items-center w-full">
                 <span className="mr-3">{item.icon}</span>
                 <span>{item.name}</span>
                 </Link>

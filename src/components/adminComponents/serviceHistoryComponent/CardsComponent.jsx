@@ -23,7 +23,7 @@ const CardsComponent = () => {
     ];
 
     return (
-        <div className="p-3 flex flex-col lg:flex-row gap-3">
+        <div className="p-3 flex flex-col items-center justify-center lg:flex-row gap-3">
             {cardData.map((card, index) => (
                 <div key={index} className="bg-white w-[300px] h-[100px] lg:w-[250px] lg:h-[100px] p-6 rounded-lg shadow-md text-center flex items-center">
                     {/* Icon Section */}

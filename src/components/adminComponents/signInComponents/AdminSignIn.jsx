@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import logo from "/LOGO.png";
-import InputField from '../ReUsableComponents/InputField';
-import SubmitButton from '../ReUsableComponents/SubmitButton';
+import InputField from '../../reUsableComponents/InputFieldComponent';
+import SubmitButton from '../../reUsableComponents/SubmitButton';
 
-const SignInForm = () => {
+const AdminSignIn = () => {
     
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -55,4 +55,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default AdminSignIn;

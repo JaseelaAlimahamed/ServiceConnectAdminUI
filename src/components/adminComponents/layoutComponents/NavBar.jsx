@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { FiBell, FiSettings } from 'react-icons/fi';
 import { FaBars } from "react-icons/fa";
+
 import { useLocation } from 'react-router-dom';
-
-
 const NavBar = ({ toggleSidebar }) => {
 
   const location = useLocation()
@@ -84,6 +83,7 @@ const NavBar = ({ toggleSidebar }) => {
               className="flex items-center cursor-pointer space-x-2"
               onClick={toggleDropdown}
             >
+
               <div className="hidden md:block text-gray-600 text-sm">
                 Nabila A.
                 <div className="text-xs text-gray-400">Admin</div>
