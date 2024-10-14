@@ -16,7 +16,7 @@ const Table = ({ tableDataConfig,tableColConfig,tableConfig}) => {
     const complaintsLog = tableConfig.type === "complaintslog" 
     const expensesLog = tableConfig.type === "expenseslog" 
     const serviceSubcription = tableConfig.type === "servicesubcription" 
-    const serviceProviderMangement = tableConfig.type === "serviceprovidermangement" 
+    const serviceProviderManagement = tableConfig.type === "serviceprovidermanagement" 
 
 
     
@@ -27,7 +27,7 @@ const Table = ({ tableDataConfig,tableColConfig,tableConfig}) => {
   });
 
   
-  const filteredUsers = (userManagement || serviceProviderMangement) ? sortedUsers.filter(user => 
+  const filteredUsers = (userManagement || serviceProviderManagement) ? sortedUsers.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   ) : sortedUsers;
 
@@ -79,7 +79,7 @@ const handleCheckboxChange = (id) => {
 
   return (
     <div className="flex flex-col font-poppins text-black ">
-      {(userManagement || serviceProviderMangement ) && (
+      {(userManagement || serviceProviderManagement ) && (
         <div className="flex flex-wrap justify-between">
           <span className="relative rounded-full overflow-hidden h-16 mb-2">
             <img
@@ -123,7 +123,7 @@ const handleCheckboxChange = (id) => {
           }
           <thead>
             <tr>
-            {(userManagement || serviceProviderMangement) && 
+            {(userManagement || serviceProviderManagement) && 
               <th><span className="px-4 py-10"><input type="checkbox"/></span></th>
             }
               {tableColConfig?.map((col, index) => (
@@ -139,170 +139,201 @@ const handleCheckboxChange = (id) => {
           </thead>
 
           <tbody>
-            {currentUsers.map((data, index) => (
-              <tr key={index} className={`${(userManagement || serviceProviderMangement) && "border-t"}`}>
-                {(userManagement || serviceProviderMangement) && (
-                  <td className="p-4">
-                    <input
-                      type="checkbox"
-                      checked={selectedRows.includes(data.id)}
-                      onChange={() => handleCheckboxChange(data.id)}
-                    />
-                  </td>
-                )}
-                {data.name && (
-                  <td className={`px-6 py-6 ${(userManagement || serviceProviderMangement ) && "py-8"}` }>
-                    <div className="flex items-center gap-4 mr-6 lg:mr-0">
-                      <img src={data.image} alt="" />
-                      <span className="text-lg text-dark_blue font-bold">{data.name}</span>
-                    </div>
-                  </td>
-                )}
-                {(complaintsLog || expensesLog || paymentsLog) && (
-                  <td className="px-6 py-4">
-                    <div className="flex ">
-                    <div className='bg-lite_red text-white pt-3 rounded-full w-10 h-10 flex justify-center me-2'>
-                      <LuTrendingUp /></div>
+  {currentUsers.map((data, index) => (
+    <tr key={index} className={`${(userManagement || serviceProviderManagement) && "border-t"}`}>
+      {/* Checkbox for user management and service provider management */}
+      {(userManagement || serviceProviderManagement) && (
+        <td className="p-4">
+          <input
+            type="checkbox"
+            checked={selectedRows.includes(data.id)}
+            onChange={() => handleCheckboxChange(data.id)}
+          />
+        </td>
+      )}
 
-                        <div className="flex flex-col px-5">
-                      <span className="text-lg text-violet font-bold pt-2 ">
-                        {data.paymentId}
-                      </span>
-                      {(complaintsLog || expensesLog ) && 
-                  <span className=" text-sm text-gray-500 ">
-                    {data.date} {data.time}
-                  </span> 
-                 }
-                        </div>
-                    </div>
-                  </td>
-                )}
-                {(userManagement || serviceProviderMangement || serviceSubcription) && 
-                <td className="p-6 text-lg text-violet font-bold "><span className="">{data.id}</span></td>
-                }
-                {( serviceSubcription) && 
-                <td className="p-6 text-lg text-dark_blue font-bold "><span className="">{data.role}</span></td>
-                }
+      {/* Name Column */}
+      {data.name && (
+        <td className={`px-6 py-6 ${(userManagement || serviceProviderManagement) && "py-8"}`}>
+          <div className="flex items-center gap-4 mr-6 lg:mr-0">
+            <img src={data.image} alt="" />
+            <span className="text-lg text-dark_blue font-bold">{data.name}</span>
+          </div>
+        </td>
+      )}
 
-                {(userManagement || serviceProviderMangement || paymentsLog) && (
-                  <td className="px-6 text-sm text-gray-500">
-                    <div className="mr-2">
-                    <span className="whitespace-nowrap">{data.date}</span> {data.time}
-                    </div>
-                  </td>
-                )}
-                {paymentsLog || serviceProviderMangement && (
-                  <td className="text-sm text-gray-500">
-                    {data.description}
-                  </td>
-                )}
-                {incompletedBookings && 
-                <td className="p-6 ">
-                <div className="flex items-center">
-                    <img src={data.userImage} alt="" />
+      {/* Payment ID Column */}
+      {(complaintsLog || expensesLog || paymentsLog) && (
+        <td className="px-6 py-4">
+          <div className="flex">
+            <div className="bg-lite_red text-white pt-3 rounded-full w-10 h-10 flex justify-center me-2">
+              <LuTrendingUp />
+            </div>
+            <div className="flex flex-col px-5">
+              <span className="text-lg text-violet font-bold pt-2">
+                {data.paymentId}
+              </span>
+              {(complaintsLog || expensesLog) && (
+                <span className="text-sm text-gray-500">
+                  {data.date} {data.time}
+                </span>
+              )}
+            </div>
+          </div>
+        </td>
+      )}
 
-                    <div className="flex flex-col ml-2">
-                  <span className="text-md text-gray-500 ">
-                    {data.userName}
-                  </span>
-                    </div>
-                </div>
-              </td>
-                }
-                
-                {expensesLog && (
-                <td className="px-6 py-4 text-sm text-dark_blue font-bold">
-                   {data.paymentFor}
-                </td>
-                )}
-                {paymentsLog && (
-                  <td className="px-6 py-4 text-lg text-dark_blue font-bold">
-                    ${data.paymentAmount}
-                  </td>
-                )}
+      {/* ID Column */}
+      {(userManagement || serviceProviderManagement || serviceSubcription) && (
+        <td className="p-6 text-lg text-violet font-bold">
+          <span>{data.id}</span>
+        </td>
+      )}
 
-                {userManagement && (
-                  <td className="px-6 py-4 text-dark_blue text-center font-semibold">
-                    {data.totalCompletedWork}
-                  </td>
-                )}
-                {(serviceProviderMangement) && (
-                  <td className="px-6 py-4 text-dark_blue font-semibold">
-                    {data.verifiedBy}
-                  </td>
-                )}
-                {(userManagement || serviceProviderMangement) && (
-                  <td className="px-6 py-4 text-dark_blue font-semibold">
-                    {data.location}
-                  </td>
-                )}
-                {(userManagement || serviceProviderMangement) && (
-                  <td className="px-6 py-4">
-                    <div className="flex gap-2">
-                      <a
-                        href={`tel:${data.contact?.phone}`}
-                        className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
-                      >
-                        <img className="min-w-6" src="/phone-icon.svg" alt="phone" />
-                      </a>
-                      <a
-                        href={`mailto:${data.contact?.mail}`}
-                        className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
-                      >
-                        <img className="min-w-6" src="/email-icon.svg" alt="email" />
-                      </a>
-                    </div>
-                  </td>
-                )}
-                  {(paymentsLog || complaintsLog) && (
-                  <td
-                    className={`px-6 py-4 text-lg font-bold ${
-                      (data.paymentStatus === "Complete" || data.serviceStatus === "Complete")
-                        ? "text-lite_green"
-                        : (data.paymentStatus === "Pending" || data.serviceStatus === "Pending")
-                        ? "text-gray-600"
-                        : (data.paymentStatus === "Cancelled" || data.serviceStatus === "Cancelled")
-                        ? "text-red"
-                        : "text-default"
-                    }`}
-                  >
-                    {data.paymentStatus || data.serviceStatus}
-                  </td>
-                )}
-                {(userManagement || serviceProviderMangement) && (
-                  <td className="px-6 py-4">
-                    <span
-                      className={`flex items-center justify-center ${
-                        data.status ===  "Active" ? "bg-fluracent_green" : "bg-orange"
-                      } text-primary w-24 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
-                    >
-                      {data.status}
-                    </span>
-                  </td>
-                )}
-                {(userManagement || serviceProviderMangement || serviceSubcription) && (
-                  <td className="p-6">
-                    <div className="relative">
-                      <span onClick={()=> toggleAction(data.id)}>
-                      <img
-                        className="min-w-6 m-auto cursor-pointer"
-                        src="/actions-icon.svg"
-                        alt="action"
-                      />
-                      </span>
-                        <ul className={`absolute z-10 top-6 right-6 shadow-md rounded-lg overflow-hidden ${
-                            openActionId === data.id ? "block" : "hidden"}`}>
-                          <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleView}>view</li>
-                          <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleEdit}>edit</li>
-                          <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2  " onClick={handleDelete}>delete</li>
-                        </ul>
+      {/* Role Column */}
+      {serviceSubcription && (
+        <td className="p-6 text-lg text-dark_blue font-bold">
+          <span>{data.role}</span>
+        </td>
+      )}
 
-                    </div>
-                  </td>
-                )}
-              </tr>
-            ))}
-          </tbody>
+      {/* Date and Time Column */}
+      {(userManagement || serviceProviderManagement || paymentsLog) && (
+        <td className="px-6 text-sm text-gray-500">
+          <div className="mr-2">
+            <span className="whitespace-nowrap">{data.date}</span> {data.time}
+          </div>
+        </td>
+      )}
+
+      {/* Payment Description Column */}
+      {paymentsLog && (
+        <td className="px-6 py-4 text-sm text-gray-500">
+          {data.description}
+        </td>
+      )}
+
+      {/* User Image Column (for incomplete bookings) */}
+      {incompletedBookings && (
+        <td className="p-6">
+          <div className="flex items-center">
+            <img src={data.userImage} alt="" />
+            <div className="flex flex-col ml-2">
+              <span className="text-md text-gray-500">{data.userName}</span>
+            </div>
+          </div>
+        </td>
+      )}
+
+      {/* Payment For Column (for expenses log) */}
+      {expensesLog && (
+        <td className="px-6 py-4 text-sm text-dark_blue font-bold">
+          {data.paymentFor}
+        </td>
+      )}
+
+      {/* Payment Amount Column */}
+      {paymentsLog && (
+        <td className="px-6 py-4 text-lg text-dark_blue font-bold">
+          ${data.paymentAmount}
+        </td>
+      )}
+
+      {/* Total Completed Work Column (for user management) */}
+      {userManagement && (
+        <td className="px-6 py-4 text-dark_blue text-center font-semibold">
+          {data.totalCompletedWork}
+        </td>
+      )}
+
+      {/* Verified By Column (for service provider management) */}
+      {serviceProviderManagement && (
+        <td className="px-6 py-4 text-dark_blue font-semibold">
+          {data.verifiedBy}
+        </td>
+      )}
+
+      {/* Location Column */}
+      {(userManagement || serviceProviderManagement) && (
+        <td className="px-6 py-4 text-dark_blue font-semibold">
+          {data.location}
+        </td>
+      )}
+
+      {/* Contact Column */}
+      {(userManagement || serviceProviderManagement) && (
+        <td className="px-6 py-4">
+          <div className="flex gap-2">
+            <a
+              href={`tel:${data.contact?.phone}`}
+              className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
+            >
+              <img className="min-w-6" src="/phone-icon.svg" alt="phone" />
+            </a>
+            <a
+              href={`mailto:${data.contact?.mail}`}
+              className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
+            >
+              <img className="min-w-6" src="/email-icon.svg" alt="email" />
+            </a>
+          </div>
+        </td>
+      )}
+
+      {/* Payment/Service Status Column */}
+      {(paymentsLog || complaintsLog) && (
+        <td
+          className={`px-6 py-4 text-lg font-bold ${
+            (data.paymentStatus === "Complete" || data.serviceStatus === "Complete")
+              ? "text-lite_green"
+              : (data.paymentStatus === "Pending" || data.serviceStatus === "Pending")
+              ? "text-gray-600"
+              : (data.paymentStatus === "Cancelled" || data.serviceStatus === "Cancelled")
+              ? "text-red"
+              : "text-default"
+          }`}
+        >
+          {data.paymentStatus || data.serviceStatus}
+        </td>
+      )}
+
+      {/* Status Column */}
+      {(userManagement || serviceProviderManagement) && (
+        <td className="px-6 py-4">
+          <span
+            className={`flex items-center justify-center ${
+              data.status === "Active" ? "bg-fluracent_green" : "bg-orange"
+            } text-primary w-24 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
+          >
+            {data.status}
+          </span>
+        </td>
+      )}
+
+      {/* Additional Actions Column */}
+      {(userManagement || serviceProviderManagement || serviceSubcription) && (
+        <td className="p-6">
+          <div className="relative">
+            <span onClick={() => toggleAction(data.id)}>
+              <img
+                className="min-w-6 m-auto cursor-pointer"
+                src="/actions-icon.svg"
+                alt="action"
+              />
+            </span>
+            <ul className={`absolute z-10 top-6 right-6 shadow-md rounded-lg overflow-hidden ${openActionId === data.id ? "block" : "hidden"}`}>
+              <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleView}>view</li>
+              <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleEdit}>edit</li>
+              <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2" onClick={handleDelete}>delete</li>
+            </ul>
+          </div>
+        </td>
+      )}
+    </tr>
+  ))}
+</tbody>
+
+
         </table>
      
           <div className="absolute w-full bottom-0 flex justify-between px-6 py-4 flex-wrap space-y-4 md:space-y-0">
