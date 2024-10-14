@@ -55,7 +55,7 @@ const SubCategory = () => {
     };
 
     return (
-        <div className='bg-white p-6 shadow-lg rounded-lg max-w-5xl mx-auto'>
+        <div className='bg-primary p-6 shadow-lg rounded-lg max-w-5xl mx-auto'>
             <div className="flex flex-col md:flex-row justify-between items-center mb-5">
                 <h1 className="text-3xl text-dark_blue font-bold mb-4 md:mb-0">Cleaning</h1>
                 <div className="flex flex-col md:flex-row items-center gap-4">
@@ -72,7 +72,7 @@ const SubCategory = () => {
                             )}
                         </button>
                         {sortOpen && (
-                            <div className="absolute right-0 mt-1 w-48 bg-white border-violet rounded-md shadow-lg z-50">
+                            <div className="absolute right-0 mt-1 w-48 bg-primary border-violet rounded-md shadow-lg z-50">
                                 <button
                                     onClick={() => handleSortChange('By Date')}
                                     className="block w-full px-2 py-1 text-left hover:bg-violet-100"
@@ -93,15 +93,15 @@ const SubCategory = () => {
                     <div className="relative z-50">
                         <button
                             onClick={toggleDropdown}
-                            className='w-32 h-10 bg-violet text-white border border-violet-300 px-4 py-2 rounded-full flex items-center justify-center'
+                            className='w-32 h-10 bg-violet text-primary border border-violet-300 px-4 py-2 rounded-full flex items-center justify-center'
                         >
                             {selectedStatus}
                             <span className="ml-2">
-                                {dropdownOpen ? <FaChevronUp className="text-white" /> : <FaChevronDown className="text-white" />}
+                                {dropdownOpen ? <FaChevronUp className="text-primary" /> : <FaChevronDown className="text-primary" />}
                             </span>
                         </button>
                         {dropdownOpen && (
-                            <div className="absolute right-0 mt-1 w-48 bg-white border rounded-md shadow-lg z-50">
+                            <div className="absolute right-0 mt-1 w-48 bg-primary border rounded-md shadow-lg z-50">
                                 <button
                                     onClick={() => handleStatusChange('House')}
                                     className="block w-full px-2 py-1 text-left hover:bg-violet-100"
@@ -123,7 +123,7 @@ const SubCategory = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {filteredCategories.map((subcategory) => (
                     <div key={subcategory.id} className="shadow-lg bg-blue_bg rounded-lg p-4 relative w-full hover:shadow-xl transition-shadow duration-300">
-                        <div className="bg-gray-200 rounded-t-lg w-full h-40">
+                        <div className="bg-light_gray rounded-t-lg w-full h-40">
                             <img
                                 src={subcategory.image}
                                 alt={subcategory.name}
@@ -148,7 +148,7 @@ const SubCategory = () => {
                 ))}
 
                 <div onClick={handleAddNewItem} className="bg-blue_bg shadow-lg rounded-lg flex flex-col justify-center items-center p-4 w-full hover:bg-gray-200 transition-colors duration-300 cursor-pointer">
-                    <button className="text-8xl font-bold text-gray-400 mb-4"><BsPlusLg /></button>
+                    <button className="text-8xl font-bold text-light_gray mb-4"><BsPlusLg /></button>
                     <div className="flex justify-center gap-5 text-xl">
                         <button className="hover:text-violet-700"><MdOutlineRemoveRedEye /></button>
                         <button className="hover:text-violet-700"><FaRegEdit /></button>
