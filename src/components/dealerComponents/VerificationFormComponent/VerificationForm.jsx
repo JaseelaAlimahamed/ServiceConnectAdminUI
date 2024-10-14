@@ -7,7 +7,7 @@ function ServiceProviderVerificationForm() {
     
     const [inspectorName,setinspectorName]=useState("")
     const [inspectorRole,setinspectorRole]=useState("")
-    const [membersName,setmembersName]=useState("")
+    const [membersName,setmembersName]=useState("")                    //initialising states 
     const [verificationDate,setverificationDate]=useState()
     const [supportingDocument,setsupportingDocument]=useState("")
     const [verificationStatus,setverificationStatus]=useState("")
@@ -16,19 +16,35 @@ function ServiceProviderVerificationForm() {
       setinspectorName("")
       setinspectorRole("")
       setmembersName("")
-      setverificationDate()
+      setverificationDate()              // on clicking cancel, aal states are reset
       setsupportingDocument("")
       setverificationStatus("")
-      console.log( "data on clicking cancel", inspectorName,inspectorRole,membersName ,verificationDate,supportingDocument,verificationStatus)
+      console.log( "data on clicking cancel , states are reset" )
     }
 
-    const OnSubmit=(e)=>{       
-      console.log( "sending data" ,inspectorName,inspectorRole,membersName ,verificationDate,supportingDocument,verificationStatus)
-  
-     e.preventdefault();
 
+    let verificationFormData={
+      inspectorName :inspectorName,
+      inspectorRole:inspectorRole ,
+      membersName :membersName,                    // bundling states to a single object , to be sent 
+      verificationDate :verificationDate,
+      supportingDocument : supportingDocument,
+      verificationStatus :verificationStatus
     }
    
+
+    const OnSubmit=(e)=>{   
+      
+      const allValuesNotNull = Object.values(verificationFormData).every(value => value !== "" && value!==undefined);  // verification of null data on clicking submit
+     if(allValuesNotNull)
+        console.log(("sending data", verificationFormData))
+     else
+        console.log("form contains one or more invalid/empty data")
+       
+    }
+
+
+  
     
   return (
     <div className='flex w-full justify-center mt-5'>
