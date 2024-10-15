@@ -21,6 +21,7 @@ import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Sub
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 
 
+
 function RouteAdmin() {
 
 
@@ -46,6 +47,8 @@ function RouteAdmin() {
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/subcategories' element={<SubCategoryPage />} />
         <Route path='/newads' element={<NewAdsPage />} />
+       
+
      
 
  
