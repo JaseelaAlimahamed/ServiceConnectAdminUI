@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import InputFieldComponent from '../../reUsableComponents/InputFieldComponent'
 import Dropdown from '../../adminComponents/CategorySubCategory/AddEditSubCategory/addSubCategoryitems/SubCategoryDropDown'
-import VerificationSubmissionModal from './verificationSubmissionModal'
+import Modal from '../../reUsableComponents/Modal'
 
 
 
@@ -14,7 +14,7 @@ function ServiceProviderVerificationForm() {
     const [verificationDate,setverificationDate]=useState()
     const [supportingDocument,setsupportingDocument]=useState("")
     const [verificationStatus,setverificationStatus]=useState("")
-    const [submissionModal,setsubmissionModal]=useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const clearField=()=>{
       setinspectorName("")
@@ -44,14 +44,10 @@ function ServiceProviderVerificationForm() {
      if(allValuesNotNull)
      {
         console.log(("sending data", verificationFormData))
-        {
-            setsubmissionModal(true)
-                  { submissionModal? <VerificationSubmissionModal  modal={submissionModal} change={setsubmissionModal}/>: <></>}
-                  clearField()
-
-        }
-
-      }
+        
+          setIsModalOpen(true)
+                clearField()
+     }
      else
         console.log("form contains one or more invalid/empty data")
        
@@ -118,7 +114,7 @@ function ServiceProviderVerificationForm() {
                       value={supportingDocument}      >
                       <option value="" disabled >select</option>
                       <option value="License">License</option>
-                      <option value="certification">certification</option>
+                      <option value="certification">Certification</option>
                       <option value="id"> ID</option>
               </select>         
          </div>
@@ -132,7 +128,7 @@ function ServiceProviderVerificationForm() {
                 />
          </div>
          <div className='leading-8'>
-                    <label>verification Status   </label>
+                    <label>Verification Status   </label>
                     <select className='bg-[#FFFFFF] border-2 border-[#E5E7EB] h-10  border border-[#E5E7EB] 
                                         rounded-lg  focus:border-[#28B5E1] block w-full  pl-4 '
                             onChange={(e)=>{setverificationStatus(e.target.value)}  }
@@ -152,7 +148,17 @@ function ServiceProviderVerificationForm() {
    </div>
       
  </form>
-   { submissionModal? <VerificationSubmissionModal  submissionModal={submissionModal } setsubmissionModal={setsubmissionModal}/>: <></>}
+  <Modal  
+  isOpen={isModalOpen}
+  onClose={() => setIsModalOpen(false)}
+  image={``}
+  heading="Confirmation"
+  message="Verification Submitted successfully"
+  confirm = {true}
+  confirm_label='OK'
+  cancel ={false}
+  cancel_label=''
+  onConfirm={() => setIsModalOpen(false)} />
  </div>
   )
 }
