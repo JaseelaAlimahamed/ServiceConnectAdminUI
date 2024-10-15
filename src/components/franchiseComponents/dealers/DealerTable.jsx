@@ -40,15 +40,15 @@ function DealerTable({tableHeadings , tableData , page}) {
               </td>
               <td className="p-3 text-lg relative text-light_gray  text-center  ">
                 <div 
-                className='cursor-pointer'
+                className='cursor-pointer relative'
                 onClick={() => setShowActionOverlay(showActionOverlay === id ? "" : id)}
 >
                 {actionIcon}
                 </div>
-                {showActionOverlay === id && <div className={`absolute z-10 top-6 right-16 shadow-md rounded-lg overflow-hidden text-sm flex flex-col `}>
-                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</Link>
-                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</Link>
-                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</Link>
+                {showActionOverlay === id && <div className={`bg-white fixed z-50 w-32  shadow-md rounded-lg overflow-hidden text-sm flex flex-col right-2 `}>
+                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " >view</Link>
+                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " >edit</Link>
+                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1">delete</Link>
                 </div>}
               </td>
             </tr>
@@ -86,9 +86,9 @@ function DealerTable({tableHeadings , tableData , page}) {
                 {actionIcon}
                 </div>
                 {showActionOverlay === id && <div className={`absolute z-10  right-3 shadow-md rounded-lg overflow-hidden flex flex-col `}>
-                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1  border-b " >view</Link>
-                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1 border-b " >edit</Link>
-                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-1">delete</Link>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 capitalize px-7 py-1 " >view</Link>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 capitalize px-7 py-1 " >edit</Link>
+                    <Link className="bg-primary cursor-pointer hover:bg-slate-100 capitalize px-7 py-1">delete</Link>
                 </div>}  
            </div> 
           </div>
