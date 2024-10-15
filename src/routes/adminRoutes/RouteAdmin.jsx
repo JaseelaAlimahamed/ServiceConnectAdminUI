@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout.jsx'
 import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
 import AdminProfilePage from '../../pages/adminPages/adminProfilePage/AdminProfilePage.jsx'
+import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 
 import BookingDetailsPage from '../../pages/adminPages/bookingdetailsPage/BookingDetailsPage.jsx'
 import AddCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/AddCategory.jsx'
@@ -39,8 +40,8 @@ return (
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         {/*<Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} />
-        <Route path='/accounts' element={<Accounts />} /> 
-        <Route path='/ads-management' element={<AdsManagement />} /> */}
+        <Route path='/accounts' element={<Accounts />} />   */}
+        <Route path='/ads-management' element={<AdsManagement />} />
         <Route path='/service-type' element={<ServiceType />} />
 
         
