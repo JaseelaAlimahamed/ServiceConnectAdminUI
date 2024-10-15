@@ -174,8 +174,8 @@ function AddServiceProvider(){
     };
 
     return(
-        <>
-            <div className=" h-full m-2 bg-lite_blue2 rounded-b-md shadow-md">
+        <div className="min-h-screen p-6">
+            <div className="max-w-6xl mt-4 mx-auto bg-lite_blue2 rounded-b-md shadow-md">
 
                 <div className=" h-1/6 bg-[#4D44B5] rounded-t-md">
                     <h1 className="text-primary text-2xl py-2 px-3 text-justify m-auto">Service Provider Details</h1>
@@ -205,7 +205,7 @@ function AddServiceProvider(){
                 </div>
 
             </div>
-            <div className=" flex gap-2 justify-center items-center mx-2 my-2 sm:mx-12 sm:gap-8 sm:justify-end">
+            <div className="max-w-6xl flex gap-2 justify-center items-center mx-auto sm:gap-8 sm:justify-end">
                 {
                     buttonConfig.map((btn) => (
                         <ButtonComponent
@@ -217,7 +217,7 @@ function AddServiceProvider(){
                     ))
                 }
             </div>
-        </>
+        </div>
     )
 };
 export default AddServiceProvider;
