@@ -22,10 +22,22 @@ function Graph({title,data}) {
             <option >Month</option>{" "}
             <option value="jan"> Jan</option>
             <option value="feb"> Feb</option>
-            <option value="mar" name="mar">
+            <option value="mar">
              
               Mar
             </option>
+            <option value="apr">Apr</option>
+            <option value="may">may</option>
+            <option value="jun">jun</option>
+            <option value="jul">july</option>
+            <option value="aug">Aug</option>
+            <option value="sep">Sep</option>
+            <option value="oct">Oct</option>
+            <option value="nov">Nov</option>
+            <option value="dec">Dec</option>
+
+
+
           </select>
         </div>
 
