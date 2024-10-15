@@ -10,8 +10,7 @@ import AdminLayout from '../../layouts/AdminLayout'
 import UserManagement from '../../pages/adminPages/managementPages/UserManagement'
 import EditSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory'
 import AddSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory'
-import Accounts from '../../components/franchaseeComponets/Edit/Accounts'
-import EditAddFranchiseeType from '../../components/franchaseeComponets/Edit/Add Franchasee Type'
+import EditAddFranchiseeType from '../../components/franchiseComponents/Edit/Add Franchasee Type'
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 import BookingDetailsPage from '../../pages/BookingDetailsPage.jsx'
 import AddCategory from '../../components/CategorySubCategory/AddEditCategory/AddCategory'
@@ -22,6 +21,7 @@ import UserDetails from '../../pages/adminPages/UserDetails'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+import Accounts from '../../components/franchiseComponents/Edit/Accounts'
 
 function RouteAdmin() {
 
