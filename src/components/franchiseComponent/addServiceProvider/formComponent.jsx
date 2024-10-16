@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InputComponent from "./inputComponent";
-
+import InputComponent from "./InputComponent";
 
 
 const FormComponent = ({fieldConfig, handleSubmit, handleChange}) =>{
