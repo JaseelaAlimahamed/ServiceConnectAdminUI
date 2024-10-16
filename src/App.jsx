@@ -3,6 +3,11 @@ import RouteAdmin from './routes/adminRoutes/RouteAdmin';
 
 
 
+
+
+
+
+
 // import'./App.css';
 
 function App() {
@@ -13,10 +18,11 @@ function App() {
       
         <Routes>
           <Route path="/admin/*" element={<RouteAdmin/>} />
-    
+          
+  
         </Routes>
         
-      
+       
    
   );
 }
