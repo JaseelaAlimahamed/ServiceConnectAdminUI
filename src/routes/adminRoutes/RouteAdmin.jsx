@@ -36,6 +36,7 @@ function RouteAdmin() {
 
 
       <Route path='/sign-in' element={<SignInForm />} />
+      
 
       <Route element={<AdminLayout />}>
 
@@ -63,6 +64,7 @@ function RouteAdmin() {
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
+
 
       </Route>
     </Routes>
