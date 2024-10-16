@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ProfileSidebar from 'src/components/DealerComponents/Components/DealerProfileSide.jsx';
-import EditProfileForm from 'src/components/DealerComponents/Components/EditProfileForm.jsx';
-import ProgressBar from 'src/components/DealerComponents/Componenents/DealerProgressBar.jsx';
+import ProfileSidebar from 'src/components/DealerComponents/DealerProfileComponenents/ProfileSidebar';
+import EditProfileForm from 'src/components/DealerComponents/DealerProfileComponenents/EditProfileForm.jsx';
+import ProgressBar from 'src/components/DealerComponents/DealerProfileComponenents/DealerProgressBar.jsx';
 
 const DealerProfilePage = () => {
   const [user, setUser] = useState({
