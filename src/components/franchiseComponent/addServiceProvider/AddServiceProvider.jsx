@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import ButtonComponent from "./ButtonComponent";
 import FormComponent from "./FormComponent";
 
-
 function AddServiceProvider(){
 
     const fieldConfig = [
