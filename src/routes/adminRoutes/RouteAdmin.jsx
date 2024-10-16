@@ -25,6 +25,7 @@ import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Sub
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
+import PaymentRequest from '../../pages/dealerPages/PaymentRequest.jsx'
 
 
 function RouteAdmin() {
@@ -35,7 +36,7 @@ function RouteAdmin() {
     <Routes>
 
 
-      <Route path='/sign-in' element={<SignInForm />} />
+      <Route path='/sign-in' element={<PaymentRequest />} />
 
       <Route element={<AdminLayout />}>
 

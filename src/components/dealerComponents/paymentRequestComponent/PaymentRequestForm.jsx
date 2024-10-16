@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputFieldComponent from '../../reUsableComponents/InputFieldComponent';
-import Modal from '../../reUsableComponents/reUsableModal';
+import ReUsableModal from '../../reUsableComponents/ReUsableModal';
+
 
 const PaymentRequestForm = () => {
     const [formData, setFormData] = useState({
@@ -255,7 +256,7 @@ const PaymentRequestForm = () => {
             </form>
 
             {/* Confirmation Modal */}
-            <Modal
+            <ReUsableModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 heading="Confirm Payment Request"
