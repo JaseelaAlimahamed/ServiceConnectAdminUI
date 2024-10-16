@@ -15,6 +15,7 @@ import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails
 
 import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
 
+
 import EditSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory.jsx'
 import AddSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory'
 
@@ -23,8 +24,12 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
-import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
+import TransactionHistory from '../../pages/adminPages/TransactionPages/TransactionHistory'
+import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
+
+
+
 
 
 function RouteAdmin() {
@@ -64,7 +69,8 @@ function RouteAdmin() {
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
-
+        <Route path='/transaction-history' element={<TransactionHistory/>}/>
+  
 
       </Route>
     </Routes>
