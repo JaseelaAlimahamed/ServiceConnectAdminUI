@@ -1,5 +1,5 @@
 import React from 'react'
-import PaymentRequestForm from '../../components/dealerComponents/PaymentRequestForm'
+import PaymentRequestForm from '../../components/dealerComponents/paymentRequestComponent/PaymentRequestForm'
 
 function PaymentRequest() {
   return (

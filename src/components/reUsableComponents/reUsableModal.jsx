@@ -24,7 +24,7 @@ const Modal = ({
           </div>
         )}
         {heading && <h2 className="text-center text-2xl font-bold mb-4">{heading}</h2>}
-        {message && <div className="text-id_gray mb-4">{message}</div>}
+        {message && <div className="text-id_gray mb-4 justify-center flex">{message}</div>}
         <div className="flex justify-center space-x-4">
         {cancel && (
           <button className="bg-lite_red text-white px-4 py-2 rounded-full" onClick={onClose}>
@@ -32,7 +32,7 @@ const Modal = ({
             </button>
         )}
           {confirm && (
-            <button className="bg-green-500 text-white px-4 py-2 rounded-full" onClick={onConfirm}>
+            <button className="bg-lite_green text-white px-4 py-2 rounded-full" onClick={onConfirm}>
               {confirm_label}
             </button>
           )}

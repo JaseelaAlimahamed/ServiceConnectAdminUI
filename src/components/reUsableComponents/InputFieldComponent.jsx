@@ -15,7 +15,7 @@ const InputFieldComponent = ({
   showPassword,
   toggleShowPassword,
   name,
-  color = 'bg-light_gray rounded-2xl', // Default color and radius
+  color = 'bg-light_gray', // Default color
 }) => {
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);  // State to hold image preview URL
@@ -68,7 +68,7 @@ const InputFieldComponent = ({
           country={'us'}
           value={value}
           onChange={onChange} // Pass the phone input value to the parent
-          inputClass={`p-4 w-full rounded-2xl ${color} focus:outline-none focus:ring-0`} // Removed borders on focus
+          inputClass={`p-4 w-full rounded-2xl ${color} pl-12 text-lg focus:outline-none focus:ring-2 focus:ring-primary`}
           buttonClass="absolute left-4 top-4 h-full flex items-center justify-center rounded-l-2xl"
           containerClass="relative w-full border-1 border-gray-300 rounded-lg pl-12 relative"
           placeholder={placeholder}
@@ -88,7 +88,7 @@ const InputFieldComponent = ({
           selected={value} // Use value passed from props
           onChange={onChange} // Update parent state on date change
           placeholderText={placeholder} // Custom placeholder
-          className={`p-4 w-full rounded-2xl ${color} focus:outline-none focus:ring-0`} // Removed borders on focus
+          className={`p-4 w-full rounded-2xl ${color} pl-12`} // Tailwind styles
           wrapperClassName="w-full"
           isClearable // Optional: allows clearing the date input
         />
@@ -100,7 +100,7 @@ const InputFieldComponent = ({
             value={value}
             name={name || ''} // Pass name prop correctly
             onChange={handleInputChange}
-            className={`p-4 w-full rounded-2xl ${color} focus:outline-none focus:ring-0`} // Removed borders on focus
+            className={`p-4 w-full rounded-2xl ${color}`}
             required
           />
           <span className="absolute right-3 top-5 cursor-pointer" onClick={toggleShowPassword}>
@@ -114,7 +114,7 @@ const InputFieldComponent = ({
           value={value}
           name={name || ''}
           onChange={handleInputChange} // Update parent with onChange
-          className={`p-4 w-full rounded-2xl ${color} focus:outline-none focus:ring-0`} // Removed borders on focus
+          className={`p-4 w-full rounded-2xl ${color}`}
           required
         />
       )}

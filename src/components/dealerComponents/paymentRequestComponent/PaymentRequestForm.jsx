@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import InputFieldComponent from '../reUsableComponents/InputFieldComponent';
-import Modal from '../reUsableComponents/Modal';
+import InputFieldComponent from '../../reUsableComponents/InputFieldComponent';
+import Modal from '../../reUsableComponents/reUsableModal';
 
 const PaymentRequestForm = () => {
     const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const PaymentRequestForm = () => {
     });
 
     const [documentName, setDocumentName] = useState('No file chosen');
-    const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+    const [isModalOpen, setIsModalOpen] = useState(true); // Modal state
 
     const handleInputChange = (field, value) => {
         setFormData((prevData) => ({
