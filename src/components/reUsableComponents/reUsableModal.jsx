@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({
+const ReUsableModal = ({
   isOpen,
   onClose,
   image,
@@ -42,4 +42,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default ReUsableModal;

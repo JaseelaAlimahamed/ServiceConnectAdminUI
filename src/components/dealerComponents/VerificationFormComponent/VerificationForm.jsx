@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import InputFieldComponent from '../../reUsableComponents/InputFieldComponent'
 import Dropdown from '../../adminComponents/CategorySubCategory/AddEditSubCategory/addSubCategoryitems/SubCategoryDropDown'
-import Modal from '../../reUsableComponents/Modal'
+import ReUsableModal from '../../reUsableComponents/ReUsableModal'
 
 
 
@@ -148,7 +148,7 @@ function ServiceProviderVerificationForm() {
    </div>
       
  </form>
-  <Modal  
+  <ReUsableModal 
   isOpen={isModalOpen}
   onClose={() => setIsModalOpen(false)}
   image={``}
