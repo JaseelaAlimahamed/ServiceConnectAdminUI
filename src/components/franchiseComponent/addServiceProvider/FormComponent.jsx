@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputComponent from "./InputComponent";
 
-
 const FormComponent = ({fieldConfig, handleSubmit, handleChange}) =>{
     
     const [formData, setFormData] = useState({});
