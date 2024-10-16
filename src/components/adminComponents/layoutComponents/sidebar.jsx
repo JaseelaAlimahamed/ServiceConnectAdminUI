@@ -39,7 +39,7 @@ import { IoMdClose } from "react-icons/io";
         <div
           className={` ${
             isOpen ? "translate-x-0" : "-translate-x-full"
-          } fixed top-0 left-0 overflow-y-auto h-full w-1/5 bg-violet transform transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:flex md:w-64 flex-col justify-between pl-5 py-5`}
+          } fixed top-0 left-0 overflow-y-auto h-full w-[300px] bg-violet transform transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:flex md:w-64 flex-col justify-between pl-5 py-5`}
         >
           <div className="relative flex items-center mb-10">
             <div>

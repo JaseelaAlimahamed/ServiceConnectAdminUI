@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout.jsx'
-import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
+import UserManagement from '../../pages/adminPages/managementPages/UserManagement/UserManagement.jsx'
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 
 import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'

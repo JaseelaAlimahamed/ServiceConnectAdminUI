@@ -79,10 +79,10 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   };
 
   return (
-    <div className="flex flex-col font-poppins text-black ">
+    <div className="flex flex-col font-poppins text-secondary ">
       {(userManagement || serviceProviderManagement) && (
         <div className="flex flex-wrap justify-between">
-          <span className="relative rounded-full overflow-hidden h-16 mb-2">
+          <span className="relative rounded-full overflow-hidden h-12 mb-2">
             <img
               className="absolute left-6 top-1/2 transform -translate-y-1/2"
               src="/search-icon.svg"
@@ -99,39 +99,102 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
           <div className="flex gap-4 flex-wrap">
             <button
-              className="flex items-center justify-center rounded-full px-14 h-16 border-2 border-solid border-violet gap-2"
+              className="flex items-center justify-center rounded-full px-14 h-12 border-2 border-solid border-violet gap-2"
               onClick={toggleSortOrder}
             >
-              <span className="text-violet text-lg font-medium">Newest</span>
+              <span className="text-violet text-sm font-medium">Newest</span>
               <img src="/dropdown-icon.svg" alt="dropdown" />
             </button>
-            <button className="flex items-center justify-center bg-violet rounded-full  px-14 h-16 gap-2">
+            <button className="flex items-center justify-center bg-violet rounded-full  px-14 h-12 gap-2">
               <img src="/add-icon.svg" alt="new user" />
-              <span className="text-primary text-lg font-medium whitespace-nowrap">
+              <span className="text-primary text-sm font-medium whitespace-nowrap">
                 New User
               </span>
             </button>
           </div>
         </div>
       )}
+         {/* Card layout for small screens */}
+         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 md:hidden mt-6">
+          {currentUsers.map((data, index) => (
+            <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4 space-y-4">
+              {data.name && (
+                <div className="flex items-center space-x-4">
+                  <img className="w-12 h-12 rounded-full" src={data.image} alt="" />
+                  <div>
+                    <p className="text-lg font-bold">{data.name}</p>
+                  <p>ID: {data.id}</p>
+                  </div>
+                </div>
+              )}
+              <div className="text-sm">
+              <p className="text-sm text-gray-500">{data.date}</p>
+              <p className="text-sm text-gray-500">Total Completed Services: <span className='font-semibold'>{data.totalCompletedWork}</span></p>
+              <span
+                      className={`flex items-center justify-center ${data.status === "Active" ? "bg-fluracent_green" : "bg-orange"
+                        } text-primary w-20 h-8 inline-block rounded-full font-medium whitespace-nowrap mt-2`}
+                    >
+                      {data.status}
+                    </span>
+               <div className="flex items-center justify-between">
+
+                    <div className="flex gap-2 mt-2">
+                      <a
+                        href={`tel:${data.contact?.phone}`}
+                        className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
+                      >
+                        <img className="w-5" src="/phone-icon.svg" alt="phone" />
+                      </a>
+                      <a
+                        href={`mailto:${data.contact?.mail}`}
+                        className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
+                      >
+                        <img className="w-5" src="/email-icon.svg" alt="email" />
+                      </a>
+                    </div>
+                
+
+              <div className="relative inline-block">
+                  <span onClick={() => toggleAction(data.id)}>
+                    <img
+                      className="w-5 m-auto cursor-pointer"
+                      src="/actions-icon.svg"
+                      alt="action"
+                    />
+                  </span>
+                 
+                  <ul className={`absolute z-20 right-4 top-2 shadow-lg rounded-lg overflow-hidden ${openActionId === data.id ? "block" : "hidden"}`}>
+                    <li className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray" onClick={handleView}>view</li>
+                    <li className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray" onClick={handleEdit}>edit</li>
+                    <li className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2" onClick={handleDelete}>delete</li>
+                  </ul>
+                </div>
+               </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
       <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto pb-20 h-full">
-        <table className="w-full text-center border-collapse ">
+
+
+        {/* table  */}
+        <table className="w-full text-center border-collapse hidden md:block">
           {tableConfig.title &&
-            <caption className="p-8 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
+            <caption className="px-6 py-4 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
               {tableConfig.title}
             </caption>
           }
           <thead>
             <tr>
               {(userManagement || serviceProviderManagement) &&
-                <th><span className="px-4 py-10"><input type="checkbox" /></span></th>
+                <th><span className="px-4"><input type="checkbox" /></span></th>
               }
               {tableColConfig?.map((col, index) => (
                 <th
                   key={index}
                   scope="col"
-                  className="p-5 text-dark_blue font-bold"
+                  className="p-5 text-dark_blue font-bold text-sm"
                 >
                   {col}
                 </th>
@@ -141,10 +204,10 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
           <tbody>
             {currentUsers.map((data, index) => (
-              <tr key={index} className={`${(userManagement || serviceProviderManagement) && "border-t"}`}>
+              <tr key={index} className={`${(userManagement || serviceProviderManagement) && "border-t border-gray"}`}>
                 {/* Checkbox for user management and service provider management */}
                 {(userManagement || serviceProviderManagement) && (
-                  <td className="p-4">
+                  <td className="py-4">
                     <input
                       type="checkbox"
                       checked={selectedRows.includes(data.id)}
@@ -155,10 +218,10 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
                 {/* Name Column */}
                 {data.name && (
-                  <td className={`px-6 py-6 ${(userManagement || serviceProviderManagement) && "py-8"}`}>
-                    <div className="flex items-center gap-4 mr-6 lg:mr-0">
+                  <td className={`px-2 py-6 ${(userManagement || serviceProviderManagement) && "py-8"}`}>
+                    <div className="flex items-center gap-4 mr-6 lg:mr-6">
                       <img src={data.image} alt="" />
-                      <span className="text-lg text-dark_blue font-bold">{data.name}</span>
+                      <span className="text-dark_blue font-bold text-sm">{data.name}</span>
                     </div>
                   </td>
                 )}
@@ -171,7 +234,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                         <LuTrendingUp />
                       </div>
                       <div className="flex flex-col px-5">
-                        <span className="text-lg text-violet font-bold pt-2">
+                        <span className="text-sm text-violet font-bold pt-2">
                           {data.paymentId}
                         </span>
                         {(complaintsLog || expensesLog) && (
@@ -186,21 +249,21 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
                 {/* ID Column */}
                 {(userManagement || serviceProviderManagement || serviceSubcription) && (
-                  <td className="p-6 text-lg text-violet font-bold">
+                  <td className="p-6 text-sm text-violet font-bold">
                     <span>{data.id}</span>
                   </td>
                 )}
 
                 {/* Role Column */}
                 {serviceSubcription && (
-                  <td className="p-6 text-lg text-dark_blue font-bold">
+                  <td className="p-6 text-sm text-dark_blue font-bold">
                     <span>{data.role}</span>
                   </td>
                 )}
 
                 {/* Date and Time Column */}
                 {(userManagement || serviceProviderManagement || paymentsLog) && (
-                  <td className="px-6 text-sm text-gray-500">
+                  <td className="text-sm text-gray-500">
                     <div className="mr-2">
                       <span className="whitespace-nowrap">{data.date}</span> {data.time}
                     </div>
@@ -235,7 +298,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
                 {/* Payment Amount Column */}
                 {paymentsLog && (
-                  <td className="px-6 py-4 text-lg text-dark_blue font-bold">
+                  <td className="px-6 py-4 text-sm text-dark_blue font-bold">
                     ${data.paymentAmount}
                   </td>
                 )}
@@ -256,7 +319,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
                 {/* Location Column */}
                 {(userManagement || serviceProviderManagement) && (
-                  <td className="px-6 py-4 text-dark_blue font-semibold">
+                  <td className="px-6 py-4 text-dark_blue font-semibold text-sm">
                     {data.location}
                   </td>
                 )}
@@ -269,13 +332,13 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                         href={`tel:${data.contact?.phone}`}
                         className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
                       >
-                        <img className="min-w-6" src="/phone-icon.svg" alt="phone" />
+                        <img className="min-w-5" src="/phone-icon.svg" alt="phone" />
                       </a>
                       <a
                         href={`mailto:${data.contact?.mail}`}
                         className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
                       >
-                        <img className="min-w-6" src="/email-icon.svg" alt="email" />
+                        <img className="min-w-5" src="/email-icon.svg" alt="email" />
                       </a>
                     </div>
                   </td>
@@ -284,7 +347,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 {/* Payment/Service Status Column */}
                 {(paymentsLog || complaintsLog) && (
                   <td
-                    className={`px-6 py-4 text-lg font-bold ${(data.paymentStatus === "Complete" || data.serviceStatus === "Complete")
+                    className={`px-6 py-4 text-sm font-bold ${(data.paymentStatus === "Complete" || data.serviceStatus === "Complete")
                         ? "text-lite_green"
                         : (data.paymentStatus === "Pending" || data.serviceStatus === "Pending")
                           ? "text-gray-600"
@@ -312,20 +375,20 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 {/* Additional Actions Column */}
                 {(userManagement || serviceProviderManagement || serviceSubcription) && (
                   <td className="p-6">
-                    <div className="relative">
-                      <span onClick={() => toggleAction(data.id)}>
-                        <img
-                          className="min-w-6 m-auto cursor-pointer"
-                          src="/actions-icon.svg"
-                          alt="action"
-                        />
-                      </span>
-                      <ul className={`absolute z-10 top-6 right-6 shadow-md rounded-lg overflow-hidden ${openActionId === data.id ? "block" : "hidden"}`}>
-                        <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleView}>view</li>
-                        <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2 border-b " onClick={handleEdit}>edit</li>
-                        <li className="bg-primary cursor-pointer hover:bg-slate-100 px-7 py-2" onClick={handleDelete}>delete</li>
-                      </ul>
-                    </div>
+                   <div className="relative">
+                  <span onClick={() => toggleAction(data.id)}>
+                    <img
+                      className="min-w-6 m-auto cursor-pointer"
+                      src="/actions-icon.svg"
+                      alt="action"
+                    />
+                  </span>
+                  <ul className={`absolute z-20 top-6 right-6 shadow-lg rounded-lg overflow-hidden ${openActionId === data.id ? "block" : "hidden"}`}>
+                    <li className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray" onClick={handleView}>view</li>
+                    <li className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray" onClick={handleEdit}>edit</li>
+                    <li className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2" onClick={handleDelete}>delete</li>
+                  </ul>
+                </div>
                   </td>
                 )}
               </tr>
