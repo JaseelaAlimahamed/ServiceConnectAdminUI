@@ -12,7 +12,7 @@ import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 import AddCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/AddCategory.jsx'
 import EditCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/EditCategory.jsx'
 import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile.jsx'
-import Accounts from '../../components/franchiseComponents/Edit/Accounts.jsx'
+
 import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
 import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
 
@@ -48,7 +48,7 @@ function RouteAdmin() {
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         {/* <Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} /> */}
-        <Route path='/accounts' element={<Accounts />} />
+        
         <Route path='/service-type' element={<ServiceType />} />
 
         <Route path='/ads-management' element={<AdsManagement />} />
