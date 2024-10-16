@@ -25,7 +25,7 @@ import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Sub
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
-import DealerProfilePage from '../../pages/dealerPages/DealerProfile.jsx'
+
 
 
 
@@ -66,7 +66,7 @@ function RouteAdmin() {
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
-        <Route path='/DealerProfilePage' element={<DealerProfilePage />} />
+ 
 
       </Route>
     </Routes>
