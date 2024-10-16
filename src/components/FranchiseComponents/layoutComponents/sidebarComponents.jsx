@@ -9,41 +9,11 @@ export const menuItems = [
 
 
   },
-  {
-    name: "Categories",
-    to: "categories",
-    icon:
-      <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="5" y="5" width="12" height="12" fill="#C1BBEB" />
-        <rect x="23" y="5" width="12" height="12" fill="#C1BBEB" />
-        <rect x="5" y="23" width="12" height="12" fill="#C1BBEB" />
-        <rect x="23" y="23" width="12" height="12" fill="#C1BBEB" />
-      </svg>
 
-
-
-  }, {
-    name: "Subcategories",
-    to: "sub-categories",
-    icon:
-      <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="5" y="5" width="8" height="8" fill="#C1BBEB" />
-        <rect x="16" y="5" width="8" height="8" fill="#C1BBEB" />
-        <rect x="27" y="5" width="8" height="8" fill="#C1BBEB" />
-        <rect x="5" y="16" width="8" height="8" fill="#C1BBEB" />
-        <rect x="16" y="16" width="8" height="8" fill="#C1BBEB" />
-        <rect x="27" y="16" width="8" height="8" fill="#C1BBEB" />
-        <rect x="5" y="27" width="8" height="8" fill="#C1BBEB" />
-        <rect x="16" y="27" width="8" height="8" fill="#C1BBEB" />
-        <rect x="27" y="27" width="8" height="8" fill="#C1BBEB" />
-      </svg>
-
-
-  },
   {
 
-    name: "Users",
-    to: "user-management",
+    name: "Dealers",
+    to: "Dealers",
     icon: <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_327_5881)">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M17.9288 38.75H8.75C6.67875 38.75 5 37.0713 5 35V24.5863C5 22.7738 6.29625 21.2213 8.07875 20.8975C10.7212 20.4163 15.2775 19.5875 17.855 19.12C19.2737 18.8612 20.7263 18.8612 22.145 19.12C24.7225 19.5875 29.2788 20.4163 31.9213 20.8975C33.7038 21.2213 35 22.7738 35 24.5863C35 27.3125 35 32.0825 35 35C35 37.0713 33.3212 38.75 31.25 38.75H17.9288ZM29.785 23.05L29.79 23.0563C30.0088 23.3838 30.06 23.795 29.9287 24.1662L29.0462 26.6662C28.9312 26.9925 28.685 27.2575 28.3675 27.3963L26.7075 28.12L27.3675 29.4412C27.5525 29.81 27.5425 30.2462 27.3425 30.6075L24.2075 36.25H31.25C31.94 36.25 32.5 35.69 32.5 35C32.5 32.0825 32.5 27.3125 32.5 24.5863C32.5 23.9825 32.0675 23.465 31.4738 23.3562L29.785 23.05ZM26.3663 22.4275L21.6975 21.5788C20.575 21.375 19.425 21.375 18.3025 21.5788L13.6337 22.4275L12.6363 23.9238L13.13 25.3213L15.5 26.3537C15.8138 26.4912 16.0575 26.7512 16.175 27.0737C16.2925 27.3962 16.2712 27.7525 16.1175 28.0588L15.1625 29.9688L18.6525 36.25H21.3475L24.8375 29.9688L23.8825 28.0588C23.7288 27.7525 23.7075 27.3962 23.825 27.0737C23.9425 26.7512 24.1862 26.4912 24.5 26.3537L26.87 25.3213L27.3638 23.9238L26.3663 22.4275ZM10.215 23.05L8.52625 23.3562C7.9325 23.465 7.5 23.9825 7.5 24.5863V35C7.5 35.69 8.06 36.25 8.75 36.25H15.7925L12.6575 30.6075C12.4575 30.2462 12.4475 29.81 12.6325 29.4412L13.2925 28.12L11.6325 27.3963C11.315 27.2575 11.0688 26.9925 10.9538 26.6662L10.0712 24.1662C9.94 23.795 9.99125 23.3838 10.21 23.0563L10.215 23.05ZM28.75 30V32.5C28.75 33.19 29.31 33.75 30 33.75C30.69 33.75 31.25 33.19 31.25 32.5V30C31.25 29.31 30.69 28.75 30 28.75C29.31 28.75 28.75 29.31 28.75 30ZM20 1.25C15.5163 1.25 11.875 4.89125 11.875 9.375C11.875 13.8587 15.5163 17.5 20 17.5C24.4837 17.5 28.125 13.8587 28.125 9.375C28.125 4.89125 24.4837 1.25 20 1.25ZM20 3.75C23.105 3.75 25.625 6.27 25.625 9.375C25.625 12.48 23.105 15 20 15C16.895 15 14.375 12.48 14.375 9.375C14.375 6.27 16.895 3.75 20 3.75Z" fill="#C1BBEB" />
@@ -59,7 +29,7 @@ export const menuItems = [
   {
     name: "Service Providers",
 
-    to: "service-providers",
+    to: "serviceproviders",
 
     icon: <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_327_5886)">
@@ -72,15 +42,7 @@ export const menuItems = [
       </defs>
     </svg>
   },
-  {
-    name: "Franchisee",
-    to: "franchise",
-    icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 0.833984L18.372 4.65698L17.343 6.37198L17 6.16598V7.99998H22V22H2V7.99998H7V6.16598L6.657 6.37198L5.628 4.65698L12 0.833984ZM9 4.96598V7.99998H15V4.96598L12 3.16598L9 4.96598ZM11 4.99798H13.004V7.00198H11V4.99798ZM4 9.99998V20H8V13H16V20H20V9.99998H4ZM14 20V15H10V20H14Z" fill="#C1BBEB" />
-    </svg>
 
-
-  },
   {
     name: "Finance",
     to: "finance",
@@ -129,7 +91,7 @@ export const menuItems = [
   },
   {
     name: "Service Management",
-    to: "service-management",
+    to: "servicemanagement",
     icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M9 8H15V6H9V8ZM2 20V15H6V16H8V15H16V16H18V15H22V20H2ZM2 14V8H7V4H17V8H22V14H18V12H16V14H8V12H6V14H2Z" fill="#C1BBEB" />
     </svg>
@@ -138,7 +100,7 @@ export const menuItems = [
   },
   {
     name: "Ads Management",
-    to: "ads-management",
+    to: "adsmanagement",
 
     icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M3 7C3 6.46957 3.21071 5.96086 3.58579 5.58579C3.96086 5.21071 4.46957 5 5 5H19C19.5304 5 20.0391 5.21071 20.4142 5.58579C20.7893 5.96086 21 6.46957 21 7V17C21 17.5304 20.7893 18.0391 20.4142 18.4142C20.0391 18.7893 19.5304 19 19 19H5C4.46957 19 3.96086 18.7893 3.58579 18.4142C3.21071 18.0391 3 17.5304 3 17V7Z" stroke="#C1BBEB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
