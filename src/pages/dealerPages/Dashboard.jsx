@@ -72,37 +72,37 @@ function Dashboard() {
       <div className="flex  flex-warp mx-5 max-[1100px]:flex-col  ">
         <div className="flex flex-wrap gap-5 max-[1100px]:flex-col  place-content-center">
           <Dealerinfocard
-            title={"total ifnof"}
+            title={"Total Earnings"}
             type={"Infocard"}
             number={"230"}
             percentage={20}
           ></Dealerinfocard>
           <Dealerinfocard
-            title={"total ifnof"}
+            title={"Total Service Providers"}
             type={"Infocard"}
             number={"230"}
             percentage={20}
           ></Dealerinfocard>
           <Dealerinfocard
-            title={"total ifnof"}
+            title={"Total Service "}
             type={"Infocard"}
             number={"230"}
             percentage={20}
           ></Dealerinfocard>
           <Dealerinfocard
-            title={"total ifnof"}
+            title={"Registration Earnings"}
             type={"Infocard"}
             number={"230"}
             percentage={20}
           ></Dealerinfocard>
           <Dealerinfocard
-            title={"total ifnof"}
+            title={"Commission Earnings"}
             type={"Infocard"}
             number={"230"}
             percentage={-20}
           ></Dealerinfocard>
           <Dealerinfocard
-            title={"total ifnof"}
+            title={"Ads Earnings"}
             type={"Infocard"}
             number={"230"}
             percentage={-12}

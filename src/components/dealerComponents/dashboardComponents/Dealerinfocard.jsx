@@ -17,7 +17,7 @@ function Dealerinfocard({ title, number, percentage, type }) {
 }
 function Infocard({ title, number, percentage }) {
   return (
-    <div className="bg-white w-[30%] h-[120px] rounded-lg flex items-center max-[1100px]:w-[70%] max-[410px]:w-[90%]">
+    <div className="bg-white w-[30%] h-[120px] rounded-lg flex items-center max-[1100px]:w-[95%] max-[1100px]:place-content-center max-[410px]:w-[90%]">
       <div className={ percentage > 0 ? 'bg-violet flex items-center justify-center  text-2xl text-white size-14 rounded-full ml-[5%]' : `  bg-orange flex items-center justify-center  text-2xl text-white size-14 rounded-full ml-[5%]`}>
         {" "} 
         <FaPerson></FaPerson>{" "}
