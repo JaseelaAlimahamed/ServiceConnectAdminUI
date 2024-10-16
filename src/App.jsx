@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
+import DealerDetails from './components/franchiseComponents/dealer/DealerDetails';
 import RouteAdmin from './routes/adminRoutes/RouteAdmin';
 
 

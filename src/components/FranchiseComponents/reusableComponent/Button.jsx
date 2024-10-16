@@ -1,5 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Button = ({
   children,
@@ -25,11 +24,11 @@ const Button = ({
     >
       <span>{children}</span>
       {/* Conditionally render the small rounded button with right arrow icon */}
-      {showIcon && (
+      {/* {showIcon && (
         <span className={`${iconClass}`}>
           <FontAwesomeIcon icon={icon} />
         </span>
-      )}
+      )} */}
     </button>
   );
 };
