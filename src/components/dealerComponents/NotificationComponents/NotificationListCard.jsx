@@ -152,7 +152,7 @@ const NotificationListCard = () => {
   };
 
   return (
-    <div className="bg-green-50 h-screen flex justify-center items-center">
+    <div className="p-10 flex justify-center items-center">
       <div className="shadow-xl rounded-2xl max-w-screen-lg w-full bg-white overflow-hidden">
         <h1 className="text-orange text-xl font-medium p-7">Notifications</h1>
 
@@ -160,7 +160,7 @@ const NotificationListCard = () => {
           {notifications.map((data) => (
             <div
               key={data.id}
-              className="flex justify-between items-center w-full bg-gray-50 p-4 rounded-lg shadow-sm mb-4"
+              className="flex justify-between max-sm:flex-col max-sm:p-0 max-sm:gap-5 w-full bg-gray-50 p-4 rounded-lg shadow-sm mb-4"
             >
               <div className="flex items-center gap-4">
                 <div className="relative">

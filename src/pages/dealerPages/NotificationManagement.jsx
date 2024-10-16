@@ -3,7 +3,7 @@ import NotificationListCard from "../../components/dealerComponents/Notification
 
 const NotificationManagement = () => {
   return (
-    <div className="bg-green-50 h-screen">
+    <div className="">
       <NotificationListCard />
     </div>
   );
