@@ -8,7 +8,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import DropDown from "../reUsableComponents/DropDown";
+
 function Graph({title,data}) {
 
   return (
@@ -17,7 +17,7 @@ function Graph({title,data}) {
         <div className="flex justify-between">
           {" "}
           <h1 className="text-xl font-bold text-blue-950 mb-5">{title}</h1>{" "}
-          <select className=" w-52 rounded-3xl h-16 border-violet border-2 text-violet text-xl font-semibold pl-14 max-[980px]:w-40  max-[520px]:w-32 ">
+          <select className="  border-violet border-2 text-violet text-xl font-semibold  px-10 rounded-3xl max-[500px]:px-4">
             {" "}
             <option >Month</option>{" "}
             <option value="jan"> Jan</option>

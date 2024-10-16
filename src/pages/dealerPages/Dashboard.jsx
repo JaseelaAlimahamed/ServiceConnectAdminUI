@@ -1,10 +1,9 @@
 import React from "react";
-import Dealerinfocard from "../../components/dealerComponents/Dealerinfocard";
-import Franchisee from "../../components/dealerComponents/Franchisee";
+import Dealerinfocard from "../../components/dealerComponents/dashboardComponents/Dealerinfocard";
+import Franchisee from "../../components/dealerComponents/dashboardComponents/Franchisee";
 import Table from "../../components/ReUsableComponents/Table";
-import Card from "../../components/reUsableComponents/Card";
-import Graph from "../../components/dealerComponents/Graph";
-import UserProfile from "../../components/adminComponents/UserProfile";
+import Activitycard from "../../components/dealerComponents/dashboardComponents/Activitycard";
+import Graph from "../../components/dealerComponents/dashboardComponents/Graph";
 function Dashboard() {
   const tableConfig = { title: "Payment History", type: "paymentslog" };
 
@@ -54,53 +53,6 @@ function Dashboard() {
     "ServiceStatus",
   ];
 
-  const smallCardDetails = {
-    title: "Recent Activities",
-    variant: "large",
-    subtitle: "Thursday,10th April,2021",
-  };
-  const cardDetails = [
-    {
-      id: 1,
-      title: "New service registration",
-      subtitle: "Tap work",
-      name: "Keshavan",
-      sideColor: "bg-violet",
-      variant: "large",
-      date: "March 20,2021",
-      time: "09:00-10:00 AM",
-    },
-    {
-      id: 2,
-      title: "New Ad Posted",
-      subtitle: "50% off",
-      name: "Keshavan",
-      sideColor: "bg-orange",
-      variant: "large",
-      date: "March 20,2021",
-      time: "09:00-10:00 AM",
-    },
-    {
-      id: 3,
-      title: "New service registration",
-      subtitle: "Tap work",
-      name: "Raghavan",
-      sideColor: "bg-dark_yellow",
-      variant: "large",
-      date: "March 20,2021",
-      time: "09:00-10:00 AM",
-    },
-    {
-      id: 4,
-      title: "New service registration",
-      subtitle: "Tap work",
-      name: "Thomas",
-      sideColor: "bg-dark_blue",
-      variant: "large",
-      date: "March 20,2021",
-      time: "09:00-10:00 AM",
-    },
-  ];
   const Graphdata = [
     { name: "Jan", income: "100" },
     { name: "Feb", income: "200" },
@@ -117,75 +69,116 @@ function Dashboard() {
   ];
   return (
     <div>
-
-      <div className="flex  flex-wrap  ">
-<div className="grid grid-cols-3    gap-5 max-[1370px]:grid-cols-2 max-[530px]:grid-cols-1  max-[530px]:ml-[10%]">
-
-     
-        <Dealerinfocard title={"Total Earnings"} number={434} percentage={10}></Dealerinfocard>
-        <Dealerinfocard title={"Total Service providers"} number={932} percentage={10}></Dealerinfocard>
-        <Dealerinfocard title={"Total Earnings"} number={434} percentage={10}></Dealerinfocard>
-        <Dealerinfocard title={"Total Earnings"} number={434} percentage={10}></Dealerinfocard>
-
-             <Dealerinfocard title={"Total Earnings"} number={434} percentage={10}></Dealerinfocard>
-             <Dealerinfocard title={"Total Earnings"} number={434} percentage={10}></Dealerinfocard>
-      </div>
-        <div className="bg-white  w-[260px]  mx-10 my-10 py-10 px-10 rounded-lg">
-            <p   className="text font-semibold"  >Pending verificaton </p>
-
-            <div className="flex mt-5 items-center gap-3"> <div className=' bg-violet size-14 rounded-full ml-[10%] '> </div> <h1 className="text-xl font-bold text-blue-950">32</h1>  </div>
-           
+      <div className="flex  flex-warp mx-5 max-[1100px]:flex-col  ">
+        <div className="flex flex-wrap gap-5 max-[1100px]:flex-col  place-content-center">
+          <Dealerinfocard
+            title={"total ifnof"}
+            type={"Infocard"}
+            number={"230"}
+            percentage={20}
+          ></Dealerinfocard>
+          <Dealerinfocard
+            title={"total ifnof"}
+            type={"Infocard"}
+            number={"230"}
+            percentage={20}
+          ></Dealerinfocard>
+          <Dealerinfocard
+            title={"total ifnof"}
+            type={"Infocard"}
+            number={"230"}
+            percentage={20}
+          ></Dealerinfocard>
+          <Dealerinfocard
+            title={"total ifnof"}
+            type={"Infocard"}
+            number={"230"}
+            percentage={20}
+          ></Dealerinfocard>
+          <Dealerinfocard
+            title={"total ifnof"}
+            type={"Infocard"}
+            number={"230"}
+            percentage={-20}
+          ></Dealerinfocard>
+          <Dealerinfocard
+            title={"total ifnof"}
+            type={"Infocard"}
+            number={"230"}
+            percentage={-12}
+          ></Dealerinfocard>
         </div>
-      </div>
-     
-      
-      <div className="flex max-lg:flex-col   justify-around   max-[1378px]:flex-col ">  
-        <div className="mx-5  my-5">
-          
-          <Franchisee franchiseename={"franchisee"} daysleft={45} validity={ "13/02/2024"} contactname={"amarnadh"} address={"kochi,kerala"} phone={2323242} email={"ajfs@gmail.com"}></Franchisee>
 
-          <div className=" p-5 overflow-x-auto">
+        <Dealerinfocard type={"Pendingcard"}></Dealerinfocard>
+      </div>
+      <div className="py-12 flex max-lg:flex-col gap-4 justify-around  p-4 max-[1100px]:flex-col   ">
+        <div className="w-[67%]">
+          <Franchisee
+            franchiseename={"franchisee"}
+            daysleft={45}
+            validity={"13/02/2024"}
+            contactname={"amarnadh"}
+            address={"kochi,kerala"}
+            phone={2323242}
+            email={"ajfs@gmail.com"}
+          >
+            {" "}
+          </Franchisee>
+
+          <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[150%]">
             <Table
               tableColConfig={tableColConfig}
               tableDataConfig={tableDataConfig}
               tableConfig={tableConfig}
             />
           </div>
-          
         </div>
-        <div>
-          <div>
-            <div className="mb-5 mt-5 max-[1360px]:ml-[20%]">
-              <Card
-                title={smallCardDetails.title}
-                variant={smallCardDetails.variant}
-                subtitle={smallCardDetails.subtitle}
-              />
-            </div>
-            <div className="grid grid-cols-1 gap-5 max-[1366px]:grid-cols-4  max-[1158px]:grid-cols-2 max-[475px]:grid-cols-1 max-[475px]:ml-[20%]">
-              {cardDetails.map((detail) => {
-                return (
-                  <Card
-                    key={detail.id}
-                    title={detail.title}
-                    subtitle={detail.subtitle}
-                    sideColor={detail.sideColor}
-                    variant={detail.variant}
-                    date={detail.date}
-                    time={detail.time}
-                    name={detail.name}
-                  />
-                );
-              })}
+        <div className="flex  flex-col gap-5   items-center ">
+          <Activitycard type="Titlecard"></Activitycard>
+          <Activitycard
+            type="Activitycard"
+            sidecolor={"bg-violet"}
+            title={"New service registration"}
+            date={"mar 20,2021"}
+            time={"9:00 - 10:00 AM"}
+            subtitle={"tapwork"}
+            name={"rakhavan"}
+          ></Activitycard>
+          <Activitycard
+            type="Activitycard"
+            sidecolor={"bg-orange"}
+            title={"New ad posted"}
+            date={"april 15,2023"}
+            time={"9:00 - 10:00 AM"}
+            name={"Raju"}
+            subtitle={"50% off"}
+          ></Activitycard>
 
-              
-            </div>
-            <button className="bg-slate-300 rounded-lg text-violet h-14 text-xl mt-10 w-[100%] " > view more</button>
-          </div>
+          <Activitycard
+            type="Activitycard"
+            sidecolor={"bg-yellow"}
+            title={"New ad posted"}
+            date={"april 15,2023"}
+            time={"9:00 - 10:00 AM"}
+            name={"Raju"}
+            subtitle={"50% off"}
+          ></Activitycard>
+          <Activitycard
+            type="Activitycard"
+            sidecolor={"bg-blue-950"}
+            title={"New ad posted"}
+            date={"april 15,2023"}
+            time={"9:00 - 10:00 AM"}
+            name={"Raju"}
+            subtitle={"50% off"}
+          ></Activitycard>
+
+          <button className="bg-slate-300 rounded-3xl text-violet h-14 text-xl mt-10 w-[100%] ">
+            View more{" "}
+          </button>
         </div>
       </div>
-      <Graph title={"Income"} data={Graphdata} ></Graph>
-      
+      <Graph title={"Income"} data={Graphdata}></Graph>
     </div>
   );
 }
