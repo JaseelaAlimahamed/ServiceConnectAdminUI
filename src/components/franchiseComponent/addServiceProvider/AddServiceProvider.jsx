@@ -193,7 +193,7 @@ function AddServiceProvider(){
                         
                     </div>
 
-                    <div className="mx-auto sm:mx-4 mt-8 sm:w-96 sm:px-auto md:px-auto">
+                    <div className="mx-auto w-72  sm:mx-4 mt-8 sm:w-96 sm:px-auto md:px-auto">
                         <FormComponent
                             fieldConfig = {fieldConfig}
                             onSubmit = {HandleSubmit}
