@@ -3,17 +3,16 @@
 
 import React from 'react'
 
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout.jsx'
 import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 
-// import BookingDetailsPage from '../../pages/BookingDetailsPage.jsx'
+
+import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
 import AddCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/AddCategory.jsx'
 import EditCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/EditCategory.jsx'
 import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile.jsx'
-import Accounts from '../../components/franchiseComponents/Edit/Accounts.jsx'
-import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
 import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
 
 
@@ -37,10 +36,11 @@ function RouteAdmin() {
   return (
     <Routes>
 
-      <Route path='/signIn' element={<SignInForm />} />
+
+      <Route path='/sign-in' element={<SignInForm />} />
+      
 
       <Route element={<AdminLayout />}>
-
 
         <Route path='/profile' element={<AdminProfilePage />} />
         <Route path='/booking-details' element={<BookingDetailsPage />} />
@@ -48,7 +48,9 @@ function RouteAdmin() {
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         {/* <Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} /> */}
+
         <Route path='/accounts' element={<Accounts />} />
+
         <Route path='/service-type' element={<ServiceType />} />
 
         <Route path='/ads-management' element={<AdsManagement />} />
@@ -61,12 +63,14 @@ function RouteAdmin() {
 
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
-        <Route path='/Franchisee' element={<FranchiseeList />} />
+        <Route path='/Franchise' element={<FranchiseeList />} />
 
         <Route path='/categories' element={<CategoryPage />} />
+
         <Route path='/transaction-history' element={<TransactionHistory/>}/>
-        <Route path='/subcategories' element={<SubCategoryPage />} />
-        <Route path='/newads' element={<NewAdsPage />} />
+        <Route path='/sub-categories' element={<SubCategoryPage />} />
+        <Route path='/new-ads' element={<NewAdsPage />} />
+
 
       </Route>
     </Routes>
