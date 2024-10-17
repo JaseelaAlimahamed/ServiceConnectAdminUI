@@ -39,23 +39,15 @@ return (
         <Route path='/user-management' element={<UserManagement />} />
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
-        {/*<Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} />
-        <Route path='/accounts' element={<Accounts />} />   */}
         <Route path='/ads-management' element={<AdsManagement />} />
         <Route path='/service-type' element={<ServiceType />} />
-
-        
-
         <Route path='/user-details' element={<UserDetails />} />
-
         <Route path='/Add-Category' element={<AddCategory />} />
         <Route path='/Edit-Category' element={<EditCategory />} />
         <Route path='/Franchise-Details' element={<FranchiseeProfile />} />
-
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         <Route path='/Franchisee' element={<FranchiseeList />} />
-
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/subcategories' element={<SubCategoryPage />} />
         <Route path='/newads' element={<NewAdsPage />} />
