@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-datepicker/dist/react-datepicker.css';
-import PhotoUpload from './profileFileResuable'
-import Button from './buttonReusable'
+import PhotoUpload from '../../components/FranchiseComponents/reUsableComponents/profileFileResuable';
+import Button from '../../components/FranchiseComponents/reUsableComponents/buttonReusable';
 
 
 
@@ -28,33 +28,17 @@ const AddNewDealer = () => {
     idCopyfile:null,
     status:''
   });
-  
-  const handleImageUpload = (event) => {
-    const files = Array.from(event.target.files); // Get the selected files
-    setSelectedImages((prevImages) => [...prevImages, ...files]); // Update the state with new files
-
-    // Log the names of the selected files in the console
-    files.forEach((file) => {
-        console.log('Selected file name:', file.name); // Log file name
-    });
-};
-
-
   // Handle phone number update
   const handlePhoneChange = (phone) => {
     setFormData({ ...formData, phone });
   };
   
-    const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   
-    const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
     };
-  // Handle date selection and formatting
-  const handleDateChange = (date) => {
-    const formattedDate = date ? date.toISOString().split('T')[0] : ''; // Convert to YYYY-MM-DD format
-    setFormData({ ...formData, dob: formattedDate });
-  };
+
 
   // Handle generic input change including file input
   const handleChange = (e) => {
@@ -74,16 +58,8 @@ const AddNewDealer = () => {
       setFileName(file.name); // Set the file name when a file is selected
     }
   };
-  const handleFileChange = (file) => {
-    setFormData({ ...formData, file });
-    
-    
-    
-  };
+
   const [selectedFile, setSelectedFile] = useState(null);
-
-  // Handle file input change
-
 
   // Form submission
   const onFormSubmit = (e) => {
@@ -95,30 +71,22 @@ const AddNewDealer = () => {
     console.log(submissionData); // Log the formData with the file name
   };
 
-  return (
-    <div className="flex  min-h-screen bg-blue_bg">
-      <div className="flex max-w-xs w-full  bg-blue_bg">Side Bar</div>
-      <div className="flex flex-col  max-w-full mr-3 min-h-screen w-full bg-blue_bg">
-        <div className="flex  w-full  bg-blue_bg p-10 justify-center" >Dealer</div>
-        <div className="flex flex-col container mx-auto p-4 max-w-5xl justify-center  min-h-screen bg-white ">
-        <form className="flex flex-col bg-primary  w-full rounded-none"  onSubmit={onFormSubmit}>
-          <div className='flex flex-col w-full m-4 md:flex-row gap-4 '> 
-          
+  return (   
+      
+      <div className="flex flex-col  max-w-full mt-4 mr-3 min-h-screen w-full bg-blue_bg">        
+        <div className="flex flex-col container mx-auto mt-5 p-4 max-w-4xl justify-center  min-h-screen bg-white ">
+        <form className="flex flex-col bg-primary  w-full rounded-none mx-auto"  onSubmit={onFormSubmit}>
+          <div className='flex flex-col w-full m-5 md:flex-row gap-4 '>           
            <div className="flex justify-center">
            <div className='bg-blue_bg w-48 h-48 ml-8 mt-8 '>
               <PhotoUpload title="Photo*" />
             </div>
-
            </div>
-            
-          
-                     
-          
           <div className="flex-1 w-3/4  ml-8 mt-8 mr-20 space-y-4 justify-center">
-            <input  type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className='p-4 w-full rounded bg-blue_bg placeholder-gray-900'/>
-            <input className='p-4 w-full rounded bg-blue_bg placeholder-gray-900' type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} />
-            <input className='p-4 w-full rounded bg-blue_bg placeholder-gray-900' type="text" name="franchiseName" placeholder="Franchise Name" value={formData.franchiseName} onChange={handleChange} />
-            <input placeholder="Email" type="email" name="email" value={formData.email} onChange={handleChange} className='p-4 w-full rounded bg-blue_bg placeholder-gray-900'/>
+            <input  type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className='p-4 w-full rounded bg-blue_bg placeholder-secondary' required/>
+            <input className='p-4 w-full rounded bg-blue_bg placeholder-secondary' type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} />
+            <input className='p-4 w-full rounded bg-blue_bg placeholder-secondary' type="text" name="franchiseName" placeholder="Franchise Name" value={formData.franchiseName} onChange={handleChange} />
+            <input placeholder="Email" type="email" name="email" value={formData.email} onChange={handleChange} className='p-4 w-full rounded bg-blue_bg placeholder-secondary'/>
             <div className="relative">
             <PhoneInput country={'us'} value={formData.phone1 } onChange={handlePhoneChange} inputClass="w-[496px] h-6 p-4 pl-14 text-gray-900 bg-blue_bg border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
              buttonClass="absolute left-0  h-full flex items-center justify-center "  containerClass="flex items-center" placeholder="+1 345-678-3456" inputStyle={{ width: '100%',height: '50px', padding: '16px',paddingLeft: '3.5rem',  backgroundColor: '#F3F4FF',  border:"none" }}inputProps={{
@@ -130,14 +98,14 @@ const AddNewDealer = () => {
              required: true, autoFocus: false, name: "phone2"|| '', }}/>
              </div>   
              <div className="relative w-full bg-blue_bg">
-             <input type={showPassword ? "text" : "password"} value={formData.password} name="password" onChange={handleChange} placeholder="Password" className='p-4 w-full rounded bg-blue_bg placeholder-gray-900'/>
+             <input type={showPassword ? "text" : "password"} value={formData.password} name="password" onChange={handleChange} placeholder="Password" className='p-4 w-full rounded bg-blue_bg placeholder-secondary'/>
              {formData.password &&(<button type="button" onClick={togglePasswordVisibility} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700" >{showPassword ? "Hide" : "Show"}</button>)}
               </div>
             
-            <input placeholder="Landmark" className='p-4 w-full rounded bg-blue_bg placeholder-gray-900' type="text" name="landmark" value={formData.landmark} onChange={handleChange} />
-            <input placeholder="Pincode" className='p-4 w-full rounded bg-blue_bg placeholder-gray-900' type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
-            <input placeholder="District" className='p-4 w-full rounded bg-blue_bg placeholder-gray-900' type="text" name="district" value={formData.district} onChange={handleChange} />
-            <input placeholder="State" className='p-4 w-full rounded bg-blue_bg placeholder-gray-900' type="text" name="state" value={formData.state} onChange={handleChange} />
+            <input placeholder="Landmark" className='p-4 w-full rounded bg-blue_bg placeholder-secondary' type="text" name="landmark" value={formData.landmark} onChange={handleChange} />
+            <input placeholder="Pincode" className='p-4 w-full rounded bg-blue_bg placeholder-secondary' type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
+            <input placeholder="District" className='p-4 w-full rounded bg-blue_bg placeholder-secondary' type="text" name="district" value={formData.district} onChange={handleChange} />
+            <input placeholder="State" className='p-4 w-full rounded bg-blue_bg placeholder-secondary' type="text" name="state" value={formData.state} onChange={handleChange} />
             <div className="relative w-full">
             <select id="verificationId" name="verificationId" value={formData.verificationId} onChange={handleChange}  className="w-full h-full p-4 pr-10 bg-blue_bg  border:none" required>
               <option value="Verification Id">Verification Id</option>
@@ -146,9 +114,9 @@ const AddNewDealer = () => {
               <option value="voter">Voter ID</option>
             </select>            
           </div>        
-            <input placeholder="Verification No" className='p-4 w-full rounded bg-blue_bg placeholder-gray-900' type="text" name="verificationNo" value={formData.verificationNo} onChange={handleChange} />
+            <input placeholder="Verification No" className='p-4 w-full rounded bg-blue_bg placeholder-secondary' type="text" name="verificationNo" value={formData.verificationNo} onChange={handleChange} />
             <div className="relative  w-full">
-              <div className="flex items-center justify-between w-full p-4 h-11 bg-blue_bg border border-gray-100 rounded-md placeholder-gray-900">
+              <div className="flex items-center justify-between w-full p-4 h-11 bg-blue_bg  rounded-md placeholder-gray-900">
               <span className="text-gray-900">{fileName ? fileName : 'ID Copy'}</span>      
               <div className="absolute right-4 inset-y-0 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -172,12 +140,11 @@ const AddNewDealer = () => {
           <Button className="bg-blue_bg hover:bg-text-white text-violet font-bold py-2 px-7 border-2 border-text-violet  mx-3 rounded-3xl border-violet" title = "Save as Draft" type=""/>
           <Button className="bg-violet hover:bg-blue-700 text-white font-bold py-2 px-7  mx-3 rounded-3xl "  title = "Submit" type="submit"/>
          </div>
-           </form>
-      
+        </form>      
       </div>
-      </div>
-
     </div>
+
+   
   );
 };
 

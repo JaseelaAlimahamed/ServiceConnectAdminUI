@@ -1,9 +1,9 @@
 import React from 'react';
-import UserInfo from '../components/bookingDetailsComponent/UserInfo'
-import AppointmentCard from '../components/bookingDetailsComponent/AppointmentCard';
-import ReviewCard from '../components/bookingDetailsComponent/ReviewCard';
-import ComplaintCard from '../components/bookingDetailsComponent/ComplaintCard';
-import StatusDropdowns from '../components/bookingDetailsComponent/Statusdropdowns';
+import UserInfo from '../../components/adminComponents/bookingDetailsComponent/UserInfo'
+import AppointmentCard from '../../components/adminComponents/bookingDetailsComponent/AppointmentCard';
+import ReviewCard from '../../components/adminComponents/bookingDetailsComponent/ReviewCard';
+import ComplaintCard from '../../components/adminComponents/bookingDetailsComponent/ComplaintCard';
+import StatusDropdowns from '../../components/adminComponents/bookingDetailsComponent/Statusdropdowns';
 
 const bookingData = {
     user: {
