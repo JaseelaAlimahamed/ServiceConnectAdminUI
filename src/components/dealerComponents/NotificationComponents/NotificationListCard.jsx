@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import DeleteModal from "../../adminComponents/CategorySubCategory/CategoryComponents/DeleteModal";
-import { FiEdit } from "react-icons/fi";
 import { GoDotFill } from "react-icons/go";
 import { IoNotifications } from "react-icons/io5";
 import { GrAnnounce } from "react-icons/gr";
 import { FaFile } from "react-icons/fa";
 
 const NotificationListCard = () => {
+  // Notification array (you can add more items later for the Show More functionality)
   const Notifications = [
     {
       id: 1,
@@ -79,50 +77,38 @@ const NotificationListCard = () => {
       date: "October 18",
       type: "info",
     },
+    {
+      id: 11,
+      head: "New Offer",
+      body: "You have a new promotional offer.",
+      date: "October 25",
+      type: "info",
+    },
+    {
+      id: 12,
+      head: "Billing Issue",
+      body: "Your recent invoice has an issue.",
+      date: "October 30",
+      type: "file",
+    },
   ];
 
-  const [notifications, setNotifications] = useState(Notifications);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [notificationToDelete, setNotificationToDelete] = useState(null);
-  const [notificationToEdit, setNotificationToEdit] = useState(null);
-  const [editedNotification, setEditedNotification] = useState({
-    head: "",
-    body: "",
-    date: "",
-  });
+  const [activeNotification, setActiveNotification] = useState(null);
+  const [seenNotifications, setSeenNotifications] = useState([]);
+  const [displayCount, setDisplayCount] = useState(7); // Default to 7 notifications
 
-  const handleDelete = (id) => {
-    setNotificationToDelete(id);
-    setShowDeleteModal(true);
-  };
-
-  const confirmDelete = () => {
-    const updatedNotifications = notifications.filter(
-      (notification) => notification.id !== notificationToDelete
-    );
-    setNotifications(updatedNotifications);
-    setShowDeleteModal(false);
-  };
-
-  const handleEdit = (notification) => {
-    setNotificationToEdit(notification);
-    setEditedNotification(notification);
-    setShowEditModal(true);
-  };
-
-  const confirmEdit = () => {
-    const updatedNotifications = notifications.map((notification) =>
-      notification.id === notificationToEdit.id
-        ? { ...notification, ...editedNotification }
-        : notification
-    );
-    setNotifications(updatedNotifications);
-    setShowEditModal(false);
+  const handleSeenNotification = (id) => {
+    setActiveNotification((prevActive) => (prevActive === id ? null : id));
+    setSeenNotifications((prevSeen) => {
+      if (!prevSeen.includes(id)) {
+        return [...prevSeen, id];
+      }
+      return prevSeen;
+    });
   };
 
   const formatDate = (dateString) => {
-    return dateString; // Keep the date string as it is since it's already formatted.
+    return dateString;
   };
 
   const getNotificationIcon = (type) => {
@@ -132,7 +118,7 @@ const NotificationListCard = () => {
       case "announcement":
         return <GrAnnounce className="text-white text-sm font-bold" />;
       case "file":
-        return <FaFile  className="text-white text-sm font-bold" />;
+        return <FaFile className="text-white text-sm font-bold" />;
       default:
         return null;
     }
@@ -143,12 +129,16 @@ const NotificationListCard = () => {
       case "info":
         return "bg-violet";
       case "announcement":
-        return "bg-yellow"; // Ensure a proper color code for the announcement type
+        return "bg-yellow";
       case "file":
-        return "bg-yellow"; // Adjust for file type
+        return "bg-yellow";
       default:
         return "";
     }
+  };
+
+  const handleShowMore = () => {
+    setDisplayCount((prevCount) => prevCount + 12); // Increase the displayed rows by 12 on each click
   };
 
   return (
@@ -157,113 +147,63 @@ const NotificationListCard = () => {
         <h1 className="text-orange text-xl font-medium p-7">Notifications</h1>
 
         <div className="px-6 py-4">
-          {notifications.map((data) => (
-            <div
-              key={data.id}
-              className="flex justify-between max-sm:flex-col max-sm:p-0 max-sm:gap-5 w-full bg-gray-50 p-4 rounded-lg shadow-sm mb-4"
-            >
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <img
-                    src="https://picsum.photos/50"
-                    className="rounded-full h-12 w-12"
-                    alt="profile-img"
-                  />
-                  <div className={`absolute -top-1 -right-2 ${getNotificationStyle(data.type)} p-1 rounded-full flex items-center justify-center`}>
-                    {getNotificationIcon(data.type)}
+          {Notifications.slice(0, displayCount).map((data) => {
+            const isActive = activeNotification === data.id;
+
+            return (
+              <div
+                key={data.id}
+                onClick={() => handleSeenNotification(data.id)}
+                className={`flex justify-between max-sm:p-0 w-full bg-gray-50 p-4 rounded-lg shadow-sm mb-4 cursor-pointer 
+                  transition-transform duration-300 ease-in-out ${
+                    isActive ? "scale-105 !shadow-md" : "scale-100"
+                  }`}
+              >
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <img
+                      src="https://picsum.photos/50"
+                      className="rounded-full h-12 w-12"
+                      alt="profile-img"
+                    />
+                    <div
+                      className={`absolute -top-1 -right-2 ${getNotificationStyle(
+                        data.type
+                      )} p-1 rounded-full flex items-center justify-center`}
+                    >
+                      {getNotificationIcon(data.type)}
+                    </div>
+                  </div>
+                  <div>
+                    <h2 className="font-medium text-gray-800">{data.head}</h2>
+                    <p className="text-sm text-id_gray">
+                      {data.body} • {formatDate(data.date)}
+                    </p>
                   </div>
                 </div>
-                <div>
-                  <h2 className="font-medium text-gray-800">{data.head}</h2>
-                  <p className="text-sm text-id_gray">
-                    {data.body} • {formatDate(data.date)}
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex justify-center items-center gap-3">
-                <GoDotFill className="text-2xl max-sm:text-xl text-orange" />
-                <div className="text-gray-400 hover:text-orange cursor-pointer">
-                  <FiEdit
-                    className="text-2xl max-sm:text-xl"
-                    onClick={() => handleEdit(data)}
-                  />
-                </div>
-                <div
-                  className="text-gray-400 hover:text-orange cursor-pointer"
-                  onClick={() => handleDelete(data.id)}
-                >
-                  <RiDeleteBin6Line className="text-2xl max-sm:text-xl" />
+                <div className="flex justify-center items-center gap-3">
+                  {!seenNotifications.includes(data.id) && (
+                    <GoDotFill className="text-2xl max-sm:text-xl text-orange" />
+                  )}
                 </div>
               </div>
+            );
+          })}
+
+          {/* Show More Button */}
+          {displayCount < Notifications.length && (
+            <div className="flex justify-center items-center mt-4">
+              <button
+                onClick={handleShowMore}
+                className="cursor-pointer text-id_gray font-semibold text-sm"
+              >
+                Show More
+              </button>
             </div>
-          ))}
+          )}
         </div>
       </div>
-
-      {/* Conditionally render the DeleteModal */}
-      <DeleteModal
-        isOpen={showDeleteModal}
-        onClose={() => setShowDeleteModal(false)}
-        onConfirm={confirmDelete}
-      />
-
-      {/* Edit Modal */}
-      {showEditModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-50 bg-opacity-10">
-          <div className="bg-blue_bg rounded-lg shadow-lg p-6 w-96">
-            <h2 className="text-lg font-bold mb-4">Edit Notification</h2>
-            <input
-              type="text"
-              value={editedNotification.head}
-              onChange={(e) =>
-                setEditedNotification({
-                  ...editedNotification,
-                  head: e.target.value,
-                })
-              }
-              className="border p-2 rounded mb-4 w-full"
-              placeholder="Notification Head"
-            />
-            <textarea
-              value={editedNotification.body}
-              onChange={(e) =>
-                setEditedNotification({
-                  ...editedNotification,
-                  body: e.target.value,
-                })
-              }
-              className="border p-2 rounded mb-4 w-full"
-              placeholder="Notification Body"
-            />
-            <input
-              type="date"
-              value={editedNotification.date}
-              onChange={(e) =>
-                setEditedNotification({
-                  ...editedNotification,
-                  date: e.target.value,
-                })
-              }
-              className="border p-2 rounded mb-4 w-full"
-            />
-            <div className="flex justify-end">
-              <button
-                className="bg-lite_green text-white rounded-full px-4 py-2 mr-2"
-                onClick={() => setShowEditModal(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-lite_red text-white rounded-full px-4 py-2"
-                onClick={confirmEdit}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
