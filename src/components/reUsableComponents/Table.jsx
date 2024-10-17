@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5); // Number of users to display per page
-  const [sortNewest, setSortNewest] = useState(true); // Sorting order state
-  const [searchTerm, setSearchTerm] = useState(""); // Search input state
+  const [sortNewest, setSortNewest] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(""); 
   const [selectedRows, setSelectedRows] = useState([]); // Selected rows for checkboxes
   const [openActionId, setOpenActionId] = useState(null); // Opened action dropdown for each row
 
@@ -15,7 +15,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
       : new Date(a.date) - new Date(b.date);
   });
 
-  // Filter the data by the search term (based on the provider's name)
+  // Filter the data by the search term 
   const filteredUsers = sortedUsers.filter((user) =>
     user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -25,10 +25,9 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 
-  // Pagination function
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Array of page numbers for pagination buttons
+ 
   const pageNumbers = [];
   const totalUsers = filteredUsers.length;
 
@@ -36,28 +35,19 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
     pageNumbers.push(i);
   }
 
-  // Toggle sorting order between newest and oldest
+
   const toggleSortOrder = () => {
     setSortNewest(!sortNewest);
   };
 
-  // Handle search input change
+  
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Reset to first page on search
+    setCurrentPage(1); 
   };
-
-  // Handle checkbox changes for selecting rows
-  const handleCheckboxChange = (id) => {
-    if (selectedRows.includes(id)) {
-      setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
-    } else {
-      setSelectedRows([...selectedRows, id]);
-    }
-  };
-
-  const handleView = () => {
-    console.log("view true");
+  
+  const handleView = (id) => {
+    console.log("view true",id);
   };
   const handleEdit = () => {
     console.log("edit true");
@@ -70,6 +60,25 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   const toggleAction = (id) => {
     setOpenActionId((prev) => (prev === id ? null : id));
   };
+
+  const handleCheckboxChange = (id) => {
+    if (selectedRows.includes(id)) {
+      setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
+    } else {
+      setSelectedRows([...selectedRows, id]);
+    }
+  };
+
+  const selectFirstFiveRow = (e) => {
+    if(e.target.checked){
+      const firstFiveRow = currentUsers.map(usr=> usr.id)
+      setSelectedRows(firstFiveRow)
+    } else{
+      setSelectedRows([])
+    }
+  }
+
+
 
   return (
     <div className="flex flex-col font-poppins text-secondary ">
@@ -163,6 +172,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                     <img className="w-5" src="/email-icon.svg" alt="email" />
                   </a>
                 </div>
+
                   {/* Actions dropdown */}
                 <div className="relative inline-block">
                   <span onClick={() => toggleAction(data.id)}>
@@ -202,11 +212,11 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
           </div>
         ))}
       </div>
-
+   
       {/* Table for larger screen  */}
 
-      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto lg:pb-20 h-full">
-        <table className={`w-full text-center border-collapse hidden lg:block`}>
+      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto lg:pb-20 h-full w-full">
+        <table className="w-full text-center border-collapse hidden lg:table">
           {tableConfig.title && (
             <caption className="px-6 py-4 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
               {tableConfig.title}
@@ -216,14 +226,20 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
             <tr>
               <th>
                 <span className="px-4">
-                  <input type="checkbox" />
+                  <input type="checkbox" 
+                  checked={selectedRows.length >= 5}
+                  onChange={selectFirstFiveRow}
+
+                  />
                 </span>
               </th>
+
+              {/* Table Column Head  */}
               {tableColConfig?.map((col, index) => (
                 <th
                   key={index}
                   scope="col"
-                  className="p-5 text-dark_blue font-bold text-sm"
+                  className="py-5 px-4 text-dark_blue font-bold text-sm"
                 >
                   {col}
                 </th>
@@ -236,7 +252,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
               <tr key={index} className={`border-t border-gray`}>
 
                 {/* Checkbox */}
-                <td className="py-4">
+                <td className="p-4">
                   <input
                     type="checkbox"
                     checked={selectedRows.includes(data.id)}
@@ -246,9 +262,9 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
                 {/* Name Column */}
                 {data.name && (
-                  <td className={`px-2 py-8`}>
-                    <div className="flex items-center gap-4 mr-6 lg:mr-6">
-                      <img src={data.image} alt="" />
+                  <td className="py-8">
+                    <div className="flex items-center gap-2 mr-6">
+                      <img src={data.image} alt="profile" />
                       <span className="text-dark_blue font-bold text-sm">
                         {data.name}
                       </span>
@@ -269,17 +285,17 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 </td>
 
                 {/* ID Column */}
-                <td className="px-6 py-4 text-dark_blue text-center font-semibold">
+                <td className="py-4 text-dark_blue text-center font-semibold">
                   {data.totalCompletedWork}
                 </td>
 
                 {/* Location Column */}
-                <td className="px-6 py-4 text-dark_blue font-semibold text-sm">
+                <td className="py-4 text-dark_blue font-semibold text-sm">
                   {data.location}
                 </td>
 
                 {/* Contact Column */}
-                <td className="px-6 py-4">
+                <td className="py-4">
                   <div className="flex gap-2">
                     <a
                       href={`tel:${data.contact?.phone}`}
@@ -305,13 +321,13 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 </td>
 
                 {/* Status Column */}
-                <td className="px-6 py-4">
+                <td className="py-4">
                   <span
                     className={`flex items-center justify-center ${
                       data.status === "Active"
                         ? "bg-fluracent_green"
                         : "bg-orange"
-                    } text-primary w-24 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
+                    } text-primary text-sm w-20 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
                   >
                     {data.status}
                   </span>
@@ -327,24 +343,24 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                       <img src="/actions-icon.svg" alt="action" />
                     </span>
                     <ul
-                      className={`absolute z-20 top-6 right-6 shadow-lg rounded-lg overflow-hidden ${
+                      className={`absolute z-20 top-6 right-6 shadow-lg rounded-md overflow-hidden ${
                         openActionId === data.id ? "block" : "hidden"
                       }`}
                     >
                       <li
-                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray"
-                        onClick={handleView}
+                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
+                        onClick={()=>handleView(data.id)}
                       >
                         view
                       </li>
                       <li
-                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray"
+                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
                         onClick={handleEdit}
                       >
                         edit
                       </li>
                       <li
-                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2"
+                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1"
                         onClick={handleDelete}
                       >
                         delete
@@ -360,7 +376,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
         {/* Pagination  */}
 
         <div className="lg:absolute w-full bottom-0 flex justify-between px-6 py-4 flex-wrap space-y-4 md:space-y-0">
-          <span>
+          <span className="text-sm">
             showing <span className="text-violet">1-5</span> from{" "}
             <span className="text-violet">100</span> data
           </span>
