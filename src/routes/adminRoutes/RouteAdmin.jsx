@@ -9,9 +9,9 @@ import UserManagement from '../../pages/adminPages/managementPages/UserManagemen
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 
 import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
-import AddCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/AddCategory.jsx'
-import EditCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/EditCategory.jsx'
-import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile.jsx'
+import AddCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/AddCategoryPage.jsx'
+import EditCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/EditCategoryPage.jsx'
+import FranchiseProfileDetails from '../../pages/adminPages/FranchiseDetailsPages/FranchiseProfileDetails.jsx'
 
 import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
 
@@ -23,7 +23,7 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
-import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
+import FranchiseDetailsTable from '../../pages/adminPages/FranchiseManagementPages/FranchiseDetailsTable.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 
 
@@ -53,13 +53,13 @@ function RouteAdmin() {
 
         <Route path='/user-details' element={<UserDetails />} />
 
-        <Route path='/Add-Category' element={<AddCategory />} />
-        <Route path='/Edit-Category' element={<EditCategory />} />
-        <Route path='/Franchise-Details' element={<FranchiseeProfile />} />
+        <Route path='/Add-Category' element={<AddCategoryPage />} />
+        <Route path='/Edit-Category' element={<EditCategoryPage />} /> 
+        <Route path='/Franchise-Details' element={<FranchiseProfileDetails />} />
 
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
-        <Route path='/Franchise' element={<FranchiseeList />} />
+        <Route path='/Franchise' element={<FranchiseDetailsTable />} />
 
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/sub-categories' element={<SubCategoryPage />} />
