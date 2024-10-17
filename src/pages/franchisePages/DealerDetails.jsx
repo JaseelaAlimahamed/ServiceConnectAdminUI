@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../reusableComponent/Button";
+import Button from "../../components/franchiseComponents/reusableComponent/Button";
 
 
 function DealerDetails() {
