@@ -102,20 +102,23 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
               className="flex items-center justify-center rounded-full px-14 h-12 border-2 border-solid border-violet gap-2"
               onClick={toggleSortOrder}
             >
-              <span className="text-violet text-sm font-medium">Newest</span>
+              <div className='relative'>
+              <button className="text-violet text-sm font-medium">{sortNewest ? "Newest" :"Oldest"}</button>
+              </div>
               <img src="/dropdown-icon.svg" alt="dropdown" />
             </button>
             <button className="flex items-center justify-center bg-violet rounded-full  px-14 h-12 gap-2">
               <img src="/add-icon.svg" alt="new user" />
-              <span className="text-primary text-sm font-medium whitespace-nowrap">
+              <button className="text-primary text-sm font-medium whitespace-nowrap">
                 New User
-              </span>
+              </button>
             </button>
           </div>
         </div>
       )}
          {/* Card layout for small screens */}
-         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 md:hidden mt-6">
+         {(userManagement || serviceProviderManagement) && 
+         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 lg:hidden mt-6">
           {currentUsers.map((data, index) => (
             <div key={index} className="bg-white shadow-md rounded-lg mb-4 p-4 space-y-4">
               {data.name && (
@@ -128,8 +131,8 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 </div>
               )}
               <div className="text-sm">
-              <p className="text-sm text-gray-500">{data.date}</p>
-              <p className="text-sm text-gray-500">Total Completed Services: <span className='font-semibold'>{data.totalCompletedWork}</span></p>
+              <p className="text-sm text-id_gray">{data.date}</p>
+              <p className="text-sm ">Total Completed Services: <span className='font-semibold'>{data.totalCompletedWork}</span></p>
               <span
                       className={`flex items-center justify-center ${data.status === "Active" ? "bg-fluracent_green" : "bg-orange"
                         } text-primary w-20 h-8 inline-block rounded-full font-medium whitespace-nowrap mt-2`}
@@ -174,12 +177,14 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
             </div>
           ))}
         </div>
+         
+         }
 
-      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto pb-20 h-full">
+      <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto lg:pb-20 h-full">
 
 
         {/* table  */}
-        <table className="w-full text-center border-collapse hidden md:block">
+        <table className={`w-full text-center border-collapse ${(userManagement || serviceProviderManagement) && "hidden lg:block"}`}>
           {tableConfig.title &&
             <caption className="px-6 py-4 text-3xl font-semibold text-left rtl:text-right text-dark_blue">
               {tableConfig.title}
@@ -263,7 +268,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
                 {/* Date and Time Column */}
                 {(userManagement || serviceProviderManagement || paymentsLog) && (
-                  <td className="text-sm text-gray-500">
+                  <td className="text-sm text-id_gray">
                     <div className="mr-2">
                       <span className="whitespace-nowrap">{data.date}</span> {data.time}
                     </div>
@@ -376,9 +381,8 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 {(userManagement || serviceProviderManagement || serviceSubcription) && (
                   <td className="p-6">
                    <div className="relative">
-                  <span onClick={() => toggleAction(data.id)}>
+                  <span className='h-3 inline-block cursor-pointer' onClick={() => toggleAction(data.id)}>
                     <img
-                      className="min-w-6 m-auto cursor-pointer"
                       src="/actions-icon.svg"
                       alt="action"
                     />
@@ -398,7 +402,9 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
         </table>
 
-        <div className="absolute w-full bottom-0 flex justify-between px-6 py-4 flex-wrap space-y-4 md:space-y-0">
+        {/* pagination  */}
+
+        <div className="lg:absolute w-full bottom-0 flex justify-between px-6 py-4 flex-wrap space-y-4 md:space-y-0">
           <span>
             showing <span className="text-violet">1-5</span> from{" "}
             <span className="text-violet">100</span> data

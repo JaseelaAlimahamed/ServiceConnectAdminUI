@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from '../../../../components/reUsableComponents/Table'
+import Table from '../../reUsableComponents/Table'
 import UserManagementCard from './UserManagementCard';
 
 const UserManagement = () => {
@@ -82,27 +82,22 @@ const cardConfig = [
   {title:"89",subtitle:"Active Services", iconBg:"bg-[#167F71]"},
   {title:"89",subtitle:"Complaints", iconBg:"bg-[#DC3546]"},
 ]
+
   return (
-      <div className="w-full font-poppins px-6 pb-10 ">
-        <div className="flex flex-wrap gap-2 pb-10">
-          {cardConfig.map((item)=>(
-            <UserManagementCard item={item}/>
-          ))}
-        </div>
-        
+    <div className="w-full font-poppins px-6 pb-10 ">
+      <div className="flex flex-wrap gap-2 pb-10">
+        {cardConfig.map((item) => (
+          <UserManagementCard item={item} />
+        ))}
+      </div>
+
       <Table
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}
       />
-    
-     
     </div>
-    
-
-
-
-  )
+  );
 }
 
 
