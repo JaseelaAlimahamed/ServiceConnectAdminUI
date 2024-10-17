@@ -19,7 +19,7 @@ const AdminLayout = () => {
         {location.pathname !== '/admin/login' && <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />}
     </div>
 
-    <div className="flex-1 min-h-screen overflow-auto">
+    <div className="flex-1 min-h-screen overflow-x-auto">
         {location.pathname !== '/admin/login' && <NavBar toggleSidebar={toggleSidebar} />}
         <Outlet />
     </div>
