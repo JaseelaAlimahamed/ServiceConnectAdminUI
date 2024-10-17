@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import ButtonComponent from "./ButtonComponent";
-import FormComponent from "./FormComponent";
+import ButtonComponent from "../../components/franchiseComponents/addServiceProvider/ButtonComponent";
+import FormComponent from "../../components/franchiseComponents/addServiceProvider/FormComponent";
 
 function AddServiceProvider(){
 
