@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import InputField from "../ReUsableComponents/InputField";
-import DropDown from '../ReUsableComponents/DropDown';
+import InputFieldComponent from "../reUsableComponents/InputFieldComponent";
+import DropDown from '../reUsableComponents/DropDown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import ImageUploader from '../ReUsableComponents/ImageUploader';
+import ImageUploader from '../reUsableComponents/ImageUploader';
 
 const AddNewUser = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] =useState({
     file: null,  // Initial file state set to null
     fullName: '',
     address: '',
@@ -20,21 +20,7 @@ const AddNewUser = () => {
     district: '',
     state: ''
   });
-  const handleImageUpload = (event) => {
-    const files = Array.from(event.target.files); // Get the selected files
-    setSelectedImages((prevImages) => [...prevImages, ...files]); // Update the state with new files
 
-    // Log the names of the selected files in the console
-    files.forEach((file) => {
-        console.log('Selected file name:', file.name); // Log file name
-    });
-};
-
-
-  // Handle phone number update
-  const handlePhoneChange = (phone) => {
-    setFormData({ ...formData, phone });
-  };
 
   // Handle date selection and formatting
   const handleDateChange = (date) => {
@@ -52,10 +38,7 @@ const AddNewUser = () => {
     }
   };
 
-  // Handle file directly from InputField for file upload
-  const handleFileChange = (file) => {
-    setFormData({ ...formData, file });
-  };
+  
 
   // Form submission
   const onFormSubmit = (e) => {
@@ -87,8 +70,8 @@ const AddNewUser = () => {
           {/* Right-side form fields */}
           <div className="space-y-4">
             {/* Add other input fields like name, address, etc. */}
-            <InputField color="bg-primary" type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} />
-            <InputField color="bg-primary" type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} />
+            <InputFieldComponent color="bg-primary" type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} />
+            <InputFieldComponent color="bg-primary" type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} />
 
             {/* Date of Birth Field */}
             <DatePicker
@@ -100,13 +83,13 @@ const AddNewUser = () => {
               isClearable
             />
 
-            <InputField placeholder="Email" type="email" name="email" value={formData.email} onChange={handleChange} color='bg-primary'/>
+            <InputFieldComponent placeholder="Email" type="email" name="email" value={formData.email} onChange={handleChange} color='bg-primary'/>
 
             {/* Phone Input Field */}
-            <InputField
-              type="phone"
+            <InputFieldComponent
+              type="text"
               value={formData.phone}
-              onChange={handlePhoneChange}
+              onChange={handleChange}
               placeholder="Enter your phone number"
               color="bg-primary"
             />
@@ -120,11 +103,11 @@ const AddNewUser = () => {
               onChange={handleChange}
             />
             
-            <InputField placeholder="House Name" color="bg-primary" type="text" name="houseName" value={formData.houseName} onChange={handleChange} />
-            <InputField placeholder="Landmark" color="bg-primary" type="text" name="landmark" value={formData.landmark} onChange={handleChange} />
-            <InputField placeholder="Pincode" color="bg-primary" type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
-            <InputField placeholder="District" color="bg-primary" type="text" name="district" value={formData.district} onChange={handleChange} />
-            <InputField placeholder="State" color="bg-primary" type="text" name="state" value={formData.state} onChange={handleChange} />
+            <InputFieldComponent placeholder="House Name" color="bg-primary" type="text" name="houseName" value={formData.houseName} onChange={handleChange} />
+            <InputFieldComponent placeholder="Landmark" color="bg-primary" type="text" name="landmark" value={formData.landmark} onChange={handleChange} />
+            <InputFieldComponent placeholder="Pincode" color="bg-primary" type="text" name="pincode" value={formData.pincode} onChange={handleChange} />
+            <InputFieldComponent placeholder="District" color="bg-primary" type="text" name="district" value={formData.district} onChange={handleChange} />
+            <InputFieldComponent placeholder="State" color="bg-primary" type="text" name="state" value={formData.state} onChange={handleChange} />
           </div>
         </div>
           
