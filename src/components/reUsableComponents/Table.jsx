@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
-
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5); // Number of users to display per page
   const [sortNewest, setSortNewest] = useState(true); // Sorting order state
@@ -45,7 +44,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   // Handle search input change
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1); // Reset to first page on search
   };
 
   // Handle checkbox changes for selecting rows
@@ -57,7 +56,6 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
     }
   };
 
-  // Placeholder functions for actions (view, edit, delete)
   const handleView = () => {
     console.log("view true");
   };
@@ -74,7 +72,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   };
 
   return (
-    <div className="flex flex-col font-poppins text-secondary">
+    <div className="flex flex-col font-poppins text-secondary ">
       {/* Search and sorting bar */}
       <div className="flex flex-wrap justify-between">
         <span className="relative rounded-full overflow-hidden h-12 mb-2">
@@ -99,23 +97,25 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
             onClick={toggleSortOrder}
           >
             <div className="relative">
-              <button className="text-violet text-sm font-medium">
+              <span className="text-violet text-sm font-medium">
                 {sortNewest ? "Newest" : "Oldest"}
-              </button>
+              </span>
             </div>
             <img src="/dropdown-icon.svg" alt="dropdown" />
           </button>
-          {/* New user button */}
-          <button className="flex items-center justify-center bg-violet rounded-full px-14 h-12 gap-2">
+          <button className="flex items-center justify-center bg-violet rounded-full hover:opacity-90 duration-300 px-14 h-12 gap-2">
             <img src="/add-icon.svg" alt="new user" />
-            <button className="text-primary text-sm font-medium whitespace-nowrap">
+
+            {/* New user button */}
+            <span className="text-primary text-sm font-medium whitespace-nowrap">
               New User
-            </button>
+            </span>
           </button>
         </div>
       </div>
 
       {/* Card layout for small screens */}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 lg:hidden mt-6">
         {currentUsers.map((data, index) => (
           <div
@@ -124,7 +124,11 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
           >
             {data.name && (
               <div className="flex items-center space-x-4">
-                <img className="w-12 h-12 rounded-full" src={data.image} alt="" />
+                <img
+                  className="w-12 h-12 rounded-full"
+                  src={data.image}
+                  alt=""
+                />
                 <div>
                   <p className="text-lg font-bold">{data.name}</p>
                   <p>ID: {data.id}</p>
@@ -133,7 +137,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
             )}
             <div className="text-sm">
               <p className="text-sm text-id_gray">{data.date}</p>
-              <p className="text-sm">
+              <p className="text-sm ">
                 Total Completed Services:{" "}
                 <span className="font-semibold">{data.totalCompletedWork}</span>
               </p>
@@ -159,14 +163,15 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                     <img className="w-5" src="/email-icon.svg" alt="email" />
                   </a>
                 </div>
-
-                <div className="relative inline-block">
                   {/* Actions dropdown */}
+                <div className="relative inline-block">
                   <span onClick={() => toggleAction(data.id)}>
-                    <img className="w-5 m-auto cursor-pointer" src="/actions-icon.svg" alt="action" />
+                    <img
+                      className="w-5 m-auto cursor-pointer"
+                      src="/actions-icon.svg"
+                      alt="action"
+                    />
                   </span>
-
-                  {/* Action list */}
                   <ul
                     className={`absolute z-20 right-4 top-2 shadow-lg rounded-lg overflow-hidden ${
                       openActionId === data.id ? "block" : "hidden"
@@ -198,7 +203,8 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
         ))}
       </div>
 
-      {/* Table for larger screens */}
+      {/* Table for larger screen  */}
+
       <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto lg:pb-20 h-full">
         <table className={`w-full text-center border-collapse hidden lg:block`}>
           {tableConfig.title && (
@@ -228,7 +234,8 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
           <tbody>
             {currentUsers.map((data, index) => (
               <tr key={index} className={`border-t border-gray`}>
-                {/* Checkbox for user management and service provider management */}
+
+                {/* Checkbox */}
                 <td className="py-4">
                   <input
                     type="checkbox"
@@ -240,50 +247,87 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 {/* Name Column */}
                 {data.name && (
                   <td className={`px-2 py-8`}>
-                    <div className="flex items-center gap-4 mr-6">
-                      <img className="w-12 h-12 rounded-full" src={data.image} alt="" />
-                      <span className="text-secondary">{data.name}</span>
+                    <div className="flex items-center gap-4 mr-6 lg:mr-6">
+                      <img src={data.image} alt="" />
+                      <span className="text-dark_blue font-bold text-sm">
+                        {data.name}
+                      </span>
                     </div>
                   </td>
                 )}
 
-                {/* ID Column */}
-                <td className="px-2 py-8 text-secondary">
+                <td className="p-6 text-sm text-violet font-bold">
                   <span>{data.id}</span>
                 </td>
 
-                {/* Date Column */}
-                <td className="px-2 py-8 text-secondary">
-                  <span>{data.date}</span>
+                {/* Date and Time Column */}
+                <td className="text-sm text-id_gray">
+                  <div className="mr-2">
+                    <span className="whitespace-nowrap">{data.date}</span>{" "}
+                    {data.time}
+                  </div>
                 </td>
 
-                {/* Total Completed Services */}
-                <td className="px-2 py-8 text-secondary">
-                  <span>{data.totalCompletedWork}</span>
+                {/* ID Column */}
+                <td className="px-6 py-4 text-dark_blue text-center font-semibold">
+                  {data.totalCompletedWork}
+                </td>
+
+                {/* Location Column */}
+                <td className="px-6 py-4 text-dark_blue font-semibold text-sm">
+                  {data.location}
+                </td>
+
+                {/* Contact Column */}
+                <td className="px-6 py-4">
+                  <div className="flex gap-2">
+                    <a
+                      href={`tel:${data.contact?.phone}`}
+                      className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
+                    >
+                      <img
+                        className="min-w-5"
+                        src="/phone-icon.svg"
+                        alt="phone"
+                      />
+                    </a>
+                    <a
+                      href={`mailto:${data.contact?.mail}`}
+                      className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
+                    >
+                      <img
+                        className="min-w-5"
+                        src="/email-icon.svg"
+                        alt="email"
+                      />
+                    </a>
+                  </div>
                 </td>
 
                 {/* Status Column */}
-                <td className="px-2 py-8">
+                <td className="px-6 py-4">
                   <span
                     className={`flex items-center justify-center ${
                       data.status === "Active"
                         ? "bg-fluracent_green"
                         : "bg-orange"
-                    } text-primary w-24 h-9 inline-block rounded-full font-medium whitespace-nowrap`}
+                    } text-primary w-24 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
                   >
                     {data.status}
                   </span>
                 </td>
 
-                {/* Actions Column */}
-                <td className="px-2 py-8 text-secondary">
-                  <div className="relative inline-block">
-                    <span onClick={() => toggleAction(data.id)}>
-                      <img className="w-5 m-auto cursor-pointer" src="/actions-icon.svg" alt="action" />
+                {/* Additional Actions Column */}
+                <td className="p-6">
+                  <div className="relative">
+                    <span
+                      className="h-3 inline-block cursor-pointer"
+                      onClick={() => toggleAction(data.id)}
+                    >
+                      <img src="/actions-icon.svg" alt="action" />
                     </span>
-
                     <ul
-                      className={`absolute z-20 right-4 top-4 shadow-lg rounded-lg overflow-hidden ${
+                      className={`absolute z-20 top-6 right-6 shadow-lg rounded-lg overflow-hidden ${
                         openActionId === data.id ? "block" : "hidden"
                       }`}
                     >
@@ -313,19 +357,52 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
           </tbody>
         </table>
 
-        {/* Pagination controls */}
-        <div className="mt-4 text-right">
-          {pageNumbers.map((pageNumber) => (
+        {/* Pagination  */}
+
+        <div className="lg:absolute w-full bottom-0 flex justify-between px-6 py-4 flex-wrap space-y-4 md:space-y-0">
+          <span>
+            showing <span className="text-violet">1-5</span> from{" "}
+            <span className="text-violet">100</span> data
+          </span>
+          <div className="flex items-center space-x-3">
             <button
-              key={pageNumber}
-              onClick={() => paginate(pageNumber)}
-              className={`${
-                currentPage === pageNumber ? "text-violet" : "text-secondary"
-              } font-bold mx-1`}
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage <= 1 ? true : false}
+              className={` ${
+                currentPage <= 1
+                  ? "opacity-50 cursor-default"
+                  : "cursor-pointer"
+              }`}
             >
-              {pageNumber}
+              <img src="/prevsolid-icon.svg" alt="previous" />
             </button>
-          ))}
+            <div className="flex space-x-2">
+              {pageNumbers.map((number) => (
+                <span
+                  key={number}
+                  onClick={() => paginate(number)}
+                  className={`flex items-center justify-center h-10 w-10 border border-solid border-violet font-medium rounded-full cursor-pointer ${
+                    number === currentPage
+                      ? "bg-violet text-primary shadow-[0px_7px_16px_0px_#00000024]"
+                      : "text-violet"
+                  }`}
+                >
+                  {number}
+                </span>
+              ))}
+            </div>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage >= pageNumbers.length ? true : false}
+              className={`${
+                currentPage >= pageNumbers.length
+                  ? "opacity-50 cursor-default"
+                  : "cursor-pointer"
+              }`}
+            >
+              <img src="/nextsolid-icon.svg" alt="next" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
