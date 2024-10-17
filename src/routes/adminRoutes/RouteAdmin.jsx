@@ -27,6 +27,7 @@ import FranchiseeList from '../../components/adminComponents/FranchiseManagement
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 
 
+
 function RouteAdmin() {
 
 
