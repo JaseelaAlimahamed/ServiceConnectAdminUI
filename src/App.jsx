@@ -13,7 +13,6 @@ function App() {
       
         <Routes>
           <Route path="/admin/*" element={<RouteAdmin/>} />
-    
         </Routes>
         
       
