@@ -58,7 +58,7 @@ const NavBar = ({ toggleSidebar }) => {
         {/* User Name */}
         
         <div className='flex items-center'>
-          <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 md:hidden' onClick={toggleSidebar} />
+          <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 lg:hidden' onClick={toggleSidebar} />
           <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">{heading}</h1>
 
         </div>

@@ -10,13 +10,15 @@ const FranchiseLayout = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+  console.log(isOpen)
 
     const location = useLocation()
   return (
     <div className="bg-[#F3F4FF] flex min-h-screen">
         
-    <div className="sticky h-full z-10">
+    <div className="sticky h-full z-10 flex flex-col">
         {location.pathname !== '/franchise/login' && <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />}
+   
     </div>
 
     <div className="flex-1 min-h-screen overflow-auto">
