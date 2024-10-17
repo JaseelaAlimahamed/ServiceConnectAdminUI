@@ -26,6 +26,7 @@ import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 
+import NotificationPage from '../../pages/adminPages/notificationPage/NotificationPage.jsx'
 
 function RouteAdmin() {
 
@@ -64,6 +65,7 @@ function RouteAdmin() {
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
+        <Route path='/notifications' element={<NotificationPage />} />
 
       </Route>
     </Routes>
