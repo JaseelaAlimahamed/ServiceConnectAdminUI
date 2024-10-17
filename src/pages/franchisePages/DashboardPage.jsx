@@ -1,16 +1,8 @@
-// import React from 'react';
-// import { FiPhone, FiMail } from 'react-icons/fi';
+
 import FranchiseCard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/FranchiseCard';
-// import AdCard from './AdCard';
-// import PaymentHistory from './PaymentHistory';
-// import ReviewCard from './ReviewCard';
-// import ServiceDetail from './ServiceDetail';
-// import RecentServiceDetails from './Recent_ServiceDetails';
-// import ProfileCard from './ProfileCard';
-// import RecentActivities from '../dashboardcomponents/RecentActivities';
+
 import ActivitesCard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/AcitvitiesCard';
 import PaymentHistory from '../../components/FranchiseComponents/dashboard/dashboardcomponents/PaymentHistory';
-import FranchiseDashboard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/FranchiseDashboard';
 import DealerCard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/Dealercard';
 import { FaRegUser } from "react-icons/fa";
 import BalanceAnalytics from '../../components/FranchiseComponents/dashboard/dashboardcomponents/BalanceAnalytics';
@@ -72,39 +64,7 @@ const DashboardPage = () => {
 
 
     </div>
-  //   <div className="p-6 lg:flex lg:space-x-6 bg-gray-100">
-      
-  //     <div className="lg:w-3/4 space-y-8 bg-zinc-400">
-    
-       
-  //       <FranchiseCard/>
-  //       <PaymentHistory/>
-      
-
-       
-          
-
-        
-        
-
-       
-  //     </div>
-
-  //     {/* <FranchiseDashboard/> */}
-     
-      
-  //     <div className="lg:w-1/4 mt-8 lg:mt-0">
-  //       <div className="bg-white p-3 rounded-lg shadow-lg">
-  //         <h3 className="text-xl mb-3  font-poppins text-dark_blue font-bold">Recent Activites</h3>
-  //          <p className=' text-id_gray font-bold'>Tuesday April 12 2012</p>
-  //        </div>
-
-         
-
-
   
-  // //     </div>
-  //   </div>
   );
 };
 
