@@ -1,10 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import RouteAdmin from './routes/adminRoutes/RouteAdmin';
-
-
 import RouteFranchise from './routes/FranchiseRoutes/RouteFranchise';
-
-// import'./App.css';
 
 
 function App() {
@@ -17,9 +13,10 @@ function App() {
           <Route path="/admin/*" element={<RouteAdmin/>} />
 
           <Route path='/franchise/*' element={<RouteFranchise/>}/>
+
         </Routes>
         
-      
+
    
   );
 }

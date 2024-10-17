@@ -1,6 +1,6 @@
 // import React from 'react';
 // import { FiPhone, FiMail } from 'react-icons/fi';
-import FranchiseCard from '../dashboard/dashboardcomponents/FranchiseCard';
+import FranchiseCard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/FranchiseCard';
 // import AdCard from './AdCard';
 // import PaymentHistory from './PaymentHistory';
 // import ReviewCard from './ReviewCard';
@@ -8,14 +8,14 @@ import FranchiseCard from '../dashboard/dashboardcomponents/FranchiseCard';
 // import RecentServiceDetails from './Recent_ServiceDetails';
 // import ProfileCard from './ProfileCard';
 // import RecentActivities from '../dashboardcomponents/RecentActivities';
-import ActivitesCard from '../dashboard/dashboardcomponents/AcitvitiesCard';
-import PaymentHistory from '../dashboard/dashboardcomponents/PaymentHistory';
-import FranchiseDashboard from '../dashboard/dashboardcomponents/FranchiseDashboard';
-import DealerCard from '../dashboard/dashboardcomponents/Dealercard';
+import ActivitesCard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/AcitvitiesCard';
+import PaymentHistory from '../../components/FranchiseComponents/dashboard/dashboardcomponents/PaymentHistory';
+import FranchiseDashboard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/FranchiseDashboard';
+import DealerCard from '../../components/FranchiseComponents/dashboard/dashboardcomponents/Dealercard';
 import { FaRegUser } from "react-icons/fa";
-import BalanceAnalytics from '../dashboard/dashboardcomponents/BalanceAnalytics';
-import Complaints from '../dashboard/dashboardcomponents/complaints';
-import IncompleteBookings from '../dashboard/dashboardcomponents/IncompleBookings';
+import BalanceAnalytics from '../../components/FranchiseComponents/dashboard/dashboardcomponents/BalanceAnalytics';
+import Complaints from '../../components/FranchiseComponents/dashboard/dashboardcomponents/complaints';
+import IncompleteBookings from '../../components/FranchiseComponents/dashboard/dashboardcomponents/IncompleBookings';
 const DashboardPage = () => {
   return (
 

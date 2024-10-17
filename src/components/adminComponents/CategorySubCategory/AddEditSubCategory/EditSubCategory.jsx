@@ -1,4 +1,9 @@
-import { useState } from "react";
+
+
+import React,{ useState } from "react";
+import { FaChevronDown, FaChevronUp, } from 'react-icons/fa';
+
+
 import ImageUpload from "../editSubcategoryItems/ImageUpload";
 import TitleInput from "../editSubcategoryItems/TitleInput";
 import DescriptionInput from "../editSubcategoryItems/DescriptionInput";
@@ -6,6 +11,7 @@ import DropdownInput from "../editSubcategoryItems/DropdownInput";
 import ColorDropDownInput from '../editSubcategoryItems/ColorDropDown'
 import StatusDropdown from "../editSubcategoryItems/StatusDropdown";
 import Buttons from "../editSubcategoryItems/Buttons";
+
 
 const NewSubCategory = () => {
   const [title, setTitle] = useState('');
@@ -28,6 +34,7 @@ const NewSubCategory = () => {
     if (newImage) {
       setImage(newImage);
     }
+
   };
 
   const handleSave = () => {
@@ -40,6 +47,7 @@ const NewSubCategory = () => {
     };
     console.log(newSubCategory);
   };
+
 
   const handleDelete = () => {
     setTitle('');
