@@ -49,7 +49,9 @@ module.exports = {
         dark_yellow:"#FCC43E",
         custom_gray:'#4B4B4B',
         button_blue:'#5BAFC0',
-        text_blue:'#238899'
+        text_blue:'#238899',
+        lite_orange:'#FF5400'
+        
         
       },
       fontSize: {
@@ -63,6 +65,8 @@ module.exports = {
       letterSpacing: {
         bodySmall: 'var(--BodySmallTracking)', // Custom letter spacing
       },
+      
+      
 
     },
   },
