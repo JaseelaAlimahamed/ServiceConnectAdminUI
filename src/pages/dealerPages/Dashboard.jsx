@@ -1,7 +1,7 @@
 import React from "react";
 import Dealerinfocard from "../../components/dealerComponents/dashboardComponents/Dealerinfocard";
 import Franchisee from "../../components/dealerComponents/dashboardComponents/Franchisee";
-import Table from "../../components/ReUsableComponents/Table";
+import Table from "../../components/reUsableComponents/Table"
 import Activitycard from "../../components/dealerComponents/dashboardComponents/Activitycard";
 import Graph from "../../components/dealerComponents/dashboardComponents/Graph";
 function Dashboard() {
