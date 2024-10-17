@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import {
-  faUser,
-  faCalendarDays,
-  faCaretDown,
-  faPaperclip,
-} from "@fortawesome/free-solid-svg-icons";
+import { FaUser, FaCalendarDay, FaCaretDown, FaPaperclip } from "react-icons/fa"; // Import the necessary icons from react-icons
 import Formreuse from "../reusableComponent/Formreuse";
 import Imageupload from "../reusableComponent/Imageupload";
 import { LuImage } from "react-icons/lu";
 import Buttonreuse from "../reusableComponent/Buttonreuse";
-
-
 
 // Define the initial values for the form
 const initialValues = {
@@ -25,11 +18,10 @@ const initialValues = {
 
 // Define the fields for the form
 const fields = [
- 
   {
     name: "description",
     type: "text",
-    icon: faUser,
+    icon: FaUser, // Updated to use react-icons
     showIcon: false,
     inputIconclass: "absolute inset-y-0 right-5 flex items-center text-white",
     placeholder: "Description",
@@ -39,7 +31,7 @@ const fields = [
   {
     name: "gstcode",
     type: "text",
-    icon: faCalendarDays,
+    icon: FaCalendarDay, // Updated to use react-icons
     showIcon: false,
     inputIconclass: "absolute inset-y-0 left-3 top-6 flex items-center text-white",
     placeholder: "GST Code",
@@ -49,8 +41,8 @@ const fields = [
   {
     name: "servicecategory",
     type: "select",
-    icon: faCaretDown,
-    showIcon: true,
+    icon: FaCaretDown, // Updated to use react-icons
+    showIcon: false,
     inputIconclass:
       "bg-white border-2 shadow-xl border-black font-bold text-black placeholder:text-black w-[350px] h-[50px] rounded-lg px-2 leading-tight pl-2 pr-4 py-2 focus:outline-none",
     options: [
@@ -63,8 +55,8 @@ const fields = [
   {
     name: "servicesubcategory",
     type: "select",
-    icon: faCaretDown,
-    showIcon: true,
+    icon: FaCaretDown, // Updated to use react-icons
+    showIcon: false,
     inputIconclass:
       "bg-black border-2 shadow-xl font-bold border-black text-black placeholder:text-black w-[350px] h-[50px] rounded-lg px-2 leading-tight pl-2 pr-4 py-2 focus:outline-none",
     options: [
@@ -77,41 +69,33 @@ const fields = [
   {
     name: "certificate",
     type: "file",
-    icon: faPaperclip,
-    showIcon: true,
+    icon: FaPaperclip, // Updated to use react-icons
+    showIcon: false,
     inputIconclass: "absolute inset-y-0 right-2 flex items-center text-black",
     placeholder: "Certificate / License",
     inputclass:
-      "bg-white border-2 shadow-xl border-black font-bold text-black placeholder:text-black w-[350px] h-[50px] rounded-lg px-2 leading-tight pl-2 pr-4 py-2 focus:outline-none", // Increased width to 700px
+      "bg-white border-2 shadow-xl border-black font-bold text-black placeholder:text-black w-[350px] h-[50px] rounded-lg px-2 leading-tight pl-2 pr-4 py-2 focus:outline-none",
   },
   {
     name: "filename",
     type: "file",
-    icon: faPaperclip,
-    showIcon: true,
+    icon: FaPaperclip, // Updated to use react-icons
+    showIcon: false,
     inputIconclass: "absolute inset-y-0 right-2 flex items-center text-black",
     placeholder: "Filename(Certificate / License)",
     inputclass:
-      "bg-white border-2 shadow-xl border-black font-bold text-black placeholder:text-black w-[350px] h-[50px] rounded-lg px-2 leading-tight pl-2 pr-4 py-2 focus:outline-none", // Increased width to 700px
+      "bg-white border-2 shadow-xl border-black font-bold text-black placeholder:text-black w-[350px] h-[50px] rounded-lg px-2 leading-tight pl-2 pr-4 py-2 focus:outline-none",
   },
-     
-  ];
-
+];
 
 // Main component to render the RegistrationForm
 const Editservice = ({ label, placeholder }) => {
- 
-  
   // Handle form submission
   const handleSubmit = (values) => {
     console.log("Form Submitted:", values);
     alert("Form Data", values);
   };
 
- 
- 
-  
-  
   return (
     <div className="App">
       <div className="container max-w-[95%] sm:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%] mx-auto h-auto mt-10 rounded-2xl bg-[#C4C4C41F]">
@@ -136,10 +120,8 @@ const Editservice = ({ label, placeholder }) => {
                 onSubmit={handleSubmit}
                 fields={fields}
               />
-
-      
             </div>
-             </div>
+          </div>
 
           <div className="mt-2">
             <Imageupload
@@ -150,24 +132,22 @@ const Editservice = ({ label, placeholder }) => {
           </div>
 
           <div className="mt-5 flex ml-[50px] sm:ml-[100px] md:ml-[150px] lg:ml-[200px] xl:ml-[280px]">
-  <input type="checkbox" className="form-checkbox w-6 h-6 bg-black text-black"/>
-  <span className="ml-2 font-bold text-black">Accept</span>
-</div>
+            <input type="checkbox" className="form-checkbox w-6 h-6 bg-black text-black" />
+            <span className="ml-2 font-bold text-black">Accept</span>
+          </div>
         </div>
-         </div>
+      </div>
       <div className="flex mt-10 ml-auto space-x-5 lg:ml-[500px] xl:ml-[500px] 2xl:ml-[600px]">
-
-      <Buttonreuse
-  bgColor="bg-[#E20000]"
-  width="w-[600px] md:w-[400px] lg:w-[400px]"
-  height="h-[60px] md:h-[50px] lg:h-[60px]"
-  borderRadius="rounded-full"
-  type="submit"
->
-  Update
-</Buttonreuse>
-
-        </div>
+        <Buttonreuse
+          bgColor="bg-[#E20000]"
+          width="w-[600px] md:w-[400px] lg:w-[400px]"
+          height="h-[60px] md:h-[50px] lg:h-[60px]"
+          borderRadius="rounded-full"
+          type="submit"
+        >
+          Update
+        </Buttonreuse>
+      </div>
     </div>
   );
 };

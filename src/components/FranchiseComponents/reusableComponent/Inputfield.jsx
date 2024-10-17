@@ -1,8 +1,8 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FaUser } from "react-icons/fa";
 
 const Inputfield = ({
-  icon,
+  icon: IconComponent, 
   type,
   name,
   placeholder,
@@ -14,7 +14,6 @@ const Inputfield = ({
 }) => {
   return (
     <div className="relative flex items-center">
-      
       <input
         type={type}
         name={name}
@@ -23,9 +22,9 @@ const Inputfield = ({
         onChange={onChange}
         className={inputclass}
       />
-      {showIcon && (
-        <span >
-          <FontAwesomeIcon icon={icon} className={inputIconclass} />
+      {showIcon && IconComponent && (
+        <span>
+          <IconComponent className={inputIconclass} />
         </span>
       )}
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FaArrowRight } from 'react-icons/fa'; // Import a specific icon (you can customize this)
 
 const Buttonreuse = ({
   children,         
@@ -12,7 +12,7 @@ const Buttonreuse = ({
   className = '',  
   type,         
   showArrow = false,  
-  icon,       
+  icon = <FaArrowRight/>,  // Default icon
   ...props
 }) => {
   return (
@@ -27,7 +27,7 @@ const Buttonreuse = ({
       {/* Conditionally render the small rounded button with right arrow icon */}
       {showArrow && (
         <span className="ml-2 bg-white text-black rounded-full w-9 h-9 flex items-center justify-center absolute right-2">
-          <FontAwesomeIcon icon={icon}/>
+          {icon} {/* Using react-icon */}
         </span>
       )}
     </button>
