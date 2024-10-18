@@ -2,7 +2,7 @@ import React from 'react';
 
 const ComplaintCard = ({ complaint,user }) => {
   return (
-    <div className="mt-4">
+    <div>
       <h3 className="font-medium text-left leading-6 tracking-normal text-lg text-[#202244]">Complaint</h3>
       
       <div className='space-x-4 mt-4 bg-[#F3F4FF] shadow-lg rounded-lg p-6 mr-5 w-[360px] '>
