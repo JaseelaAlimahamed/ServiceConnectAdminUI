@@ -20,6 +20,11 @@ import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Catego
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 
+import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
+import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
+import ServiceProviderList from '../../pages/adminPages/ServiceProviderList.jsx'
+
+
 
 import TransactionHistory from '../../pages/adminPages/TransactionPages/TransactionHistory'
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
@@ -56,6 +61,7 @@ return (
         <Route path='/transaction-history' element={<TransactionHistory/>}/>
         <Route path='servicehistory' element={<ServiceHistory />} />
 
+        <Route path='/service-providers' element={<ServiceProviderList />} />
 
       </Route>
     </Routes>
