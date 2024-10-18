@@ -24,6 +24,7 @@ import FranchiseeList from '../../components/adminComponents/FranchiseManagement
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 import ServiceProviderList from '../../pages/adminPages/ServiceProviderList.jsx'
 
+import NotificationPage from '../../pages/adminPages/notificationPage/NotificationPage.jsx'
 
 
 import TransactionHistory from '../../pages/adminPages/TransactionPages/TransactionHistory'
@@ -58,10 +59,14 @@ return (
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
+
+        <Route path='/notifications' element={<NotificationPage />} />
+
         <Route path='/transaction-history' element={<TransactionHistory/>}/>
         <Route path='servicehistory' element={<ServiceHistory />} />
 
         <Route path='/service-providers' element={<ServiceProviderList />} />
+
 
       </Route>
     </Routes>
