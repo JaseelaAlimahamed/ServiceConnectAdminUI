@@ -3,7 +3,7 @@ import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout.jsx'
-import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
+import UserManagementPage from '../../pages/adminPages/managementPages/UserManagementPage.jsx'
 import AdminProfilePage from '../../pages/adminPages/adminProfilePage/AdminProfilePage.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 import BookingDetailsPage from '../../pages/adminPages/bookingdetailsPage/BookingDetailsPage.jsx'
@@ -20,8 +20,8 @@ import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Catego
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 
-import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
-import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
+// import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
+// import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 import ServiceProviderList from '../../pages/adminPages/ServiceProviderList.jsx'
 
 import NotificationPage from '../../pages/adminPages/notificationPage/NotificationPage.jsx'
@@ -46,7 +46,7 @@ return (
 
         <Route path='/profile' element={<AdminProfilePage />} />
         <Route path='/booking-details' element={<BookingDetailsPage />} />
-        <Route path='/user-management' element={<UserManagement />} />
+        <Route path='/user-management' element={<UserManagementPage />} />
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         <Route path='/service-type' element={<ServiceType />} />
