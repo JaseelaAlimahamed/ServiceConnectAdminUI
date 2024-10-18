@@ -1,6 +1,7 @@
 import React from 'react'
-import Table from '../../reUsableComponents/Table'
-import UserManagementCard from './UserManagementCard';
+import UserManagementCard from '../../adminComponents/userManagement/UserManagementCard';
+import Table from '../../../components/reUsableComponents/Table';
+
 
 const UserManagement = () => {
 
@@ -95,7 +96,7 @@ const cardConfig = [
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}
-      />
+      />     
     </div>
   );
 }
