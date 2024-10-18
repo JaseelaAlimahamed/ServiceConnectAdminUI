@@ -9,9 +9,9 @@ import UserManagement from '../../pages/adminPages/managementPages/UserManagemen
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 
 import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
-import AddCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/AddCategoryPage.jsx'
-import EditCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/EditCategoryPage.jsx'
-import FranchiseProfileDetails from '../../pages/adminPages/FranchiseDetailsPages/FranchiseProfileDetails.jsx'
+import AddCategoryPage from '../../pages/adminPages/categorySubCategoryPages/AddCategoryPage.jsx'
+import EditCategoryPage from '../../pages/adminPages/categorySubCategoryPages/EditCategoryPage.jsx'
+import FranchiseProfileDetails from '../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable.jsx'
 
 import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
 
@@ -23,7 +23,7 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
-import FranchiseDetailsTable from '../../pages/adminPages/FranchiseManagementPages/FranchiseDetailsTable.jsx'
+import FranchiseDetailsTable from '../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 
 
