@@ -27,6 +27,15 @@ const AdsInputs = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+
+        const { formTitle, formDescription, fromDate, fromTime, toDate, toTime, targetArea } = formValues;
+
+        // Check if any required field is empty
+        if (!formTitle || !formDescription || !fromDate || !fromTime || !toDate || !toTime || !targetArea) {
+            alert('Please fill out all required fields');
+            return;
+        }
+
         // Custom validation logic
         if (!selectedImage) {
             alert('Please select an image');
@@ -50,7 +59,7 @@ const AdsInputs = () => {
     };
 
     return (
-        <div className="bg-white p-4 sm:p-6 md:p-10 rounded-xl">
+        <div className="bg-primary p-4 sm:p-6 md:p-10 rounded-xl">
             <h3 className="text-3xl text-dark_blue font-bold">Ads-type</h3>
             <ProviderAvatar />
             <form className="w-full sm:w-[340px]" onSubmit={handleSubmit}>

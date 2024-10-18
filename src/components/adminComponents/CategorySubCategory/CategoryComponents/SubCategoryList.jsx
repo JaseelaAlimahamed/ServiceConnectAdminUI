@@ -6,6 +6,7 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import DeleteModal from './DeleteModal'
 import ViewModal from './ViewModal'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -72,6 +73,8 @@ const SubCategoryList = () => {
     const [editService, setEditService] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 
+    const navigate = useNavigate();
+
     // handle view
     const handleView = (category) => {
         setViewSubCategory(category);
@@ -91,6 +94,12 @@ const SubCategoryList = () => {
         alert(`Editing ${category.name} `,)
     };
 
+     // handle add Subcategory
+
+     const handleAddSubCategory = () =>{
+        navigate('/admin/Add-Category');
+    }
+
 
     const filteredSubcategories = selectedCategory
     ? subCategories.filter(subcategory =>
@@ -103,14 +112,14 @@ const SubCategoryList = () => {
 
     return (
         <div>
-            <div className='bg-white p-6 shadow-lg rounded-lg '>
-                <div className="flex flex-col md:flex-row justify-between items-center mb-5">
+            <div className='bg-primary p-6 shadow-lg rounded-lg '>
+                <div className="flex flex-col gap-5 justify-between  items-center xl:flex-row  mb-5">
                     <h1 className="text-3xl text-dark_blue font-bold mb-4">
                         {selectedCategory ? selectedCategory.name : "Categories"}
                     </h1>
 
                     {/* SearchBar with search query state */}
-                    <div className="flex flex-grow md:max-w-md">
+                    <div >
                         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                     </div>
 
@@ -119,10 +128,10 @@ const SubCategoryList = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
                     {filteredSubcategories.map((category) => (
-                        <div key={category.id} className="shadow-lg bg-blue_bg rounded-lg p-4 relative w-full">
-                            <div className="bg-gray-200 rounded-t-lg w-full h-40">
+                        <div key={category.id} className="shadow-lg bg-blue_bg rounded-lg p-5 relative w-full">
+                            <div className="bg-light_gray rounded-t-lg w-full h-40">
                                 <img
                                     src={category.image}
                                     alt={category.name}
@@ -130,7 +139,7 @@ const SubCategoryList = () => {
                                 />
                             </div>
                             <div className="mt-4">
-                                <h3 className="text-lg font-semibold">{category.name}</h3>
+                                <h3 className="font-semibold">{category.name}</h3>
                                 <div className="flex justify-center gap-5 text-xl mt-2">
                                     <button onClick={() => handleView(category)}><MdOutlineRemoveRedEye /></button>
                                     <button onClick={() => handleEdit(category)}><FaRegEdit /></button>
@@ -149,7 +158,7 @@ const SubCategoryList = () => {
                     }
                     {/* Add Category Button */}
                     <div className="bg-blue_bg min-h-[250px] shadow-lg rounded-lg flex justify-center items-center p-4 w-full">
-                        <button className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></button>
+                        <button onClick={handleAddSubCategory} className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></button>
                     </div>
                 </div>
             </div>
