@@ -11,6 +11,7 @@ import AddCategory from '../../components/adminComponents/CategorySubCategory/Ad
 import EditCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/EditCategory.jsx'
 import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile.jsx'
 import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
+
 import EditSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory.jsx'
 import AddSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory'
 import ServiceType from '../../pages/adminPages/ServiceType.jsx'
@@ -18,8 +19,12 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+
+
+import TransactionHistory from '../../pages/adminPages/TransactionPages/TransactionHistory'
+import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import ServiceHistory from '../../pages/adminPages/serviceHistoryPage/ServiceHistory.jsx';
-import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx';
+
 
 
 function RouteAdmin() {
@@ -46,9 +51,11 @@ return (
         <Route path='/Franchise-Details' element={<FranchiseeProfile />} />
         <Route path='/Franchisee' element={<FranchiseeList />} />
         <Route path='/categories' element={<CategoryPage />} />
-        <Route path='/subcategories' element={<SubCategoryPage />} />
-        <Route path='/newads' element={<NewAdsPage />} />
+        <Route path='/sub-categories' element={<SubCategoryPage />} />
+        <Route path='/new-ads' element={<NewAdsPage />} />
+        <Route path='/transaction-history' element={<TransactionHistory/>}/>
         <Route path='servicehistory' element={<ServiceHistory />} />
+
 
       </Route>
     </Routes>

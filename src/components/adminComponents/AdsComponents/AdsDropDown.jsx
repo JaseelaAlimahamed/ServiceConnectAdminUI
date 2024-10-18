@@ -8,7 +8,7 @@ const AdsDropDown = () => {
   const serviceProviderOptions = ['Provider X', 'Provider Y', 'Provider Z'];
 
   return (
-    <div className="flex flex-wrap space-x-0 sm:space-x-8 space-y-4 sm:space-y-0 mb-5">
+    <div className="flex flex-col lg:flex-row gap-3 mb-5">
       {/* Franchisee Dropdown */}
       <div className="flex flex-col w-full sm:w-[400px]">
         <label className="mb-1 font-semibold">Franchisee</label>
