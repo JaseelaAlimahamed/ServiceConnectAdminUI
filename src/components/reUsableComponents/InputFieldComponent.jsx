@@ -92,6 +92,16 @@ const InputFieldComponent = ({
           wrapperClassName="w-full"
           isClearable // Optional: allows clearing the date input
         />
+      ) : type === 'filled' ? ( // Filled text field
+        <input
+          type="text"
+          placeholder={placeholder}
+          value={value}
+          name={name || ''} // Pass name prop correctly
+          onChange={handleInputChange}
+          className={`p-4 w-full rounded-2xl ${color} bg-white border-2 border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500`} // Material-UI like filled input styles
+          required
+        />
       ) : isPassword ? (
         <>
           <input
