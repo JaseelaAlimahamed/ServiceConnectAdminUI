@@ -1,5 +1,5 @@
 import React from "react";
-import NotificationListCard from "../../components/dealerComponents/notificationComponents/NotificationListCard";
+import NotificationListCard from "../../components/dealerComponents/notificationComponent/NotificationListCard";
 
 const NotificationManagement = () => {
   return (
