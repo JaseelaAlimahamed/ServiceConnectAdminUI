@@ -45,7 +45,7 @@ const IncomeTable = ({ tableDataConfig, tableColConfig, incomeTypeOptions, split
                 <td className="px-6 py-6 border-none">{data.slNo}</td>
                 <td className="px-6 py-6 border-none">
                   <select
-                    className="text-secondary rounded text-center focus:outline-none focus:ring-0" // Added here
+                    className="text-secondary rounded text-center focus:outline-none focus:ring-0"
                     value={data.incomeType}
                   >
                     {incomeTypeOptions.map((option, i) => (
