@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({
+const DealerEditButton = ({
   children,
   bgColor,
   width,
@@ -32,4 +32,4 @@ const Button = ({
     </button>
   );
 };
-export default Button;
+export default DealerEditButton;

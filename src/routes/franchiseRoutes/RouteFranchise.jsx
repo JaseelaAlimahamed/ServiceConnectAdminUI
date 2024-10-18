@@ -19,7 +19,7 @@ function RouteFranchise() {
         <Route path='dealers-details'   element={<DealerDetails/>}/>
         <Route path='FranchiseeDetails' element ={<FranchiseeProfile/>}/>
         <Route path='Editaddfranchiseetype' element ={<EditAddFranchiseeType/>}/>
-        <Route path='accounts'   element={<Accounts/>}/>
+        <Route path='accounts' element={<Accounts/>}/>
         <Route path='notifications'   element={<FranchiseNotification/>}/>
 
 
