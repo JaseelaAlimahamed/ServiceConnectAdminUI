@@ -4,7 +4,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid';
 const ProgressBar = () => {
   return (
    
-    <div className=" bg-white rounded-lg shadow-lg p-6">
+    <div className=" bg-white rounded-lg shadow-lg p-6 w-[225px] h-[285px]" >
     
     <div className="flex items-center mb-4">
       <p className="font-inter text-sm font-bold leading-6 text-left text-custom-gray flex-grow">Total work done</p>

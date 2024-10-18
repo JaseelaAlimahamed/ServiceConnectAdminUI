@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from '../../../components/ReUsableComponents/Table'
+import Table from '../../../components/reUsableComponents/Table'
 
 const UserManagement = () => {
 
