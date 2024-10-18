@@ -22,15 +22,7 @@ import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
-import ServiceProviderList from '../../pages/adminPages/ServiceProviderList.jsx'
-
-import NotificationPage from '../../pages/adminPages/notificationPage/NotificationPage.jsx'
-
-
-import TransactionHistory from '../../pages/adminPages/TransactionPages/TransactionHistory'
-import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
-import ServiceHistory from '../../pages/adminPages/serviceHistoryPage/ServiceHistory.jsx';
-
+import IncomeManagementPage from '../../pages/adminPages/IncomeManagementPage.jsx'
 
 
 function RouteAdmin() {
@@ -51,6 +43,7 @@ return (
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         <Route path='/service-type' element={<ServiceType />} />
         <Route path='/ads-management' element={<AdsManagement />} />
+
         <Route path='/user-details' element={<UserDetails />} />
         <Route path='/Add-Category' element={<AddCategory />} />
         <Route path='/Edit-Category' element={<EditCategory />} />
@@ -66,6 +59,8 @@ return (
         <Route path='servicehistory' element={<ServiceHistory />} />
 
         <Route path='/service-providers' element={<ServiceProviderList />} />
+
+        <Route path='/income-management' element {<IncomeManagementPage/>}/>
 
 
       </Route>
