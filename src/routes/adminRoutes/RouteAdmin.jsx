@@ -33,6 +33,8 @@ import ServiceHistory from '../../pages/adminPages/serviceHistoryPage/ServiceHis
 
 
 
+
+
 function RouteAdmin() {
 
 return (
@@ -59,6 +61,7 @@ return (
         <Route path='/categories' element={<CategoryPage />} />
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
+ 
 
         <Route path='/notifications' element={<NotificationPage />} />
 
