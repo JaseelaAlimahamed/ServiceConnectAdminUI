@@ -7,7 +7,7 @@ function Activitycard({ type,name,subtitle,title,date,time,status}) {
     return <Activity title={title} date={date} time={time} name={name} subtitle={subtitle} status={status}></Activity>;
   }
   if (type == "Titlecard") {
-    return <Titlecard></Titlecard>;
+    return <Titlecard title={title} date={date}></Titlecard>;
   }
 
 
@@ -50,11 +50,11 @@ function Activity({name,subtitle,title,date,time,status}) {
     </div>
   );
 }
-function Titlecard() {
+function Titlecard({title,date}) {
   return (
     <div className="bg-white w-[20em] h-[9em] rounded-2xl py-10  px-8">
-      <h1 className="text-blue-950 text-xl font-bold">Recent Activities</h1>
-      <h2 className="text-light_gray">Thursday,10th April ,2021</h2>
+      <h1 className="text-blue-950 text-xl font-bold">{title}</h1>
+      <h2 className="text-light_gray">{date}</h2>
     </div>
   );
 }

@@ -134,7 +134,7 @@ function Dashboard() {
           </div>
         </div>
         <div className="flex  flex-col gap-5   items-center ">
-          <Activitycard type="Titlecard"></Activitycard>
+          <Activitycard type={"Titlecard"} title={"Recent Activites"} date={"Monday 12th March 2023"}></Activitycard>
           <Activitycard
             type="Activitycard"
             status={"Active"}

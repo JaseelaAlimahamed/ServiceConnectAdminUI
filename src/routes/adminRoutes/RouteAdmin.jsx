@@ -24,6 +24,7 @@ import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 
 
 
+
 function RouteAdmin() {
 
 
@@ -51,7 +52,7 @@ function RouteAdmin() {
         <Route path='/newads' element={<NewAdsPage />} />
   
     
-   
+
 
         
 
