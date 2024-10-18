@@ -1,6 +1,6 @@
-import ServiceProviderProfile from "../../components/dealerComponents/serviceProviderVerification/ServiceProviderProfile";
-import AnalyticsComponent from "../../components/dealerComponents/serviceProviderVerification/AnalyticsComponent";
-import DealerButton from "../../components/dealerComponents/serviceProviderVerification/DealerButton";
+import ServiceProviderProfile from "../../components/dealerComponents/verificationComponents/ServiceProviderProfile";
+import AnalyticsComponent from "../../components/dealerComponents/verificationComponents/AnalyticsComponent";
+import DealerButton from "../../components/dealerComponents/verificationComponents/DealerButton";
 
 const ServiceProviderVerification = () => {
   return (
