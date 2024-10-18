@@ -2,9 +2,9 @@ import React from "react";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { LuClock3 } from "react-icons/lu";
 import { RiImageEditFill } from "react-icons/ri";
-function Activitycard({ type,name,subtitle,title,date,time ,sidecolor}) {
+function Activitycard({ type,name,subtitle,title,date,time,status}) {
   if (type == "Activitycard") {
-    return <Activity title={title} date={date} time={time} name={name} subtitle={subtitle} sidecolor={sidecolor}></Activity>;
+    return <Activity title={title} date={date} time={time} name={name} subtitle={subtitle} status={status}></Activity>;
   }
   if (type == "Titlecard") {
     return <Titlecard></Titlecard>;
@@ -12,10 +12,14 @@ function Activitycard({ type,name,subtitle,title,date,time ,sidecolor}) {
 
 
 }
-function Activity({name,subtitle,title,date,time,sidecolor }) {
+function Activity({name,subtitle,title,date,time,status}) {
   return (
     <div className="bg-white w-[20em] h-[9em] rounded-2xl flex  ">
-      <div className={` ${sidecolor} w-[8%]    h-full rounded-l-xl max-[1372px]:w-[5%]  `}></div>
+
+      {status === "Active" &&      <div className={`bg-violet  w-[8%]    h-full rounded-l-xl max-[1372px]:w-[5%]  `}></div> }
+      {status === "Pending" &&      <div className={`bg-dark_yellow   w-[8%]    h-full rounded-l-xl max-[1372px]:w-[5%]  `}></div> }
+      {status === "Disable" &&      <div className={`bg-orange  w-[8%]    h-full rounded-l-xl max-[1372px]:w-[5%]  `}></div> }
+      
       <div>
         <div className="ml-5 mt-2">
           <h1 className="text-xl font-semibold text-blue-950">

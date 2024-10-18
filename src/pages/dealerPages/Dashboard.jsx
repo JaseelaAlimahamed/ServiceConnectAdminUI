@@ -137,7 +137,7 @@ function Dashboard() {
           <Activitycard type="Titlecard"></Activitycard>
           <Activitycard
             type="Activitycard"
-            sidecolor={"bg-violet"}
+            status={"Active"}
             title={"New service registration"}
             date={"mar 20,2021"}
             time={"9:00 - 10:00 AM"}
@@ -146,7 +146,7 @@ function Dashboard() {
           ></Activitycard>
           <Activitycard
             type="Activitycard"
-            sidecolor={"bg-orange"}
+            status={"Pending"}
             title={"New ad posted"}
             date={"april 15,2023"}
             time={"9:00 - 10:00 AM"}
@@ -156,7 +156,7 @@ function Dashboard() {
 
           <Activitycard
             type="Activitycard"
-            sidecolor={"bg-yellow"}
+            status={"Disable"}
             title={"New ad posted"}
             date={"april 15,2023"}
             time={"9:00 - 10:00 AM"}
@@ -165,7 +165,7 @@ function Dashboard() {
           ></Activitycard>
           <Activitycard
             type="Activitycard"
-            sidecolor={"bg-blue-950"}
+           status={"Active"}
             title={"New ad posted"}
             date={"april 15,2023"}
             time={"9:00 - 10:00 AM"}
