@@ -22,7 +22,7 @@ function Card({ variant = "small", ...rest }) {
   }
 
   return (
-    <div className="relative font-poppins rounded-[1.25rem] bg-white w-full">
+    <div className="relative font-poppins rounded-[1.25rem] bg-white w-full max-w-[350px]">
       {cardComponent}
     </div>
   );
@@ -107,16 +107,16 @@ function AdsCard({ heading, title, subtitle, iconBg, percent }) {
   const percentColor = numericPercent > 0 ? "text-green-500" : "text-red";
   return (
     <>
-      <div className="flex gap-4 px-4 py-4 items-center max-w-[300px]">
+      <div className="flex gap-4 px-4 py-4 items-center">
         <div
           className={`w-[3rem] h-[3rem] rounded-full flex justify-center items-center ${iconBg}`}
         >
           <LiaUserTieSolid size="2rem" color="white" />
         </div>
         <section className="flex flex-col">
-          <span className="text-light_gray font-normal text-base">{heading}</span>
-          <span className="font-bold text-dark_blue text-2xl">{title}</span>
-          <span className="font-normal text-base text-light_gray">
+          <span className="text-light_gray font-normal text-lg">{heading}</span>
+          <span className="font-bold text-dark_blue text-4xl">{title}</span>
+          <span className="font-normal text-lg text-light_gray">
             {percent !== undefined && (
               <span className={percentColor}>{percent}</span>
             )}

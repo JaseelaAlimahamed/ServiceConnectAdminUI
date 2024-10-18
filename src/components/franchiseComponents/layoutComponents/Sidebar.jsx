@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { menuItems,Mainicon } from "./sidebarComponents";
 import { IoMdClose } from "react-icons/io";
 
-  const FranchiseSideBar = ({isOpen, toggleSidebar}) => {
+  const SideBar = ({isOpen, toggleSidebar}) => {
     const [activeItem, setActiveItem] = useState("Dashboard");
     // const [isOpen, setIsOpen] = useState(false); // State for sidebar toggle
   
@@ -14,7 +14,7 @@ import { IoMdClose } from "react-icons/io";
     // };
   
     return (
-      <div className="relative ">
+      <div>
         {/* Toggle Button */}
         {/* <button
           className="md:hidden text-white p-3 fixed top-4 left-4 z-50 hover:border-none focus:outline-none "
@@ -39,8 +39,8 @@ import { IoMdClose } from "react-icons/io";
   
         <div
           className={` ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
-          } fixed top-0 left-0 overflow-y-auto h-full w-64 bg-violet transform transition-transform duration-300 ease-in-out md:translate-x-0 md:relative md:flex md:w-64 flex-col justify-between pl-5 py-5`}
+            isOpen ? "translate-x-0 md:relative" : "-translate-x-full"
+          } fixed sidebar h-screen top-0 left-0 lg:relative overflow-y-auto lg:translate-x-0 w-64  bg-violet transform transition-transform duration-300 ease-in-out md:flex md:w-64 flex-col justify-between pl-5 py-5`}
         >
           <div className="relative flex items-center mb-10">
             <div>
@@ -68,7 +68,6 @@ import { IoMdClose } from "react-icons/io";
               </li>
             ))}
           </ul>
-  
           <div className="mt-9 text-white">
             <p className="font-bold">Service Connect</p>
             <p>Let’s Grow Together</p>
@@ -78,4 +77,4 @@ import { IoMdClose } from "react-icons/io";
     );
   };
   
-  export default FranchiseSideBar;
+  export default SideBar;
