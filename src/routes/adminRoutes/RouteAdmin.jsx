@@ -20,7 +20,6 @@ import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Sub
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 import ServiceHistory from '../../pages/adminPages/serviceHistoryPage/ServiceHistory.jsx';
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx';
-import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 
 
 function RouteAdmin() {
