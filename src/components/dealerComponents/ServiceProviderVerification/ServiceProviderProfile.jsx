@@ -5,7 +5,7 @@ import { CiMail } from "react-icons/ci";
 import { FaRegUser } from "react-icons/fa";
 import { PiStarFill } from "react-icons/pi";
 import { BsThreeDots } from "react-icons/bs";
-import ButtonComponent from "./ButtonComponent";
+import ButtonComponent from "./DealerButton";
 
 const UserProfile = ({ name, franchise, address, phone, email, username }) => {
   const [editToggle, setEditToggle] = useState(false);

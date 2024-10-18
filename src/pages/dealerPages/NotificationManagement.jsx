@@ -1,9 +1,9 @@
 import React from "react";
-import NotificationListCard from "../../components/dealerComponents/NotificationComponents/NotificationListCard";
+import NotificationListCard from "../../components/dealerComponents/notificationComponents/NotificationListCard";
 
 const NotificationManagement = () => {
   return (
-    <div className="bg-green-50 h-screen">
+    <div className="">
       <NotificationListCard />
     </div>
   );

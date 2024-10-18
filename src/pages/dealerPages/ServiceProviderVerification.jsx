@@ -1,6 +1,6 @@
-import ServiceProviderProfile from "../../components/dealerComponents/ServiceProviderVerification/ServiceProviderProfile";
-import AnalyticsComponent from "../../components/dealerComponents/ServiceProviderVerification/AnalyticsComponent";
-import ButtonComponent from "../../components/dealerComponents/ServiceProviderVerification/ButtonComponent";
+import ServiceProviderProfile from "../../components/dealerComponents/serviceProviderVerification/ServiceProviderProfile";
+import AnalyticsComponent from "../../components/dealerComponents/serviceProviderVerification/AnalyticsComponent";
+import DealerButton from "../../components/dealerComponents/serviceProviderVerification/DealerButton";
 
 const ServiceProviderVerification = () => {
   return (
@@ -77,8 +77,8 @@ const ServiceProviderVerification = () => {
       />
       <div className="max-w-screen-lg w-full flex flex-col gap-3">
 
-      <ButtonComponent children="VERIFY"  className="bg-dark_green text-white " />
-      <ButtonComponent children="DECLINE"  className="bg-lite_red  text-white" />
+      <DealerButton children="VERIFY"  className="bg-dark_green text-white " />
+      <DealerButton children="DECLINE"  className="bg-lite_red  text-white" />
       </div>
     </div>
   );
