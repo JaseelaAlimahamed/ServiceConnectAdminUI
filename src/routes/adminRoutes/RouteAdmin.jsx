@@ -25,6 +25,7 @@ import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/Sub
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
+import IncomeManagement from '../../pages/adminPages/IncomeManagement.jsx'
 
 
 function RouteAdmin() {
@@ -50,6 +51,7 @@ function RouteAdmin() {
         <Route path='/service-type' element={<ServiceType />} />
 
         <Route path='/ads-management' element={<AdsManagement />} />
+        <Route path='/income-management' element={<IncomeManagement/>} />
 
         <Route path='/user-details' element={<UserDetails />} />
 
