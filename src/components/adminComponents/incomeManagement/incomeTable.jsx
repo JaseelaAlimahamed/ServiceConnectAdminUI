@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BiEdit } from 'react-icons/bi';
 
-const Table = ({ tableDataConfig, tableColConfig, incomeTypeOptions, splitTypeOptions }) => {
+const IncomeTable = ({ tableDataConfig, tableColConfig, incomeTypeOptions, splitTypeOptions }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(8);
 
@@ -24,7 +24,6 @@ const Table = ({ tableDataConfig, tableColConfig, incomeTypeOptions, splitTypeOp
 
   return (
     <div className="flex flex-col font-poppins text-secondary">
-      {/* Table */}
       <div className="relative bg-primary mt-8 rounded-xl overflow-x-auto pb-20 h-full">
         <table className="w-full text-center border-collapse">
           <thead>
@@ -82,8 +81,6 @@ const Table = ({ tableDataConfig, tableColConfig, incomeTypeOptions, splitTypeOp
             ))}
           </tbody>
         </table>
-
-        {/* Pagination */}
         <div className="absolute w-full bottom-0 flex justify-between px-6 py-4 flex-wrap space-y-4 md:space-y-0">
           <span>
             Showing <span className="text-secondary">{indexOfFirstUser + 1}-{Math.min(indexOfLastUser, totalData)}</span> from{" "}
@@ -122,4 +119,4 @@ const Table = ({ tableDataConfig, tableColConfig, incomeTypeOptions, splitTypeOp
   );
 };
 
-export default Table;
+export default IncomeTable;

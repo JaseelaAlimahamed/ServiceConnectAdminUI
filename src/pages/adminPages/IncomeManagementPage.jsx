@@ -1,7 +1,6 @@
 import React from 'react';
-import Table from '../../components/adminComponents/incomeManagement/incomeTable';
-
-const IncomeManagement = () => {
+import IncomeTable from '../../components/adminComponents/IncomeManagement/IncomeTable';
+const IncomeManagementPage = () => {
   
   const incomeTypeOptions = [
     "Franchisee Registration",
@@ -104,7 +103,7 @@ const IncomeManagement = () => {
 
   return (
     <div className="w-full font-poppins px-6 pb-10 lg:px-10">
-      <Table
+      <IncomeTable
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         incomeTypeOptions={incomeTypeOptions}
@@ -114,4 +113,4 @@ const IncomeManagement = () => {
   );
 };
 
-export default IncomeManagement;
+export default IncomeManagementPage;
