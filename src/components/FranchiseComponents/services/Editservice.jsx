@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { FaUser, FaCalendarDay, FaCaretDown, FaPaperclip } from "react-icons/fa"; // Import the necessary icons from react-icons
-import Formreuse from "../reusableComponent/Formreuse";
-import Imageupload from "../reusableComponent/Imageupload";
+import Formreuse from "./reusableComponent/Formreuse";
+import Imageupload from "./reusableComponent/Imageupload";
 import { LuImage } from "react-icons/lu";
-import Buttonreuse from "../reusableComponent/Buttonreuse";
+import Buttonreuse from "./reusableComponent/Buttonreuse";
 
 // Define the initial values for the form
 const initialValues = {
