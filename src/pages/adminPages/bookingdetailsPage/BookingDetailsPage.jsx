@@ -1,9 +1,9 @@
 import React from 'react';
-import UserInfo from '../../components/adminComponents/bookingDetailsComponent/UserInfo'
-import AppointmentCard from '../../components/adminComponents/bookingDetailsComponent/AppointmentCard';
-import ReviewCard from '../../components/adminComponents/bookingDetailsComponent/ReviewCard';
-import ComplaintCard from '../../components/adminComponents/bookingDetailsComponent/ComplaintCard';
-import StatusDropdowns from '../../components/adminComponents/bookingDetailsComponent/Statusdropdowns';
+import UserInfo from '../../../components/adminComponents/bookingDetailsComponent/UserInfo'
+import AppointmentCard from '../../../components/adminComponents/bookingDetailsComponent/AppointmentCard';
+import ReviewCard from '../../../components/adminComponents/bookingDetailsComponent/ReviewCard';
+import ComplaintCard from '../../../components/adminComponents/bookingDetailsComponent/ComplaintCard';
+import StatusDropdowns from '../../../components/adminComponents/bookingDetailsComponent/Statusdropdowns';
 
 const bookingData = {
     user: {
@@ -52,7 +52,7 @@ const bookingData = {
 
 const BookingDetailsPage = () => {
   return (
-    <div className="ml-6 mr-8 container bg-white border rounded-lg  p-6  w-[1000px] h-[1300px]">
+    <div className="ml-6 mr-8 container  bg-white border rounded-lg  p-6  w-[1000px] h-vh">
       <div className="ml-3 grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div>
           <UserInfo user={bookingData.user} />

@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import DeleteModal from './DeleteModal';
 import ViewModal from './ViewModal';
 import DropButtons from './DropButtons';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -30,6 +31,8 @@ const CategoryList = () => {
     const [viewCategory, setViewCategory] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 
+    const navigate = useNavigate();
+
     // handle view
     const handleView = (category) => {
         setViewCategory(category);
@@ -50,18 +53,24 @@ const CategoryList = () => {
         alert(`Deleteing ${categoryId}`)
     };
 
+    // handle add category
+
+    const handleAddCategory = () =>{
+        navigate('/admin/Add-Category');
+    }
+
     // Filter categories based on search query
     const filteredCategories = mockCategories.filter(category =>
         category.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
-        <div className='bg-white p-6 shadow-lg rounded-lg '>
-            <div className="flex flex-col md:flex-row justify-between items-center mb-5">
-                <h1 className="text-3xl text-dark_blue font-bold mb-4 md:mb-0">Categories</h1>
+        <div className='bg-primary p-8 shadow-lg rounded-lg '>
+            <div className="flex flex-col gap-5 justify-between  items-center xl:flex-row  mb-5">
+                <h1 className="text-3xl text-dark_blue font-bold ">Categories</h1>
                 
                 {/* SearchBar with search query state */}
-                <div className="flex flex-grow md:max-w-md">
+                <div >
                     <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                 </div>
 
@@ -70,10 +79,10 @@ const CategoryList = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
                 {filteredCategories.map((category) => (
-                    <div key={category.id} className="shadow-lg bg-blue_bg rounded-lg p-4 relative w-full">
-                        <div className="bg-gray-200 rounded-t-lg w-full h-40">
+                    <div key={category.id} className="shadow-lg bg-blue_bg rounded-lg p-5 relative w-full">
+                        <div className="bg-light_gray rounded-t-lg w-full h-40">
                             <img
                                 src={category.image}
                                 alt={category.name}
@@ -81,7 +90,7 @@ const CategoryList = () => {
                             />
                         </div>
                         <div className="mt-4">
-                            <h3 className="text-lg font-semibold">{category.name}</h3>
+                            <h3 className="font-semibold">{category.name}</h3>
                             <div className="flex justify-center gap-5 text-xl mt-2">
                                 <button onClick={() => handleView(category)}><MdOutlineRemoveRedEye /></button>
                                 <button onClick={() => handleEdit(category)}><FaRegEdit /></button>
@@ -98,7 +107,7 @@ const CategoryList = () => {
 
                 {/* Add Category Button */}
                 <div className="bg-blue_bg shadow-lg rounded-lg flex justify-center items-center p-4 w-full">
-                    <button className="text-8xl font-bold text-gray-400"><BsPlusLg /></button>
+                    <button onClick={handleAddCategory} className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></button>
                 </div>
             </div>
 

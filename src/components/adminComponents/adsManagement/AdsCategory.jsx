@@ -27,7 +27,7 @@ function AdsCategory() {
 
   return (
     <>
-      <div className="flex justify-between gap-4 max-xl:flex-wrap p-4 w-full pt-5">
+      <div className="flex justify-between gap-8 max-xl:flex-wrap p-4 w-full pt-5">
         <div className="bg-white w-[24rem] h-[51rem] flex flex-col gap-5 max-sm:w-full max-sm:h-fit rounded-[20px]">
           <div className="flex gap-[3rem] items-center">
             <h1 className="font-poppins text-4xl font-bold text-dark_blue px-2 py-4">
@@ -63,19 +63,15 @@ function AdsCategory() {
               </option>
               <option value="option1">Option1</option>
             </select>
-            <select
-              name="addnew"
-              id="addnew"
+            <button
+              type="submit"
               className="rounded-[2.5rem] font-normal px-10 max-sm:px-5 py-2 text-primary
           border-2 border-violet text-lg p-2 bg-violet"
             >
-              <option disabled="disabled" selected="selected">
                 Add New
-              </option>
-              <option value="option1">Option1</option>
-            </select>
+            </button>
           </div>
-          <div className="grid grid-cols-2 gap-5 p-6 justify-items-center max-md:grid-cols-1">
+          <div className="grid grid-cols-2 gap-5 p-6 max-md:grid-cols-1">
             {filteredCards.map((card, index) => (
               <Card
                 key={index}

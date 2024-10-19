@@ -13,6 +13,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)} // Update the search query
                 className="flex-grow outline-none px-4 py-2 rounded-full placeholder-violet"
+                style={{ width: '100%' }}
             />
         </div>
     );

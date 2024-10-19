@@ -20,7 +20,7 @@ const ImagePicker = ({ selectedImage, setSelectedImage }) => {
   };
 
   return (
-    <div className="relative w-[340px] h-[220px] rounded-lg overflow-hidden shadow-md">
+    <div className="relative w-full md:w-[340px] h-[220px] rounded-lg overflow-hidden shadow-md">
       {/* Display uploaded image or placeholder */}
       {selectedImage ? (
         <img
