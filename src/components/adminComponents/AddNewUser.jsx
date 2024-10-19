@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputField from "../ReUsableComponents/InputField";
+import InputField from "../ReUsableComponents/InputFieldComponent";
 import DropDown from '../ReUsableComponents/DropDown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
