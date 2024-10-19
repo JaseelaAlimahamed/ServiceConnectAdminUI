@@ -19,6 +19,7 @@ import UserDetails from '../../pages/adminPages/UserDetails'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+import AddNewUser from '../../components/adminComponents/AddNewUser.jsx'
 
 
 
@@ -53,7 +54,7 @@ function RouteAdmin() {
       <Route path='newads' element={<NewAdsPage/>}/>
       {/* <Route path='/signIn'element={<SignInForm/>}/> */}
 
-
+      <Route path='addnewuser' element={<AddNewUser/>}/>
 
       </Route>
     </Routes>

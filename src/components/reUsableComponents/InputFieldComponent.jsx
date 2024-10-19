@@ -20,7 +20,7 @@ const InputFieldComponent = ({
   const [preview, setPreview] = useState(null); // State to hold image preview URL
 
   const handleInputChange = (e) => {
-    if (type === "file") {
+    if (type == "file") {
       const selectedFile = e.target.files[0];
       setFile(selectedFile);
       onChange(selectedFile); // Pass only the file object to parent component
@@ -43,7 +43,7 @@ const InputFieldComponent = ({
   return (
     <div className="relative">
       {/* File Input */}
-      {type === "file" ? (
+      {type == "file" ? (
         <>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -70,7 +70,7 @@ const InputFieldComponent = ({
             required
           />
         </>
-      ) : type === "date" ? (
+      ) : type == "date" ? (
         <DatePicker
           selected={value} // Use value passed from props
           onChange={onChange} // Update parent state on date change

@@ -7,7 +7,7 @@ import ImageUploader from '../reUsableComponents/ImageUploader';
 
 const AddNewUser = () => {
   const [formData, setFormData] =useState({
-    file: null,  // Initial file state set to null
+     // Initial file state set to null
     fullName: '',
     address: '',
     dob: '',
@@ -18,9 +18,11 @@ const AddNewUser = () => {
     landmark: '',
     pincode: '',
     district: '',
-    state: ''
+    state: '',
+    file:null,
   });
-
+  
+  
 
   // Handle date selection and formatting
   const handleDateChange = (date) => {
@@ -30,15 +32,41 @@ const AddNewUser = () => {
 
   // Handle generic input change including file input
   const handleChange = (e) => {
+    
     const { name, value, type, files } = e.target;
     if (type === 'file') {
       setFormData({ ...formData, file: files[0] }); // Handle file input
     } else {
       setFormData({ ...formData, [name]: value });
     }
+
+
+
+   
+
+    // Check if the field is for phone numbers, allow only digits
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, ''); // Remove any non-digit characters
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: numericValue,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   };
 
-  
+   // Handle file selection from ImageUploader component
+   const handleFileSelect = (file) => {
+    console.log('Selected file:', file);  // Debug to check if the file is being passed
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      file: file,  // Set the file to formData
+    }));
+  };
 
   // Form submission
   const onFormSubmit = (e) => {
@@ -49,6 +77,7 @@ const AddNewUser = () => {
     };
     console.log(submissionData); // Log the formData with the file name
   };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
@@ -62,7 +91,7 @@ const AddNewUser = () => {
           <div>
           
       {/* Hide terms and conditions for this specific page */}
-         <ImageUploader title="Upload Profile Picture"  showTerms={false} />
+         <ImageUploader title="Upload Profile Picture"  showTerms={false} onFileSelect={handleFileSelect} />
   
 
           </div>
@@ -90,8 +119,9 @@ const AddNewUser = () => {
               type="text"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="Enter your phone number"
+              placeholder="Enter phone number with country code"
               color="bg-primary"
+              name="phone"
             />
 
             <DropDown
