@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import logo from "/LOGO.png";
 import InputFieldComponent from '../../components/reUsableComponents/InputFieldComponent';
 import SubmitButton from '../../components/reUsableComponents/SubmitButton';
-//import InputFieldComponent from '../../ReUsableComponents/InputFieldComponent';
-//import SubmitButton from '../../ReUsableComponents/SubmitButton';
 
 
 

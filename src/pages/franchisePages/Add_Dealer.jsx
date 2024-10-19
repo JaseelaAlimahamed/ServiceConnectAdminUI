@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-datepicker/dist/react-datepicker.css';
-import PhotoUpload from '../../components/FranchiseComponents/reUsableComponents/profileFileResuable';
-import Button from '../../components/FranchiseComponents/reUsableComponents/buttonReusable';
+import PhotoUpload from '../../components/FranchiseComponents/dealers/ProfilePhotoResuable';
+import Button from '../../components/FranchiseComponents/dealers/ButtonReusable';
 
 
 

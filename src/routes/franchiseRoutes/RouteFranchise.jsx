@@ -12,6 +12,7 @@ function RouteFranchise() {
         <Route element={<FranchiseLayout/>}>
         <Route path='dealers' element ={<DealersPage/>} />
         <Route path='dealers-management' element ={<DealersManagementPage/>} />
+        <Route path='signin' element ={<SignInPage/>} />
         <Route path='addnewdealer' element ={<AddNewDealer/>}/>
         
         </Route>
