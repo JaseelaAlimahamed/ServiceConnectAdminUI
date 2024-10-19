@@ -51,7 +51,7 @@ const NotificationForm = () => {
   return (
     <div className="bg-white p-4 sm:p-6 md:p-10 rounded-xl">
       <form
-        className="w-full sm:w-[340px] md:w-[400px] "
+        className="w-full sm:max-w-sm md:max-w-md mx-4 pe-5"
         onSubmit={handleSubmit}
       >
         {/* Image Picker */}
@@ -60,9 +60,10 @@ const NotificationForm = () => {
           setSelectedImage={setSelectedImage}
         />
 
-        <div className="flex flex-col md:flex-row gap-4 justify-around mt-4">
+        {/* Flex layout for larger screens */}
+        <div className="flex flex-col md:flex-row gap-4 mt-4">
           {/* Left Column */}
-          <div className="flex-col w-full">
+          <div className="w-full">
             <div className="mt-4">
               <input
                 name="formTitle"
@@ -138,9 +139,7 @@ const NotificationForm = () => {
           <div className="w-full">
             {/* Target Audience Section */}
             <div className="mb-4">
-              <label className="block mb-2 font-semibold">
-                Target Audience
-              </label>
+              <label className="block mb-2 font-semibold">Target Audience</label>
               <select
                 name="targetArea"
                 className="w-full p-2 border rounded-lg"
@@ -154,85 +153,52 @@ const NotificationForm = () => {
                 <option value="custom radius">custom radius</option>
               </select>
             </div>
-            <div className="mb-4 ">
-              <label className="block mb-2 font-semibold">
-                Target Specific
-              </label>
+
+            {/* Target Specific */}
+            <div className="mb-4">
+              <label className="block mb-2 font-semibold">Target Specific</label>
               <div className="space-y-4">
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    onChange={handleChange}
-                    className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white checked:after:text-sm checked:after:flex checked:after:justify-center checked:after:items-center"
-                  />
-                  <span>User</span>
-                </label>
-
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    onChange={handleChange}
-                    className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white checked:after:text-sm checked:after:flex checked:after:justify-center checked:after:items-center"
-                  />
-                  <span>Service Provider</span>
-                </label>
-
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    onChange={handleChange}
-                    className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white checked:after:text-sm checked:after:flex checked:after:justify-center checked:after:items-center"
-                  />
-                  <span>Franchisee</span>
-                </label>
+                {["User", "Service Provider", "Franchisee"].map((label) => (
+                  <label key={label} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      onChange={handleChange}
+                      className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white"
+                    />
+                    <span>{label}</span>
+                  </label>
+                ))}
               </div>
             </div>
 
-            <div className="mb-4 ">
-              <label className="block mb-2 font-semibold">
-                Send Via
-              </label>
+            {/* Send Via */}
+            <div className="mb-4">
+              <label className="block mb-2 font-semibold">Send Via</label>
               <div className="space-y-4">
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    onChange={handleChange}
-                    className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white checked:after:text-sm checked:after:flex checked:after:justify-center checked:after:items-center"
-                  />
-                  <span>In App</span>
-                </label>
-
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    onChange={handleChange}
-                    className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white checked:after:text-sm checked:after:flex checked:after:justify-center checked:after:items-center"
-                  />
-                  <span>SMS </span>
-                </label>
-
-                <label className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    onChange={handleChange}
-                    className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white checked:after:text-sm checked:after:flex checked:after:justify-center checked:after:items-center"
-                  />
-                  <span>Email</span>
-                </label>
+                {["In App", "SMS", "Email"].map((method) => (
+                  <label key={method} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      onChange={handleChange}
+                      className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white"
+                    />
+                    <span>{method}</span>
+                  </label>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      </form>
 
-      {/* Button Group */}
-      <div className="flex justify-end mt-4">
-        <ButtonGroup
-          status={status}
-          setStatus={setStatus}
-          handleSubmit={handleSubmit}
-        />
-      </div>
+        {/* Button Group */}
+        <div className=" mt-4 lg:ml-96 md:ml-10 sm:ml-80 ">
+          <ButtonGroup
+            status={status}
+            setStatus={setStatus}
+            handleSubmit={handleSubmit}
+          />
+        </div>
+      </form>
     </div>
   );
 };
