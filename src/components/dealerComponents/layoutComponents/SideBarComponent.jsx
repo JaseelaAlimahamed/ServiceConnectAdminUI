@@ -8,21 +8,21 @@ export const menuItems = [
         </svg>
   
   
-    },
+    }
+    ,
+    // {
+    //   name: "Categories",
+    //   to: "categories",
+    //   icon:
+    //     <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //       <rect x="5" y="5" width="12" height="12" fill="#C1BBEB" />
+    //       <rect x="23" y="5" width="12" height="12" fill="#C1BBEB" />
+    //       <rect x="5" y="23" width="12" height="12" fill="#C1BBEB" />
+    //       <rect x="23" y="23" width="12" height="12" fill="#C1BBEB" />
+    //     </svg>
+    // }
+    // ,
     {
-      name: "Categories",
-      to: "categories",
-      icon:
-        <svg width="35" height="35" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="5" y="5" width="12" height="12" fill="#C1BBEB" />
-          <rect x="23" y="5" width="12" height="12" fill="#C1BBEB" />
-          <rect x="5" y="23" width="12" height="12" fill="#C1BBEB" />
-          <rect x="23" y="23" width="12" height="12" fill="#C1BBEB" />
-        </svg>
-  
-  
-  
-    }, {
       name: "Subcategories",
       to: "subcategories",
       icon:
