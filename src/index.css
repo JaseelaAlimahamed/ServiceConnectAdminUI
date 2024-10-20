@@ -16,3 +16,15 @@ body {
     @apply font-poppins font-semibold text-lg text-dark_blue 
   }
 }
+.sidebar::-webkit-scrollbar-thumb{
+  background-color: #fff;
+  border-radius: 20px;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb{
+  width: 5px !important;
+  border-radius: 20px;
+  background-color: #4d44b5;
+}

@@ -65,6 +65,7 @@ function RouteAdmin() {
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
 
+
       </Route>
     </Routes>
 

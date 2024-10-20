@@ -21,7 +21,7 @@ module.exports = {
         bodySmall: 'var(--BodySmallFont)',
         jost: ['Jost', 'sans-serif'],
       },
-
+     
       colors: {
         primary: "#FFFFFF",
         secondary: "#000000",
