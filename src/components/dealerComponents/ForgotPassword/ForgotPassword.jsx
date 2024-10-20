@@ -6,15 +6,28 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [isOtpShow,setIsOtpShow] =useState(false)
-    const handleSubmitEmail = (e) => {
+    const [isOtpShow,setIsOtpShow] =useState(true)
+    const [isPasswordShow, setIsPasswordShow] = useState(true);
+    const [otp, setOtp] = useState('');
+    const [rePassword, setRePassword] = useState('');
+    const handleOtpChange = async (e) => {
+        setOtp({otp});
+        await setIsPasswordShow(false)
+      };
+    const handleNewPassword = async (e) => {
+        if (password === rePassword){
+          console.log({password,rePassword});
+        }
+      }
+    const handleSubmitEmail = async (e) => {
       e.preventDefault();
       console.log({ email });
-        
+      await  setIsOtpShow(false)
     };
   
     return (
       <div className='bg-primary h-screen text-black flex flex-col justify-center items-center px-4'>
+        {isOtpShow ? 
         <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleSubmitEmail}>
           <h2 className='text-xl font-semibold ml-3'>Enter the your email</h2> 
           <InputField
@@ -24,9 +37,22 @@ const ForgotPassword = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <SubmitButton text="Sign In" />
+        </form> : <div> 
+            { isPasswordShow ?  
+         <div>
+         <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleOtpChange}>
+          <h2 className='text-xl font-semibold ml-3'>Enter the your otp</h2> 
+          <InputField
+            type="text"
+            placeholder="enter the otp"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+          />
+          <SubmitButton text="Sign In" />
         </form>
-        <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleSubmit}>
-        <h2 className='text-xl font-semibold ml-3'>Login to your account</h2>
+        </div> :
+        <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleNewPassword}>
+          <h2 className='text-xl font-semibold ml-3'>Enter the your new password</h2>
         <InputField
           type="password"
           placeholder="Password"
@@ -35,17 +61,24 @@ const ForgotPassword = () => {
           isPassword={true}
           showPassword={showPassword}
           toggleShowPassword={() => setShowPassword(!showPassword)}
-        />
+          />
+        <h2 className='text-xl font-semibold ml-3'>re-password</h2>
+        <InputField
+          type="password"
+          placeholder="Password"
+          value={rePassword}
+          onChange={(e) => setRePassword(e.target.value)}
+          isPassword={true}
+  
+          
+          />
 
-        <div className='flex justify-between p-2'>
-          <p>
-            <input type="checkbox" /> Remember Me
-          </p>
-          <a href="">Forgot Password...!</a>
-        </div>
+        <SubmitButton text="Submit" />
+      </form> 
+        } 
 
-        <SubmitButton text="Sign In" />
-      </form>
+       </div>
+      }
       </div>
     );
   };
