@@ -14,8 +14,9 @@ function App() {
       
         <Routes>
           <Route path="/admin/*" element={<RouteAdmin/>} />
-          <Route path="/franchise/*" element={<RouteFranchise/>} />
-    
+
+          <Route path='/franchise/*' element={<RouteFranchise/>}/>
+
         </Routes>
         
       
