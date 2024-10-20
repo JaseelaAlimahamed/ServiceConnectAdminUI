@@ -14,13 +14,13 @@ export default function RouteDealer() {
     return (
         <Routes >
             <Route path='/' element={<ForgotPassword />} />
-            {/* <Route element={<DealerLayout />} >
+            <Route element={<DealerLayout />} >
                 <Route path='/' element={<Dashboard />} />
                 <Route path='/ServiesProviderManagment' element={<ServieProviderManagment />} />
                 <Route path='/ServiesProviderVerication' element={<ServieProvider />} />
                 <Route path='/ServiesProviderVaricationForm' element={<ServieProviderVarication />} />
                 <Route path='/PaymentRequestForm' element={<PaymentRequestForm />} />
-            </Route> */}
+            </Route>
         </Routes>
     )
 }
