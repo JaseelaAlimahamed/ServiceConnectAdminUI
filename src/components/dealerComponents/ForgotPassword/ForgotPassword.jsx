@@ -48,7 +48,7 @@ const ForgotPassword = () => {
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
           />
-          <SubmitButton text="Sign In" />
+          <SubmitButton text="Submit" />
         </form>
         </div> :
         <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleNewPassword}>

@@ -16,18 +16,18 @@ export default function RouteDealer() {
     return (
         <Routes >
             {/* <Route path='/Sign-In' element={<SignIn/>} />
-            <Route path='/forgot-Password' element={<ForgotPassword/>} /> */}
-            {/* <Route element={<DealerLayout />} > */}
-                <Route path='/' element={<DealerLayout  />} />
+            <Route path='/forgot-Password' element={<ForgotPassword/>} />
+            <Route element={<DealerLayout />} > */}
+                <Route path='/' element={<DealerLayout />} />
                 {/* <Route path='/profile' element={<DealerProfile />} />
                 <Route path='/Servies-Provider-Managment' element={<ServieProviderManagment />} />
-                <Route path='/Servies-Provider=Verication' element={<ServieProvider />} />
+                <Route path='/Servies-Provider-Verication' element={<ServieProvider />} />
                 <Route path='/Servies-Provider-Varication-Form' element={<ServieProviderVarication />} />
                 <Route path='/Payment-RequestForm' element={<PaymentRequestForm />} />
-                <Route path='/DealerFranchise' elament={<DealerSideFranchiseDetails />} />
+                <Route path='/Dealer-Franchise' elament={<DealerSideFranchiseDetails />} />
                 <Route path='/finance' elament={<TransactionHistory />} />
-                 */}
-            {/* </Route> */}
+                
+            </Route> */}    
         </Routes>
     )
 }
