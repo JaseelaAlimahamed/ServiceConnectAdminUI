@@ -3,7 +3,7 @@ import ServiceProviderDropdwn from './ServiceProviderDropdwn';
 import SeviceModal from './SeviceModal';
 import { useNavigate } from 'react-router-dom';
 
-function ServiceProvidersTable({ tableDataConfig, tableColConfig, tableConfig }) {
+function ServiceProvidersTable({ tableDataConfig, tableColConfig, tableConfig, onView }) {
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -75,8 +75,11 @@ function ServiceProvidersTable({ tableDataConfig, tableColConfig, tableConfig })
     }
   }
 
-  const handleView = (id) => {
+  const handleView = () => {
     navigate(`providers`);
+    // if (onView) {
+    //   onView();
+    // }
     console.log("view true");
   };
   
@@ -340,9 +343,9 @@ function ServiceProvidersTable({ tableDataConfig, tableColConfig, tableConfig })
         confirmText="Delete"
       />
       <SeviceModal
-        isOpen={isSuccessOpen} // Show success modal based on this state
+        isOpen={isSuccessOpen} 
         onClose={handleCloseModal}
-        children="Successfully Deleted" // Success message
+        children="Successfully Deleted" 
       />
     
     </div>

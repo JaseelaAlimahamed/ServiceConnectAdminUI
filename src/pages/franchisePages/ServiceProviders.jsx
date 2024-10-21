@@ -1,7 +1,10 @@
 import React from 'react';
 import ServiceProvidersTable from '../../components/franchiseComponents/serviceProviders/ServiceProvidersTable';
+import { useNavigate } from 'react-router-dom';
+
 
 const ServiceProviders = () => {
+  const navigate = useNavigate();
 
   // Data for table rows
   const tableColConfig = ['Name', 'Id', 'Registered Services', 'Active Jobs', 'Location', 'Contact', 'Status', 'Action'];
@@ -114,6 +117,7 @@ const ServiceProviders = () => {
           tableDataConfig={tableDataConfig}
           tableColConfig={tableColConfig}
           tableConfig={tableConfig}
+          // onView={()=>navigate('providers')}
         />
       </div>
     </div>

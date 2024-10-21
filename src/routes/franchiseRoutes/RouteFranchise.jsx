@@ -8,8 +8,8 @@ function RouteFranchise() {
   return (
     <Routes>
         <Route path='dealers' element ={<DealersPage/>} ></Route>
-        <Route path='service-providers/*' element={<ServiceProviders/>}></Route>
-        <Route path='providers' element={<ProvidersView/>}></Route>
+        <Route path='service-providers' element={<ServiceProviders/>}></Route>
+        <Route path='/service-providers/providers' element={<ProvidersView/>}></Route>
 
 
     </Routes>
