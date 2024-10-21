@@ -1,8 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import DealersPage from '../../pages/franchisePages/DealersPage'
-import ServiceProviders from '../../components/franchiseComponents/serviceProviders/ServiceProviders'
-import ProvidersView from '../../components/franchiseComponents/serviceProviders/ProvidersView'
+import ServiceProviders from '../../pages/franchisePages/ServiceProviders'
+import ProvidersView from '../../pages/franchisePages/ProvidersView'
 
 function RouteFranchise() {
   return (

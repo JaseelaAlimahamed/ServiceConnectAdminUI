@@ -1,5 +1,5 @@
 import React from 'react';
-import ServiceProvidersTable from './ServiceProvidersTable';
+import ServiceProvidersTable from '../../components/franchiseComponents/serviceProviders/ServiceProvidersTable';
 
 const ServiceProviders = () => {
 
