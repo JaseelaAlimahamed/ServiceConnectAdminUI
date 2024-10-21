@@ -3,6 +3,8 @@ import RouteAdmin from './routes/adminRoutes/RouteAdmin';
 import RouteFranchise from './routes/franchiseRoutes/RouteFranchise';
 
 
+// import'./App.css';
+
 function App() {
 
 
@@ -11,6 +13,7 @@ function App() {
       
         <Routes>
           <Route path="/admin/*" element={<RouteAdmin/>} />
+
 
           <Route path='/franchise/*' element={<RouteFranchise/>}/>
 
