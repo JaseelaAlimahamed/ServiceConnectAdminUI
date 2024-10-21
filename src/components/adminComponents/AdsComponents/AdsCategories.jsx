@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
-const AdsCategories = ({setCategory}) => {
+const AdsCategories = () => {
   const categories = ['Banner Ad', 'Card Ad', 'Popup Ad', 'Boost Profile'];
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category); 
-    setCategory(category)
     console.log('User selected category:', category);
   };
 
   return (
-    <div className="w-full max-w-md md:w-64 h-full p-4 sm:p-6 md:p-7 bg-white shadow-md rounded-xl">
+    <div className="w-full max-w-md md:w-64 h-full p-4 sm:p-6 md:p-7 bg-primary shadow-md rounded-xl">
        <h3 className='text-3xl text-dark_blue font-bold mb-5'>Ads-Category</h3>
       <ul>
         {categories.map((category, index) => (

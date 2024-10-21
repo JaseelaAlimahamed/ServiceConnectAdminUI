@@ -32,7 +32,7 @@ const EditProfileForm = ({ user, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6 max-w-full mx-auto">
+    <form onSubmit={handleSubmit} className="bg-white sm:w-[460px] md:w-[510px] rounded-lg shadow-md p-6 max-w-full mx-auto">
   <h1 className="font-nunito text-2xl sm:text-3xl leading-8 text-left">Edit Profile</h1>
   
   {/* Grid container */}

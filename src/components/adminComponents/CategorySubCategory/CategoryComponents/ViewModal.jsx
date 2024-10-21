@@ -4,7 +4,7 @@ const ViewModal = ({ isOpen, onClose, category }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-secondary bg-opacity-50 z-50">
             <div className="bg-blue_bg rounded-lg shadow-lg p-6 w-96">
                 <h2 className="text-xl font-bold mb-4">{category.name}</h2>
                 <img
@@ -15,7 +15,7 @@ const ViewModal = ({ isOpen, onClose, category }) => {
                 <p className='text-violet font-bold'>Category ID: {category.id}</p>
                 <p className='text-lg font-semibold  mt-2'>{category.description}</p>
                 <div className="mt-4 flex justify-end">
-                    <button onClick={onClose} className="px-4 py-2 bg-sky_blue text-white rounded">Close</button>
+                    <button onClick={onClose} className="px-4 py-2 bg-sky_blue text-primary rounded">Close</button>
                 </div>
             </div>
         </div>
