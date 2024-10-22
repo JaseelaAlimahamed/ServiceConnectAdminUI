@@ -27,6 +27,11 @@ import FranchiseDetailsTable from '../../pages/adminPages/franchiseManagementPag
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 
 
+
+
+
+
+
 function RouteAdmin() {
 
 
@@ -62,10 +67,10 @@ function RouteAdmin() {
         <Route path='/Franchise' element={<FranchiseDetailsTable />} />
 
         <Route path='/categories' element={<CategoryPage />} />
-        <Route path='/sub-categories' element={<SubCategoryPage />} />
+
+        <Route path='/subcategories' element={<SubCategoryPage />} />
+ 
         <Route path='/new-ads' element={<NewAdsPage />} />
-
-
       </Route>
     </Routes>
 
