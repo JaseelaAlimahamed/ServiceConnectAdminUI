@@ -1,21 +1,30 @@
 import React from 'react'
-
+import { useState } from 'react';
 function FranchiseeDetails() {
 
-      let  franchiseData={
-           name: "frachise name",
-           id: "franchise_id",
-           details :" this is franchise details",
-           about : " this section is about franchise",
-           contact:
-           {
-            address: "address location",
-            phoneNumber :+9112345678 ,
-            email : "franchise@email.com",
-            whatsApp : +918765432
-           }
-
-       }
+    const [franchiseData, setfranchiseData] = useState(
+        {
+            name: "frachise name",
+            id: "franchise_id",
+            details :" this is franchise details",
+            about : " this section is about franchise",
+            contact:
+            {
+             address: "address location",
+             phoneNumber :+9112345678 ,
+             email : "franchise@email.com",
+             whatsApp : +918765432
+            }
+ 
+        }
+    );
+    // useEffect(() => {
+       
+    //     fetch("")
+    //       .then((response) => response.json())
+    //       .then((data) => setfranchiseData(data));
+    //   }, []);
+    
 
   return (
     <div className='flex  md:mt-10 justify-center p-4 '>
