@@ -14,6 +14,8 @@ function DealersPage() {
 
   const tableHeadings = ["Name" , 'ID' , "Service Providers" , "Locations" , "Contact" , "Status" , "Action"] ;
 
+  const dropdownValues = ["Newest" , "Oldest"];
+
   const tableData = [{
     checkBox : <input type='checkbox'></input>,
     name : "Samanta William",
@@ -81,7 +83,7 @@ function DealersPage() {
         <div className=' flex flex-col justify-between p-4 px-5 font-poppins gap-4  md:flex-row md:gap-0 '>
             <DealerSearchBar/>
             <div className='flex items-center gap-4 flex-col md:flex-row'> 
-              <DealerDropdown/>
+              <DealerDropdown values={dropdownValues}/>
               <AddDealerButton/>
             </div>
         </div>
