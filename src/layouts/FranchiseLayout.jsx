@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import Sidebar from '../components/FranchiseComponents/layoutComponents/Sidebar'
-import NavBar from '../components/FranchiseComponents/layoutComponents/Navbar'
+import Sidebar from '../components/franchiseComponents/layoutComponents/Sidebar'
+import NavBar from '../components/franchiseComponents/layoutComponents/Navbar'
 
 const FranchiseLayout = () => {
 
