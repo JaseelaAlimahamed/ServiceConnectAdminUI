@@ -24,7 +24,7 @@ function FranchiseeDetails() {
             <div className="flex flex-col md:flex-row items-center justify-between mb-6 space-y-4 md:space-y-0">
                     <div className="flex flex-col md:flex-row items-start">
 
-                    <div className="w-64 h-48  rounded-lg bg-gray  border-2 ">
+                    <div className="w-64 h-48  rounded-lg bg-gray  shadow-md  ">
                                 <img src="" alt="photo" />
                     </div>
           
