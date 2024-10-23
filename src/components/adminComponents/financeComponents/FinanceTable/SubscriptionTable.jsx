@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LiaUserTieSolid } from "react-icons/lia";
 
 function SubscriptionTable() {
   // Sample data for subscription laps and expenses
@@ -31,35 +32,44 @@ function SubscriptionTable() {
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="flex flex-row gap-6 w-full max-w-6xl bg-white rounded-lg shadow-lg p-6">
-      {/* Left side - Subscription table */}
-      <div className="w-full">
-        <h2 className="text-lg font-bold mb-4">
-          Subscription laps Service/Franchisee
-        </h2>
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-          <ul>
+    <div className="flex flex-col p-4 gap-4 w-full bg-primary rounded-2xl">
+      <h2 className="text-lg font-bold">
+        Subscription laps Service/Franchisee
+      </h2>
+      
+        <table className="min-w-full border-collapse">
+          <tbody>
             {currentSubscriptions.map((person, index) => (
-              <li
-                key={index}
-                className="py-4 flex items-center justify-between"
-              >
-                <div className="flex flex-row">
-                  <span className="h-10 w-10 rounded-full bg-slate-700 mr-4"></span>
-                  <p className="text-sm font-medium">{person.name}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">ID {person.id}</p>
-                </div>
-                <div className="text-sm text-gray-500">{person.role}</div>
-                <button className="text-sm text-blue-500">...</button>
-              </li>
+              <tr key={index}>
+                <td className=" flex items-center gap-4">
+                  <div className="flex items-center justify-center size-12 bg-id_gray rounded-full">
+                    <LiaUserTieSolid className="size-8 text-primary" />
+                  </div>
+                  <h4 className="text-sm font-medium">{person.name}</h4>
+                  
+                </td>
+                <td className="py-4 px-4 text-sm text-gray-500">
+                  ID {person.id}
+                </td>
+                <td className="py-4 px-4 text-sm text-gray-500">
+                  {person.role}
+                </td>
+                <td className="py-4 px-4">
+                  <button className="text-xl text-blue-500">...</button>
+                </td>
+              </tr>
             ))}
-          </ul>
+          </tbody>
+        </table>
+
+      <div className="flex flex-row justify-between items-center">
+        <div>
+          showing <span className="font-bold">{currentPage}</span> out of{" "}
+          <span className="font-bold">{totalPages}</span>
         </div>
         {/* Dynamic Pagination: Only show if there's more than 1 page */}
         {totalPages > 1 && (
-          <div className="flex justify-center mt-4">
+          <div className="flex flex-row justify-around">
             {[...Array(totalPages)].map((_, pageIndex) => (
               <button
                 key={pageIndex + 1}

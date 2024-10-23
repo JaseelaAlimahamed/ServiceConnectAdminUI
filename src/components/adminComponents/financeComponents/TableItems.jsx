@@ -3,7 +3,7 @@ import SubscriptionTable from "./FinanceTable/SubscriptionTable";
 
 const TableItems = () => {
   return (
-    <div className="flex flex-row gap-6">
+    <div className="flex flex-row gap-3">
       <SubscriptionTable />
       <ExpenseTable />
     </div>

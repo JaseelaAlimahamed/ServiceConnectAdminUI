@@ -5,14 +5,14 @@ const CardItems = () => {
     const value = [0, 2, 1, 3, 2, 4];
 
   return (
-    <div className='flex flex-row gap-6'>
+    <div className='flex flex-row gap-2'>
         <Card 
             variant="ads"
             heading="Revenue"
             title="932"
             subtitle=" than last month"
             percent="+10%" 
-            iconBg="bg-dark_blue"
+            iconBg="bg-lite_blue"
         /> 
         <Card 
             variant="ads"
@@ -20,7 +20,7 @@ const CardItems = () => {
             title="754"
             subtitle=" than last month"
             percent="-0.5%" 
-            iconBg="bg-dark_blue"
+            iconBg="bg-lite_red" 
         />
         <CardWithChart
             variant="adsChart"

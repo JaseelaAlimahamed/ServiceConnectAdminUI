@@ -32,8 +32,7 @@ function ExpenseTable() {
       date: "2 March 2021",
       type: "Salary",
       amount: "$50,036",
-    },
-    // Add more data if necessary
+    }
   ];
 
   // State for current page
@@ -52,49 +51,46 @@ function ExpenseTable() {
   const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className="flex flex-row gap-6 w-full max-w-6xl bg-white rounded-lg shadow-lg p-6">
-      {/* Right side - Expense table */}
-      <div className="w-full">
-        <h2 className="text-lg font-bold mb-4">Expense</h2>
-        <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-          <ul >
-            {currentExpenses.map((expense, index) => (
-              <li
-                key={index}
-                className="py-4 flex items-center justify-between"
-              >
-                
-                <div className="flex flex-row gap-3">
-                <div className="bg-red p-3 rounded-full">
-                        <IoMdTrendingUp className="text-white" />
-                    </div>
-                <div>
-                    
-                  <p className="text-sm font-medium">{expense.id}</p>
-                  <p className="text-sm text-gray-500">{expense.date}</p>
-                </div>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">{expense.type}</p>
-                </div>
-                <div className="text-sm font-medium">
-                  {expense.amount}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="flex flex-col p-4 gap-6 w-full max-w-md bg-primary rounded-2xl">
+      <h2 className="text-lg font-bold">Expense</h2>
 
-        {/* Pagination: Only show if there's more than 1 page */}
+      <table className=" min-w-full border-collapse">
+        <tbody className="">
+          {currentExpenses.map((expense, index) => (
+            <tr key={index}>
+              <td className="flex items-center gap-4">
+                <div className="flex items-center justify-center size-12 bg-red rounded-full">
+                  <IoMdTrendingUp className="size-8 text-primary" />
+                </div>
+                <div className="flex flex-col items-center">
+                  <p className="text-base font-bold">{expense.id}</p>
+                  <p className="text-sm text-id_gray ">{expense.date}</p>
+                </div>
+              </td>
+              <td className="p-4 text-xs font-bold text-gray-500">
+                {expense.type}
+              </td> 
+              <td className="p-4 text-base font-bold">{expense.amount}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <div className="flex flex-row justify-between items-center">
+        <div>
+          showing <span className="font-bold">{currentPage}</span> out of{" "}
+          <span className="font-bold">{totalPages}</span>
+        </div>
+        {/* Dynamic Pagination: Only show if there's more than 1 page */}
         {totalPages > 1 && (
-          <div className="flex justify-center mt-4">
+          <div className="flex flex-row justify-around">
             {[...Array(totalPages)].map((_, pageIndex) => (
               <button
                 key={pageIndex + 1}
                 onClick={() => handlePageChange(pageIndex + 1)}
                 className={`mx-1 px-3 py-1 rounded-full ${
                   currentPage === pageIndex + 1
-                    ? "bg-blue-500 text-white"
+                    ? "bg-blue-600 text-white"
                     : "bg-gray-200 text-gray-700"
                 }`}
               >
