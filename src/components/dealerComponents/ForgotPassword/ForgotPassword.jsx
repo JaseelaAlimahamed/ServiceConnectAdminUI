@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import logo from "/LOGO.png";
 import InputField from '../../reUsableComponents/InputFieldComponent';
 import SubmitButton from '../../reUsableComponents/SubmitButton';
 
@@ -27,6 +28,10 @@ const ForgotPassword = () => {
   
     return (
       <div className='bg-primary h-screen text-black flex flex-col justify-center items-center px-4'>
+       <div className='mt-5 text-center flex'>
+        <img src={logo} alt="logo" className='w-20 h-24 mx-auto me-3' />
+        <h1 className='text-2xl font-bold mt-2 me-3'>Service Connect</h1>
+      </div>
         {isOtpShow ? 
         <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleSubmitEmail}>
           <h2 className='text-xl font-semibold ml-3'>Enter the your email</h2> 
