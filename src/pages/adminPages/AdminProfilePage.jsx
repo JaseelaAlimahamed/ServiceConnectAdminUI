@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ProfileSidebar from '../../components/adminProfileComponents/ProfileSideBar';
-import EditProfileForm from '../../components/adminProfileComponents/EditProfileForm';
-import ProgressBar from '../../components/adminProfileComponents/ProgressBar';
+import ProfileSidebar from '../../components/adminComponents/adminProfileComponents/ProfileSideBar';
+import EditProfileForm from '../../components/adminComponents/adminProfileComponents/EditProfileForm';
+import ProgressBar from '../../components/adminComponents/adminProfileComponents/ProgressBar';
 
 const ProfilePage = () => {
   const [user, setUser] = useState({

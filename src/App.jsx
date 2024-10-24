@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import RouteAdmin from './routes/adminRoutes/RouteAdmin';
-
+import RouteFranchise from './routes/franchiseRoutes/RouteFranchise';
 
 
 
@@ -12,16 +12,17 @@ function App() {
 
   return (
    
-      
-    <Routes>
-    <Route path="/admin/*" element={<RouteAdmin/>} />
-  
 
-  </Routes>
+        <Routes>
+          <Route path="/admin/*" element={<RouteAdmin/>} />
+
+
+          <Route path='/franchise/*' element={<RouteFranchise/>}/>
+
+        </Routes>
+
         
-    
-        
-      
+
    
   );
 }

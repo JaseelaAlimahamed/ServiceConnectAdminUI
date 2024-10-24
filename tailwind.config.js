@@ -25,7 +25,8 @@ module.exports = {
       colors: {
         primary: "#FFFFFF",
         secondary: "#000000",
-
+        gray:"#E5E7EB",
+        id_gray:"#797C7B",
         violet:"#4D44B5",
         purple:"#65558F",
         fluracent_green:"#64FC3E",
@@ -48,7 +49,9 @@ module.exports = {
         dark_yellow:"#FCC43E",
         custom_gray:'#4B4B4B',
         button_blue:'#5BAFC0',
-        text_blue:'#238899'
+        text_blue:'#238899',
+        lite_orange:'#FF5400'
+        
         
       },
       fontSize: {
@@ -62,6 +65,8 @@ module.exports = {
       letterSpacing: {
         bodySmall: 'var(--BodySmallTracking)', // Custom letter spacing
       },
+      
+      
 
     },
   },
