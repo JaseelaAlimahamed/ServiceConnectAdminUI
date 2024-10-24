@@ -26,6 +26,9 @@ import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 import Finance from '../../pages/adminPages/Finance.jsx'
+import IncomeManagementPage from '../../pages/adminPages/IncomeManagementPage.jsx'
+
+
 
 
 function RouteAdmin() {
@@ -37,6 +40,7 @@ function RouteAdmin() {
 
 
       <Route path='/sign-in' element={<SignInForm />} />
+      
 
       <Route element={<AdminLayout />}>
 
@@ -62,10 +66,14 @@ function RouteAdmin() {
         <Route path='/Franchise' element={<FranchiseeList />} />
 
         <Route path='/categories' element={<CategoryPage />} />
-        <Route path='/sub-categories' element={<SubCategoryPage />} />
+
+        <Route path='/subcategories' element={<SubCategoryPage />} />
+ 
         <Route path='/new-ads' element={<NewAdsPage />} />
 
         <Route path='/finance' element={<Finance />} /> 
+
+        <Route path='/income-management' element={<IncomeManagementPage/>}/>
       </Route>
     </Routes>
 
