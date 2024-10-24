@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AiOutlineRise, AiOutlineLeft, AiOutlineRight } from "react-icons/ai"; // Import from react-icons
+import { AiOutlineRise, AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
 const PaymentHistory = () => {
   const payments = [
@@ -8,56 +8,56 @@ const PaymentHistory = () => {
       date: "2 March 2021, 13:45 PM",
       amount: "$50,036",
       status: "Complete",
-      statusColor: "text-green-500", // Tailwind class for green
+      statusColor: "text-green-500",
     },
     {
       id: "#987654321",
       date: "3 March 2021, 14:00 PM",
       amount: "$24,500",
       status: "Pending",
-      statusColor: "#A098AE", // Custom gray color
+      statusColor: "#A098AE",
     },
     {
       id: "#456789123",
       date: "4 March 2021, 12:30 PM",
       amount: "$7,890",
       status: "Canceled",
-      statusColor: "#FF4550", // Custom red color
+      statusColor: "#FF4550",
     },
     {
       id: "#123456789",
       date: "2 March 2021, 13:45 PM",
       amount: "$50,036",
       status: "Complete",
-      statusColor: "text-green-500", // Tailwind class for green
+      statusColor: "text-green-500",
     },
     {
       id: "#123456789",
       date: "2 March 2021, 13:45 PM",
       amount: "$50,036",
       status: "Complete",
-      statusColor: "text-green-500", // Tailwind class for green
+      statusColor: "text-green-500",
     },
     {
       id: "#987654321",
       date: "3 March 2021, 14:00 PM",
       amount: "$24,500",
       status: "Pending",
-      statusColor: "#A098AE", // Custom gray color
+      statusColor: "#A098AE",
     },
     {
       id: "#456789123",
       date: "4 March 2021, 12:30 PM",
       amount: "$7,890",
       status: "Canceled",
-      statusColor: "#FF4550", // Custom red color
+      statusColor: "#FF4550",
     },
     {
       id: "#987654321",
       date: "3 March 2021, 14:00 PM",
       amount: "$24,500",
       status: "Pending",
-      statusColor: "#A098AE", // Custom gray color
+      statusColor: "#A098AE",
     },
     {
       id: "#456789123",
@@ -68,22 +68,29 @@ const PaymentHistory = () => {
     },
   ];
 
+  // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
-  const paymentsPerPage = 4;
+  const paymentsPerPage = 4; // Number of items per page
   const totalPages = Math.ceil(payments.length / paymentsPerPage);
 
+  // Slice payments for the current page
   const startIndex = (currentPage - 1) * paymentsPerPage;
   const currentPayments = payments.slice(
     startIndex,
     startIndex + paymentsPerPage
   );
 
+  // Handlers for page navigation
   const goToNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const goToPreviousPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
   };
 
   return (
@@ -103,15 +110,13 @@ const PaymentHistory = () => {
           >
             <div className="flex items-center space-x-4">
               <div className="w-10 h-10 bg-[#FF4550] rounded-full flex items-center justify-center">
-                <AiOutlineRise className="text-white" size={24} />{" "}
-                {/* Using react-icons */}
+                <AiOutlineRise className="text-white" size={24} />
               </div>
               <span className="font-bold text-[#303972]">{payment.id}</span>
             </div>
             <div className="text-gray-500">{payment.date}</div>
             <div className="font-bold text-[#303972]">{payment.amount}</div>
 
-            {/* Conditionally apply status color */}
             <div
               className={`font-bold ${
                 payment.statusColor.startsWith("text-")
@@ -128,42 +133,47 @@ const PaymentHistory = () => {
             </div>
           </div>
         ))}
-      </div>
 
-      {/* Pagination */}
-      <div className="flex justify-between items-center mt-6">
-        <p className="text-sm text-gray-500">
-          Showing {startIndex + 1}-{startIndex + currentPayments.length} of{" "}
-          {payments.length} payments
-        </p>
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={goToPreviousPage}
-            className="p-2 bg-gray-200 rounded-full"
-            disabled={currentPage === 1}
-          >
-            <AiOutlineLeft size={20} /> {/* Using react-icons */}
-          </button>
-          {[...Array(totalPages).keys()].map((pageNumber) => (
+        {/* Pagination */}
+        <div className="flex justify-between items-center mt-6">
+          <p className="text-sm text-gray-500">
+            Showing {startIndex + 1}-{startIndex + currentPayments.length} of{" "}
+            {payments.length} payments
+          </p>
+          <div className="flex items-center space-x-2">
+            {/* Previous Page Button */}
             <button
-              key={pageNumber + 1}
-              onClick={() => setCurrentPage(pageNumber + 1)}
-              className={`w-8 h-8 ${
-                currentPage === pageNumber + 1
-                  ? "bg-indigo-600 text-white"
-                  : "bg-gray-200"
-              } rounded-full flex items-center justify-center`}
+              onClick={goToPreviousPage}
+              className="p-2 bg-[#A098AE] rounded-full"
+              disabled={currentPage === 1}
             >
-              {pageNumber + 1}
+              <AiOutlineLeft size={20} />
             </button>
-          ))}
-          <button
-            onClick={goToNextPage}
-            className="p-2 bg-gray-200 rounded-full"
-            disabled={currentPage === totalPages}
-          >
-            <AiOutlineRight size={20} />
-          </button>
+
+            {/* Page Numbers */}
+            {[...Array(totalPages).keys()].map((pageNumber) => (
+              <button
+                key={pageNumber + 1}
+                onClick={() => setCurrentPage(pageNumber + 1)}
+                className={`w-8 h-8 ${
+                  currentPage === pageNumber + 1
+                    ? "bg-indigo-600 text-white"
+                    : "bg-gray-300"
+                } rounded-full flex items-center justify-center`}
+              >
+                {pageNumber + 1}
+              </button>
+            ))}
+
+            {/* Next Page Button */}
+            <button
+              onClick={goToNextPage}
+              className="p-2 bg-[#A098AE] rounded-full"
+              disabled={currentPage === totalPages}
+            >
+              <AiOutlineRight size={20} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

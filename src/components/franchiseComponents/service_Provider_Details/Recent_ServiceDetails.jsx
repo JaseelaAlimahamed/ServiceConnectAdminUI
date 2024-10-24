@@ -11,7 +11,7 @@ const RecentServiceDetails = () => {
   };
 
   return (
-    <div className="bg-[#F3F4FF] min-h-screen flex justify-center items-start p-4">
+    <div className="bg-white min-h-screen flex justify-center items-start p-4">
       <div className="w-full max-w-md space-y-4">
         {/* Header */}
         <div className="bg-white p-6 rounded-lg shadow-md">
@@ -33,13 +33,13 @@ const RecentServiceDetails = () => {
             title="Drain Blockage"
             date="March 20, 2021"
             time="09:00 - 10:00 AM"
-            color="bg-orange-500"
+            color="bg-[#FB7D5B]"
           />
           <RecentServiceCard
             title="Light Change"
             date="March 20, 2021"
             time="09:00 - 10:00 AM"
-            color="bg-yellow-500"
+            color="bg-[#FCC43E]"
           />
           <RecentServiceCard
             title="Fan Repair"
@@ -50,7 +50,7 @@ const RecentServiceDetails = () => {
         </div>
 
         {/* View More Button */}
-        <div className="w-full bg-gray-200 py-3 px-4 rounded-full text-center">
+        <div className="w-full bg-[#dedcf7] py-3 px-4 rounded-full text-center">
           <button 
             className="text-[#4D44B5] text-sm font-bold" 
             onClick={handleViewMore} // Attach the click handler

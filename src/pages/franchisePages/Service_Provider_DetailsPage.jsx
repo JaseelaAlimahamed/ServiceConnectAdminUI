@@ -1,10 +1,10 @@
 import React from "react";
-import ServiceCard from "../franchiseComponets/service_Provider_Details/Registered_Service_Details";
-import AdCard from "./service_Provider_Details/Ads_Details";
-import PaymentHistory from "./service_Provider_Details/Payment_History";
-import ReviewCard from "./service_Provider_Details/Review";
-import RecentServiceDetails from "./Recent_ServiceDetails";
-import ProfileCard from "./service_Provider_Details/Service_Provider_Profile";
+import ServiceCard from "../../components/franchiseComponents/service_Provider_Details/Registered_Service_Details";
+import AdCard from "../../components/franchiseComponents/service_Provider_Details/Ads_Details";
+import PaymentHistory from "../../components/franchiseComponents/service_Provider_Details/Payment_History";
+import ReviewCard from "../../components/franchiseComponents/service_Provider_Details/Review";
+import RecentServiceDetails from "../../components/franchiseComponents/service_Provider_Details/Recent_ServiceDetails";
+import ProfileCard from "../../components/franchiseComponents/service_Provider_Details/Service_Provider_Profile";
 
 const ServiceProviderPage = () => {
   return (
@@ -54,10 +54,10 @@ const ServiceProviderPage = () => {
 
       {/* Right Sidebar */}
       <div className="lg:w-1/4 mt-8 lg:mt-0">
-        <div className="bg-white p-6 rounded-lg shadow-lg space-y-6">
-          <h3 className="text-xl font-semibold">Recent Service Details</h3>
-          <RecentServiceDetails />
-        </div>
+        {/* <div className="bg-white p-6 rounded-lg shadow-lg space-y-6"> */}
+        {/* <h3 className="text-xl font-semibold">Recent Service Details</h3> */}
+        <RecentServiceDetails />
+        {/* </div> */}
       </div>
     </div>
   );

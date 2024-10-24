@@ -17,7 +17,7 @@ const Review = ({ name, date, rating, content, imageUrl }) => (
               <AiFillStar
                 key={i}
                 size={20}
-                className={i < rating ? "text-yellow-400" : "text-gray-300"}
+                className={i < rating ? "text-[#FFBA49]" : "text-[#d3d6f7]"}
               />
             ))}
           </div>
