@@ -8,7 +8,13 @@ import FranchiseNotification from '../../pages/franchisePages/FranchiseNotificat
 import DealerDetails from '../../pages/franchisePages/DealerDetails'
 import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile'
 import Accounts from '../../components/franchiseComponents/editFranchiseType/Accounts'
+
+import ServiceProviderPage from '../../pages/franchisePages/Service_Provider_DetailsPage'
+import RecentServiceDetails from '../../pages/franchisePages/Recent_Service_DetailsPage'
+
+
 import DashboardPage from '../../pages/franchisePages/DashboardPage'
+
 
 function RouteFranchise() {
   return (
@@ -22,6 +28,9 @@ function RouteFranchise() {
         <Route path='Editaddfranchiseetype' element ={<EditAddFranchiseeType/>}/>
         <Route path='accounts' element={<Accounts/>}/>
         <Route path='notifications'   element={<FranchiseNotification/>}/>
+        <Route path='service-provider-details'   element={<ServiceProviderPage/>}/>
+        <Route path='recent-service-details'   element={<RecentServiceDetails/>}/>
+
 
 
 
