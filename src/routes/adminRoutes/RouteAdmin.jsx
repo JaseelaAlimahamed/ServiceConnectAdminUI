@@ -5,13 +5,13 @@ import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout.jsx'
-import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
+import UserManagementPage from '../../pages/adminPages/managementPages/UserManagementPage.jsx'
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 
 import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
-import AddCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/AddCategory.jsx'
-import EditCategory from '../../components/adminComponents/CategorySubCategory/AddEditCategory/EditCategory.jsx'
-import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile.jsx'
+import AddCategoryPage from '../../pages/adminPages/categorySubCategoryPages/AddCategoryPage.jsx'
+import EditCategoryPage from '../../pages/adminPages/categorySubCategoryPages/EditCategoryPage.jsx'
+import FranchiseProfileDetails from '../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable.jsx'
 
 import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
 
@@ -23,10 +23,17 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+
+import FranchiseDetailsTable from '../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable.jsx'
+
+
+
+import AddNewUser from '../../components/adminComponents/AddNewUser.jsx'
+
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
-
-
+import Finance from '../../pages/adminPages/Finance.jsx'
+import IncomeManagementPage from '../../pages/adminPages/IncomeManagementPage.jsx'
 
 
 
@@ -47,7 +54,7 @@ function RouteAdmin() {
 
         <Route path='/profile' element={<AdminProfilePage />} />
         <Route path='/booking-details' element={<BookingDetailsPage />} />
-        <Route path='/user-management' element={<UserManagement />} />
+        <Route path='/user-management' element={<UserManagementPage />} />
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         {/* <Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} /> */}
@@ -58,19 +65,31 @@ function RouteAdmin() {
 
         <Route path='/user-details' element={<UserDetails />} />
 
-        <Route path='/Add-Category' element={<AddCategory />} />
-        <Route path='/Edit-Category' element={<EditCategory />} />
-        <Route path='/Franchise-Details' element={<FranchiseeProfile />} />
+        <Route path='/Add-Category' element={<AddCategoryPage />} />
+        <Route path='/Edit-Category' element={<EditCategoryPage />} /> 
+        <Route path='/Franchise-Details' element={<FranchiseProfileDetails />} />
 
-        <Route path='/edit-subcategory' element={<EditSubCategory />} />
-        <Route path='/add-subcategory' element={<AddSubCategory />} />
-        <Route path='/Franchise' element={<FranchiseeList />} />
+
+        <Route path='/Franchise' element={<FranchiseDetailsTable />} />
+
+
+         <Route path='/userdetails' element={<UserDetails/>}/>
+          {/* <Route path='/signIn'element={<SignInForm/>}/>  */}
+         <Route path='AddCategory' element={<AddCategory/>}/>
+         <Route path='EditCategory' element={<EditCategory/>}/>
+         <Route path='FranchiseeDetails' element={<FranchiseeProfile/>}/>
 
         <Route path='/categories' element={<CategoryPage />} />
 
-        <Route path='/subcategories' element={<SubCategoryPage />} />
+      <Route path='addnewuser' element={<AddNewUser/>}/>
+
+        <Route path='/sub-categories' element={<SubCategoryPage />} />
  
         <Route path='/new-ads' element={<NewAdsPage />} />
+
+        <Route path='/finance' element={<Finance />} /> 
+
+        <Route path='/income-management' element={<IncomeManagementPage/>}/>
       </Route>
     </Routes>
 
