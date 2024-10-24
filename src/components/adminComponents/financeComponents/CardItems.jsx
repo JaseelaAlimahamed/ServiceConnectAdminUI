@@ -1,5 +1,5 @@
 import Card from '../../reUsableComponents/Card'
-import CardWithChart from "../../../components/adminComponents/financeComponents/CardWithChart/Card"
+import CardWithChart from "./cardWithChart/Card"
   
 const CardItems = () => {
     const value = [0, 2, 1, 3, 2, 4];

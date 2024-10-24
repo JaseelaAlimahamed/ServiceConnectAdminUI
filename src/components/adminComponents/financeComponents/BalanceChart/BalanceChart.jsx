@@ -87,7 +87,7 @@ const BalanceChart = () => {
 function CustomTooltip({ active, payload, label }) {
   if (active) {
     return (
-      <div className="rounded bg-violet text-white p-4 text-center shadow-lg">
+      <div className="rounded bg-violet text-primary p-4 text-center shadow-lg">
         <p>${payload[0].value.toFixed(2)}</p>
         <p>${payload[1].value.toFixed(2)}</p>
         <h4>{label}</h4>

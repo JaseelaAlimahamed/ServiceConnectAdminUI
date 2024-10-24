@@ -1,9 +1,9 @@
-import ExpenseTable from "./FinanceTable/ExpenseTable";
-import SubscriptionTable from "./FinanceTable/SubscriptionTable";
+import ExpenseTable from "./financeTable/ExpenseTable";
+import SubscriptionTable from "./financeTable/SubscriptionTable";
 
 const TableItems = () => {
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex flex-row gap-3 text-dark_blue">
       <SubscriptionTable />
       <ExpenseTable />
     </div>

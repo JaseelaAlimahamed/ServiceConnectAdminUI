@@ -1,5 +1,5 @@
 import CardItems from '../../../src/components/adminComponents/financeComponents/CardItems'
-import BalanceAnalytics from "../../components/adminComponents/financeComponents/BalanceAnalytics";
+import BalanceAnalytics from "../../../src/components/adminComponents/financeComponents/BalanceAnalytics";
 import TableItems from '../../components/adminComponents/financeComponents/TableItems';
 
   

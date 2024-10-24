@@ -48,14 +48,14 @@ function SubscriptionTable() {
                   <h4 className="text-sm font-medium">{person.name}</h4>
                   
                 </td>
-                <td className="py-4 px-4 text-sm text-gray-500">
+                <td className="py-4 px-4 text-sm ">
                   ID {person.id}
                 </td>
-                <td className="py-4 px-4 text-sm text-gray-500">
+                <td className="py-4 px-4 text-sm ">
                   {person.role}
                 </td>
                 <td className="py-4 px-4">
-                  <button className="text-xl text-blue-500">...</button>
+                  <button className="text-xl ">...</button>
                 </td>
               </tr>
             ))}
@@ -64,7 +64,7 @@ function SubscriptionTable() {
 
       <div className="flex flex-row justify-between items-center">
         <div>
-          showing <span className="font-bold">{currentPage}</span> out of{" "}
+          <span className="text-id_gray">showing</span> <span className="font-bold">{currentPage}</span> <span className="text-id_gray">out of{" "}</span>
           <span className="font-bold">{totalPages}</span>
         </div>
         {/* Dynamic Pagination: Only show if there's more than 1 page */}
@@ -74,10 +74,10 @@ function SubscriptionTable() {
               <button
                 key={pageIndex + 1}
                 onClick={() => handlePageChange(pageIndex + 1)}
-                className={`mx-1 px-3 py-1 rounded-full ${
+                className={`mx-1 px-3 py-1 rounded-full border ${
                   currentPage === pageIndex + 1
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 text-gray-700"
+                    ? "bg-dark_blue text-primary border-transparent"
+                    : " text-id_gray border-id_gray" 
                 }`}
               >
                 {pageIndex + 1}

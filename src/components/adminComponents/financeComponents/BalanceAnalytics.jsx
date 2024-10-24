@@ -1,7 +1,7 @@
 
 
 import { useState } from "react";
-import BalanceChart from "./BalanceChart/BalanceChart";
+import BalanceChart from "./balanceChart/BalanceChart";
 
 const BalanceAnalytics = () => {
   const [timeFilter, setTimeFilter] = useState("Month");
@@ -12,7 +12,7 @@ const BalanceAnalytics = () => {
 
   return (
     <div className="font-poppins w-full">
-      <div className="flex flex-col p-4 bg-white rounded-2xl ">
+      <div className="flex flex-col p-4 bg-primary rounded-2xl">
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-xl font-semibold text-dark_blue">
             Balance Analytics
