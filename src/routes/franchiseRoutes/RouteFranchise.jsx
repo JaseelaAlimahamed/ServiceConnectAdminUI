@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import DealersPage from '../../pages/franchisePages/DealersPage'
 import DealersManagementPage from '../../pages/franchisePages/DealersManagementPage'
 import FranchiseLayout from '../../layouts/FranchiseLayout'
-import Addnewservices from '../../components/franchiseComponents/services/Addnewservices'
-import Editservice from '../../components/franchiseComponents/services/Editservice'
+import Addnewservices from '../../components/franchiseComponents/addoreditservices/Addnewservices'
+import Editservice from '../../components/franchiseComponents/addoreditservices/Editservice'
 
 function RouteFranchise() {
   return (
