@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from '../../components/dealerComponents/DealerTable'
+import Table from '../../pages/dealerPages/DealerTable'
 
 const Serviceprovidermanagement = () => {
 
