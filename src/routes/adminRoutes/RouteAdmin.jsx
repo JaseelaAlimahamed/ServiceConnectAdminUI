@@ -23,10 +23,14 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
+
+import AddNewUser from '../../components/adminComponents/AddNewUser.jsx'
+
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 import Finance from '../../pages/adminPages/Finance.jsx'
 import IncomeManagementPage from '../../pages/adminPages/IncomeManagementPage.jsx'
+
 
 
 
@@ -61,13 +65,21 @@ function RouteAdmin() {
         <Route path='/Edit-Category' element={<EditCategory />} />
         <Route path='/Franchise-Details' element={<FranchiseeProfile />} />
 
-        <Route path='/edit-subcategory' element={<EditSubCategory />} />
-        <Route path='/add-subcategory' element={<AddSubCategory />} />
+
+         <Route path='/userdetails' element={<UserDetails/>}/>
+          {/* <Route path='/signIn'element={<SignInForm/>}/>  */}
+         <Route path='AddCategory' element={<AddCategory/>}/>
+         <Route path='EditCategory' element={<EditCategory/>}/>
+         <Route path='FranchiseeDetails' element={<FranchiseeProfile/>}/>
+         
+   
         <Route path='/Franchise' element={<FranchiseeList />} />
 
         <Route path='/categories' element={<CategoryPage />} />
 
-        <Route path='/subcategories' element={<SubCategoryPage />} />
+      <Route path='addnewuser' element={<AddNewUser/>}/>
+
+        <Route path='/sub-categories' element={<SubCategoryPage />} />
  
         <Route path='/new-ads' element={<NewAdsPage />} />
 
