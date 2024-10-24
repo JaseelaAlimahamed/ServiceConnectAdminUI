@@ -1,15 +1,25 @@
 import React, { useState } from 'react';
 
-const ImageUploader = ({ showTerms = true, title = "Add image and video" }) => {
+const ImageUploader = ({ showTerms = true, title = "Add image and video", onFileSelect }) => {
     const [selectedImages, setSelectedImages] = useState([]);
     const handleImageUpload = (event) => {
         const files = Array.from(event.target.files);
         setSelectedImages((prevImages) => [...prevImages, ...files]);
+        if (onFileSelect) {
+            onFileSelect(files[0]); // Pass the first selected file
+        }
 
         files.forEach((file) => {
             console.log('Selected file:', file);
         });
+
+
+       
+
+       
     };
+
+    
 
     const handleRemoveImage = (index) => {
         setSelectedImages((prevImages) => prevImages.filter((_, i) => i !== index));
@@ -17,7 +27,7 @@ const ImageUploader = ({ showTerms = true, title = "Add image and video" }) => {
 
     return (
         <div className="p-4">
-            {/* Title */}
+          
            {/* Title */}
            <h3 className="text-lg font-bold mb-2">{title}</h3>
 
@@ -34,7 +44,7 @@ const ImageUploader = ({ showTerms = true, title = "Add image and video" }) => {
                             className="absolute top-0 right-0 bg-dark-gray text-white rounded-full p-1 text-xs"
                             onClick={() => handleRemoveImage(index)}
                         >
-                            x
+                            
                         </button>
                     </div>
                 ))}
