@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout.jsx'
-import UserManagement from '../../pages/adminPages/managementPages/UserManagement.jsx'
+import UserManagementPage from '../../pages/adminPages/managementPages/UserManagementPage.jsx'
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 
 import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
@@ -54,7 +54,7 @@ function RouteAdmin() {
 
         <Route path='/profile' element={<AdminProfilePage />} />
         <Route path='/booking-details' element={<BookingDetailsPage />} />
-        <Route path='/user-management' element={<UserManagement />} />
+        <Route path='/user-management' element={<UserManagementPage />} />
         <Route path='/edit-subcategory' element={<EditSubCategory />} />
         <Route path='/add-subcategory' element={<AddSubCategory />} />
         {/* <Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} /> */}
