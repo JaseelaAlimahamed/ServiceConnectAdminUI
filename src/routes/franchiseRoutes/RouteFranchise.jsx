@@ -8,8 +8,12 @@ import FranchiseNotification from '../../pages/franchisePages/FranchiseNotificat
 import DealerDetails from '../../pages/franchisePages/DealerDetails'
 import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile'
 import Accounts from '../../components/franchiseComponents/editFranchiseType/Accounts'
+
 import ServiceProviderPage from '../../pages/franchisePages/Service_Provider_DetailsPage'
 import RecentServiceDetails from '../../pages/franchisePages/Recent_Service_DetailsPage'
+
+
+import DashboardPage from '../../pages/franchisePages/DashboardPage'
 
 
 function RouteFranchise() {
@@ -17,6 +21,7 @@ function RouteFranchise() {
     <Routes>
         <Route element={<FranchiseLayout/>}>
         <Route path='dealers' element ={<DealersPage/>} />
+        <Route path='dashboard' element ={<DashboardPage/>} />
         <Route path='dealers-management' element ={<DealersManagementPage/>} />
         <Route path='dealers-details'   element={<DealerDetails/>}/>
         <Route path='FranchiseeDetails' element ={<FranchiseeProfile/>}/>

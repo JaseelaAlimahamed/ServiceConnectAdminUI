@@ -21,7 +21,12 @@ const FranchiseLayout = () => {
 
     <div className="flex-1 min-h-screen overflow-auto">
         {location.pathname !== '/franchise/login' && <NavBar toggleSidebar={toggleSidebar} />}
+        <div className='h-[calc(100vh-80px)] overflow-y-auto'>
+
         <Outlet />
+
+        </div>
+        
     </div>
 </div>
 
