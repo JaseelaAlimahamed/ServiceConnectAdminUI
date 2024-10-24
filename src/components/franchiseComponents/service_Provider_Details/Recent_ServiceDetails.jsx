@@ -7,7 +7,7 @@ const RecentServiceDetails = () => {
   const navigate = useNavigate(); 
 
   const handleViewMore = () => {
-    navigate('/recent-service-details');
+    navigate('/franchise/recent-service-details');
   };
 
   return (
