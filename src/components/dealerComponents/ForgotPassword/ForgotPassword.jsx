@@ -32,9 +32,10 @@ const ForgotPassword = () => {
         <img src={logo} alt="logo" className='w-20 h-24 mx-auto me-3' />
         <h1 className='text-2xl font-bold mt-2 me-3'>Service Connect</h1>
       </div>
+      <h1 className='text-2xl font-bold m-3 me-3'>Forgot Password</h1>
         {isOtpShow ? 
         <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleSubmitEmail}>
-          <h2 className='text-xl font-semibold ml-3'>Enter the your email</h2> 
+          <h2 className='text-lg font-semibold ml-3'>Enter the your email</h2> 
           <InputField
             type="email"
             placeholder="Email"
@@ -46,7 +47,7 @@ const ForgotPassword = () => {
             { isPasswordShow ?  
          <div>
          <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleOtpChange}>
-          <h2 className='text-xl font-semibold ml-3'>Enter the your otp</h2> 
+          <h2 className='text-lg font-semibold ml-3'>Enter the your otp</h2> 
           <InputField
             type="text"
             placeholder="enter the otp"
@@ -57,7 +58,7 @@ const ForgotPassword = () => {
         </form>
         </div> :
         <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleNewPassword}>
-          <h2 className='text-xl font-semibold ml-3'>Enter the your new password</h2>
+          <h2 className='text-lg font-semibold ml-3'>Enter the your new password</h2>
         <InputField
           type="password"
           placeholder="Password"
