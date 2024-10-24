@@ -15,11 +15,6 @@ import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage';
 import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx';
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx';
 
-
-
-
-
-
 function RouteAdmin() {
   return (
     <Routes>
@@ -38,16 +33,9 @@ function RouteAdmin() {
         <Route path='/franchise-details' element={<FranchiseeProfile />} />
         <Route path='/franchise' element={<FranchiseeList />} />
         <Route path='/categories' element={<CategoryPage />} />
-<<<<<<< HEAD
         <Route path='/sub-categories' element={<SubCategoryPage />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
         {/* Add any other routes as needed */}
-=======
-
-        <Route path='/subcategories' element={<SubCategoryPage />} />
- 
-        <Route path='/new-ads' element={<NewAdsPage />} />
->>>>>>> 70b2610a9a6b712b8c4d15972bf0601193467378
       </Route>
     </Routes>
   );
