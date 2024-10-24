@@ -19,6 +19,9 @@ const NavBar = ({ toggleSidebar }) => {
       if (location && location.pathname) { 
         const pathParts = location.pathname.split('/');
         const lastPart = pathParts[pathParts.length - 1]; 
+        if (lastPart === 'finance') {
+          return "Financial Management";
+        }
         const formattedHeading = lastPart
         .split(' ')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) 
