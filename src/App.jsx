@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom'
 import RouteAdmin from './routes/adminRoutes/RouteAdmin';
 import RouteDealer from './routes/dealerRoutes/RouteDealer';
 import RouteFranchise from './routes/franchiseRoutes/RouteFranchise';
