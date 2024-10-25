@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../../../components/reUsableComponents/Card";
-import UserProfile from "../../../components/adminComponents/UserProfile";
+import UserProfile from "../../../components/adminComponents/userManagementComponents/UserProfile";
 import PaymentHistoryTable from "../../../components/adminComponents/adminProfileComponents/PaymentHistoryTable";
 
 const userdetails = {

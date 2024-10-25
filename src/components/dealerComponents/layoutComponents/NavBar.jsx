@@ -14,24 +14,30 @@ const NavBar = ({ toggleSidebar }) => {
     setDropdownOpen(!dropdownOpen);
   };
 
- useEffect(() => {
-       const getHeading = () => {
+  useEffect(() => {
+    const getHeading = () => {
       if (location && location.pathname) { 
         const pathParts = location.pathname.split('/');
         const lastPart = pathParts[pathParts.length - 1]; 
+        
+        if (lastPart === 'finance') {
+          return "Financial Management";
+        }
+  
         const formattedHeading = lastPart
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) 
-        .join(' ');
-
-      return formattedHeading;
-      
+          .replace(/-/g, ' ') // Replace dashes with spaces
+          .split(' ')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+          .join(' ');
+  
+        return formattedHeading;
       }
-      return "ADMIN"; 
+      return "Dealer"; 
     };
-
+  
     setHeading(getHeading());
   }, [location.pathname]);
+  
 
   // Close dropdown if clicked outside
   useEffect(() => {

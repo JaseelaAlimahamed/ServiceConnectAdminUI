@@ -23,15 +23,15 @@ import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
 import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
 import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
 import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
-
+import ServiceProviderTable from '../../pages/adminPages/ServiceProviderManagement.jsx'
 
 import FranchiseDetailsTable from '../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable.jsx'
+import AccountPage from '../../pages/adminPages/AccountPage.jsx'
+import NotificationPage from '../../pages/adminPages/notificationPage/NotificationPage.jsx'
 
+import AddNewUser from '../../components/adminComponents/userManagementComponents/AddNewUser.jsx'
 
-
-import AddNewUser from '../../components/adminComponents/AddNewUser.jsx'
-
-import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
+// import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 import Finance from '../../pages/adminPages/Finance.jsx'
 import IncomeManagementPage from '../../pages/adminPages/IncomeManagementPage.jsx'
@@ -49,51 +49,38 @@ function RouteAdmin() {
 
 
       <Route path='/sign-in' element={<SignInForm />} />
-      
 
       <Route element={<AdminLayout />}>
 
-        <Route path='/profile' element={<AdminProfilePage />} />
-        <Route path='/booking-details' element={<BookingDetailsPage />} />
         <Route path='/user-management' element={<UserManagementPage />} />
-        <Route path='/edit-subcategory' element={<EditSubCategory />} />
-        <Route path='/add-subcategory' element={<AddSubCategory />} />
-        {/* <Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} /> */}
-        {/* <Route path='/accounts' element={<Accounts />} /> */}
-        <Route path='/service-type' element={<ServiceType />} />
+        <Route path='/user-details/:id' element={<UserDetails />} />
+        <Route path='/add-new-user' element={<AddNewUser />} />
 
-        <Route path='/ads-management' element={<AdsManagement />} />
-
-        <Route path='/user-details' element={<UserDetails />} />
-
-        <Route path='/Add-Category' element={<AddCategoryPage />} />
-        <Route path='/Edit-Category' element={<EditCategoryPage />} /> 
-        <Route path='/Franchise-Details' element={<FranchiseProfileDetails />} />
+        <Route path='/service-providers' element={<ServiceProviderTable />} />
 
 
         <Route path='/Franchise' element={<FranchiseDetailsTable />} />
+        <Route path='/Franchise-Details' element={<FranchiseProfileDetails />} />
+        {/* <Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} /> */}
 
-
-         <Route path='/userdetails' element={<UserDetails/>}/>
-          {/* <Route path='/signIn'element={<SignInForm/>}/>  */}
-         <Route path='AddCategory' element={<AddCategory/>}/>
-         <Route path='EditCategory' element={<EditCategory/>}/>
-         <Route path='FranchiseeDetails' element={<FranchiseeProfile/>}/>
+        <Route path='/booking-details' element={<BookingDetailsPage />} />
+        <Route path='/service-management' element={<ServiceType />} />
 
         <Route path='/categories' element={<CategoryPage />} />
-
-      <Route path='addnewuser' element={<AddNewUser/>}/>
+        <Route path='/Add-Category' element={<AddCategoryPage />} />
+        <Route path='/Edit-Category' element={<EditCategoryPage />} />
 
         <Route path='/sub-categories' element={<SubCategoryPage />} />
- 
+        <Route path='/edit-subcategory' element={<EditSubCategory />} />
+        <Route path='/add-subcategory' element={<AddSubCategory />} />
+
+        <Route path='/profile' element={<AdminProfilePage />} />
+        <Route path='/accounts' element={<AccountPage />} />
+        <Route path='/ads-management' element={<AdsManagement />} />
         <Route path='/new-ads' element={<NewAdsPage />} />
-
-        <Route path='/notifications' element={<NotificationPage/>} />
-
-
-        <Route path='/finance' element={<Finance />} /> 
-
-        <Route path='/income-management' element={<IncomeManagementPage/>}/>
+        <Route path='/notifications' element={<NotificationPage />} />
+        <Route path='/finance' element={<Finance />} />
+        <Route path='/income-management' element={<IncomeManagementPage />} />
 
       </Route>
     </Routes>

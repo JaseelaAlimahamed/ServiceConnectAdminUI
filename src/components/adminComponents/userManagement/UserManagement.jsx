@@ -1,6 +1,6 @@
 import React from 'react'
 import UserManagementCard from '../../adminComponents/userManagement/UserManagementCard';
-import Table from '../../../components/reUsableComponents/Table';
+import ReUsableTable from '../../reUsableComponents/ReUsableTable';
 
 
 const UserManagement = () => {
@@ -12,7 +12,7 @@ const UserManagement = () => {
        
     {
         name: "Samanta William",
-        id: "#129876543",
+        id: "129876543",
         date: "May 25, 2024",
         totalCompletedWork: "10",
         location: "Sydney",
@@ -23,7 +23,7 @@ const UserManagement = () => {
     
     {
         name: "Michael Smith",
-        id: "#122345343",
+        id: "122345343",
         date: "December 25, 2023",
         image:"/tableimage.png",
         totalCompletedWork: "10",
@@ -33,7 +33,7 @@ const UserManagement = () => {
     },
     {
         name: "Samanta Willam",
-        id: "#134567985",
+        id: "134567985",
         date: "March 25, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "5",
@@ -43,7 +43,7 @@ const UserManagement = () => {
     },
     {
         name: "John Doe",
-        id: "#125538065",
+        id: "125538065",
         date: "April 10, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "8",
@@ -53,7 +53,7 @@ const UserManagement = () => {
     },
     {
         name: "Emily Clarke",
-        id: "#127838765",
+        id: "127838765",
         date: "May 15, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "7",
@@ -63,7 +63,7 @@ const UserManagement = () => {
     },
     {
         name: "Michael Smith",
-        id: "#129846543",
+        id: "129846543",
         date: "June 20, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "10",
@@ -92,7 +92,7 @@ const cardConfig = [
         ))}
       </div>
 
-      <Table
+      <ReUsableTable
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}

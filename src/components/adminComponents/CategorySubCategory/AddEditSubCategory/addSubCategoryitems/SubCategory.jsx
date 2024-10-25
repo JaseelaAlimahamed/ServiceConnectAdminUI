@@ -16,7 +16,7 @@ const SubCategory = () => {
     ];
 
     const filteredCategories = mockCategories.filter(category =>
-        category.name.toLowerCase().includes(searchQuery.toLowerCase())
+        category && category.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const handleSortChange = (newSort) => setSelectedSort(newSort);

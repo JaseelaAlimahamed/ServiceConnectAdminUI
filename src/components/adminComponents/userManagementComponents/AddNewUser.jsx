@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import InputFieldComponent from "../reUsableComponents/InputFieldComponent";
-import DropDown from '../reUsableComponents/DropDown';
+import InputFieldComponent from "../../reUsableComponents/InputFieldComponent";
+import DropDown from '../../reUsableComponents/DropDown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import ImageUploader from '../reUsableComponents/ImageUploader';
+import ImageUploader from '../../reUsableComponents/ImageUploader';
 
 const AddNewUser = () => {
   const [formData, setFormData] =useState({

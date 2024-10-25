@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
+
 function FranchiseeDetails() {
 
-    const [franchiseData, setfranchiseData] = useState(
+    const franchiseData =
         {
             name: "frachise name",
             id: "franchise_id",
@@ -17,13 +18,8 @@ function FranchiseeDetails() {
             }
  
         }
-    );
-    // useEffect(() => {
-       
-    //     fetch("")
-    //       .then((response) => response.json())
-    //       .then((data) => setfranchiseData(data));
-    //   }, []);
+    
+   
     
 
   return (

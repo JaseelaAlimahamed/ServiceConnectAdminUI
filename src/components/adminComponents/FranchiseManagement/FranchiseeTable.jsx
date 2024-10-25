@@ -93,9 +93,9 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
   // Filter franchises based on search term and status
   const filteredFranchises = sortFranchises(
     franchises.filter((franchise) => {
-      const matchesSearch = franchise.name
+      const matchesSearch = franchise.name && franchise.name
         .toLowerCase()
-        .includes(searchTerm.toLowerCase());
+        .includes(searchTerm &&searchTerm.toLowerCase());
       const matchesStatus = statusFilter === "" || franchise.status === statusFilter;
       return matchesSearch && matchesStatus;
     })

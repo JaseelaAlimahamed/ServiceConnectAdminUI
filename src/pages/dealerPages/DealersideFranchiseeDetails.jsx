@@ -3,7 +3,9 @@ import FranchiseeDetails from '../../components/dealerComponents/FranchiseeDetai
 
 function DealersideFranchiseeDetails() {
   return (
+    <div>
  <FranchiseeDetails/>
+ </div>
   )
 }
 

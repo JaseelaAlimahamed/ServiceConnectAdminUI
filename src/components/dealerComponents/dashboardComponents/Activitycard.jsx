@@ -2,7 +2,11 @@ import React from "react";
 import { IoCalendarClearOutline } from "react-icons/io5";
 import { LuClock3 } from "react-icons/lu";
 import { RiImageEditFill } from "react-icons/ri";
+
+
+
 function Activitycard({ type,name,subtitle,title,date,time,status}) {
+  console.log(title)
   if (type == "Activitycard") {
     return <Activity title={title} date={date} time={time} name={name} subtitle={subtitle} status={status}></Activity>;
   }

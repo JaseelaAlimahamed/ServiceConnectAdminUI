@@ -1,10 +1,13 @@
 import React from "react";
 import Dealerinfocard from "../../components/dealerComponents/dashboardComponents/Dealerinfocard";
 import Franchisee from "../../components/dealerComponents/dashboardComponents/Franchisee";
-import Table from "../../components/reUsableComponents/Table"
+import PaymentHistoryTable from "../../components/adminComponents/adminProfileComponents/PaymentHistoryTable"   
+// import ReUsableTable from "../../components/reUsableComponents/ReUsableTable"
 import Activitycard from "../../components/dealerComponents/dashboardComponents/Activitycard";
 import Graph from "../../components/dealerComponents/dashboardComponents/Graph";
-function Dashboard() {
+
+
+function DealerDashboard() {
   const tableConfig = { title: "Payment History", type: "paymentslog" };
 
   const tableDataConfig = [
@@ -126,7 +129,7 @@ function Dashboard() {
           </Franchisee>
 
           <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[150%]">
-            <Table
+            <PaymentHistoryTable
               tableColConfig={tableColConfig}
               tableDataConfig={tableDataConfig}
               tableConfig={tableConfig}
@@ -183,4 +186,5 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+
+export default DealerDashboard;

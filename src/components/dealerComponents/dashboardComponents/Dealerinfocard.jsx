@@ -2,6 +2,7 @@ import React from "react";
 import { FaPerson } from "react-icons/fa6";
 
 function Dealerinfocard({ title, number, percentage, type }) {
+  console.log(title)
   if (type === "Infocard") {
     return (
       <Infocard

@@ -56,7 +56,7 @@ import { IoMdClose } from "react-icons/io";
           <ul className="space-y-4">
             {menuItems.map((item) => (
               <li
-                key={item.name}
+                key={item.id}
                 className={`flex items-center p-3 cursor-pointer rounded-bl-full rounded-tl-full w-full transition-all ${
                   activeItem === item.name ? "bg-primary text-violet" : "text-white"
                 }`}

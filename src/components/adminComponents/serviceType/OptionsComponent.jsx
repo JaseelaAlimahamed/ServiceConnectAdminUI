@@ -38,13 +38,13 @@ function OptionsComponent() {
   return (
     <>
       <div className="bg-white w-1/4 h-[60rem] flex flex-col gap-5 max-sm:w-full max-sm:h-[18rem]">
-        <div className="flex gap-[9.25rem] items-center">
-          <h1 className="font-poppins text-4xl font-bold text-dark_blue px-2 py-4 ">
+        <div className="flex justify-between gap-[9.25rem] items-center px-6">
+          <h1 className="font-poppins text-xl font-bold text-dark_blue px-2 py-4 ">
             Type
           </h1>
-          <FiEdit size={"2.5rem"} />
+          <FiEdit size={"1.5rem"} />
         </div>
-        <div className="flex flex-col gap-3 items-center p-2 ">
+        <div className="flex flex-col gap-3 items-center p-2 text-md">
           <Button
             variant={"add"}
             onClick={() => handleButtonClick("Daily Work")}

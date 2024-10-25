@@ -49,7 +49,7 @@ const FranchaseeCategory = () => {
         </div> 
         {/* type */}
         <div className="flex flex-col items-center">
-        <ul className="flex flex-col items-center w-full flex flex-col items-center space-y-5">
+        <ul className="flex flex-col items-center w-full  space-y-5">
           {franchiseeTypes.map((type, index) => (
             <li
               key={index}
@@ -98,7 +98,7 @@ const FranchaseeCategory = () => {
 </div> 
 
       {/* Buttons */}
-      <div className="flex   md:flex-row   flex-col  md:absolute  md:mt-0 justify-end bottom-0 right-0 mr-2 p-4 space-y-2 md:space-y-0 md:jusfity-end justify-center">
+      <div className="flex   md:flex-row   flex-col  md:absolute  md:mt-0 justify-end bottom-0 right-0 mr-2 p-4 space-y-2 md:space-y-0 md:jusfity-end ">
         <button
           onClick={handleDelete}
           className="w-full md:w-24 h-10 border bg-red text-primary px-3 py-1 rounded-full flex justify-center items-center"

@@ -10,6 +10,7 @@ function Franchisee({
   phone,
   email,
 }) {
+  console.log(franchiseename)
   return (
     <div className="container border w-[100%] rounded-xl overflow-hidden h-fit  max-[1099px]:w-[150%]    ">
       <div className="bg-violet w-full h-36 relative">

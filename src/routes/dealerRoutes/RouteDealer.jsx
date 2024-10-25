@@ -2,30 +2,30 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import DealerLayout from '../../layouts/DealerLayout'
 import ForgotPassword from '../../pages/dealerPages/ForgotPasswordPage.jsx'
-import SignIn from '../../pages/dealerPages/SignInPages/SignInForm.jsx'
-import Dashboard from '../../pages/dealerPages/Dashboard'
-import ServieProviderManagment from '../../pages/dealerPages/ServieProviderManagment'
-import ServieProvider from '../../pages/dealerPages/ServieProvider'
-import ServieProviderVarication from '../../pages/dealerPages/ServieProviderVaricationForm'
-import PaymentRequestForm from '../../pages/dealerPages/PaymentRequestForm'
-import DealerProfile from '../../pages/dealerPages/DealerProfile';
-import DealerSideFranchiseDetails from '../../pages/dealerPages/DealerSideFranchiseDetails'
+ import DealerSignIn from '../../pages/dealerPages/DealerSignIn.jsx'
+import DealerDashboard from '../../pages/dealerPages/DealerDashboard.jsx'
+import ServieProviderManagment from '../../pages/dealerPages/ServiceProviderManagement.jsx'
+import ServieProviderVarication from '../../pages/dealerPages/ServiceProviderVerification.jsx'
+import ServieProviderVaricationForm from '../../pages/dealerPages/ServiceProviderVerificationForm.jsx'
+import PaymentRequestPage from '../../pages/dealerPages/PaymentRequestPage.jsx'
+import DealerProfile from '../../pages/dealerPages/DealerProfilePage.jsx';
+import DealerSideFranchiseDetails from '../../pages/dealerPages/DealersideFranchiseeDetails.jsx'
 import TransactionHistory from '../../pages/dealerPages/TransactionHistory'
 
 export default function RouteDealer() {
     return (
-        <Routes >
-            <Route path='/Sign-In' element={<SignIn/>} />
+        <Routes > 
+            <Route path='/Sign-In' element={<DealerSignIn/>} /> 
             <Route path='/forgot-Password' element={<ForgotPassword />} />
             <Route element={<DealerLayout />} >
-                <Route path='/' element={<Dashboard />} />
+                <Route path='/dashboard' element={<DealerDashboard />} />
                 <Route path='/profile' element={<DealerProfile />} />
                 <Route path='/Servies-Provider-Managment' element={<ServieProviderManagment />} />
-                <Route path='/Servies-Provider-Verication' element={<ServieProvider />} />
-                <Route path='/Servies-Provider-Varication-Form' element={<ServieProviderVarication />} />
-                <Route path='/Payment-RequestForm' element={<PaymentRequestForm />} />
-                <Route path='/Dealer-Franchise' elament={<DealerSideFranchiseDetails />} />
-                <Route path='/finance' elament={<TransactionHistory />} />
+                <Route path='/Servies-Provider-Verication/:id' element={<ServieProviderVarication />} />
+                <Route path='/Servies-Provider-Varication-Form' element={<ServieProviderVaricationForm />} />
+                <Route path='/Payment-RequestForm' element={<PaymentRequestPage />} />
+                <Route path='/franchisee' element={<DealerSideFranchiseDetails />} />
+                <Route path='/finance' element={<TransactionHistory />} />
                 
             </Route>    
         </Routes>

@@ -6,7 +6,7 @@ import FranchiseLayout from '../../layouts/FranchiseLayout'
 
 import AddServiceProvider from '../../pages/franchisePages/AddServiceProvider'
 
-import EditAddFranchiseeType from '../../components/FranchiseComponents/editFranchiseType/Add Franchasee Type'
+import FranchaseeCategory from '../../components/franchiseComponents/editFranchiseType/AddFranchaseeType'
 import FranchiseNotification from '../../pages/franchisePages/FranchiseNotification'
 import DealerDetails from '../../pages/franchisePages/DealerDetails'
 import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile'
@@ -31,7 +31,7 @@ function RouteFranchise() {
 
         <Route path='dealers-details'   element={<DealerDetails/>}/>
         <Route path='Franchisee-Details' element ={<FranchiseeProfile/>}/>
-        <Route path='Edit-add-franchiseetype' element ={<EditAddFranchiseeType/>}/>
+        <Route path='Edit-add-franchiseetype' element ={<FranchaseeCategory/>}/>
         <Route path='accounts' element={<Accounts/>}/>
         <Route path='notifications'   element={<FranchiseNotification/>}/>
         <Route path='service-provider-details'   element={<ServiceProviderPage/>}/>

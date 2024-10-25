@@ -50,9 +50,9 @@ const NotificationForm = () => {
   };
 
   return (
-    <div className="bg-white p-4 sm:p-6 md:p-10 rounded-xl">
+    <div className="bg-white p-4  rounded-xl">
       <form
-        className="w-full sm:max-w-sm md:max-w-md mx-4 pe-5"
+        className="w-full"
         onSubmit={handleSubmit}
       >
         {/* Image Picker */}

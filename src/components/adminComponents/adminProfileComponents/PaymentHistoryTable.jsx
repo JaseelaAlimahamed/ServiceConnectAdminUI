@@ -1,7 +1,7 @@
 import React, { useState} from "react";
 import { LuTrendingUp } from "react-icons/lu";
 
-const Table = ({ tableDataConfig, tableConfig }) => {
+const PaymentHistoryTable = ({ tableDataConfig, tableConfig }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5);
 
@@ -19,7 +19,7 @@ const Table = ({ tableDataConfig, tableConfig }) => {
   }
 
   return (
-    <div className="flex flex-col font-poppins text-secondary ">
+    <div className="flex flex-col font-poppins text-secondary  ">
       <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto lg:pb-20 h-full">
         
         {/* table  */}
@@ -142,4 +142,4 @@ const Table = ({ tableDataConfig, tableConfig }) => {
   );
 };
 
-export default Table;
+export default PaymentHistoryTable;

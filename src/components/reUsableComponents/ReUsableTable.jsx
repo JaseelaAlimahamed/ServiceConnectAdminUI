@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 
-const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
+const ReUsableTable = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5); // Number of users to display per page
   const [sortNewest, setSortNewest] = useState(true);
   const [searchTerm, setSearchTerm] = useState(""); 
   const [selectedRows, setSelectedRows] = useState([]); // Selected rows for checkboxes
   const [openActionId, setOpenActionId] = useState(null); // Opened action dropdown for each row
-
+const navigate = useNavigate(); 
   // Sort the data by date, either newest or oldest first
   const sortedUsers = [...tableDataConfig].sort((a, b) => {
     return sortNewest
@@ -17,7 +18,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
 
   // Filter the data by the search term 
   const filteredUsers = sortedUsers.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+   user && user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Calculate pagination indexes
@@ -48,6 +49,7 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   
   const handleView = (id) => {
     console.log("view true",id);
+    navigate(`/admin/user-details/${id}`); 
   };
   const handleEdit = () => {
     console.log("edit true");
@@ -425,4 +427,4 @@ const Table = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   );
 };
 
-export default Table;
+export default ReUsableTable;

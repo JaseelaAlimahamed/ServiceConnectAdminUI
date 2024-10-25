@@ -10,6 +10,7 @@ import {
 } from "recharts";
 
 function Graph({title,data}) {
+  console.log(title)
 
   return (
     <>
