@@ -5,6 +5,7 @@ import React from 'react'
 
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout.jsx'
+import AdminDashBoard from '../../pages/adminPages/dashBoardPages/AdminDashBoard.jsx'
 import UserManagementPage from '../../pages/adminPages/managementPages/UserManagementPage.jsx'
 import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
 
@@ -51,8 +52,8 @@ function RouteAdmin() {
       <Route path='/sign-in' element={<SignInForm />} />
 
       <Route element={<AdminLayout />}>
-
-        <Route path='/user-management' element={<UserManagementPage />} />
+      <Route path='/' element={<AdminDashBoard />} />
+      <Route path='/user-management' element={<UserManagementPage />} />
         <Route path='/user-details/:id' element={<UserDetails />} />
         <Route path='/add-new-user' element={<AddNewUser />} />
 
