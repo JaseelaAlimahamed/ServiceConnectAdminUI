@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FaEdit } from "react-icons/fa";
+import { RiProfileLine } from "react-icons/ri";
 
 const NewTable = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -44,7 +46,7 @@ const NewTable = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   };
 
   return (
-    <div className="flex flex-col font-poppins text-black w-3/4 ">
+    <div className="flex flex-col font-poppins text-black w-full ">
       {ExpenseManagement && (
         <div className="flex flex-wrap justify-between "></div>
       )}
@@ -149,13 +151,8 @@ const NewTable = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 {ExpenseManagement && (
                   <td className="p-6">
                     <div className="relative">
-                      <span onClick={() => toggleAction(data.id)}>
-                        <img
-                          className="min-w-6 m-auto cursor-pointer"
-                          src="/invoice-icon.svg"
-                          alt="action"
-                        />
-                      </span>
+                      <RiProfileLine />
+
                       <ul
                         className={`absolute z-10 top-6 right-6 shadow-md rounded-lg overflow-hidden ${
                           openActionId === data.id ? "block" : "hidden"
@@ -186,12 +183,9 @@ const NewTable = ({ tableDataConfig, tableColConfig, tableConfig }) => {
                 {/* Edit Icon Column */}
                 {ExpenseManagement && (
                   <td className="p-6">
-                    <img
-                      className="min-w-6 m-auto cursor-pointer"
-                      src="/edit-icon.svg"
-                      alt="Edit"
-                      onClick={handleEdit} // Add edit action
-                    />
+                    <span onClick={() => toggleAction(data.id)}>
+                      <FaEdit />
+                    </span>
                   </td>
                 )}
               </tr>
