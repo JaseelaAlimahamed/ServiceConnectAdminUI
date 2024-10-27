@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ServiceProvidersTable from '../../components/franchiseComponents/serviceProviders/ServiceProvidersTable';
+import ServiceModal from '../../components/franchiseComponents/serviceProviders/SeviceModal'
 import { useNavigate } from 'react-router-dom';
 
 
 const ServiceProviders = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   // Data for table rows
   const tableColConfig = ['Name', 'Id', 'Registered Services', 'Active Jobs', 'Location', 'Contact', 'Status', 'Action'];
@@ -101,8 +105,28 @@ const ServiceProviders = () => {
       contact: { phone: '111-222-3333', email: 'provider8@example.com' },
       status: 'Active',
     },
-
   ];
+   const options = [
+    { label: 'Franchise 1', value: '1' },
+    { label: 'Franchise 2', value: '2' },
+    { label: 'Franchise 3', value: '3' }
+  ];
+  const handleOpenModal = (id) => {
+    setDeleteId(id);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setIsSuccessOpen(false);
+  };
+
+  const handleConfirmDelete = () => {
+    setIsModalOpen(false);
+    console.log(`Deleted:${deleteId}`);
+    
+    setIsSuccessOpen(true);
+  };
 
   // Table configuration
   const tableConfig = {
@@ -117,9 +141,24 @@ const ServiceProviders = () => {
           tableDataConfig={tableDataConfig}
           tableColConfig={tableColConfig}
           tableConfig={tableConfig}
-          // onView={()=>navigate('providers')}
+          onView={()=>navigate('providers')}
+          onDelete={handleOpenModal}
+          label="Franchise" 
+          options={options}
         />
       </div>
+      <ServiceModal
+       isOpen={isModalOpen}
+       onClose={handleCloseModal}
+       onConfirm={handleConfirmDelete}
+       confirmText={"Delete"}
+       children={"Are you sure you want to delete this item?"}
+       modalMessage=""/>
+      <ServiceModal
+        isOpen={isSuccessOpen}
+        onClose={handleCloseModal}
+        children="Deleted successfully!"
+      />
     </div>
   );
 };

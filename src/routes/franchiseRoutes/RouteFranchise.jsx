@@ -25,8 +25,8 @@ function RouteFranchise() {
   return (
     <Routes>
         <Route path='dealers' element ={<DealersPage/>} ></Route>
-        <Route path='service-providers' element={<ServiceProviders/>}></Route>
-        <Route path='/service-providers/providers' element={<ProvidersView/>}></Route>
+        <Route path='serviceproviders' element={<ServiceProviders/>}></Route>
+        <Route path='/serviceproviders/providers' element={<ProvidersView/>}></Route>
 
 
         <Route element={<FranchiseLayout/>}>
