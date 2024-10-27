@@ -14,6 +14,8 @@ function DealersPage() {
 
   const tableHeadings = ["Name" , 'ID' , "Service Providers" , "Locations" , "Contact" , "Status" , "Action"] ;
 
+  const dropdownValues = ["Newest" , "Oldest"];
+
   const tableData = [{
     checkBox : <input type='checkbox'></input>,
     name : "Samanta William",
@@ -78,10 +80,10 @@ function DealersPage() {
             percentage="-0.5%"
             percentageColor="text-[#ff4550]"/>
         </div>
-        <div className=' flex flex-col justify-between p-4 px-5 font-poppins gap-4  md:flex-row md:gap-0 '>
+        <div className=' flex flex-col justify-between p-4 px-5 font-poppins gap-4  lg:flex-row lg:gap-0 '>
             <DealerSearchBar/>
-            <div className='flex items-center gap-4 flex-col md:flex-row'> 
-              <DealerDropdown/>
+            <div className='flex items-center gap-4 flex-col md:flex-row md:justify-between'> 
+              <DealerDropdown values={dropdownValues}/>
               <AddDealerButton/>
             </div>
         </div>

@@ -22,26 +22,25 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 bg-gray-50 min-h-screen">
-      <div className="flex flex-col items-center gap-4 mt-5 md:flex-row">
-        {/* Profile Sidebar */}
-        <div className="w-full md:w-4/12 lg:w-3/12 p-4">
-          <ProfileSidebar user={user} />
-        </div>
-
-        {/* Edit Profile Form */}
-        <div className="w-full md:w-8/12 lg:w-6/12 p-4">
-          <EditProfileForm user={user} onSubmit={handleFormSubmit} />
-        </div>
-      </div>
-
-      {/* Progress Bar (on a new row in medium size) */}
-      <div className="flex justify-center w-full mt-5">
-        <div className="w-10/12 md:w-10/12 lg:w-3/12 p-4">
-          <ProgressBar workDone={user.workDone} />
-        </div>
-      </div>
+    <div className="container mx-auto p-10 bg-gray-50 min-h-screen">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start mt-5">
+    {/* Profile Sidebar */}
+    <div className="p-2">
+      <ProfileSidebar user={user} />
     </div>
+
+    {/* Edit Profile Form */}
+    <div className="p-2">
+      <EditProfileForm user={user} onSubmit={handleFormSubmit} />
+    </div>
+
+    {/* Progress Bar */}
+    <div className="p-2">
+      <ProgressBar workDone={user.workDone} />
+    </div>
+  </div>
+</div>
+
   );
 };
 

@@ -15,11 +15,11 @@ const AdminLayout = () => {
   return (
     <div className="bg-[#F3F4FF] flex min-h-screen">
         
-    <div className="sticky h-full z-10">
+    <div className="z-10">
         {location.pathname !== '/admin/login' && <Sidebar isOpen={isOpen} toggleSidebar={toggleSidebar} />}
     </div>
 
-    <div className="flex-1 min-h-screen overflow-auto">
+    <div className="flex-1 min-h-screen overflow-x-auto">
         {location.pathname !== '/admin/login' && <NavBar toggleSidebar={toggleSidebar} />}
         <Outlet />
     </div>
