@@ -1,6 +1,8 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import DealersPage from '../../pages/franchisePages/DealersPage'
+import ServiceProviders from '../../pages/franchisePages/ServiceProviders'
+import ProvidersView from '../../pages/franchisePages/ProvidersView'
 import DealersManagementPage from '../../pages/franchisePages/DealersManagementPage'
 import FranchiseLayout from '../../layouts/FranchiseLayout'
 
@@ -22,6 +24,11 @@ import DashboardPage from '../../pages/franchisePages/DashboardPage'
 function RouteFranchise() {
   return (
     <Routes>
+        <Route path='dealers' element ={<DealersPage/>} ></Route>
+        <Route path='serviceproviders' element={<ServiceProviders/>}></Route>
+        <Route path='/serviceproviders/providers' element={<ProvidersView/>}></Route>
+
+
         <Route element={<FranchiseLayout/>}>
         <Route path='dealers' element ={<DealersPage/>} />
         <Route path='dashboard' element ={<DashboardPage/>} />
