@@ -5,8 +5,8 @@ import ForgotPassword from '../../pages/dealerPages/ForgotPasswordPage.jsx'
  import DealerSignIn from '../../pages/dealerPages/DealerSignIn.jsx'
 import DealerDashboard from '../../pages/dealerPages/DealerDashboard.jsx'
 import ServieProviderManagment from '../../pages/dealerPages/ServiceProviderManagement.jsx'
-import ServieProviderVarication from '../../pages/dealerPages/ServiceProviderVerification.jsx'
-import ServieProviderVaricationForm from '../../pages/dealerPages/ServiceProviderVerificationForm.jsx'
+import ServieProviderVarification from '../../pages/dealerPages/ServiceProviderVerification.jsx'
+import ServieProviderVarificationForm from '../../pages/dealerPages/ServiceProviderVerificationForm.jsx'
 import PaymentRequestPage from '../../pages/dealerPages/PaymentRequestPage.jsx'
 import DealerProfile from '../../pages/dealerPages/DealerProfilePage.jsx';
 import DealerSideFranchiseDetails from '../../pages/dealerPages/DealersideFranchiseeDetails.jsx'
@@ -22,12 +22,12 @@ export default function RouteDealer() {
                 <Route path='/dashboard' element={<DealerDashboard />} />
                 <Route path='/profile' element={<DealerProfile />} />
                 <Route path='/Servies-Provider-Managment' element={<ServieProviderManagment />} />
-                <Route path='/Servies-Provider-Verification/:id' element={<ServieProviderVarication />} />
-                <Route path='/Servies-Provider-Varication-Form' element={<ServieProviderVaricationForm />} />
+                <Route path='/Servies-Provider-Verification/:id' element={<ServieProviderVarification />} />
+                <Route path='/Servies-Provider-Varication-Form' element={<ServieProviderVarificationForm />} />
                 <Route path='/Payment-RequestForm' element={<PaymentRequestPage />} />
                 <Route path='/franchisee' element={<DealerSideFranchiseDetails />} />
                 <Route path='/finance' element={<TransactionHistory />} />
-                <Route path='/notificaiton' element={<NotificationManagement />} />
+                <Route path='/notifications' element={<NotificationManagement />} />
                 
             </Route>    
         </Routes>
