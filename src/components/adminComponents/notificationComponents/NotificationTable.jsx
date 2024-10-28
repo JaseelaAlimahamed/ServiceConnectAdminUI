@@ -38,7 +38,8 @@ const notifications = [
 
 const NotificationList = () => {
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 md:p-12">
+    <div className="bg-white rounded-2xl shadow-md md:p-12 ml-8   lg:mr-48 md:mr-1" >
+
       <h2 className="font-bold text-lg md:text-[1.25rem] text-orange mb-4">
         Notifications
       </h2>
@@ -48,7 +49,7 @@ const NotificationList = () => {
           key={index}
           className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 pb-2  border-gray-200"
         >
-          <div className="flex items-start md:items-center w-full">
+          <div className="flex items-start  w-full">
             <div className="relative">
               <img
                 src={notification.avatar}

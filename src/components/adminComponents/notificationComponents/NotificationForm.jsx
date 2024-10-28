@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import ImagePicker  from "../AdsComponents/ImagePicker";
 import ButtonGroup from "../AdsComponents/ButtonGroup";
 
+import DatePicker from "react-datepicker";
+
 const NotificationForm = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [status, setStatus] = useState("Status"); // Initial status
@@ -50,7 +52,7 @@ const NotificationForm = () => {
   };
 
   return (
-    <div className="bg-white p-4  rounded-xl">
+    <div className="bg-white rounded-2xl shadow-md md:p-12 ml-8   lg:mr-48 md:mr-1" >
       <form
         className="w-full"
         onSubmit={handleSubmit}
@@ -64,32 +66,34 @@ const NotificationForm = () => {
         {/* Flex layout for larger screens */}
         <div className="flex flex-col md:flex-row gap-4 mt-4">
           {/* Left Column */}
-          <div className="w-full">
+          <div className="">
             <div className="mt-4">
               <input
                 name="formTitle"
                 placeholder="Title"
-                className="w-full p-2 border border-light_gray rounded-lg mb-2"
+                className=" p-2 border border-light_gray rounded-lg mb-2 "
                 value={formValues.formTitle}
                 onChange={handleChange}
                 required
               />
+              <br/>
+
 
               <input
                 name="formDescription"
                 placeholder="Description"
-                className="w-full p-2 border border-light_gray rounded-lg mb-2"
+                className="p-2 border border-light_gray rounded-lg mb-2"
                 value={formValues.formDescription}
                 onChange={handleChange}
                 required
               />
             </div>
 
-            <h2 className="font-bold my-4">Schedule</h2>
+            <h2 className="font-medium my-4">Schedule</h2>
 
             {/* From Section */}
             <div className="mb-4">
-              <label className="block mb-2 font-semibold">From</label>
+              <label className="block mb-2 ">From</label>
               <div className="flex flex-col sm:flex-row gap-4">
                 <input
                   name="fromDate"
@@ -113,7 +117,7 @@ const NotificationForm = () => {
 
             {/* To Section */}
             <div className="mb-4">
-              <label className="block mb-2 font-semibold">To</label>
+              <label className="block mb-2 ">To</label>
               <div className="flex flex-col sm:flex-row gap-4">
                 <input
                   name="toDate"
@@ -137,13 +141,13 @@ const NotificationForm = () => {
           </div>
 
           {/* Right Column */}
-          <div className="w-full">
+          <div className="ml-10">
             {/* Target Audience Section */}
             <div className="mb-4">
-              <label className="block mb-2 font-semibold">Target Audience</label>
+              <label className="block mb-2 font-medium">Target Audience</label>
               <select
                 name="targetArea"
-                className="w-full p-2 border rounded-lg"
+                className="w-60 p-2 border rounded-lg"
                 value={formValues.targetArea}
                 onChange={handleChange}
                 required
@@ -157,14 +161,14 @@ const NotificationForm = () => {
 
             {/* Target Specific */}
             <div className="mb-4">
-              <label className="block mb-2 font-semibold">Target Specific</label>
-              <div className="space-y-4">
+              <label className="block mb-2 font-medium">Target Specific</label>
+              <div className="space-y-4 ml-3">
                 {["User", "Service Provider", "Franchisee"].map((label) => (
                   <label key={label} className="flex items-center space-x-2">
                     <input
                       type="checkbox"
                       onChange={handleChange}
-                      className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white"
+                      className="  border border-gray-300 rounded-sm"
                     />
                     <span>{label}</span>
                   </label>
@@ -174,25 +178,29 @@ const NotificationForm = () => {
 
             {/* Send Via */}
             <div className="mb-4">
-              <label className="block mb-2 font-semibold">Send Via</label>
-              <div className="space-y-4">
+              <label className="block mb-2 ">Send Via</label>
+              <div className="space-y-4 ml-3">
                 {["In App", "SMS", "Email"].map((method) => (
                   <label key={method} className="flex items-center space-x-2">
                     <input
                       type="checkbox"
                       onChange={handleChange}
-                      className="appearance-none h-5 w-5 border border-gray-300 rounded-sm checked:bg-black checked:border-black checked:after:content-['✓'] checked:after:text-white"
+                      className=" border border-gray-300 rounded-sm text-black"
                     />
                     <span>{method}</span>
                   </label>
                 ))}
               </div>
+
+              
+
+
             </div>
           </div>
         </div>
 
         {/* Button Group */}
-        <div className=" mt-4 lg:ml-96 md:ml-10 sm:ml-80 ">
+        <div className="mt-5 ml-9 sm:ml-32 md:ml-24 lg:ml-96 pb-1">
           <ButtonGroup
             status={status}
             setStatus={setStatus}
