@@ -11,14 +11,14 @@ import PaymentRequestPage from '../../pages/dealerPages/PaymentRequestPage.jsx'
 import DealerProfile from '../../pages/dealerPages/DealerProfilePage.jsx';
 import DealerSideFranchiseDetails from '../../pages/dealerPages/DealersideFranchiseeDetails.jsx'
 import TransactionHistory from '../../pages/dealerPages/TransactionHistory'
-
+import NotificationManagment from '../../pages/dealerPages/NotificationManagement'
 export default function RouteDealer() {
     return (
         <Routes > 
             <Route path='/Sign-In' element={<DealerSignIn/>} /> 
             <Route path='/forgot-Password' element={<ForgotPassword />} />
             <Route element={<DealerLayout />} >
-                <Route path='/dashboard' element={<DealerDashboard />} />
+                <Route path='/' element={<DealerDashboard />} />
                 <Route path='/profile' element={<DealerProfile />} />
                 <Route path='/Servies-Provider-Managment' element={<ServieProviderManagment />} />
                 <Route path='/Servies-Provider-Verication/:id' element={<ServieProviderVarication />} />
@@ -26,7 +26,7 @@ export default function RouteDealer() {
                 <Route path='/Payment-RequestForm' element={<PaymentRequestPage />} />
                 <Route path='/franchisee' element={<DealerSideFranchiseDetails />} />
                 <Route path='/finance' element={<TransactionHistory />} />
-                
+                <Route path='/Notification' element={<NotificationManagment />} />
             </Route>    
         </Routes>
     )
