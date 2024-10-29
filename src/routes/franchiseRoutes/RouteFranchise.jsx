@@ -17,6 +17,7 @@ import RecentServiceDetails from '../../pages/franchisePages/Recent_Service_Deta
 
 
 import DashboardPage from '../../pages/franchisePages/DashboardPage'
+import ServiceProviders from '../../pages/franchisePages/ServiceProviders'
 
 
 function RouteFranchise() {
@@ -36,7 +37,7 @@ function RouteFranchise() {
         <Route path='notifications'   element={<FranchiseNotification/>}/>
         <Route path='service-provider-details'   element={<ServiceProviderPage/>}/>
         <Route path='recent-service-details'   element={<RecentServiceDetails/>}/>
-
+        <Route path='serviceproviders'   element={<ServiceProviders/>}/>
 
         </Route>
     </Routes>
