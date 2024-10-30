@@ -115,7 +115,7 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
   };
 
   const handleNewFranchise = () => {
-    navigate("");
+    navigate("/admin/New-Franchisee");
   };
 
   const handleEdit=()=>{
