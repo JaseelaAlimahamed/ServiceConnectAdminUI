@@ -11,13 +11,13 @@ const FranchiseProfile = () => {
     location: "Kerala",
     country: "India",
     role: "Franchise",
-    phone: "+91 7048144030",
-    email: "thomas@asite.com",
-    pdt: "PDT - I",
+    phone: "9072250274",
+    email: "thomas@gmail.com",
     image:userimage,
     nationality: "Indian",
     designation: "",
-    address : "kottayam, pala"
+    address : "kottayam, pala",
+    password :"Change Password"
   };
 
   return (
@@ -26,7 +26,6 @@ const FranchiseProfile = () => {
       <div className="flex-grow">
         <NavBar text="Franchise Profile" />
         <div className="flex flex-col md:flex-row p-4 gap-6">
-          {/* <FranchiseProfileSide user={user} /> */}
           <FranchiseProfileSide user={user}/>
           <EditProfile user={user} onSubmit={(data) => console.log("Profile updated:", data)} />
         </div>
