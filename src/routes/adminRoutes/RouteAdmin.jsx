@@ -72,8 +72,8 @@ function RouteAdmin() {
         <Route path='/Edit-Category' element={<EditCategoryPage />} />
 
         <Route path='/sub-categories' element={<SubCategoryPage />} />
-        <Route path='/edit-subcategory' element={<EditSubCategory />} />
-        <Route path='/add-subcategory' element={<AddSubCategory />} />
+        <Route path='/add-subcategory' element={<EditSubCategory />} />
+        {/* <Route path='/add-subcategory' element={<AddSubCategory />} /> */}
 
         <Route path='/profile' element={<AdminProfilePage />} />
         <Route path='/accounts' element={<AccountPage />} />
