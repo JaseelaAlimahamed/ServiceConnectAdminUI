@@ -36,7 +36,7 @@ import AddNewUser from '../../components/adminComponents/userManagementComponent
 import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
 import Finance from '../../pages/adminPages/Finance.jsx'
 import IncomeManagementPage from '../../pages/adminPages/IncomeManagementPage.jsx'
-
+import DashboardPage from '../../pages/adminPages/serviceProviderDashboard/DashboardPage.jsx'
 
 
 
@@ -58,7 +58,8 @@ function RouteAdmin() {
         <Route path='/add-new-user' element={<AddNewUser />} />
 
         <Route path='/service-providers' element={<ServiceProviderTable />} />
-
+        <Route path='/service-providers-dashboard' element={<DashboardPage />} />
+        
 
         <Route path='/Franchise' element={<FranchiseDetailsTable />} />
         <Route path='/Franchise-Details' element={<FranchiseProfileDetails />} />

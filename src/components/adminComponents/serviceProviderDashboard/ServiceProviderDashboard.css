@@ -1,0 +1,13 @@
+.service-provider-dashboard {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .service-dashboard-content {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+  }
+  
