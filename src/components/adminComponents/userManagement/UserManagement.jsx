@@ -1,5 +1,7 @@
 import React from 'react'
-import Table from '../../../components/reUsableComponents/Table'
+import UserManagementCard from '../../adminComponents/userManagement/UserManagementCard';
+import ReUsableTable from '../../reUsableComponents/ReUsableTable';
+
 
 const UserManagement = () => {
 
@@ -10,7 +12,7 @@ const UserManagement = () => {
        
     {
         name: "Samanta William",
-        id: "#129876543",
+        id: "129876543",
         date: "May 25, 2024",
         totalCompletedWork: "10",
         location: "Sydney",
@@ -21,7 +23,7 @@ const UserManagement = () => {
     
     {
         name: "Michael Smith",
-        id: "#122345343",
+        id: "122345343",
         date: "December 25, 2023",
         image:"/tableimage.png",
         totalCompletedWork: "10",
@@ -31,7 +33,7 @@ const UserManagement = () => {
     },
     {
         name: "Samanta Willam",
-        id: "#134567985",
+        id: "134567985",
         date: "March 25, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "5",
@@ -41,7 +43,7 @@ const UserManagement = () => {
     },
     {
         name: "John Doe",
-        id: "#125538065",
+        id: "125538065",
         date: "April 10, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "8",
@@ -51,7 +53,7 @@ const UserManagement = () => {
     },
     {
         name: "Emily Clarke",
-        id: "#127838765",
+        id: "127838765",
         date: "May 15, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "7",
@@ -61,7 +63,7 @@ const UserManagement = () => {
     },
     {
         name: "Michael Smith",
-        id: "#129846543",
+        id: "129846543",
         date: "June 20, 2022",
         image:"/tableimage.png",
         totalCompletedWork: "10",
@@ -81,35 +83,22 @@ const cardConfig = [
   {title:"89",subtitle:"Active Services", iconBg:"bg-[#167F71]"},
   {title:"89",subtitle:"Complaints", iconBg:"bg-[#DC3546]"},
 ]
+
   return (
-      <div className="w-full font-poppins px-6 pb-10 lg:px-10">
-        <div className="flex flex-wrap gap-5 pb-10">
-          {cardConfig.map((item,index)=>(
-            <div key={index} className='flex w-56 bg-primary rounded-xl px-4 py-3'>
-              <span className={`flex items-center justify-center h-14 w-14 mr-4 rounded-full ${item.iconBg}`}>
-              <img src='/card-icon.svg' alt="" />
-              </span>
-              <div>
-              <h2 className='text-lg font-bold mb-1'>{item.title}</h2>
-              <p className='text-sm text-[#68676E]'>{item.subtitle}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-      <Table
+    <div className="w-full font-poppins px-6 pb-10 ">
+      <div className="flex flex-wrap gap-2 pb-10">
+        {cardConfig.map((item) => (
+          <UserManagementCard item={item} />
+        ))}
+      </div>
+
+      <ReUsableTable
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}
-      />
-    
-     
+      />     
     </div>
-    
-
-
-
-  )
+  );
 }
 
 

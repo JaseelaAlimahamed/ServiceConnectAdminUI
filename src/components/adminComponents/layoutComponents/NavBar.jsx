@@ -2,13 +2,31 @@ import { useState, useEffect, useRef } from 'react';
 import { FiBell, FiSettings } from 'react-icons/fi';
 import { FaBars } from "react-icons/fa";
 
-const NavBar = ({toggleSidebar}) => {
+import { useLocation } from 'react-router-dom';
+const NavBar = ({ toggleSidebar }) => {
+
+  const location = useLocation()
+  const [heading, setHeading] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null); // Ref for the dropdown container
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
+
+  useEffect(() => {
+    if (location && location.pathname) { 
+      const pathParts = location.pathname.split('/');
+      const pathName = pathParts[2] || 'Home'; // Selects the second part of the path
+      const formattedPathName = pathName
+        .replace(/-/g, ' ') // Replace dashes with spaces
+        .charAt(0)
+        .toUpperCase() + pathName.slice(1).toLowerCase();
+  
+      setHeading(formattedPathName);
+    }
+  }, [location.pathname]);
+  
 
   // Close dropdown if clicked outside
   useEffect(() => {
@@ -17,6 +35,8 @@ const NavBar = ({toggleSidebar}) => {
         setDropdownOpen(false);
       }
     };
+
+
 
     // Add event listener for clicks
     document.addEventListener('mousedown', handleClickOutside);
@@ -28,12 +48,14 @@ const NavBar = ({toggleSidebar}) => {
   }, [dropdownRef]);
 
   return (
-    <div className="w-full h-32 font-poppins">
-      <nav className="flex items-center justify-between px-4 md:px-8 h-full">
+    <div className="w-full h-24 font-poppins  ">
+      <nav className="flex items-center justify-between px-4 md:px-8  h-full pt-0">
         {/* User Name */}
+
         <div className='flex items-center'>
-        <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 md:hidden' onClick={toggleSidebar}/>
-        <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">User Management</h1>
+          <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 md:hidden' onClick={toggleSidebar} />
+          {/* <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">{heading}</h1> */}
+          <h1 className="text-dark_blue text-xl sm:text-2xl lg:text-3xl font-bold">{heading}</h1>
 
         </div>
 
@@ -57,6 +79,7 @@ const NavBar = ({toggleSidebar}) => {
               className="flex items-center cursor-pointer space-x-2"
               onClick={toggleDropdown}
             >
+
               <div className="hidden md:block text-gray-600 text-sm">
                 Nabila A.
                 <div className="text-xs text-gray-400">Admin</div>
@@ -104,4 +127,4 @@ const NavBar = ({toggleSidebar}) => {
   );
 };
 
-export default NavBar;
+export default NavBar

@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from "/LOGO.png";
-import InputField from '../ReUsableComponents/InputField';
-import SubmitButton from '../ReUsableComponents/SubmitButton';
+import InputField from '../../components/reUsableComponents/InputFieldComponent';
+import SubmitButton from '../../components/reUsableComponents/SubmitButton';
 
-const SignInForm = () => {
-    
+const DealerSignIn = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ email, password });
+    navigate('/dealer/dashboard')
   };
 
   return (
@@ -22,18 +25,20 @@ const SignInForm = () => {
       </div>
 
       <form className='flex flex-col gap-4 w-full max-w-sm font-default' onSubmit={handleSubmit}>
-        <h2 className='text-xl font-semibold ml-3'>Login to your account</h2>
-        
+        <h2 className='text-xl font-semibold ml-3'>Welcome Back Dealer.!</h2>
+
         <InputField
           type="email"
           placeholder="Email"
           value={email}
+          color='bg-light_gray placeholder-white text-white'
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <InputField
           type="password"
           placeholder="Password"
+          color='bg-light_gray placeholder-white text-white'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           isPassword={true}
@@ -55,4 +60,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default DealerSignIn;
