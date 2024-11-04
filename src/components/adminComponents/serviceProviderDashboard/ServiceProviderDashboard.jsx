@@ -1,5 +1,5 @@
 import React from 'react';
-import ServiceProviderProfile from "../../dealerComponents/verificationComponents/ServiceProviderProfile";
+import ServiceProviderProfile from "./ServiceProviderProfile";
 import PaymentHistoryTable from "../../adminComponents/adminProfileComponents/PaymentHistoryTable"
 import Activitycard from "../../dealerComponents/dashboardComponents/Activitycard";
 import AnalyticsComponent from "../../dealerComponents/verificationComponents/AnalyticsComponent";
@@ -82,8 +82,9 @@ const ServiceProviderDashboard = () => {
   return (
     <div className="service-provider-dashboard">
       
-      <div className= 'py-12 flex max-lg:flex-col gap-4 justify-around  p-4 max-[1100px]:flex-col'>
-        <div className='w-[67%]'>
+      <div className= 'py-4 flex max-lg:flex-col gap-4 justify-around p-4 max-[1100px]:flex-col'>
+        <div className='w-[100%]'>
+            <div>    
             <ServiceProviderProfile
                 name={dummyServiceProvider.name}
                 username={dummyServiceProvider.role}
@@ -93,7 +94,7 @@ const ServiceProviderDashboard = () => {
                 email={dummyServiceProvider.email}
             
             />
-        
+            </div>
             <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[150%]">
                 <AnalyticsComponent
                     head="Registered Services"
@@ -174,39 +175,35 @@ const ServiceProviderDashboard = () => {
           <Activitycard
             type="Activitycard"
             status={"Active"}
-            title={"New service registration"}
-            date={"mar 20,2021"}
+            title={"Tap Repair"}
+            date={"Mar 20,2021"}
             time={"9:00 - 10:00 AM"}
-            subtitle={"tapwork"}
-            name={"rakhavan"}
+            name={"Keshavan"}
+            subtitle={"Booked"}
           ></Activitycard>
           <Activitycard
             type="Activitycard"
             status={"Pending"}
-            title={"New ad posted"}
-            date={"april 15,2023"}
+            title={"Drain Blockage"}
+            date={"April 15,2023"}
             time={"9:00 - 10:00 AM"}
-            name={"Raju"}
-            subtitle={"50% off"}
           ></Activitycard>
 
           <Activitycard
             type="Activitycard"
             status={"Disable"}
-            title={"New ad posted"}
+            title={"Light Change"}
             date={"april 15,2023"}
             time={"9:00 - 10:00 AM"}
-            name={"Raju"}
-            subtitle={"50% off"}
           ></Activitycard>
+
           <Activitycard
             type="Activitycard"
            status={"Active"}
-            title={"New ad posted"}
+            title={"Fan Repair"}
             date={"april 15,2023"}
             time={"9:00 - 10:00 AM"}
-            name={"Raju"}
-            subtitle={"50% off"}
+
           ></Activitycard>
 
           <button className="bg-slate-300 rounded-3xl text-violet h-14 text-xl mt-10 w-[100%] ">
