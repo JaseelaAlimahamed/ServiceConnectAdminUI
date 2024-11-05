@@ -9,6 +9,7 @@ import RecentServiceDetails from "../../pages/franchisePages/Recent_Service_Deta
 import DashboardPage from "../../pages/franchisePages/DashboardPage";
 import ProfilePage from "../../pages/commonPages/ProfilePage";
 import FranchiseProfileDetails from "../../pages/commonPages/FranchiseProfileDetails";
+import NewFranchisee from "../../components/franchiseComponents/newFranchisee/newFranchise";
 
 const FranchiseRoutes = [
   {
@@ -56,8 +57,8 @@ const FranchiseRoutes = [
     element: <RecentServiceDetails />,
   },
   {
-    path: "*",
-    // element: <Navigate to="dashboard" />,
+    path: "New-Franchisee",
+    element: <NewFranchisee/>,
   },
 ];
 

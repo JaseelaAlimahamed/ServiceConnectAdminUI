@@ -22,7 +22,7 @@ import AdsManagement from "../../pages/adminPages/AdsManagement";
 import Finance from "../../pages/adminPages/Finance";
 import IncomeManagementPage from "../../pages/adminPages/IncomeManagementPage";
 import FranchiseeCategory from "../../components/adminComponents/FranchiseManagement/AddFranchaseeType";
-
+import NewFranchisee from "../../components/franchiseComponents/newFranchisee/newFranchise.jsx";
 const RouteAdmin = [
     {
       path: "dashboard",
@@ -124,10 +124,10 @@ const RouteAdmin = [
       path: "income-management",
       element: <IncomeManagementPage />,
     },
-    // {
-    //   path: "*",
-    //   element: <Navigate to="dashboard" />,
-    // },
+    {
+      path: "new-franchisee",
+      element: <NewFranchisee />,
+    },
   ];
 
 export default RouteAdmin;
