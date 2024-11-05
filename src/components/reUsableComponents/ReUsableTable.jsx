@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { Link, useNavigate } from "react-router-dom"; 
 
 const ReUsableTable = ({ tableDataConfig, tableColConfig, tableConfig }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -118,9 +118,9 @@ const navigate = useNavigate();
             <img src="/add-icon.svg" alt="new user" />
 
             {/* New user button */}
-            <span className="text-primary text-sm font-medium whitespace-nowrap">
+            <Link to={'/admin/user-management/add-new-user'} className="text-primary text-sm font-medium whitespace-nowrap">
               New User
-            </span>
+            </Link>
           </button>
         </div>
       </div>
@@ -153,7 +153,7 @@ const navigate = useNavigate();
                 <span className="font-semibold">{data.totalCompletedWork}</span>
               </p>
               <span
-                className={`flex items-center justify-center ${
+                className={`flex  px-2 items-center justify-center ${
                   data.status === "Active" ? "bg-fluracent_green" : "bg-orange"
                 } text-primary w-20 h-8 inline-block rounded-full font-medium whitespace-nowrap mt-2`}
               >
@@ -329,7 +329,7 @@ const navigate = useNavigate();
                       data.status === "Active"
                         ? "bg-fluracent_green"
                         : "bg-orange"
-                    } text-primary text-sm w-20 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
+                    } text-primary text-sm w-24 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
                   >
                     {data.status}
                   </span>

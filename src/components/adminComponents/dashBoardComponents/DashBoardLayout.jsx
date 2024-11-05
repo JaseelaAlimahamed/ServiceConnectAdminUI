@@ -6,7 +6,7 @@ import RecentActivities from './RecentActivities';
 import MessagesList from './MessagesList';
 import CustomerArrival from './CustomerArrival';
 import ServiceCategories from './ServiceCategories';
-import Statitics from './Statitics';
+import Statistics from './Statitics';
 import Revenue from './Revenue';
 import ComplaintsLog from './ComplaintsLog';
 import InCompleteBookings from './InCompleteBookings';
@@ -44,7 +44,7 @@ const DashBoardLayout = () => {
                         {/* Statistics */}
                         <div className="p-3">
                             <h1 className='font-bold p-3'>Statistics</h1>
-                            <Statitics />
+                            <Statistics />
                         </div>
                         {/* Revenue */}
                         <div className="p-3">

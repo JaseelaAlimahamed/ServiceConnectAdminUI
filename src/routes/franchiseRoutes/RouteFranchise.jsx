@@ -1,46 +1,64 @@
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import DealersPage from '../../pages/franchisePages/DealersPage'
-import DealersManagementPage from '../../pages/franchisePages/DealersManagementPage'
-import FranchiseLayout from '../../layouts/FranchiseLayout'
+import React from "react";
+import DealersPage from "../../pages/franchisePages/DealersPage";
+import AddServiceProvider from "../../pages/franchisePages/AddServiceProvider";
+import FranchiseNotification from "../../pages/franchisePages/FranchiseNotification";
+import FranchiseeProfile from "../../components/commonComponents/FranchiseDetails/FranchiseeProfile";
+import Accounts from "../../components/franchiseComponents/editFranchiseType/Accounts";
+import ServiceProviderPage from "../../pages/commonPages/ServiceProviderManagement";
+import RecentServiceDetails from "../../pages/franchisePages/Recent_Service_DetailsPage";
+import DashboardPage from "../../pages/franchisePages/DashboardPage";
+import ProfilePage from "../../pages/commonPages/ProfilePage";
+import FranchiseProfileDetails from "../../pages/commonPages/FranchiseProfileDetails";
 
-import AddServiceProvider from '../../pages/franchisePages/AddServiceProvider'
-
-import FranchaseeCategory from '../../components/franchiseComponents/editFranchiseType/AddFranchaseeType'
-import FranchiseNotification from '../../pages/franchisePages/FranchiseNotification'
-import DealerDetails from '../../pages/franchisePages/DealerDetails'
-import FranchiseeProfile from '../../components/adminComponents/FranchiseDetails/FranchiseeProfile'
-import Accounts from '../../components/franchiseComponents/editFranchiseType/Accounts'
-
-import ServiceProviderPage from '../../pages/franchisePages/Service_Provider_DetailsPage'
-import RecentServiceDetails from '../../pages/franchisePages/Recent_Service_DetailsPage'
-
-
-import DashboardPage from '../../pages/franchisePages/DashboardPage'
-
-
-function RouteFranchise() {
-  return (
-    <Routes>
-        <Route element={<FranchiseLayout/>}>
-        <Route path='dealers' element ={<DealersPage/>} />
-        <Route path='dashboard' element ={<DashboardPage/>} />
-        <Route path='dealers-management' element ={<DealersManagementPage/>} />
-
-        <Route path='add-service-provider' element={<AddServiceProvider />} />
-
-        <Route path='dealers-details'   element={<DealerDetails/>}/>
-        <Route path='Franchisee-Details' element ={<FranchiseeProfile/>}/>
-        <Route path='Edit-add-franchiseetype' element ={<FranchaseeCategory/>}/>
-        <Route path='accounts' element={<Accounts/>}/>
-        <Route path='notifications'   element={<FranchiseNotification/>}/>
-        <Route path='service-provider-details'   element={<ServiceProviderPage/>}/>
-        <Route path='recent-service-details'   element={<RecentServiceDetails/>}/>
+const FranchiseRoutes = [
+  {
+    path: "dashboard",
+    element: <DashboardPage />,
+  },
+  {
+    path: "serviceproviders",
+    element: <ServiceProviderPage />,
+  },
+  {
+    path: "profile",
+    element: <ProfilePage />,
+  },
 
 
-        </Route>
-    </Routes>
-  )
-}
+  {
+    path: "dealers",
+    element: <DealersPage />,
+  },
+  {
+    path: "dealers/dealer-management/:id",
+    element: <FranchiseProfileDetails />,
+  },
+  {
+    path: "add-service-provider",
+    element: <AddServiceProvider />,
+  },
+  {
+    path: "dealers/dealers-details",
+    element: <FranchiseProfileDetails />,
+  },
 
-export default RouteFranchise
+  
+  {
+    path: "accounts",
+    element: <Accounts />,
+  },
+  {
+    path: "notifications",
+    element: <FranchiseNotification />,
+  },
+  {
+    path: "recent-service-details",
+    element: <RecentServiceDetails />,
+  },
+  {
+    path: "*",
+    // element: <Navigate to="dashboard" />,
+  },
+];
+
+export default FranchiseRoutes;

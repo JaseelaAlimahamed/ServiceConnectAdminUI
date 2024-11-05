@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 
 const ImagePicker = ({ selectedImage, setSelectedImage }) => {

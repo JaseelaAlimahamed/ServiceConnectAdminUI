@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FiMail, FiPhone, FiMoreHorizontal } from "react-icons/fi"; // Importing icons from react-icons
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -126,8 +126,8 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
     navigate("")
   }
 
-  const hanldeView=()=>{
-    navigate("")
+  const handleView=()=>{
+    navigate("/admin/franchise/franchise-details/1")
   }
 
   return (
@@ -166,12 +166,12 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
           <option value="oldest">Oldest</option>
         </select>
 
-        <button
+        <Link
           className="bg-violet text-primary text-sm px-4 py-2 rounded-full hover:bg-violet w-full md:w-auto"
-          onClick={handleAddNew}
+          to={'/admin/franchise/edit-add-franchiseType'}
         >
           Add/Edit Franchisee Type
-        </button>
+        </Link>
 
         <button
           className="bg-violet text-primary text-sm px-4 py-2 rounded-full hover:bg-violet w-full md:w-auto"
@@ -211,7 +211,7 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
           </thead>
           <tbody className="divide-y divide-primary">
             {filteredFranchises.map((franchise, index) => (
-              <tr key={franchise.id} className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+              <tr onClick={ handleView} key={franchise.id} className={index % 2 === 0 ? "bg-white  cursor-pointer" : "bg-gray-50 cursor-pointer"}>
                 <td className="py-3 px-6">
                   <input
                     type="checkbox"
@@ -278,7 +278,7 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
                       <ul>
                         <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={handleEdit}>Edit</li>
                         <li className="p-2 hover:bg-text-violet cursor-pointer"onClick={handleDelete}>Delete</li>
-                        <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={hanldeView}>View</li>
+                        <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={handleView}>View</li>
                       </ul>
                    
                     </div>

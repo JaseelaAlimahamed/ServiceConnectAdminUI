@@ -1,92 +1,133 @@
+import { Navigate } from "react-router-dom";
+import AdminDashBoard from "../../pages/adminPages/dashBoardPages/AdminDashBoard";
+import UserManagementPage from "../../pages/adminPages/managementPages/UserManagementPage";
+import ProfilePage from "../../pages/commonPages/ProfilePage";
+import BookingDetailsPage from "../../pages/adminPages/BookingDetailsPage";
+import AddCategoryPage from "../../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
+import EditCategoryPage from "../../pages/adminPages/categorySubCategoryPages/EditCategoryPage";
+import FranchiseProfileDetails from "../../pages/commonPages/FranchiseProfileDetails";
+import EditSubCategory from "../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory";
+import AddSubCategory from "../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory";
+import ServiceType from "../../pages/adminPages/ServiceType";
+import UserDetails from "../../pages/adminPages/managementPages/UserDetails";
+import CategoryPage from "../../pages/adminPages/CategorySubCategoryPages/CategoryPage";
+import SubCategoryPage from "../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage";
+import NewAdsPage from "../../pages/adminPages/AdsPages/NewAdsPage";
+import ServiceProviderTable from "../../pages/commonPages/ServiceProviderManagement";
+import FranchiseDetailsTable from "../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable";
+import AccountPage from "../../pages/adminPages/AccountPage";
+import NotificationPage from "../../pages/adminPages/notificationPage/NotificationPage";
+import AddNewUser from "../../components/adminComponents/userManagementComponents/AddNewUser";
+import AdsManagement from "../../pages/adminPages/AdsManagement";
+import Finance from "../../pages/adminPages/Finance";
+import IncomeManagementPage from "../../pages/adminPages/IncomeManagementPage";
+import FranchiseeCategory from "../../components/adminComponents/FranchiseManagement/AddFranchaseeType";
 
+const RouteAdmin = [
+    {
+      path: "dashboard",
+      element: <AdminDashBoard />,
+    },
+    {
+      path: "user-management",
+      element: <UserManagementPage />,
+    },
+    {
+      path: "user-details/:id",
+      element: <UserDetails />,
+    },
+    {
+      path: "user-management/add-new-user",
+      element: <AddNewUser />,
+    },
+    {
+      path: "service-providers",
+      element: <ServiceProviderTable />,
+    },
+    {
+      path: "profile",
+      element: <ProfilePage />,
+    },
+    {
+      path: "franchise",
+      
+      children: [
+        {
+          path: '',
+          element: <FranchiseDetailsTable />,
+        },
+        {
+          path: "franchise-details/:id",
+          element: <FranchiseProfileDetails />,
+        },
+        {
+          path: "edit-add-franchiseType",
+          element: <FranchiseeCategory />,
+        },
+      ],
+    },
 
+    {
+      path: "booking-details",
+      element: <BookingDetailsPage />,
+    },
+    {
+      path: "service-management",
+      element: <ServiceType />,
+    },
+    {
+      path: "categories",
+      element: <CategoryPage />,
+    },
+    {
+      path: "add-category",
+      element: <AddCategoryPage />,
+    },
+    {
+      path: "edit-category",
+      element: <EditCategoryPage />,
+    },
+    {
+      path: "sub-categories",
+      element: <SubCategoryPage />,
+    },
+    {
+      path: "edit-subcategory",
+      element: <EditSubCategory />,
+    },
+    {
+      path: "add-subcategory",
+      element: <AddSubCategory />,
+    },
+    
+    {
+      path: "accounts",
+      element: <AccountPage />,
+    },
+    {
+      path: "ads-management",
+      element: <AdsManagement />,
+    },
+    {
+      path: "new-ads",
+      element: <NewAdsPage />,
+    },
+    {
+      path: "notifications",
+      element: <NotificationPage />,
+    },
+    {
+      path: "finance",
+      element: <Finance />,
+    },
+    {
+      path: "income-management",
+      element: <IncomeManagementPage />,
+    },
+    // {
+    //   path: "*",
+    //   element: <Navigate to="dashboard" />,
+    // },
+  ];
 
-import React from 'react'
-
-import { Routes, Route } from 'react-router-dom'
-import AdminLayout from '../../layouts/AdminLayout.jsx'
-import AdminDashBoard from '../../pages/adminPages/dashBoardPages/AdminDashBoard.jsx'
-import UserManagementPage from '../../pages/adminPages/managementPages/UserManagementPage.jsx'
-import AdminProfilePage from '../../pages/adminPages/AdminProfilePage.jsx'
-
-import BookingDetailsPage from '../../pages/adminPages/BookingDetailsPage.jsx'
-import AddCategoryPage from '../../pages/adminPages/categorySubCategoryPages/AddCategoryPage.jsx'
-import EditCategoryPage from '../../pages/adminPages/categorySubCategoryPages/EditCategoryPage.jsx'
-import FranchiseProfileDetails from '../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable.jsx'
-
-import SignInForm from '../../pages/adminPages/SignInPages/SignInForm.jsx'
-
-import EditSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/EditSubCategory.jsx'
-import AddSubCategory from '../../components/adminComponents/CategorySubCategory/AddEditSubCategory/AddSubCategory'
-
-import ServiceType from '../../pages/adminPages/ServiceType.jsx'
-import UserDetails from '../../pages/adminPages/managementPages/UserDetails.jsx'
-import CategoryPage from '../../pages/adminPages/CategorySubCategoryPages/CategoryPage'
-import SubCategoryPage from '../../pages/adminPages/CategorySubCategoryPages/SubCategoryPage'
-import NewAdsPage from '../../pages/adminPages/AdsPages/NewAdsPage'
-import ServiceProviderTable from '../../pages/adminPages/ServiceProviderManagement.jsx'
-
-import FranchiseDetailsTable from '../../pages/adminPages/franchiseManagementPages/FranchiseDetailsTable.jsx'
-import AccountPage from '../../pages/adminPages/AccountPage.jsx'
-import NotificationPage from '../../pages/adminPages/notificationPage/NotificationPage.jsx'
-
-import AddNewUser from '../../components/adminComponents/userManagementComponents/AddNewUser.jsx'
-
-// import FranchiseeList from '../../components/adminComponents/FranchiseManagement/FranchiseeList.jsx'
-import AdsManagement from '../../pages/adminPages/AdsManagement.jsx'
-import Finance from '../../pages/adminPages/Finance.jsx'
-import IncomeManagementPage from '../../pages/adminPages/IncomeManagementPage.jsx'
-
-
-
-
-
-function RouteAdmin() {
-
-
-
-  return (
-    <Routes>
-
-
-      <Route path='/sign-in' element={<SignInForm />} />
-
-      <Route element={<AdminLayout />}>
-      <Route path='/' element={<AdminDashBoard />} />
-      <Route path='/user-management' element={<UserManagementPage />} />
-        <Route path='/user-details/:id' element={<UserDetails />} />
-        <Route path='/add-new-user' element={<AddNewUser />} />
-
-        <Route path='/service-providers' element={<ServiceProviderTable />} />
-
-
-        <Route path='/Franchise' element={<FranchiseDetailsTable />} />
-        <Route path='/Franchise-Details' element={<FranchiseProfileDetails />} />
-        {/* <Route path='/Edit-franchiseetype' element={<EditAddFranchiseeType />} /> */}
-
-        <Route path='/booking-details' element={<BookingDetailsPage />} />
-        <Route path='/service-management' element={<ServiceType />} />
-
-        <Route path='/categories' element={<CategoryPage />} />
-        <Route path='/Add-Category' element={<AddCategoryPage />} />
-        <Route path='/Edit-Category' element={<EditCategoryPage />} />
-
-        <Route path='/sub-categories' element={<SubCategoryPage />} />
-        <Route path='/edit-subcategory' element={<EditSubCategory />} />
-        <Route path='/add-subcategory' element={<AddSubCategory />} />
-
-        <Route path='/profile' element={<AdminProfilePage />} />
-        <Route path='/accounts' element={<AccountPage />} />
-        <Route path='/ads-management' element={<AdsManagement />} />
-        <Route path='/new-ads' element={<NewAdsPage />} />
-        <Route path='/notifications' element={<NotificationPage />} />
-        <Route path='/finance' element={<Finance />} />
-        <Route path='/income-management' element={<IncomeManagementPage />} />
-
-      </Route>
-    </Routes>
-
-  )
-}
-
-export default RouteAdmin
+export default RouteAdmin;

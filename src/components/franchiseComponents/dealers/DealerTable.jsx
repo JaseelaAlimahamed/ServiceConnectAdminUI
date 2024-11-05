@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function DealerTable({tableHeadings , tableData , page}) {
-
+const navigate = useNavigate()
     const [showActionOverlay , setShowActionOverlay] = useState("");
     console.log(showActionOverlay)
 
+    const handleView = () => {
+        navigate('/franchise/Dealers/dealer-management/2')
+    }
   return (
   <div className="px-5 pt-5  bg-gray-100">
     <div className="overflow-auto rounded-t-lg shadow hidden md:block">
@@ -22,7 +25,7 @@ function DealerTable({tableHeadings , tableData , page}) {
         </thead>
         <tbody className="divide-y divide-[#DBDBDB]">
             {tableData.map(({checkBox , name , id , serviceProviders , location , contact , status , actionIcon}) => (
-            <tr key={id} className="bg-white">
+            <tr  key={id} className="bg-white cursor-pointer" onClick={handleView}>
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                 {checkBox}
               </td>

@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../../components/reUsableComponents/Card";
 import UserProfile from "../../../components/adminComponents/userManagementComponents/UserProfile";
-import PaymentHistoryTable from "../../../components/adminComponents/adminProfileComponents/PaymentHistoryTable";
+import PaymentHistoryTable from "../../../components/commonComponents/profileComponents/PaymentHistoryTable";
 
 const userdetails = {
   name:'Karen Hope',
