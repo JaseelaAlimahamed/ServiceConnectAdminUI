@@ -1,24 +1,12 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import RouteAdmin from './routes/adminRoutes/RouteAdmin';
-import RouteFranchise from './routes/franchiseRoutes/RouteFranchise';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AppRouter from './routes/AppRouter';
 
+const router = createBrowserRouter(AppRouter);
 
-function App() {
-
-
+export const App = () => {
   return (
-   
-      
-        <Routes>
-          <Route path="/admin/*" element={<RouteAdmin/>} />
-
-          <Route path='/franchise/*' element={<RouteFranchise/>}/>
-
-        </Routes>
-        
-
-   
+      <RouterProvider router={router} />
   );
-}
+};
 
 export default App;

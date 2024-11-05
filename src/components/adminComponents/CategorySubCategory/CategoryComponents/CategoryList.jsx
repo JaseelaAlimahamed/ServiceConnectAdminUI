@@ -52,7 +52,7 @@ const CategoryList = () => {
 
     // Filter categories based on search query
     const filteredCategories = mockCategories.filter(category =>
-        category.name.toLowerCase().includes(searchQuery.toLowerCase())
+        category && category.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (

@@ -95,10 +95,10 @@ const SubCategoryList = () => {
     const filteredSubcategories = selectedCategory
     ? subCategories.filter(subcategory =>
         subcategory.categoryId === selectedCategory.id &&
-        subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
+        subcategory && subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
     : subCategories.filter(subcategory =>
-        subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
+        subcategory && subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
     ); // Show all subcategories matching the search query when no category is selected
 
     return (

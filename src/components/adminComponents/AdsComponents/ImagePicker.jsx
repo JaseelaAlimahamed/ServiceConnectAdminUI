@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 
 const ImagePicker = ({ selectedImage, setSelectedImage }) => {
@@ -20,7 +20,7 @@ const ImagePicker = ({ selectedImage, setSelectedImage }) => {
   };
 
   return (
-    <div className="relative w-[340px] h-[220px] rounded-lg overflow-hidden shadow-md">
+    <div className="relative w-[340px] h-[220px] rounded-lg overflow-hidden outline-2 outline-black shadow-md">
       {/* Display uploaded image or placeholder */}
       {selectedImage ? (
         <img
