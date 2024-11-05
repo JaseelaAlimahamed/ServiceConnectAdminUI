@@ -7,6 +7,7 @@ import DealerSearchBar from '../../components/franchiseComponents/dealers/Dealer
 import AddDealerButton from '../../components/franchiseComponents/dealers/AddDealerButton';
 import { IoPersonOutline , IoCallOutline , IoMailOutline  } from "react-icons/io5";
 import { BsThreeDots } from "react-icons/bs";
+import DealersManagement from '../../components/FranchiseComponents/dealersManagement/DealersManagement';
 
 
 
@@ -91,6 +92,7 @@ function DealersPage() {
         <div className='p-5 bg-white mx-5 rounded-b-lg'>
           <DealerPagination/>
         </div>
+        <DealersManagement/>
     </div>
   )
 }

@@ -85,10 +85,10 @@ const cardConfig = [
 ]
 
   return (
-    <div className="w-full font-poppins px-6 pb-10 ">
+    <div className="w-full font-poppins px-6 pb-10 pt-10 h-full ">
       <div className="flex flex-wrap gap-2 pb-10">
-        {cardConfig.map((item) => (
-          <UserManagementCard item={item} />
+        {cardConfig.map((item,index) => (
+          <UserManagementCard  key={index} item={item} />
         ))}
       </div>
 

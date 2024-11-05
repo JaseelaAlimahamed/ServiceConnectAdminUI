@@ -1,7 +1,7 @@
 import React from 'react'
 import GraphDashboard from './GraphDashboard'
 
-const Statitics = () => {
+const Statistics = () => {
     const pieData = [
         { name: 'Active Users', value: 400 },
         { name: 'Inactive Users', value: 300 },
@@ -18,4 +18,4 @@ const Statitics = () => {
   )
 }
 
-export default Statitics
+export default Statistics

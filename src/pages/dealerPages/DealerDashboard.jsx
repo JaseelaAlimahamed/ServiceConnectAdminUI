@@ -1,7 +1,7 @@
 import React from "react";
 import Dealerinfocard from "../../components/dealerComponents/dashboardComponents/Dealerinfocard";
 import Franchisee from "../../components/dealerComponents/dashboardComponents/Franchisee";
-import PaymentHistoryTable from "../../components/adminComponents/adminProfileComponents/PaymentHistoryTable"   
+import PaymentHistoryTable from "../../components/commonComponents/profileComponents/PaymentHistoryTable"   
 // import ReUsableTable from "../../components/reUsableComponents/ReUsableTable"
 import Activitycard from "../../components/dealerComponents/dashboardComponents/Activitycard";
 import Graph from "../../components/dealerComponents/dashboardComponents/Graph";

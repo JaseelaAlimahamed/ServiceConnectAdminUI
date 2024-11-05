@@ -11,7 +11,7 @@ import IncompleteBookings from '../../components/FranchiseComponents/dashboard/d
 const DashboardPage = () => {
   return (
 
-    <div>
+    <div className=''>
       <div className='p-5'>
       <div class="grid grid-rows-2 grid-cols-1  md:grid-cols-2  lg:grid-cols-4 gap-4">
  <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10%" iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Total Service Providers"  count={932}/>
