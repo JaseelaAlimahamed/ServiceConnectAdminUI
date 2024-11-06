@@ -9,6 +9,7 @@ import RecentServiceDetails from "../../pages/franchisePages/Recent_Service_Deta
 import DashboardPage from "../../pages/franchisePages/DashboardPage";
 import ProfilePage from "../../pages/commonPages/ProfilePage";
 import FranchiseProfileDetails from "../../pages/commonPages/FranchiseProfileDetails";
+import { Navigate } from "react-router-dom";
 
 const FranchiseRoutes = [
   {
@@ -57,7 +58,7 @@ const FranchiseRoutes = [
   },
   {
     path: "*",
-    // element: <Navigate to="dashboard" />,
+    element: <Navigate to="/not-found" replace />, 
   },
 ];
 

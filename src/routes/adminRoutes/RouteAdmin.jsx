@@ -22,6 +22,7 @@ import AdsManagement from "../../pages/adminPages/AdsManagement";
 import Finance from "../../pages/adminPages/Finance";
 import IncomeManagementPage from "../../pages/adminPages/IncomeManagementPage";
 import FranchiseeCategory from "../../components/adminComponents/FranchiseManagement/AddFranchaseeType";
+import NewFranchisee from "../../pages/adminPages/NewFranchisePage";
 
 const RouteAdmin = [
     {
@@ -64,6 +65,10 @@ const RouteAdmin = [
           path: "edit-add-franchiseType",
           element: <FranchiseeCategory />,
         },
+        {
+          path: 'new-franchise',
+          element : <NewFranchisee/>
+        }
       ],
     },
 
@@ -124,10 +129,10 @@ const RouteAdmin = [
       path: "income-management",
       element: <IncomeManagementPage />,
     },
-    // {
-    //   path: "*",
-    //   element: <Navigate to="dashboard" />,
-    // },
+    {
+      path: "*",
+      element: <Navigate to="/not-found" replace />, 
+    },
   ];
 
 export default RouteAdmin;

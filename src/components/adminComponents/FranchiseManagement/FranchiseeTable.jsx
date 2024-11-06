@@ -173,12 +173,13 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
           Add/Edit Franchisee Type
         </Link>
 
-        <button
+        <Link
+          to={'new-franchise'}
           className="bg-violet text-primary text-sm px-4 py-2 rounded-full hover:bg-violet w-full md:w-auto"
           onClick={handleNewFranchise}
         >
           + New Franchisee
-        </button>
+        </Link>
       </div>
 
     {/* Table for larger screens */}
@@ -266,24 +267,29 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
                   </div>
                 </td>
                 <td className="p-3 text-sm text-gray-700 whitespace-nowrap relative">
-                  <button
-                    onClick={() => toggleDropdown(index)}
-                    className="text-blue-500 hover:underline"
-                  >
-                    <FiMoreHorizontal size={20} className="text-violet" />
-                  </button>
-                  
-                  {dropdownOpen === index && (
-                    <div className="absolute bg-white border shadow-lg right-0 mt-2 rounded-lg z-10">
-                      <ul>
-                        <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={handleEdit}>Edit</li>
-                        <li className="p-2 hover:bg-text-violet cursor-pointer"onClick={handleDelete}>Delete</li>
-                        <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={handleView}>View</li>
-                      </ul>
-                   
-                    </div>
-                  )}
-                </td>
+      <button
+        onClick={(e) => {
+          e.stopPropagation(); // Prevents row click when clicking dropdown button
+          toggleDropdown(index);
+        }}
+        className="text-blue-500 hover:underline"
+      >
+        <FiMoreHorizontal size={20} className="text-violet" />
+      </button>
+      
+      {dropdownOpen === index && (
+        <div 
+          onClick={(e) => e.stopPropagation()} // Prevents row click when interacting with dropdown
+          className="absolute bg-white border shadow-lg right-0 mt-2 rounded-lg z-10"
+        >
+          <ul>
+            <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleEdit(franchise.id); toggleDropdown(null); }}>Edit</li>
+            <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleDelete(franchise.id); toggleDropdown(null); }}>Delete</li>
+            <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleView(franchise.id); toggleDropdown(null); }}>View</li>
+          </ul>
+        </div>
+      )}
+    </td>
               </tr>
             ))}
           </tbody>
