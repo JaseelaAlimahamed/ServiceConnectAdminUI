@@ -269,7 +269,7 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
                 <td className="p-3 text-sm text-gray-700 whitespace-nowrap relative">
       <button
         onClick={(e) => {
-          e.stopPropagation(); // Prevents row click when clicking dropdown button
+          e.stopPropagation();
           toggleDropdown(index);
         }}
         className="text-blue-500 hover:underline"

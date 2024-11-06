@@ -1,20 +1,23 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from "/LOGO.png";
 import InputField from '../../components/reUsableComponents/InputFieldComponent';
 import SubmitButton from '../../components/reUsableComponents/SubmitButton';
+import { changeRole } from '../../Redux/feathers/auth';
+import { useDispatch } from 'react-redux';
 
 const SignIn = () => {
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState('admin'); // New state for role selection
   const navigate = useNavigate();
-
+  const dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
-    navigate('/admin/dashboard')
+    console.log({ email, password, role }); 
+    dispatch(changeRole(role));
+    navigate('/dashboard');
   };
 
   return (
@@ -44,6 +47,19 @@ const SignIn = () => {
           toggleShowPassword={() => setShowPassword(!showPassword)}
         />
 
+        <div className='flex flex-col gap-2 w-full'>
+          <label className='ml-3 text-gray-700'>Select Role</label>
+          <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            className='p-2 border border-gray-300 rounded-md'
+          >
+            <option value="admin">Admin</option>
+            <option value="dealer">Dealer</option>
+            <option value="franchise">Franchise</option>
+          </select>
+        </div>
+
         <div className='flex justify-between p-2'>
           <p>
             <input type="checkbox" /> Remember Me
@@ -53,7 +69,6 @@ const SignIn = () => {
 
         <SubmitButton text="Sign In" />
       </form>
-
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import AdminDashBoard from "../../pages/adminPages/dashBoardPages/AdminDashBoard";
+// import AdminDashBoard from "../../pages/adminPages/dashBoardPages/AdminDashBoard";
 import UserManagementPage from "../../pages/adminPages/managementPages/UserManagementPage";
 import ProfilePage from "../../pages/commonPages/ProfilePage";
 import BookingDetailsPage from "../../pages/adminPages/BookingDetailsPage";
@@ -25,10 +25,10 @@ import FranchiseeCategory from "../../components/adminComponents/FranchiseManage
 import NewFranchisee from "../../pages/adminPages/NewFranchisePage";
 
 const RouteAdmin = [
-    {
-      path: "dashboard",
-      element: <AdminDashBoard />,
-    },
+    // {
+    //   path: "dashboard",
+    //   element: <AdminDashBoard />,
+    // },
     {
       path: "user-management",
       element: <UserManagementPage />,
