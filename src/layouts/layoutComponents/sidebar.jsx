@@ -6,12 +6,12 @@ import { dealer } from "../MenuItems/Dealer.jsx";
 import { franchise } from "../MenuItems/Franchise.jsx";
 import { MainIcon } from "../../components/reUsableComponents/MainIcon.jsx";
 
-const Sidebar = ({ isOpen, toggleSidebar }) => {
+const Sidebar = ({ isOpen, toggleSidebar, role }) => {
   const location = useLocation();
   
   // Extract basePath and path from the current location
-  const basePath = location.pathname.split("/")[1];
-  const path = location.pathname.split("/")[2];
+  // const basePath = location.pathname.split("/")[1];
+  const path = location.pathname.split("/")[1];
    
   
   // Set activeItem based on current path
@@ -23,7 +23,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   }, [path]);
 
   // Determine which menu items to show based on the basePath
-  const menuItems = basePath === "admin" ? admin : basePath === "dealer" ? dealer : franchise;
+  const menuItems = role === "admin" ? admin : role === "dealer" ? dealer : franchise;
 
   return (
     <div className="relative">
@@ -37,7 +37,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <MainIcon />
           </div>
           <div className="ml-3 text-white font-heading font-bold text-2xl">
-            SC 
+            SC  {role}
           </div>
           <button
             className="absolute right-0 top-0 z-10 h-15 w-15 md:hidden"
@@ -49,10 +49,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
 
         <ul className="space-y-1 ">
+
           {menuItems && menuItems.length > 0 ? (
             menuItems.map((item) => (
               <Link
-                to={`/${basePath}/${item.to}`}
+                to={`/${item.to}`}
                 key={item.name}
                 className={`flex items-center p-3 cursor-pointer rounded-bl-full rounded-tl-full w-full transition-all ${
                   activeItem === item.to ? "bg-primary text-violet" : "text-white"

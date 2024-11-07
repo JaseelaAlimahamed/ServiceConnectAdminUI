@@ -6,6 +6,7 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import DeleteModal from './DeleteModal'
 import ViewModal from './ViewModal'
+import { Link } from 'react-router-dom'
 
 
 
@@ -149,7 +150,7 @@ const SubCategoryList = () => {
                     }
                     {/* Add Category Button */}
                     <div className="bg-blue_bg min-h-[250px] shadow-lg rounded-lg flex justify-center items-center p-4 w-full">
-                        <button className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></button>
+                        <Link to={'/add-subcategory'}  className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></Link>
                     </div>
                 </div>
             </div>

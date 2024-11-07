@@ -1,14 +1,28 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import RouteAdmin from "./adminRoutes/RouteAdmin";
-import RouteDealer from "./dealerRoutes/RouteDealer";
-import RouteFranchise from "./franchiseRoutes/RouteFranchise";
-import { Layout } from "lucide-react";
+import Layout from "../layouts/Layout";
+import NotFound from "../pages/commonPages/NotFound";
+import AuthRoutes from "./authRoutes/AuthRoutes";
+import CommonRoutes from "./CommonRoutes";
+import SeparateRoutes from "./SeparateRoutes";
 
-const AppRoutes = () => {
-  return (
-   
-  );
-};
+const AppRouter = [
+  {
+    path: "/",
+    children: [
+      ...AuthRoutes,
+      {
+        path: "/",
+        element: <Layout />,
+        children: [
+          ...CommonRoutes,
+          ...SeparateRoutes,
+        ],
+      },
+      {
+        path: "not-found",
+        element: <NotFound />,
+      },
+    ],
+  },
+];
 
-export default AppRoutes;
+export default AppRouter;

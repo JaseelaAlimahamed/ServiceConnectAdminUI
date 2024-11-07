@@ -2,7 +2,7 @@
 
 import SubCategory from './addSubCategoryitems/SubCategory';
 
-function App() {
+function AddSubCategory() {
     return (
         <div>
             <SubCategory />
@@ -10,4 +10,4 @@ function App() {
     );
 }
 
-export default App;
+export default AddSubCategory;

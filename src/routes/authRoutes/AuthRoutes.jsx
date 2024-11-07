@@ -1,4 +1,6 @@
+import NotFound from '../../pages/commonPages/NotFound';
 import SignIn from '../../pages/commonPages/Sign-in';
+import { Navigate } from "react-router-dom";
 
 const AuthRoutes = [
   {
@@ -6,18 +8,11 @@ const AuthRoutes = [
     element: <SignIn />,
   },
   {
-    path: "sign-up",
-    element: <SignIn />,
+    path: "*",
+    element: <Navigate to="/not-found" replace />, 
   },
-  // Uncomment and add other routes as needed
-  // {
-  //   path: "/sign-up",
-  //   element: <SignUp />,
-  // },
-  // {
-  //   path: "/forgot-password",
-  //   element: <ForgotPassword />,
-  // },
+  
+ 
 ];
 
 export default AuthRoutes;

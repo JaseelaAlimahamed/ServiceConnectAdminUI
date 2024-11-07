@@ -1,11 +1,16 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import AppRouter from './routes/AppRouter';
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
+import AppRouter from './routes/AppRoutes';
 
 const router = createBrowserRouter(AppRouter);
 
 export const App = () => {
   return (
+    <Provider store={store}> 
+
       <RouterProvider router={router} />
+      </Provider>
   );
 };
 

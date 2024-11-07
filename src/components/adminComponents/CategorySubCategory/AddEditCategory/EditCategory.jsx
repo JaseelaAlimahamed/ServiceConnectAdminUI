@@ -31,7 +31,7 @@ const EditCategory = () => {
   const handleSave = () => {
     console.log(`Category Saved with Title: Imagepath:${image},${title}, Description: ${description}, Status: ${status}`);
     // Redirect to another page after saving
-    navigate("/admin/categories");
+    navigate("/categories");
   };
 
   const handleDelete = () => {

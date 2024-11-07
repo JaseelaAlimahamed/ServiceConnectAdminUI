@@ -3,7 +3,7 @@ import { FiBell, FiSettings } from 'react-icons/fi';
 import { FaBars, FaAnglesRight } from 'react-icons/fa6';
 import { useLocation } from 'react-router-dom';
 
-const NavBar = ({ toggleSidebar }) => {
+const NavBar = ({ toggleSidebar, role }) => {
   const location = useLocation();
   const [heading, setHeading] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -45,7 +45,7 @@ const NavBar = ({ toggleSidebar }) => {
           aria-label="Toggle Sidebar" 
         />
         <h1 className="text-gray-900 text-lg font-semibold truncate flex items-center space-x-1">
-          {heading}
+          {heading} 
         </h1>
       </div>
       <div className="flex items-center space-x-4">

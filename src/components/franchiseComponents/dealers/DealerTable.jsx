@@ -7,7 +7,7 @@ const navigate = useNavigate()
     console.log(showActionOverlay)
 
     const handleView = () => {
-        navigate('/franchise/Dealers/dealer-management/2')
+        navigate('/Dealers/dealer-management/2')
     }
   return (
   <div className="px-5 pt-5  bg-gray-100">

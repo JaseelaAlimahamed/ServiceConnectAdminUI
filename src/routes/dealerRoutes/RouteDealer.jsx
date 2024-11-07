@@ -9,6 +9,7 @@ import TransactionHistory from "../../pages/dealerPages/TransactionHistory";
 import ServiceProviderTable from "../../pages/commonPages/ServiceProviderManagement.jsx";
 import ProfilePage from "../../pages/commonPages/ProfilePage.jsx";
 import FranchiseProfileDetails from "../../pages/commonPages/FranchiseProfileDetails.jsx";
+import { Navigate } from "react-router-dom";
 
 const DealerRoutes = [
   // { path: '/forgot-password', element: <ForgotPassword /> },
@@ -22,7 +23,6 @@ const DealerRoutes = [
     path: "profile",
     element: <ProfilePage />,
   },
-
 
   {
     path: "service-provider-management",
@@ -39,6 +39,10 @@ const DealerRoutes = [
   { path: "payment-request", element: <PaymentRequestPage /> },
   { path: "franchisee", element: <FranchiseProfileDetails /> },
   { path: "finance", element: <TransactionHistory /> },
+  {
+    path: "*",
+    element: <Navigate to="/not-found" replace />, 
+  },
 ];
 
 export default DealerRoutes;
