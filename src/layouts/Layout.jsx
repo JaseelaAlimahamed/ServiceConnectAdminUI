@@ -4,11 +4,12 @@ import Sidebar from './layoutComponents/sidebar'
 import NavBar from './layoutComponents/NavBar'
 import { useSelector } from 'react-redux'
 
-const Layout = () => {
+const  Layout = () => {
 
   const [isOpen, setIsOpen] = useState(false); 
-  // State for sidebar toggle
   const role = useSelector(state => state.auth.role)
+  console.log(role);
+  
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };

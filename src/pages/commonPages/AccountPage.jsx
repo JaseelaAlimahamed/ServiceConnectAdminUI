@@ -2,9 +2,9 @@ import React from "react";
 
 
 
-import AddExpenseComponent from "../../components/adminComponents/accountPageComponents/AddExpenseComponent";
+import AddExpenseComponent from "../../components/commonComponents/accountPageComponents/AddExpenseComponent";
 
-import ExpenseList from "../../components/adminComponents//accountPageComponents/ExpenseList";   
+import ExpenseList from "../../components/commonComponents/accountPageComponents/ExpenseList";   
 
 const AccountPage = () => {
   return (

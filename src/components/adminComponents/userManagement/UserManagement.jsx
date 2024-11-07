@@ -96,6 +96,7 @@ const cardConfig = [
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}
+        path={'/user-management'}
       />     
     </div>
   );

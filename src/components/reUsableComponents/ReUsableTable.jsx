@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 
-const ReUsableTable = ({ tableDataConfig, tableColConfig, tableConfig }) => {
+const  ReUsableTable = ({ tableDataConfig, tableColConfig, tableConfig, path }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5); // Number of users to display per page
   const [sortNewest, setSortNewest] = useState(true);
@@ -49,7 +49,7 @@ const navigate = useNavigate();
   
   const handleView = (id) => {
     console.log("view true",id);
-    navigate(`/admin/user-details/${id}`); 
+    navigate(`${path}/details/2`); 
   };
   const handleEdit = () => {
     console.log("edit true");
@@ -114,14 +114,14 @@ const navigate = useNavigate();
             </div>
             <img src="/dropdown-icon.svg" alt="dropdown" />
           </button>
-          <button className="flex items-center justify-center bg-violet rounded-full hover:opacity-90 duration-300 px-14 h-12 gap-2">
+          <Link to={`${path}/add-new`} className="flex items-center justify-center bg-violet rounded-full hover:opacity-90 duration-300 px-14 h-12 gap-2">
             <img src="/add-icon.svg" alt="new user" />
 
             {/* New user button */}
-            <Link to={'/admin/user-management/add-new-user'} className="text-primary text-sm font-medium whitespace-nowrap">
+            <button  className="text-primary text-sm font-medium whitespace-nowrap">
               New User
-            </Link>
-          </button>
+            </button>
+          </Link>
         </div>
       </div>
 

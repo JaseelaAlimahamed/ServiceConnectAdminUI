@@ -11,7 +11,7 @@ const Sidebar = ({ isOpen, toggleSidebar, role }) => {
   
   // Extract basePath and path from the current location
   // const basePath = location.pathname.split("/")[1];
-  const path = location.pathname.split("/")[2];
+  const path = location.pathname.split("/")[1];
    
   
   // Set activeItem based on current path

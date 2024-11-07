@@ -127,7 +127,7 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
   }
 
   const handleView=()=>{
-    navigate("/admin/franchise/franchise-details/1")
+    navigate("/franchise/franchise-details/1")
   }
 
   return (
@@ -168,7 +168,7 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
 
         <Link
           className="bg-violet text-primary text-sm px-4 py-2 rounded-full hover:bg-violet w-full md:w-auto"
-          to={'/admin/franchise/edit-add-franchiseType'}
+          to={'/franchise/edit-add-franchiseType'}
         >
           Add/Edit Franchisee Type
         </Link>

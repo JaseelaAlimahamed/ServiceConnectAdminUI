@@ -1,3 +1,4 @@
+import React from "react";
 import ReUsableTable from "../../reUsableComponents/ReUsableTable";
 
 
@@ -84,6 +85,7 @@ const ServiceProviderManagement = () => {
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}
+        path={'/service-providers'}
       />
     </div>
   );

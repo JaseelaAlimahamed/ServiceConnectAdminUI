@@ -5,7 +5,6 @@ const FranchiseProfileDetails = () => {
   return (
     <div>
         <FranchiseeProfile/>
-      
     </div>
   )
 }

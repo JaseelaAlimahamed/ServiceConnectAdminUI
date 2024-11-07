@@ -31,7 +31,10 @@ const authSlice = createSlice({
     // },
 
     changeRole: (state, action) => {
+
       state.role = action.payload;
+      console.log(state);
+      
     },
   },
 });

@@ -1,12 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children, allowedRoles }) => {
-  // Retrieve the user's role (assuming it’s stored in Redux)
-  const userRole = 'admin'; // Adjust according to your Redux structure
+  const {role} = useSelector(state => state.auth)
  
 
-  if (allowedRoles && !allowedRoles.includes(userRole)) {
+  if (allowedRoles && !allowedRoles.includes(role)) {
     return <Navigate to="/sign-in" replace />;
   }
 
