@@ -3,14 +3,14 @@ import NotificationForm from "../../../components/adminComponents/notificationCo
 
 const NotificationPage = () => {
   return (
-    <div className="container mx-auto p-4 md:p-6 bg-gray-50 min-h-screen">
+    <div className="container  bg-blue_bg h-screen ">
       {/* Notification Table */}
-      <div className="mb-8  w-full ">
+      <div className="mb-8   ">
         <NotificationTable />
       </div>
 
       {/* Notification Form */}
-      <div className="mb-8  w-full  ">
+      <div className="mb-8   ">
         <NotificationForm />
       </div>
     </div>
