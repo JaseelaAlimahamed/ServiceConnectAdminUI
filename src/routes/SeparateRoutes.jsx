@@ -11,7 +11,7 @@ import DealersPage from "../pages/franchisePages/DealersPage";
 import CategoryPage from "../pages/adminPages/CategorySubCategoryPages/CategoryPage";
 import SubCategoryPage from "../pages/adminPages/CategorySubCategoryPages/SubCategoryPage";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
-import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddEditCategoryPage";
+import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
 
