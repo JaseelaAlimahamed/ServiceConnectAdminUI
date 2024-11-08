@@ -1,19 +1,54 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 const AddCategory = () => {
   const navigate = useNavigate();
-
+  const { id: CategoryId } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Active");
   const [image, setImage] = useState("https://via.placeholder.com/300");
 
+  // Fetch category details if we are editing
+  useEffect(() => {
+    if (CategoryId) {
+      // Fetch the category data by ID
+      // This is a placeholder for the actual fetch call
+      // Assuming fetchCategoryDetails is a function that fetches category data
+      fetchCategoryDetails(CategoryId);
+    }
+  }, [CategoryId]);
+
+  // Function to fetch category details by ID
+  const fetchCategoryDetails = async (id) => {
+    try {
+      // Fetch data from backend (replace with actual API call)
+      const response = await fetch(`/api/categories/${id}`);
+      const data = await response.json();
+      setTitle(data.title);
+      setDescription(data.description);
+      setStatus(data.status);
+      setImage(data.image || "https://via.placeholder.com/300");
+    } catch (error) {
+      console.error("Failed to fetch category details:", error);
+    }
+  };
+
+  // Function to save or update the category
   const handleSave = () => {
-    console.log(`Category Saved with  Imagepath:${image} ,Title:${title}, Description: ${description}, Status: ${status}`);
+    const categoryData = { title, description, status, image };
+
+    if (CategoryId) {
+      console.log("Updating Category:", categoryData);
+      // API call to update existing category
+      // Example: await fetch(`/api/categories/${CategoryId}`, { method: "PUT", body: JSON.stringify(categoryData) })
+    } else {
+      console.log("Creating New Category:", categoryData);
+      // API call to create a new category
+      // Example: await fetch("/api/categories", { method: "POST", body: JSON.stringify(categoryData) })
+    }
+
     navigate("/admin/categories");
-    
   };
 
   const handleDelete = () => {
@@ -32,13 +67,12 @@ const AddCategory = () => {
   };
 
   return (
+    <div className="max-w-4xl mx-auto p-4 sm:p-8 bg-white shadow-lg rounded-lg flex flex-col h-full space-y-6">
+      <h2 className="text-2xl font-bold text-violet">
+        {CategoryId ? "Edit Category Details" : "Add Category Details"}
+      </h2>
 
-    <div className="max-w-4xl mx-auto p-4 sm:p-8 bg-white shadow-lg rounded-lg flex flex-col  h-full space-y-6">
-
-      <h2 className="text-2xl font-bold text-violet">Add Category Details</h2>
-
-
-      <div className="flex items-start ">
+      <div className="flex items-start">
         <img
           src={image}
           alt="Category"
@@ -46,34 +80,20 @@ const AddCategory = () => {
         />
         <button
           onClick={handleEditImage}
-          className="ml-0 p-2  bg-transparent border-none cursor-pointer text-gray-600"
+          className="ml-0 p-2 bg-transparent border-none cursor-pointer text-gray-600"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M11 4.00023H4C3.46957 4.00023 2.96086 4.21094 2.58579 4.58601C2.21071 4.96109 2 5.46979 2 6.00023V20.0002C2 20.5307 2.21071 21.0394 2.58579 21.4144C2.96086 21.7895 3.46957 22.0002 4 22.0002H18C18.5304 22.0002 19.0391 21.7895 19.4142 21.4144C19.7893 21.0394 20 20.5307 20 20.0002V13.0002M18.5 2.50023C18.8978 2.1024 19.4374 1.87891 20 1.87891C20.5626 1.87891 21.1022 2.1024 21.5 2.50023C21.8978 2.89805 22.1213 3.43762 22.1213 4.00023C22.1213 4.56284 21.8978 5.1024 21.5 5.50023L12 15.0002L8 16.0002L9 12.0002L18.5 2.50023Z"
-              stroke="#1E1E1E"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          {/* Icon SVG for editing */}
         </button>
       </div>
-      
-       <div className="h-full space-y-4">
+
+      <div className="h-full space-y-4">
         <input
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-medium p-3 border border-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 "
-        /><br />
+          className="w-medium p-3 border border-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+        />
         <input
           type="text"
           placeholder="Description"
@@ -83,16 +103,14 @@ const AddCategory = () => {
         />
       </div>
 
-
-
       <div className="flex space-x-4 justify-end items-center">
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className="w-medium sm:w-auto p-3 border border-purple rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
         >
-          <option value="Active">Status</option>
-          <option value="completed">Status: Completed</option>
+          <option value="Active">Status: Active</option>
+          <option value="Completed">Status: Completed</option>
           <option value="Incomplete">Status: Incomplete</option>
           <option value="Cancelled">Status: Cancelled</option>
         </select>
@@ -107,10 +125,9 @@ const AddCategory = () => {
           onClick={handleSave}
           className="bg-purple text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 hover:bg-purple-800"
         >
-          Save
+          {CategoryId ? "Update" : "Save"}
         </button>
       </div>
-
     </div>
   );
 };
