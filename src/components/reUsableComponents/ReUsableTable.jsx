@@ -1,14 +1,21 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
-const  ReUsableTable = ({ tableDataConfig, tableColConfig, tableConfig, path }) => {
+const ReUsableTable = ({
+  tableDataConfig,
+  tableColConfig,
+  tableConfig,
+  path,
+}) => {
+  const role = useSelector((state) => state.auth.role);
   const [currentPage, setCurrentPage] = useState(1);
   const [usersPerPage] = useState(5); // Number of users to display per page
   const [sortNewest, setSortNewest] = useState(true);
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
   const [selectedRows, setSelectedRows] = useState([]); // Selected rows for checkboxes
   const [openActionId, setOpenActionId] = useState(null); // Opened action dropdown for each row
-const navigate = useNavigate(); 
+  const navigate = useNavigate();
   // Sort the data by date, either newest or oldest first
   const sortedUsers = [...tableDataConfig].sort((a, b) => {
     return sortNewest
@@ -16,9 +23,9 @@ const navigate = useNavigate();
       : new Date(a.date) - new Date(b.date);
   });
 
-  // Filter the data by the search term 
-  const filteredUsers = sortedUsers.filter((user) =>
-   user && user.name.toLowerCase().includes(searchTerm.toLowerCase())
+  // Filter the data by the search term
+  const filteredUsers = sortedUsers.filter(
+    (user) => user && user.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Calculate pagination indexes
@@ -28,7 +35,6 @@ const navigate = useNavigate();
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
- 
   const pageNumbers = [];
   const totalUsers = filteredUsers.length;
 
@@ -36,20 +42,18 @@ const navigate = useNavigate();
     pageNumbers.push(i);
   }
 
-
   const toggleSortOrder = () => {
     setSortNewest(!sortNewest);
   };
 
-  
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
-  
+
   const handleView = (id) => {
-    console.log("view true",id);
-    navigate(`${path}/details/2`); 
+    console.log("view true", id);
+    navigate(`${path}/details/2`);
   };
   const handleEdit = () => {
     console.log("edit true");
@@ -72,15 +76,13 @@ const navigate = useNavigate();
   };
 
   const selectFirstFiveRow = (e) => {
-    if(e.target.checked){
-      const firstFiveRow = currentUsers.map(usr=> usr.id)
-      setSelectedRows(firstFiveRow)
-    } else{
-      setSelectedRows([])
+    if (e.target.checked) {
+      const firstFiveRow = currentUsers.map((usr) => usr.id);
+      setSelectedRows(firstFiveRow);
+    } else {
+      setSelectedRows([]);
     }
-  }
-
-
+  };
 
   return (
     <div className="flex flex-col font-poppins text-secondary ">
@@ -114,11 +116,14 @@ const navigate = useNavigate();
             </div>
             <img src="/dropdown-icon.svg" alt="dropdown" />
           </button>
-          <Link to={`${path}/add-new`} className="flex items-center justify-center bg-violet rounded-full hover:opacity-90 duration-300 px-14 h-12 gap-2">
+          <Link
+            to={`${path}/add-new`}
+            className="flex items-center justify-center bg-violet rounded-full hover:opacity-90 duration-300 px-14 h-12 gap-2"
+          >
             <img src="/add-icon.svg" alt="new user" />
 
             {/* New user button */}
-            <button  className="text-primary text-sm font-medium whitespace-nowrap">
+            <button className="text-primary text-sm font-medium whitespace-nowrap">
               New User
             </button>
           </Link>
@@ -175,7 +180,7 @@ const navigate = useNavigate();
                   </a>
                 </div>
 
-                  {/* Actions dropdown */}
+                {/* Actions dropdown */}
                 <div className="relative inline-block">
                   <span onClick={() => toggleAction(data.id)}>
                     <img
@@ -189,24 +194,43 @@ const navigate = useNavigate();
                       openActionId === data.id ? "block" : "hidden"
                     }`}
                   >
-                    <li
-                      className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray"
-                      onClick={handleView}
-                    >
-                      view
-                    </li>
-                    <li
-                      className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray"
-                      onClick={handleEdit}
-                    >
-                      edit
-                    </li>
-                    <li
-                      className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2"
-                      onClick={handleDelete}
-                    >
-                      delete
-                    </li>
+                    {role === "dealer" ? (
+                      <>
+                        <li
+                          className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray"
+                          onClick={handleView}
+                        >
+                          View
+                        </li>
+                        <li
+                          className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2"
+                          // onClick={handleVerify}
+                        >
+                          Verify
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li
+                          className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray"
+                          onClick={handleView}
+                        >
+                          View
+                        </li>
+                        <li
+                          className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2 border-b border-gray"
+                          onClick={handleEdit}
+                        >
+                          Edit
+                        </li>
+                        <li
+                          className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-2"
+                          onClick={handleDelete}
+                        >
+                          Delete
+                        </li>
+                      </>
+                    )}
                   </ul>
                 </div>
               </div>
@@ -214,7 +238,7 @@ const navigate = useNavigate();
           </div>
         ))}
       </div>
-   
+
       {/* Table for larger screen  */}
 
       <div className="relative bg-primary mt-4 rounded-xl overflow-x-auto lg:pb-20 h-full w-full">
@@ -228,10 +252,10 @@ const navigate = useNavigate();
             <tr>
               <th>
                 <span className="px-4">
-                  <input type="checkbox" 
-                  checked={selectedRows.length >= 5}
-                  onChange={selectFirstFiveRow}
-
+                  <input
+                    type="checkbox"
+                    checked={selectedRows.length >= 5}
+                    onChange={selectFirstFiveRow}
                   />
                 </span>
               </th>
@@ -252,7 +276,6 @@ const navigate = useNavigate();
           <tbody>
             {currentUsers.map((data, index) => (
               <tr key={index} className={`border-t border-gray`}>
-
                 {/* Checkbox */}
                 <td className="p-4">
                   <input
@@ -349,24 +372,42 @@ const navigate = useNavigate();
                         openActionId === data.id ? "block" : "hidden"
                       }`}
                     >
-                      <li
-                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
-                        onClick={()=>handleView(data.id)}
-                      >
-                        view
-                      </li>
-                      <li
-                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
-                        onClick={handleEdit}
-                      >
-                        edit
-                      </li>
-                      <li
-                        className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1"
-                        onClick={handleDelete}
-                      >
-                        delete
-                      </li>
+                      {role === "dealer" ? (
+                        <>
+                          <li
+                            className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
+                            onClick={() => handleView(data.id)}
+                          >
+                            View
+                          </li>
+                          <li className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1">
+                            <Link to={'verify/4'}>
+                            Verify
+                            </Link>
+                          </li>
+                        </>
+                      ) : (
+                        <>
+                          <li
+                            className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
+                            onClick={() => handleView(data.id)}
+                          >
+                            View
+                          </li>
+                          <li
+                            className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
+                            onClick={handleEdit}
+                          >
+                            Edit
+                          </li>
+                          <li
+                            className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1"
+                            onClick={handleDelete}
+                          >
+                            Delete
+                          </li>
+                        </>
+                      )}
                     </ul>
                   </div>
                 </td>
