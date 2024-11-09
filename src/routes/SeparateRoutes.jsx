@@ -11,7 +11,7 @@ import DealersPage from "../pages/franchisePages/DealersPage";
 import CategoryPage from "../pages/adminPages/CategorySubCategoryPages/CategoryPage";
 import SubCategoryPage from "../pages/adminPages/CategorySubCategoryPages/SubCategoryPage";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
-import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddEditCategoryPage";
+import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
 
@@ -31,10 +31,16 @@ const SeparateRoutes = [
     element: protect(<AddNewUser />, ["admin"]), 
   },
   {
+    path: "user-management/edit/:id",
+    // Route for adding a new user, restricted to admin
+    element: protect(<AddNewUser />, ["admin"]), 
+  },
+  {
     path: "user-management/details/:id",
     // Route for viewing user details by ID, restricted to admin
     element: protect(<UserDetails />, ["admin"]), 
   },
+
   
   {
     // Franchise management section

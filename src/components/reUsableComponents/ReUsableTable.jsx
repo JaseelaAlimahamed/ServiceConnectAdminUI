@@ -57,6 +57,8 @@ const ReUsableTable = ({
   };
   const handleEdit = () => {
     console.log("edit true");
+    navigate(`${path}/edit/2`);
+
   };
   const handleDelete = () => {
     console.log("delete true");
