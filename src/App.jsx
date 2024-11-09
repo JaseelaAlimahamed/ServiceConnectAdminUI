@@ -1,17 +1,19 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { store } from './Redux/store';
-import AppRouter from './routes/AppRoutes';
+import { Routes, Route, Navigate } from 'react-router-dom'
+import RouteAdmin from './routes/adminRoutes/RouteAdmin';
 
-const router = createBrowserRouter(AppRouter);
 
-export const App = () => {
+
+// import'./App.css';
+
+function App() {
+
+
   return (
-    <Provider store={store}> 
+    <Routes>
+      <Route path="/admin/*" element={<RouteAdmin/>} />
 
-      <RouterProvider router={router} />
-      </Provider>
+    </Routes>
   );
-};
+}
 
 export default App;
