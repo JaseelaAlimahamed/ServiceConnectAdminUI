@@ -6,7 +6,7 @@ import AdsCards from "../../components/adminComponents/adsManagement/AdsCards";
 function AdsManagement() {
   return (
     <>
-      <div className="">
+      <div className="mt-4 font-poppins">
         <AdsCards/>
         <AdsServiceSelect/>
         <AdsCategory/>

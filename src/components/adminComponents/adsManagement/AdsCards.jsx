@@ -4,7 +4,7 @@ import Card from '../../ReUsableComponents/Card'
 function AdsCards() {
   return (
     <>
-    <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-2 w-full px-6 pb-10">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 sm:gap-4 md:gap-2 w-full px-4 justify-items-center sm:justify-items-stretch mb-4">
           <Card
             variant="ads"
             heading="Total Ads"
