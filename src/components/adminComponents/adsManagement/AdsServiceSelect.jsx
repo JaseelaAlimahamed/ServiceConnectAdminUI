@@ -12,7 +12,7 @@ function AdsServiceSelect() {
             className="min-w-[15rem] p-1 h-fit border-2 border-[#D9D9D9] rounded-md"
           >
             <option disabled="disabled" selected="selected">
-              Value
+             Select Franchisee
             </option>
             <option value="option1">Option1</option>
           </select>
@@ -22,10 +22,10 @@ function AdsServiceSelect() {
           <select
             name="serviceprovider"
             id="serviceprovider"
-            className="min-w-[15rem] p-1 h-fit border-2 border-[#D9D9D9] rounded-md"
+            className="min-w-[15rem] p-1 h-fit border-2 border-[#D9D9D9] rounded-md text-grey-400"
           >
-            <option disabled="disabled" selected="selected">
-              Value
+            <option disabled="disabled" selected="selected" >
+              Select Provider
             </option>
             <option value="option1">Option1</option>
           </select>

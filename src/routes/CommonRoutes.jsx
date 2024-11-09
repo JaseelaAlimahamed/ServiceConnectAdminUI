@@ -1,5 +1,6 @@
 import React from "react";
 import ProfilePage from "../pages/commonPages/ProfilePage";
+import SettingsPage from "../pages/commonPages/SettingsPage";
 import NotificationPage from "../pages/adminPages/notificationPage/NotificationPage";
 import ProtectedRoute from "./ProtectedRoutes";
 import Dashboard from "../pages/commonPages/Dashboard";
@@ -26,6 +27,7 @@ const CommonRoutes = [
   { path: "finance", element: protectedRoute(<Finance />) },
   { path: "accounts", element: protectedRoute(<AccountPage />) },
   { path: "notifications", element: protectedRoute(<NotificationPage />) },
+  { path: "settings", element: protectedRoute(<SettingsPage />) },
   // Uncomment if needed
   // { path: "service-management", element: protectedRoute(<ServiceType />) },
 ];
