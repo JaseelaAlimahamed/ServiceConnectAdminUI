@@ -31,10 +31,16 @@ const SeparateRoutes = [
     element: protect(<AddNewUser />, ["admin"]), 
   },
   {
+    path: "user-management/edit/:id",
+    // Route for adding a new user, restricted to admin
+    element: protect(<AddNewUser />, ["admin"]), 
+  },
+  {
     path: "user-management/details/:id",
     // Route for viewing user details by ID, restricted to admin
     element: protect(<UserDetails />, ["admin"]), 
   },
+
   
   {
     // Franchise management section
