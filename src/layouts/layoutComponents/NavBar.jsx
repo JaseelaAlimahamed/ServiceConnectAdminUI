@@ -1,16 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiBell, FiSettings } from 'react-icons/fi';
 import { FaBars, FaAnglesRight } from 'react-icons/fa6';
-import { useLocation } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../Redux/feathers/auth';
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const NavBar = ({ toggleSidebar, role }) => {
   const location = useLocation();
   const [heading, setHeading] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/sign-in');
+  };
   useEffect(() => {
     if (location && location.pathname) {
       const pathParts = location.pathname.split('/').filter(Boolean);
@@ -39,6 +47,10 @@ const NavBar = ({ toggleSidebar, role }) => {
   return (
     <header className="sticky top-0 h-16 bg-white shadow-md z-50 flex items-center justify-between px-4 md:px-8">
       <div className="flex items-center">
+      <button onClick={() => navigate(-1)} className="me-10 cursor-pointer " aria-label="Go Back">
+          <IoIosArrowRoundBack className="text-2xl hover:scale-125" />
+        </button>
+
         <FaBars 
           className="w-6 h-6 text-gray-700 cursor-pointer mr-4 md:hidden" 
           onClick={toggleSidebar} 
@@ -69,8 +81,8 @@ const NavBar = ({ toggleSidebar, role }) => {
             <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg py-2 z-20 transition ease-out duration-200">
               <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
               <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Notifications</a>
-              <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
-              <a href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
+              <a  className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Settings</a>
+              <button onClick={handleLogout} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</button>
             </div>
           )}
         </div>

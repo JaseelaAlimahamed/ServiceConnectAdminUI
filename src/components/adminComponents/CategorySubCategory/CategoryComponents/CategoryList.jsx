@@ -80,7 +80,7 @@ const CategoryList = () => {
                             <h3 className="text-lg font-semibold">{category.name}</h3>
                             <div className="flex justify-center gap-5 text-xl mt-2">
                                 <button onClick={() => handleView(category)}><MdOutlineRemoveRedEye /></button>
-                                <Link to={'/edit-Category'}><FaRegEdit /></Link>
+                                <Link to={'/edit-Category/3'}><FaRegEdit /></Link>
                                 <button onClick={() => setIsModalOpen(true)}><FaRegTrashAlt /></button>
                             </div>
                         </div>
