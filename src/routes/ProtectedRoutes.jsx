@@ -10,7 +10,6 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
     return <Navigate to="/sign-in" replace />;
   }
 
-  // Render the protected component if authenticated and authorized
   return children;
 };
 

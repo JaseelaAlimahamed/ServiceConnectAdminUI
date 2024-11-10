@@ -45,7 +45,7 @@ function attachResponseInterceptor() {
   
   const responseInterceptor = apiInstance.interceptors.response.use(
     (response) => {
-      return response;
+      return response; 
     },
     async (error) => {
       const config = error?.config;
@@ -72,7 +72,7 @@ function attachResponseInterceptor() {
           
           const accessToken = data.accessToken
           config.headers.Authorization = `Bearer ${data.accessToken}`;
-          store.dispatch(setAccessToken(accessToken));
+          store.dispatch( (accessToken));
 
           config._retries++;
           attachResponseInterceptor();

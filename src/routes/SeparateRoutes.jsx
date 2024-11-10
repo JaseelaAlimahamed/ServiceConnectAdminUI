@@ -11,13 +11,10 @@ import DealersPage from "../pages/franchisePages/DealersPage";
 import CategoryPage from "../pages/adminPages/CategorySubCategoryPages/CategoryPage";
 import SubCategoryPage from "../pages/adminPages/CategorySubCategoryPages/SubCategoryPage";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
-<<<<<<< HEAD
 import PaymentForm from "../pages/franchisePages/PaymentForm";
-=======
 import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
->>>>>>> 9e3513ee519b481b4a4309d98b8901cfea2bc4ba
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
