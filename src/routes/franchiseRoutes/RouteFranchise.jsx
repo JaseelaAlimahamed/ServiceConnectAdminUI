@@ -1,5 +1,6 @@
 import React from "react";
 import DealersPage from "../../pages/franchisePages/DealersPage";
+import PaymentForm from "../../pages/franchisePages/PaymentForm";
 import AddServiceProvider from "../../pages/franchisePages/AddServiceProvider";
 import FranchiseNotification from "../../pages/franchisePages/FranchiseNotification";
 import FranchiseeProfile from "../../components/commonComponents/FranchiseDetails/FranchiseeProfile";
@@ -55,6 +56,10 @@ const FranchiseRoutes = [
   {
     path: "recent-service-details",
     element: <RecentServiceDetails />,
+  },
+  {
+    path: "payment",
+    element: <PaymentForm />,
   },
   {
     path: "*",

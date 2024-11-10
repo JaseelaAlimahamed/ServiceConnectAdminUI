@@ -15,6 +15,7 @@ import SubCategoryPage from "../pages/adminPages/CategorySubCategoryPages/SubCat
 import NewSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
+import PaymentForm from "../pages/franchisePages/PaymentForm";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -68,6 +69,10 @@ const SeparateRoutes = [
   {
     path: "dealers",
     element: protect(<DealersPage />, ["franchise"]),
+  },
+  {
+    path: "payment",
+    element: protect(<PaymentForm />, ["franchise"]),
   },
 
   {
