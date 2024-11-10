@@ -283,7 +283,9 @@ const totalPages = Math.ceil(franchises.length / itemsPerPage);
           className="absolute bg-white border shadow-lg right-0 mt-2 rounded-lg z-10"
         >
           <ul>
-            <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleEdit(franchise.id); toggleDropdown(null); }}>Edit</li>
+            <li className="p-2 hover:bg-text-violet cursor-pointer" ><Link to={'edit-franchise/4'}>
+            
+            Edit</Link></li>
             <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleDelete(franchise.id); toggleDropdown(null); }}>Delete</li>
             <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleView(franchise.id); toggleDropdown(null); }}>View</li>
           </ul>

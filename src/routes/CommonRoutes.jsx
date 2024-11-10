@@ -27,7 +27,11 @@ const CommonRoutes = [
   { path: "finance", element: protectedRoute(<Finance />) },
   { path: "accounts", element: protectedRoute(<AccountPage />) },
   { path: "notifications", element: protectedRoute(<NotificationPage />) },
+
   { path: "settings", element: protectedRoute(<SettingsPage />) },
+  { path: "service-management", element: protectedRoute(<ServiceType />) },
+
+  
   // Uncomment if needed
   // { path: "service-management", element: protectedRoute(<ServiceType />) },
 ];

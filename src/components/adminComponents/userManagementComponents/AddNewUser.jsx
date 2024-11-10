@@ -4,6 +4,7 @@ import DropDown from '../../reUsableComponents/DropDown';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ImageUploader from '../../reUsableComponents/ImageUploader';
+import { useParams } from 'react-router-dom';
 
 const AddNewUser = () => {
   const [formData, setFormData] =useState({
@@ -22,7 +23,8 @@ const AddNewUser = () => {
     file:null,
   });
   
-  
+  const { id: userId } = useParams();
+
 
   // Handle date selection and formatting
   const handleDateChange = (date) => {
@@ -82,7 +84,7 @@ const AddNewUser = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-4xl w-full" onSubmit={onFormSubmit}>
-        <h1 className="text-2xl font-bold text-center mb-8">Add New User</h1>
+      <h1 className="text-2xl font-bold text-center mb-8"> {userId ?'Edit User' : 'Add New User' }</h1>
         
         {/* Responsive Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
