@@ -27,7 +27,7 @@ const AddDealerForm = ({ fieldConfig, handleSubmit, handleChange }) => {
   const handlePhoneChange = (value) => {
     setFormData({
       ...formData,
-      mobile: value, // Set mobile number with country code
+      mobile: value, // Set mobile number with country code.
     });
   };
 
@@ -110,8 +110,8 @@ const AddDealerForm = ({ fieldConfig, handleSubmit, handleChange }) => {
                     width: "100%",
 
                     backgroundColor: "#F3F4FF",
-                    borderRadius: "10px",
-                    fontSize: "16px", 
+                    borderRadius: "12px",
+                    fontSize: "14px", 
                   }}
                 />
               </div>
