@@ -267,7 +267,8 @@ const ReUsableTable = ({
                 <th
                   key={index}
                   scope="col"
-                  className="py-5 px-4 text-dark_blue font-bold text-sm"
+                  className="py-5 px-4 text-dark_blue font-bold"
+                  style={{fontSize:"13px"}}
                 >
                   {col}
                 </th>
@@ -289,41 +290,41 @@ const ReUsableTable = ({
 
                 {/* Name Column */}
                 {data.name && (
-                  <td className="py-8">
-                    <div className="flex items-center gap-2 mr-6">
-                      <img src={data.image} alt="profile" />
-                      <span className="text-dark_blue font-bold text-sm">
+                  <td className="py-4">
+                    <div className="flex items-center gap-2">
+                      <img src={data.image} alt="profile" style={{maxWidth:"0px"}}/>
+                      <span className="text-dark_blue font-bold text-sm" style={{fontSize:"11px"}}>
                         {data.name}
                       </span>
                     </div>
                   </td>
                 )}
 
-                <td className="p-6 text-sm text-violet font-bold">
+                <td className="p-6 text-sm text-violet font-bold" style={{fontSize:"11px"}}>
                   <span>{data.id}</span>
                 </td>
 
                 {/* Date and Time Column */}
                 <td className="text-sm text-id_gray">
                   <div className="mr-2">
-                    <span className="whitespace-nowrap">{data.date}</span>{" "}
+                    <span className="whitespace-nowrap" style={{fontSize:"11px"}}>{data.date}</span>{" "}
                     {data.time}
                   </div>
                 </td>
 
                 {/* ID Column */}
-                <td className="py-4 text-dark_blue text-center font-semibold">
+                <td className="py-4 text-dark_blue text-center font-semibold" style={{fontSize:"11px"}}>
                   {data.totalCompletedWork}
                 </td>
 
                 {/* Location Column */}
-                <td className="py-4 text-dark_blue font-semibold text-sm">
+                <td className="py-4 text-dark_blue font-semibold " style={{fontSize:"11px"}}>
                   {data.location}
                 </td>
 
                 {/* Contact Column */}
                 <td className="py-4">
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 justify-evenly">
                     <a
                       href={`tel:${data.contact?.phone}`}
                       className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
@@ -354,7 +355,7 @@ const ReUsableTable = ({
                       data.status === "Active"
                         ? "bg-fluracent_green"
                         : "bg-orange"
-                    } text-primary text-sm w-24 h-10 inline-block rounded-full font-medium whitespace-nowrap`}
+                    } text-primary text-sm w-20 h-10 inline-block rounded-full font-medium whitespace-nowrap`} style={{fontSize:"11px"}}
                   >
                     {data.status}
                   </span>
