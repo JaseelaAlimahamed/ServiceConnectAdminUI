@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiBell, FiSettings } from 'react-icons/fi';
 import { FaBars, FaAnglesRight } from 'react-icons/fa6';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../Redux/feathers/auth';
 import { IoIosArrowRoundBack } from "react-icons/io";
 
@@ -14,6 +14,7 @@ const NavBar = ({ toggleSidebar, role }) => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const  { user } = useSelector(state => state.auth);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -74,7 +75,7 @@ const NavBar = ({ toggleSidebar, role }) => {
             aria-haspopup="true" 
             aria-expanded={dropdownOpen}
           >
-            <span className="hidden md:inline text-sm">Nabila A.</span>
+            <span className="hidden md:inline text-sm">{user.fullName}</span>
             <img src="/userprofilepic.png" alt="Profile" className="w-8 h-8 rounded-full object-cover" />
           </button>
           {dropdownOpen && (
