@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dealerinfocard from "../../components/dealerComponents/dashboardComponents/Dealerinfocard";
 import Franchisee from "../../components/dealerComponents/dashboardComponents/Franchisee";
 import PaymentHistoryTable from "../../components/commonComponents/profileComponents/PaymentHistoryTable"   
 // import ReUsableTable from "../../components/reUsableComponents/ReUsableTable"
 import Activitycard from "../../components/dealerComponents/dashboardComponents/Activitycard";
 import Graph from "../../components/dealerComponents/dashboardComponents/Graph";
+import { dashboard } from "../../service/api/dealer/GetApi";
 
 
 function DealerDashboard() {
-  const tableConfig = { title: "Payment History", type: "paymentslog" };
 
+  const [dashboardData, setDashboardData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true); 
+        const response = await dashboard();
+        
+      } catch (err) {
+        console.error("Failed to fetch dealer dashboard data:", err);
+        setError("Failed to load dashboard data. Please try again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchData();
+  }, [ ]);
+  const tableConfig = { title: "Payment History", type: "paymentslog" };
+ 
   const tableDataConfig = [
     {
       paymentId: "#12345678",
