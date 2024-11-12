@@ -106,7 +106,7 @@ const UserDetails = () => {
       <div>
         <UserProfile name={userdetails.name} location={userdetails.location} address={userdetails.address} phone={userdetails.phone} email={userdetails.email}/>
 
-        <div className="w-full">
+        <div className="w-full p-5">
           <PaymentHistoryTable
             tableColConfig={tableColConfig}
             tableDataConfig={tableDataConfig}

@@ -82,7 +82,7 @@ const ServiceProviderDashboard = () => {
   return (
     <div className="service-provider-dashboard">
       
-      <div className= 'py-4 flex max-lg:flex-col gap-4 justify-around p-4 max-[720px]:flex-col'>
+      <div className= 'py-4 flex max-lg:flex-col gap-4 justify-around p-4 max-[1100px]:flex-col'>
         <div className='w-[100%]'>
             <div>    
             <ServiceProviderProfile
@@ -95,7 +95,7 @@ const ServiceProviderDashboard = () => {
             
             />
             </div>
-            <div className="w-full overflow-x-auto max-[1099px]:w-[120%]">
+            <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[150%]">
                 <AnalyticsComponent
                     head="Registered Services"
                     conversionText="Conversion"
@@ -134,7 +134,7 @@ const ServiceProviderDashboard = () => {
                     ]}
                 />
             </div>
-            <div className=" w-full overflow-x-auto max-[1099px]:w-[120%]"> 
+            <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[150%]"> 
                 <AnalyticsComponent
                     head="Ads"
                     conversionText="Clicks"
@@ -161,7 +161,7 @@ const ServiceProviderDashboard = () => {
                     ]}
                 />  
             </div>
-            <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[100%]">
+            <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[150%]">
                 <PaymentHistoryTable
                 tableColConfig={tableColConfig}
                 tableDataConfig={tableDataConfig}
@@ -206,10 +206,11 @@ const ServiceProviderDashboard = () => {
 
           ></Activitycard>
 
-          <button className="bg-slate-300 rounded-3xl text-violet h-14 text-xl mt-5 w-[100%] " style={{fontSize:"14px"}}>
+          <button className="bg-slate-300 rounded-3xl text-violet h-14 text-xl mt-10 w-[100%] ">
             View more{" "}
           </button>
         </div>
+
       </div>
      
     </div>

@@ -43,7 +43,7 @@ const PaymentHistoryTable = ({ tableDataConfig, tableConfig }) => {
                         <LuTrendingUp />
                       </div>
                       <div className="flex flex-col px-5">
-                        <span className="text-sm text-violet font-bold pt-2" style={{fontSize:"12px"}}>
+                        <span className="text-sm text-violet font-bold pt-2">
                           {data.paymentId}
                         </span>
                       </div>
@@ -56,7 +56,7 @@ const PaymentHistoryTable = ({ tableDataConfig, tableConfig }) => {
                 {tableDataConfig && (
                   <td className="text-sm text-id_gray">
                     <div className="mr-2">
-                      <span className="whitespace-nowrap" style={{fontSize:"12px"}}>{data.date}</span>{" "}
+                      <span className="whitespace-nowrap">{data.date}</span>{" "}
                       {data.time}
                     </div>
                   </td>
@@ -64,7 +64,7 @@ const PaymentHistoryTable = ({ tableDataConfig, tableConfig }) => {
 
                 {/* Payment Amount Column */}
                 {tableDataConfig && (
-                  <td className="px-6 py-4 text-sm text-dark_blue font-bold" style={{fontSize:"12px"}}>
+                  <td className="px-6 py-4 text-sm text-dark_blue font-bold">
                     ${data.paymentAmount}
                   </td>
                 )}
@@ -80,7 +80,7 @@ const PaymentHistoryTable = ({ tableDataConfig, tableConfig }) => {
                         : data.paymentStatus === "Cancelled"
                         ? "text-red"
                         : "text-default"
-                    }`} style={{fontSize:"12px"}}
+                    }`}
                   >
                     {data.paymentStatus}
                   </td>
