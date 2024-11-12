@@ -37,67 +37,67 @@ function SmallCard({ title, subtitle, iconBg, icon }) {
         {icon && <>{icon}</>}
       </div>
 
-
-            <section className="flex flex-col">
-                <span className="font-normal text-sm text-[#68676E]">{subtitle}</span>
-                <span className="font-extrabold text-xl text-violet">{title}</span>
-            </section>
-        </div>
-    );
+      <section className="flex flex-col">
+        <span className="font-normal text-sm text-[#68676E]">{subtitle}</span>
+        <span className="font-extrabold text-xl text-violet">{title}</span>
+      </section>
+    </div>
+  );
 }
 function LargeCard({
-    title,
-    titleSize = "text-lg",
-    subtitle,
-    date,
-    time,
-    sideColor,
-    name,
+  title,
+  titleSize = "text-lg",
+  subtitle,
+  date,
+  time,
+  sideColor,
+  name,
 }) {
-    return (
-        <>
-            {sideColor && (
-                <span
-                    className={`absolute top-0 left-0 w-[1rem] h-full rounded-s-[1.25rem] ${sideColor} `}
-                ></span>
-            )}
-            <div
-                className={`${sideColor ? "ml-6" : "mr-8"
-                    } px-1 py-1 flex flex-col gap-2 justify-center text-[#A098AE]`}
-            >
-                <span className={`font-semibold text-xs ${titleSize} text-dark_blue`}>
-                    {title}
-                </span>
-                <div className="flex gap-1 items-center">
-                    {name && (
-                        <div className="w-[1.3rem] aspect-square rounded-full bg-blue_gray"></div>
-                    )}
-                    <span className="font-normal text-xs">{name}</span>
-                </div>
-                <span className="font-normal text-xs">{subtitle}</span>
-                {date && (
-                    <div className="flex gap-2">
-                        <IoCalendarClearOutline color="orange" />
-                        <span className="font-normal text-xs">{date}</span>
-                    </div>
-                )}
-                {time && (
-                    <div className="flex gap-2">
-                        <LuClock3 color="#FCC43E" />
-                        <span className="font-normal text-xs">{time}</span>
-                    </div>
-                )}
-            </div>
-        </>
-    );
+  return (
+    <>
+      {sideColor && (
+        <span
+          className={`absolute top-0 left-0 w-[1.5rem] h-full rounded-s-[1.25rem] ${sideColor} `}
+        ></span>
+      )}
+      <div
+        className={`${
+          sideColor ? "ml-8" : "mr-8"
+        } px-4 py-5 flex flex-col gap-2 justify-center text-[#A098AE]`}
+      >
+        <span className={`font-semibold ${titleSize} text-dark_blue`}>
+          {title}
+        </span>
+        <div className="flex gap-2 items-center">
+          {name && (
+            <div className="w-[2rem] aspect-square rounded-full bg-blue_gray"></div>
+          )}
+          <span className="font-normal text-sm">{name}</span>
+        </div>
+        <span className="font-normal text-sm">{subtitle}</span>
+        {date && (
+          <div className="flex gap-2">
+            <IoCalendarClearOutline color="orange" />
+            <span className="font-normal text-sm">{date}</span>
+          </div>
+        )}
+        {time && (
+          <div className="flex gap-2">
+            <LuClock3 color="#FCC43E" />
+            <span className="font-normal text-sm">{time}</span>
+          </div>
+        )}
+      </div>
+    </>
+  );
 }
 
 function TitleCard({ title, subtitle }) {
   return (
     <>
-      <div className=" px-4 py-6 flex flex-col gap-2 justify-center text-[#A098AE]">
-        <span className="font-bold text-sm text-dark_blue">{title}</span>
-        <span className="font-normal text-xs">{subtitle}</span>
+      <div className="mr-8 px-8 py-8 flex flex-col gap-2 justify-center text-[#A098AE]">
+        <span className="font-bold text-2xl text-dark_blue">{title}</span>
+        <span className="font-normal text-sm">{subtitle}</span>
       </div>
     </>
   );
@@ -131,9 +131,9 @@ function AdsCard({ heading, title, subtitle, iconBg, percent }) {
 function AdsType({ type, title, ad_id, views, hits }) {
   return (
     <>
-      <div className="w-[22.5rem] h-[8.3rem] flex max-md:w-[19rem]">
-        <div className="bg-black w-[8.125rem] h-full rounded-s-2xl "></div>
-        <div className="bg-blue_bg w-[14.375rem] h-full rounded-e-2xl">
+      <div className="w-full h-[8.3rem] flex">
+        <div className="bg-black w-1/3 h-full rounded-s-2xl"></div>
+        <div className="bg-blue_bg w-2/3 h-full rounded-e-2xl">
           <div className="px-2 py-2 flex flex-col gap-2">
             <div className="flex gap-4 items-center">
               <h2 className="font-bold text-[0.75rem] text-orange">{type}</h2>
@@ -144,7 +144,7 @@ function AdsType({ type, title, ad_id, views, hits }) {
             </div>
             <h1 className="font-semibold text-base text-[#202244]">{title}</h1>
             <h2 className="font-medium text-base text-[#797C7B]">{ad_id}</h2>
-            <div className="flex gap-7 justify-center">
+            <div className="flex justify-between justify-center">
               <span className="font-bold text-xs text-[#202244]">
                 {views} Views
               </span>
