@@ -1,18 +1,13 @@
 import axios from "axios";
-import { store } from "../Redux/store";
-import { refreshAccessToken } from "./postApi";
-import { setAccessToken } from "../Redux/feathers/auth";
-import logError from "./errorHandler";
-console.log(import.meta.env.VITE_API_URL);
+import { store } from '../../Redux/store';
+import { clearAccessToken } from "../../Redux/feathers/auth";
 
-const { role } = store.getState().auth;
-export const  apiInstance = axios.create({
-  baseURL: `${import.meta.env.VITE_API_URL}/${role}`,
+export const apiInstance = axios.create({
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-    timeout: 1000,
   },
+  timeout: 10000,
 });
 
 /*
@@ -20,20 +15,21 @@ export const  apiInstance = axios.create({
  */
 apiInstance.interceptors.request.use(
   (config) => {
-    if (config) {
-      const state = store.getState();
-      console.log("Redux State:", state);
-      const {accessToken} = state.auth;
-      if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+    const state = store.getState();
+    const { role, accessToken } = state.auth;
 
-      delete config.requireAuthHeader;
-      }
+    // Dynamically set baseURL based on the role
+    config.baseURL = role ? `${import.meta.env.VITE_API_URL}/${role}` : import.meta.env.VITE_API_URL;
+
+    // Set Authorization header if accessToken is available
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
+
     return config;
   },
   (error) => {
-    logError(error, store);
+    // logError(error, store);
     return Promise.reject(error);
   }
 );
@@ -45,7 +41,7 @@ function attachResponseInterceptor() {
   
   const responseInterceptor = apiInstance.interceptors.response.use(
     (response) => {
-      return response;
+      return response; 
     },
     async (error) => {
       const config = error?.config;
@@ -54,10 +50,16 @@ function attachResponseInterceptor() {
       
       if (
         responseError?.status === 401 &&
-        responseError?.headers?.get("www-authenticate")?.startsWith("Bearer ")
-      ) {
+      responseError?.data?.code === "token_not_valid" &&
+      responseError?.data?.messages?.some(
+        (msg) => msg.token_class === "AccessToken"
+      )
+    ) {
         apiInstance.interceptors.response.eject(responseInterceptor);
+        console.log('hai');
+        store?.dispatch(clearAccessToken());
 
+        
         try {
           const MAX_RETRIES = 2;
           console.log(MAX_RETRIES);
@@ -67,12 +69,12 @@ function attachResponseInterceptor() {
             throw new Error(`Max retries (${config._retries}) reached!`);
           }
 
-          const data = await refreshAccessToken();
-          console.log(data);
+          // const data = await refreshAccessToken();
+          // console.log(data);
           
-          const accessToken = data.accessToken
-          config.headers.Authorization = `Bearer ${data.accessToken}`;
-          store.dispatch(setAccessToken(accessToken));
+          // const accessToken = data.accessToken
+          // config.headers.Authorization = `Bearer ${data.accessToken}`;
+          // store.dispatch(  (accessToken));
 
           config._retries++;
           attachResponseInterceptor();
@@ -83,8 +85,8 @@ function attachResponseInterceptor() {
           attachResponseInterceptor(); 
         }
       }
-
-       logError(error, store); 
+      store?.dispatch(clearAccessToken());
+      //  logError(error, store); 
       return Promise.reject(error);
     }
   );
