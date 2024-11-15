@@ -19,7 +19,10 @@ apiInstance.interceptors.request.use(
     const { role, accessToken } = state.auth;
 
     // Dynamically set baseURL based on the role
-    config.baseURL = role ? `${import.meta.env.VITE_API_URL}/${role}` : import.meta.env.VITE_API_URL;
+    config.baseURL = role 
+  ? `${import.meta.env.VITE_API_URL}/${role === 'admin' ? 'adminapp' : role}`
+  : import.meta.env.VITE_API_URL;
+
 
     // Set Authorization header if accessToken is available
     if (accessToken) {

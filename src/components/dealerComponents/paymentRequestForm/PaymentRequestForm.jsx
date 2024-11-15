@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputFieldComponent from '../../reUsableComponents/InputFieldComponent';
 import ReUsableModal from '../../reUsableComponents/ReUsableModal';
+import { createPaymentRequest } from '../../../service/api/dealer/PostApi';
 
 const fields = [
     { label: 'Full Name', name: 'fullName', type: 'text', placeholder: 'Enter full name' },
@@ -37,6 +38,13 @@ const PaymentRequestForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) setIsModalOpen(true);
+       try {
+        const response = createPaymentRequest(formData)
+       } catch (error) {
+            
+       }
+
+
         else console.error('Validation failed: Fill in all fields.');
     };
 
