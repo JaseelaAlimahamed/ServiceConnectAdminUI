@@ -5,8 +5,9 @@ import InputField from '../../components/reUsableComponents/InputFieldComponent'
 import SubmitButton from '../../components/reUsableComponents/SubmitButton';
 import { changeRole, loginUser, setAccessToken } from '../../Redux/feathers/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInDealer } from '../../service/api/dealer/PostApi';
+import {  signInDealer } from '../../service/api/dealer/PostApi';
 import { signInFranchise } from '../../service/api/franchise/PostApi';
+import { signInAdmin } from '../../service/api/admin/PostApi';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -46,9 +47,7 @@ const SignIn = () => {
       } else if (formData.role === 'franchise') {
         response = await signInFranchise(formData);
       } else {
-        setError('Invalid role selected');
-        setLoading(false);
-        return;
+        response = await signInAdmin(formData)
       }
       // Check if the API call was successful
       if (response) {

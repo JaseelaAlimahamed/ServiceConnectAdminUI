@@ -15,7 +15,7 @@ import PaymentForm from "../pages/franchisePages/PaymentForm";
 import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
-
+import AddServiceProvider from "../pages/franchisePages/AddServiceProvider";
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
 );
@@ -129,7 +129,15 @@ const SeparateRoutes = [
     path: 'service-providers/verify/:id',
     // Page for editing an existing sub-category, restricted to admin
     element: protect(< ServiceProviderVerification/>, ["dealer"]), 
+  },
+    // add service provider 
+  {
+    path: 'service-providers/add-new',
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(< AddServiceProvider/>, ["franchise"," admin"]), 
   }
+
+
  ];
 
 export default SeparateRoutes;
