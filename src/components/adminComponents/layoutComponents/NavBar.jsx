@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { FiBell, FiSettings } from 'react-icons/fi';
 import { FaBars } from "react-icons/fa";
-
-const NavBar = ({toggleSidebar}) => {
+import userimage from "../../../assets/FranchiseProfile/userimage.jpg"
+const NavBar = ({toggleSidebar,text}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null); // Ref for the dropdown container
 
@@ -29,11 +29,11 @@ const NavBar = ({toggleSidebar}) => {
 
   return (
     <div className="w-full h-32 font-poppins">
-      <nav className="flex items-center justify-between px-4 md:px-8 h-full">
+      <nav className="flex items-center justify-between px-4  h-full">
         {/* User Name */}
         <div className='flex items-center'>
-        <FaBars className='w-7 h-7 text-gray-700 cursor-pointer mr-2 md:hidden' onClick={toggleSidebar}/>
-        <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">User Management</h1>
+        <FaBars className='w-7 h-7 text-gray-700 cursor-pointer  md:hidden' onClick={toggleSidebar}/>
+        <h1 className="text-dark_blue text-2xl sm:text-3xl lg:text-4xl font-bold">{text}</h1>
 
         </div>
 
@@ -58,11 +58,11 @@ const NavBar = ({toggleSidebar}) => {
               onClick={toggleDropdown}
             >
               <div className="hidden md:block text-gray-600 text-sm">
-                Nabila A.
-                <div className="text-xs text-gray-400">Admin</div>
+                Thomas
+                <div className="text-xs text-gray-400">Franchise</div>
               </div>
               <img
-                src="/userprofilepic.png"
+                src={userimage}
                 alt="Profile"
                 className="w-10 h-10 rounded-full object-cover"
               />
