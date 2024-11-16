@@ -3,6 +3,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import AdminLayout from '../../layouts/AdminLayout'
 import UserManagement from '../../pages/adminPages/managementPages/UserManagement'
+import SignInForm from '../../pages/adminPages/SignInPages/SignInForm'
 
 function RouteAdmin() {
   return (
@@ -11,6 +12,7 @@ function RouteAdmin() {
         <Route path='usermanagement' element={<UserManagement/>}/>
       <Route path='/userdetails' element={<UserDetails/>}/>
       <Route path='/signIn'element={<SignInForm/>}/>
+    
       </Route>
     </Routes>
 
