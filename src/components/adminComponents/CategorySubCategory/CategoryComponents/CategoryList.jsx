@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import DeleteModal from './DeleteModal';
 import ViewModal from './ViewModal';
 import DropButtons from './DropButtons';
+import { Link } from 'react-router-dom';
 
 
 
@@ -26,7 +27,6 @@ const CategoryList = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false); 
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
-    const [editService, setEditService] = useState(null);
     const [viewCategory, setViewCategory] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -37,11 +37,7 @@ const CategoryList = () => {
     };
 
     // Handle edit
-    const handleEdit = (category) => {
-        setEditService(category);
-        console.log("Editing Category:", category);
-        alert(`Editing ${category.id}`)
-    };
+
 
     // Handle delete
     const handleDelete = (categoryId) => {
@@ -52,7 +48,7 @@ const CategoryList = () => {
 
     // Filter categories based on search query
     const filteredCategories = mockCategories.filter(category =>
-        category.name.toLowerCase().includes(searchQuery.toLowerCase())
+        category && category.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
@@ -84,7 +80,7 @@ const CategoryList = () => {
                             <h3 className="text-lg font-semibold">{category.name}</h3>
                             <div className="flex justify-center gap-5 text-xl mt-2">
                                 <button onClick={() => handleView(category)}><MdOutlineRemoveRedEye /></button>
-                                <button onClick={() => handleEdit(category)}><FaRegEdit /></button>
+                                <Link to={'/edit-Category/3'}><FaRegEdit /></Link>
                                 <button onClick={() => setIsModalOpen(true)}><FaRegTrashAlt /></button>
                             </div>
                         </div>
@@ -96,9 +92,8 @@ const CategoryList = () => {
                     </div>
                 ))}
 
-                {/* Add Category Button */}
                 <div className="bg-blue_bg shadow-lg rounded-lg flex justify-center items-center p-4 w-full">
-                    <button className="text-8xl font-bold text-gray-400"><BsPlusLg /></button>
+                    <Link to={'/Add-Category'} className="text-8xl font-bold text-gray-400"><BsPlusLg /></Link>
                 </div>
             </div>
 

@@ -22,9 +22,9 @@ function DealerDetailsList({tableHeadings , tableData , page , filter , dropdown
   return (
 
     <>
-    {filter && <div className='flex flex-col justify-between pt-5 px-5 font-poppins gap-4  md:flex-row md:gap-0'>
+    {filter && <div className='flex flex-col justify-between pt-5 px-5 font-poppins gap-4  lg:flex-row lg:gap-0'>
         <div><DealerSearchBar/></div>    
-        <div className='flex items-center gap-4 flex-col md:flex-row'><DealerDropdown values={dropdownValues}/><AddDealerButton/></div>    
+        <div className='flex items-center gap-4 flex-col md:flex-row md:justify-between '><DealerDropdown values={dropdownValues}/><AddDealerButton/></div>    
     </div>}
   <div className="px-5 pt-5  bg-gray-100">
     <div className="overflow-auto rounded-lg shadow hidden md:block">
@@ -47,7 +47,7 @@ function DealerDetailsList({tableHeadings , tableData , page , filter , dropdown
               </td>
               <td 
               onClick={handleOverlay} 
-              className="p-3 text-sm font-bold text-dark_blue gap-2 cursor-pointer whitespace-nowrap text-center flex items-center ">
+              className="p-3 text-xs lg:text-sm font-bold text-dark_blue gap-2 cursor-pointer whitespace-nowrap text-center flex items-center ">
                 <div className='w-10 h-10 rounded-full bg-blue_gray'></div>
                 <span>{name}</span>
               </td>
@@ -58,8 +58,8 @@ function DealerDetailsList({tableHeadings , tableData , page , filter , dropdown
                     <span>{totalRevenue}</span>
                 </div>
               </td>
-              <td className="p-3 text-sm text-gray-700 whitespace-nowrap text-center">{contact}</td>
-              <td className="p-3 text-sm  whitespace-nowrap text-center">
+              <td className="p-3 text-xs text-gray-700 whitespace-nowrap text-center">{contact}</td>
+              <td className="p-3 text-xs  whitespace-nowrap text-center">
                 <span
                   className={`p-1.5 text-xs font-medium tracking-wider text-white ${status != "Active" ? 'bg-orange': "bg-fluracent_green"} rounded-full `}>{status}</span>
               </td>

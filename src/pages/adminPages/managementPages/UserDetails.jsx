@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../../../components/reUsableComponents/Card";
-import Table from "../../../components/ReUsableComponents/Table";
-import UserProfile from "../../../components/adminComponents/UserProfile";
+import UserProfile from "../../../components/adminComponents/userManagementComponents/UserProfile";
+import PaymentHistoryTable from "../../../components/commonComponents/profileComponents/PaymentHistoryTable";
 
 const userdetails = {
   name:'Karen Hope',
@@ -11,44 +11,44 @@ const userdetails = {
   email: "Hope@mail.com",
 };
 
-const tableConfig = { title: "Payment History", type: "paymentslog" };
+const tableConfig = { title: "Payment History"};
 
 const tableDataConfig = [
   {
     paymentId: "#12345678",
     date: "March 25 2024,12:45 PM",
     paymentAmount: "50,542",
-    serviceStatus: "Complete",
+    paymentStatus: "Complete",
   },
   {
     paymentId: "#65432109",
     date: "April 10 2024,12:45 PM",
     paymentAmount: "15,275",
-    serviceStatus: "Cancelled",
+    paymentStatus: "Cancelled",
   },
   {
     paymentId: "#12345678",
     date: "March 25 2024,12:45 PM",
     paymentAmount: "32,542",
-    serviceStatus: "Cancelled",
+    paymentStatus: "Cancelled",
   },
   {
     paymentId: "#12345678",
     date: "March 25 2024,12:45 PM",
     paymentAmount: "40,542",
-    serviceStatus: "Cancelled",
+    paymentStatus: "Cancelled",
   },
   {
     paymentId: "#78912345",
     date: "August 20 2024,12:45 PM",
     paymentAmount: "25,100",
-    serviceStatus: "Complete",
+    paymentStatus: "Complete",
   },
   {
     paymentId: "#98765432",
     date: "July 14 2024,12:45 PM",
     paymentAmount: "32,890",
-    serviceStatus: "Pending",
+    paymentStatus: "Pending",
   },
 ];
 
@@ -107,7 +107,7 @@ const UserDetails = () => {
         <UserProfile name={userdetails.name} location={userdetails.location} address={userdetails.address} phone={userdetails.phone} email={userdetails.email}/>
 
         <div className="w-full p-5">
-          <Table
+          <PaymentHistoryTable
             tableColConfig={tableColConfig}
             tableDataConfig={tableDataConfig}
             tableConfig={tableConfig}

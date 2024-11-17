@@ -1,53 +1,38 @@
-import React, { useState } from 'react';
+import React from "react";
 
-const AdsDropDown = () => {
-  const [franchisee, setFranchisee] = useState('');
-  const [serviceProvider, setServiceProvider] = useState('');
-
-  const franchiseeOptions = ['Franchisee A', 'Franchisee B', 'Franchisee C'];
-  const serviceProviderOptions = ['Provider X', 'Provider Y', 'Provider Z'];
-
+function AdsServiceSelect() {
   return (
-    <div className="flex flex-wrap space-x-0 sm:space-x-8 space-y-4 sm:space-y-0 mb-5">
-      {/* Franchisee Dropdown */}
-      <div className="flex flex-col w-full sm:w-[400px]">
-        <label className="mb-1 font-semibold">Franchisee</label>
-        <select
-          className="p-2 border border-light_gray rounded-lg w-full"
-          value={franchisee}
-          onChange={(e) => setFranchisee(e.target.value)}
-        >
-          <option value="" disabled>
-            Select Franchisee
-          </option>
-          {franchiseeOptions.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
+    <>
+      <div className="flex flex-wrap gap-2 px-5">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="franchisee">Franchisee</label>
+          <select
+            name="franchisee"
+            id="franchisee"
+            className="min-w-[15rem] p-1 h-fit border-2 border-[#D9D9D9] rounded-md text-gray-400"
+          >
+            <option disabled value="" className="text-gray-400" selected>
+              Select Franchisee
             </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Service Provider Dropdown */}
-      <div className="flex flex-col w-full sm:w-[400px]">
-        <label className="mb-1 font-semibold">Service Provider</label>
-        <select
-          className="p-2 border border-light_gray rounded-lg w-full"
-          value={serviceProvider}
-          onChange={(e) => setServiceProvider(e.target.value)}
-        >
-          <option value="" disabled>
-            Select Provider
-          </option>
-          {serviceProviderOptions.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
+            <option value="option1" className="text-black">Option1</option>
+          </select>
+        </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="serviceprovider">Service Provider</label>
+          <select
+            name="serviceprovider"
+            id="serviceprovider"
+            className="min-w-[15rem] p-1 h-fit border-2 border-[#D9D9D9] rounded-md text-sm text-gray-400"
+          >
+            <option disabled value="" className="selected">
+              Select Provider
             </option>
-          ))}
-        </select>
+            <option value="option1">Option1</option>
+          </select>
+        </div>
       </div>
-    </div>
+    </>
   );
-};
+}
 
-export default AdsDropDown;
+export default AdsServiceSelect;

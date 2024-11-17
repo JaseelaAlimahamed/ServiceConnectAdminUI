@@ -1,27 +1,17 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
-import RouteAdmin from './routes/adminRoutes/RouteAdmin';
-import RouteFranchise from './routes/franchiseRoutes/RouteFranchise';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './Redux/store';
+import AppRouter from './routes/AppRoutes';
 
+const router = createBrowserRouter(AppRouter);
 
-// import'./App.css';
-
-function App() {
-
-
+export const App = () => {
   return (
-   
-      
-        <Routes>
-          <Route path="/admin/*" element={<RouteAdmin/>} />
+    <Provider store={store}> 
 
-
-          <Route path='/franchise/*' element={<RouteFranchise/>}/>
-
-        </Routes>
-        
-
-   
+      <RouterProvider router={router} />
+      </Provider>
   );
-}
+};
 
 export default App;

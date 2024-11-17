@@ -6,6 +6,7 @@ import { MdOutlineRemoveRedEye } from 'react-icons/md'
 import { FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import DeleteModal from './DeleteModal'
 import ViewModal from './ViewModal'
+import { Link } from 'react-router-dom'
 
 
 
@@ -84,32 +85,26 @@ const SubCategoryList = () => {
         alert(`Deleteing ${categoryId}`)
     };
 
-    //Handle edit
-    const handleEdit = (category) => {
-        setEditService(category);
-        console.log("Editing Category:", category);
-        alert(`Editing ${category.name} `,)
-    };
+
 
 
     const filteredSubcategories = selectedCategory
     ? subCategories.filter(subcategory =>
         subcategory.categoryId === selectedCategory.id &&
-        subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
+        subcategory && subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
     : subCategories.filter(subcategory =>
-        subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
+        subcategory && subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
     ); // Show all subcategories matching the search query when no category is selected
 
     return (
         <div>
             <div className='bg-white p-6 shadow-lg rounded-lg '>
-                <div className="flex flex-col md:flex-row justify-between items-center mb-5">
+                <div className="flex flex-col md:flex-row justify-between  gap-3 items-center mb-5">
                     <h1 className="text-3xl text-dark_blue font-bold mb-4">
-                        {selectedCategory ? selectedCategory.name : "Categories"}
+                        {selectedCategory ? selectedCategory.name : "Sub Categories"}
                     </h1>
 
-                    {/* SearchBar with search query state */}
                     <div className="flex flex-grow md:max-w-md">
                         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                     </div>
@@ -133,7 +128,7 @@ const SubCategoryList = () => {
                                 <h3 className="text-lg font-semibold">{category.name}</h3>
                                 <div className="flex justify-center gap-5 text-xl mt-2">
                                     <button onClick={() => handleView(category)}><MdOutlineRemoveRedEye /></button>
-                                    <button onClick={() => handleEdit(category)}><FaRegEdit /></button>
+                                    <Link to={'/edit-subcategory/2'} ><FaRegEdit /></Link>
                                     <button onClick={() => setIsModalOpen(true)}><FaRegTrashAlt /></button>
                                 </div>
                                 <DeleteModal
@@ -149,7 +144,7 @@ const SubCategoryList = () => {
                     }
                     {/* Add Category Button */}
                     <div className="bg-blue_bg min-h-[250px] shadow-lg rounded-lg flex justify-center items-center p-4 w-full">
-                        <button className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></button>
+                        <Link to={'/add-subcategory'}  className="text-8xl font-bold text-medium_dark_gray"><BsPlusLg /></Link>
                     </div>
                 </div>
             </div>
