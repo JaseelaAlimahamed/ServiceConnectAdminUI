@@ -75,7 +75,7 @@ const NavBar = ({ toggleSidebar, role }) => {
             aria-haspopup="true" 
             aria-expanded={dropdownOpen}
           >
-            <span className="hidden md:inline text-sm">{user.fullName}</span>
+            {/* <span className="hidden md:inline text-sm">{user.fullName}</span> */}
             <img src="/userprofilepic.png" alt="Profile" className="w-8 h-8 rounded-full object-cover" />
           </button>
           {dropdownOpen && (

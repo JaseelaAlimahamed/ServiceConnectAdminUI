@@ -23,7 +23,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
     setshow(e=>!e)
   }
   return (
-    <div className="bg-white rounded-2xl shadow-lg h-96 border-8 border-white overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-lg h-96 border-8 border-white overflow-y-auto">
       {/* Top Section with Background and Floating Shapes */}
       <div className="relative bg-[#4D44B5] h-[100px]">
         {/* Floating Shapes */}
@@ -92,7 +92,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
               <p className=" text-dark_blue font-bold">Justin Joseph</p>
             </div>
         </div>
-        <div className=" hidden lg:block">
+        <div className="  ">
             <p>Address:</p>
             <div className="flex items-center gap-5">
 
@@ -102,7 +102,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
               <p className=" text-dark_blue font-bold">Justin Joseph</p>
             </div>
         </div>
-        <div className=" hidden lg:block">
+        <div className=" ">
             <p >Phone:</p>
             <div className="flex items-center gap-5">
 
@@ -112,7 +112,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
               <p className=" text-dark_blue font-bold">Justin Joseph</p>
             </div>
         </div>
-        <div className=" hidden lg:block">
+        <div className=" ">
             <p>Email</p>
             <div className="flex items-center gap-5">
 
