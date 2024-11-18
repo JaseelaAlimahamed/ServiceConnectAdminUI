@@ -1,5 +1,6 @@
 import { apiInstance } from "../ApiInstence";
 
+
 export const categorydelete = async (id) => {
     console.log(id)
     try {
@@ -12,4 +13,4 @@ export const categorydelete = async (id) => {
       console.error(error);
       throw error.response ? error.response.id : new Error(error.message);
     }
-  };
+  }

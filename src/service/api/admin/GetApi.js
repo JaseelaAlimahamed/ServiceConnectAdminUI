@@ -2,6 +2,7 @@ import { apiInstance } from "../ApiInstence";
 
 
 
+
 export const categoryListGet = async () => {
     try {
       const response = await apiInstance.get("categories/");

@@ -57,6 +57,7 @@ const CategoryList = () => {
             console.error('Error deleting category:', error);
         }
     };
+    
 
     // Filter categories based on search query
      categoriesList.filter(category =>
@@ -74,7 +75,7 @@ const CategoryList = () => {
                 </div>
 
                 <div className="mt-4 md:mt-0">
-                    <DropButtons />
+                    <DropButtons categories={categoriesList} onCategorySelect={categoriesList}/>
                 </div>
             </div>
 
@@ -83,7 +84,8 @@ const CategoryList = () => {
                     <div key={category.id} className="shadow-lg bg-blue_bg rounded-lg p-4 relative w-full">
                         <div className="bg-gray-200 rounded-t-lg w-full h-40">
                             <img
-                                src={category.image}
+                                src={`${import.meta.env.VITE_API_URL}${category.image}`}
+
                                 alt={category.title}
                                 className="object-cover w-full h-full rounded-t-lg"
                             />
@@ -102,6 +104,7 @@ const CategoryList = () => {
                             onClose={() => setIsModalOpen(false)}
                             onConfirm={() => handleDelete(category.id)}
                         />
+                        
                     </div>
                 ))}
 

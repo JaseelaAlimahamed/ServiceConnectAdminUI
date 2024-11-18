@@ -6,10 +6,10 @@ const ViewModal = ({ isOpen, onClose, category }) => {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-blue_bg rounded-lg shadow-lg p-6 w-96">
-                <h2 className="text-xl font-bold mb-4">{category.name}</h2>
+                <h2 className="text-xl font-bold mb-4">{category.title}</h2>
                 <img
-                    src={category.image}
-                    alt={category.name}
+                    src={`${import.meta.env.VITE_API_URL}${category.image}`}
+                    alt={category.title}
                     className="w-full h-40 object-cover mb-4"
                 />
                 <p className='text-violet font-bold'>Category ID: {category.id}</p>
