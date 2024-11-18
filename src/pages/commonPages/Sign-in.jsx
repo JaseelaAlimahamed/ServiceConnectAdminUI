@@ -38,31 +38,32 @@ const SignIn = () => {
     e.preventDefault();
     setLoading(true); // Start loading
     setError(''); // Reset error
-
-    try {
-      let response;
-
-      if (formData.role === 'dealer') {
-        response = await signInDealer(formData);
-      } else if (formData.role === 'franchise') {
-        response = await signInFranchise(formData);
-      } else {
-        response = await signInAdmin(formData)
-      }
-      // Check if the API call was successful
-      if (response) {
-        dispatch(loginUser(response.data));
-        console.log('Sign-in successful:', response);
         navigate('/dashboard');
-      } else {
-        setError(response.data.non_field_errors || 'Sign-in failed');
-      }
-    } catch (err) {
-      console.error('Error during sign-in:', err);
-      setError(err.non_field_errors ||'An error occurred during sign-in. Please try again.');
-    } finally {
-      setLoading(false); // End loading
-    }
+
+    // try {
+    //   let response;
+
+    //   if (formData.role === 'dealer') {
+    //     response = await signInDealer(formData);
+    //   } else if (formData.role === 'franchise') {
+    //     response = await signInFranchise(formData);
+    //   } else {
+    //     response = await signInAdmin(formData)
+    //   }
+    //   // Check if the API call was successful
+    //   if (response) {
+    //     dispatch(loginUser(response.data));
+    //     console.log('Sign-in successful:', response);
+    //     navigate('/dashboard');
+    //   } else {
+    //     setError(response.data.non_field_errors || 'Sign-in failed');
+    //   }
+    // } catch (err) {
+    //   console.error('Error during sign-in:', err);
+    //   setError(err.non_field_errors ||'An error occurred during sign-in. Please try again.');
+    // } finally {
+    //   setLoading(false); // End loading
+    // }
   };
 
   return (
