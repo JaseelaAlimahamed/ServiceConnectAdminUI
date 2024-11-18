@@ -1,36 +1,111 @@
-import  { useState } from 'react';
-
+import { useEffect, useState } from "react";
+import { getFranchiseeTypes } from "../../../service/api/franchise/GetApi";
+import { deleteFranchiseeTypes } from "../../../service/api/franchise/DeleteApi";
+import { updateFranchiseeTypes } from "../../../service/api/franchise/PatchApi";
+import { createFranchiseeType } from "../../../service/api/franchise/PostApi";
 const FranchiseeCategory = () => {
-  const [franchiseeTypes, setFranchiseeTypes] = useState(['Grama panchayat', 'Municipality', 'Cooperation']);
-  const [formData, setFormData] = useState({
-    details: '',
-    rate: '',
-    currency: '',
+  const [franchiseeTypes, setFranchiseeTypes] = useState([]);
+  const [selectedFranchisee, setSelectedFranchisee] = useState({
+    name: "",
+    details: "",
+    amount: "",
+    currency: "",
   });
+  const [formdata, setFormdata] = useState({
+    name: "",
+    details: "",
+    amount: "",
+    currency: "",
+  });
+  useEffect(() => {
+    const fetchFranchiseeTypes = async () => {
+      try {
+        const response = await getFranchiseeTypes();
 
-  const handleDelete = (type) => {
-    setFranchiseeTypes(franchiseeTypes.filter((t) => t !== type));
+        setSelectedFranchisee(response[0]); // select first element of array
+        setFranchiseeTypes(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchFranchiseeTypes();
+  }, []);
+
+  const handleDelete = async (type) => {
+    const response = await deleteFranchiseeTypes(selectedFranchisee.id);
+
+    if (response.status === 204) {
+      setFranchiseeTypes((prev) =>
+        prev.filter((item) => item.id !== selectedFranchisee.id)
+      );
+    }
   };
 
   const handleSave = () => {
-    console.log('Saved:', formData);
+    const exist = franchiseeTypes.find(
+      (item) => item.id === selectedFranchisee.id
+    );
+    if (exist) {
+      const update = async () => {
+        const response = await updateFranchiseeTypes(selectedFranchisee);
+
+        if (response.status === 200) {
+          // Update the state with the modified item
+          setFranchiseeTypes((prev) =>
+            prev.map((item) =>
+              item.id === selectedFranchisee.id ? response.data : item
+            )
+          );
+        }
+      };
+
+      return update();
+    } else {
+      const add = async () => {
+        const response = await createFranchiseeType(selectedFranchisee);
+
+        if (response.status === 201) {
+          // add new item
+          setFranchiseeTypes((prev) => [...prev, response.data]);
+        }
+      };
+      return add();
+    }
   };
 
-  const handleSaveDraft = () => {
-    console.log('Draft saved:', formData);
+  const handleSaveDraft = () => {};
+
+  const handleClick = (id) => {
+    const clickedItem = franchiseeTypes.find((item) => item.id === id);
+
+    setSelectedFranchisee(clickedItem);
   };
 
   const handleAddItem = () => {
-
-    console.log('Add item button clicked');
+    setSelectedFranchisee({
+      name: "enter franchisee type",
+      details: "enter details",
+      amount: "enter amount",
+      currency: "enter currency",
+      additem: true,
+    });
   };
 
+  const handleChange = (key, value) => {
+    setSelectedFranchisee((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
   return (
     <div className="flex flex-col md:flex-row bg-gray min-h-screnn h-full  p-4 ">
       {/* Type Section */}
       <div className="w-full md:w-1/4 h-auto bg-primary rounded-lg shadow-lg  mr-0 md:mr-4  md:mb-0">
         <div className="flex justify-between items-center mb-10">
-          <h2 className="text-2xl font-bold   text-dark_blue mt-3 ml-2">Type</h2>
+          <h2 className="text-2xl font-bold   text-dark_blue mt-3 ml-2">
+            Type
+          </h2>
           <svg
             width="24"
             height="24"
@@ -46,56 +121,81 @@ const FranchiseeCategory = () => {
               strokeLinejoin="round"
             />
           </svg>
-        </div> 
+        </div>
         {/* type */}
         <div className="flex flex-col items-center">
-        <ul className="flex flex-col items-center w-full  space-y-5">
-          {franchiseeTypes.map((type, index) => (
-            <li
-              key={index}
-              className="bg-gray text-secondary text-center p-2  mb- rounded-lg cursor-pointer hover:bg-blue_gray w-3/4  flex justify-center "
-            >
-              {type}
-              <button
-                onClick={() => handleDelete(type)}
-                className="text-red ml-2"
+          <ul className="flex flex-col items-center w-full  space-y-5">
+            {franchiseeTypes.map((each, index) => (
+              <li
+                key={each.id}
+                className={
+                  selectedFranchisee.id === each.id
+                    ? "bg-blue_gray text-secondary text-center p-2 mb- rounded-lg cursor-pointer w-3/4 flex justify-center"
+                    : "bg-gray text-secondary text-center p-2 mb- rounded-lg cursor-pointer hover:bg-blue_gray w-3/4 flex justify-center"
+                }
+                onClick={() => {
+                  handleClick(each.id);
+                }}
               >
+                {each.name}
+              </li>
+            ))}
+          </ul>
 
-              </button>
-            </li>
-          ))}
-        </ul> 
-
-   {/* Add Item Button */}
-  <button
-    onClick={handleAddItem}
-    className="bg-gray text-secondary p-2 w-3/4 h-9 mb-2 rounded-lg hover:bg-blue_gray mt-5"
-  >
-    + Add Item
-  </button>
-</div>
-
-
- 
-</div> 
-
-{/* Form Section */}
- <div className="flex-1 bg-primary rounded-lg shadow-lg p-8 relative max-w-full h-[300px] overflow-auto mt-2">
-  <h2 className="text-xl font-semibold mb-1 text-secondary">Franchisee Type</h2>
-  <div className="space-y-4">
-    {['Grama panchayat', 'Details', 'Rate', 'Currency'].map((label, index) => (
-      <div key={index} className="flex justify-center text-secondary">
-        <input
-          type="text"
-          placeholder={label}
-          className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
-          
-        />
-
+          {/* Add Item Button */}
+          <button
+            onClick={handleAddItem}
+            className="bg-gray text-secondary p-2 w-3/4 h-9 mb-2 rounded-lg hover:bg-blue_gray mt-5"
+          >
+            + Add Item
+          </button>
+        </div>
       </div>
-    ))}
-  </div>
-</div> 
+
+      {/* Form Section */}
+      <div className="flex-1 bg-primary rounded-lg shadow-lg p-8 relative max-w-full h-[300px] overflow-auto mt-2">
+        <h2 className="text-xl font-semibold mb-1 text-secondary">
+          Franchisee Type
+        </h2>
+        <div className="space-y-4">
+          <div className="flex justify-center text-secondary">
+            <input
+              type="text"
+              placeholder={selectedFranchisee.name}
+              value={selectedFranchisee.name}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              onChange={(e) => handleChange("name", e.target.value)}
+            />
+          </div>
+          <div className="flex justify-center text-secondary">
+            <input
+              type="text"
+              placeholder={selectedFranchisee.details}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              onChange={(e) => handleChange("details", e.target.value)}
+              value={selectedFranchisee.details}
+            />
+          </div>
+          <div className="flex justify-center text-secondary">
+            <input
+              type="text"
+              placeholder={selectedFranchisee.amount}
+              onChange={(e) => handleChange("amount", e.target.value)}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              value={selectedFranchisee.amount}
+            />
+          </div>
+          <div className="flex justify-center text-secondary">
+            <input
+              type="text"
+              placeholder={selectedFranchisee.currency}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              onChange={(e) => handleChange("currency", e.target.value)}
+              value={selectedFranchisee.currency}
+            />
+          </div>
+        </div>
+      </div>
 
       {/* Buttons */}
       <div className="flex   md:flex-row   flex-col  md:absolute  md:mt-0 justify-end bottom-0 right-0 mr-2 p-4 space-y-2 md:space-y-0 md:jusfity-end ">
@@ -121,8 +221,7 @@ const FranchiseeCategory = () => {
         </button>
       </div>
     </div>
-    
   );
 };
 
-export default FranchiseeCategory;   
+export default FranchiseeCategory;
