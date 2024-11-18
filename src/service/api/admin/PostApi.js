@@ -19,3 +19,19 @@ export const signInAdmin = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  
+  export const FinanceReport = async (data) => {
+      try {
+        const response = await apiInstance.post("monthly_fin_rep/", data);
+        console.log(response);
+        return response;
+      } catch (error) {
+        console.error(error);
+        throw error.response ? error.response.data : new Error(error.message);
+      }
+    };
+
+
+
+

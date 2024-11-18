@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminTables from './AdminTables'
 
-const ComplaintsLog = () => {
+const ComplaintsLog = ({Complaints}) => {
     const complaintsLogData = [
         { paymentId: 'TX12345', date: '2023-10-12', time: '12:34 PM', paymentAmount: 250.00, paymentStatus: 'Complete' },
         { paymentId: 'TX12346', date: '2023-10-13', time: '01:15 PM', paymentAmount: 100.00, paymentStatus: 'Pending' },
@@ -13,7 +13,7 @@ const ComplaintsLog = () => {
   return (
     <div>
         <AdminTables
-                        tableDataConfig={complaintsLogData}
+                        tableDataConfig={Complaints}
                         tableConfig={{ title: 'Complaints Log', type: 'complaintslog' }}
                     />
     </div>
