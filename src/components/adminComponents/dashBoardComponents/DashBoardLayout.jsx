@@ -13,7 +13,21 @@ import InCompleteBookings from './InCompleteBookings';
 
 
 
-const DashBoardLayout = () => {
+const DashBoardLayout = ({data}) => {
+  
+    
+    const {
+        Total_Franchisees,
+        Total_Dealers,
+        Total_Service_Providers,
+        Recent_Activities,
+        Categories,
+        Complaints,
+        Incomplete_Bookings,
+        total_customers,
+        monthly_data
+      } = data;
+      console.log(Complaints)
    
     return (
         <div className="min-h-screen bg-gray-100">
@@ -24,7 +38,7 @@ const DashBoardLayout = () => {
                 <div className="lg:col-span-3 space-y-6 px-4">
                     {/* Cards */}
                     <div className="p-3">
-                        <AdminCard />
+                        <AdminCard total_customers={total_customers} Total_Franchisees={Total_Franchisees} Total_Dealers={Total_Dealers} Total_Service_Providers={Total_Service_Providers}  />
                     </div>
 
                     {/* Performance Chart */}
@@ -32,8 +46,8 @@ const DashBoardLayout = () => {
 
                     {/* Calendar and Finance */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="p-3"><Finance /></div>
-                        <div className="p-3"><Finance /></div>
+                        <div className="p-3"><Finance monthly_data={monthly_data} /></div>
+                        <div className="p-3"><Finance monthly_data={monthly_data} /></div>
                     </div>
 
                     {/* Customer Arrival Chart */}
@@ -59,7 +73,7 @@ const DashBoardLayout = () => {
                     <div className="w-full flex flex-col flex-wrap  xl:flex-col gap-10">
                         {/* Recent Activities */}
                         <div className="flex-1 min-h-[300px]">
-                            <RecentActivities />
+                            <RecentActivities RecentActivities={Recent_Activities} />
                         </div>
 
                         {/* Messages List */}
@@ -68,7 +82,7 @@ const DashBoardLayout = () => {
                         </div>
                         {/* service categories */}
                         <div className="flex-1 min-h-[300px]">
-                            <ServiceCategories />
+                            <ServiceCategories Categories={Categories} />
                         </div>
                     </div>
                 </div>
@@ -77,10 +91,10 @@ const DashBoardLayout = () => {
             {/*  Tables */}
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                 <div className="p-5">
-                <InCompleteBookings/>
+                <InCompleteBookings InCompleteBookings={Incomplete_Bookings}/>
                 </div>
                 <div className=" p-5">
-                <ComplaintsLog/>
+                <ComplaintsLog Complaints={Complaints}/>
                 </div>
             </div>
         </div>
