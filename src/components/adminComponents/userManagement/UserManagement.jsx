@@ -1,94 +1,110 @@
-import React from 'react'
-import UserManagementCard from '../../adminComponents/userManagement/UserManagementCard';
-import ReUsableTable from '../../reUsableComponents/ReUsableTable';
-
+import React, { useEffect, useState } from "react";
+import UserManagementCard from "../../adminComponents/userManagement/UserManagementCard";
+import ReUsableTable from "../../reUsableComponents/ReUsableTable";
+import {
+  listUser,
+  totalCustomer,
+  totalServiceRequest,
+  onlineCustomers,
+  leadServiceRequestCount,
+  activeServiceRequestCount,
+  complaintsTotal,
+} from "../../../service/api/admin/GetApi";
 
 const UserManagement = () => {
+  const tableConfig = { type: "usermanagement", title: "" };
+  const [cardConfig, setCardConfig] = useState([]);
+  const [tableDataConfig, setTableDataConfig] = useState([]);
+  
+  const initialCardConfig = [
+    { title: "Total Users", iconBg: "bg-[#6F4FF2]" },
+    { title: "Online", iconBg: "bg-[#50BB25]" },
+    { title: "Service Requests", iconBg: "bg-[#F9D62C]" },
+    { title: "Lead Requests", iconBg: "bg-[#28B5E1]" },
+    { title: "Active Services", iconBg: "bg-[#167F71]" },
+    { title: "Complaints", iconBg: "bg-[#DC3546]" },
+  ];
 
-    const tableConfig = {type:"usermanagement", title:""}
+  // six card counts data
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [
+          totalCustomerCount,
+          totalServiceRequestCount,
+          onlineCustomerCount,
+          leadServiceRequestCountValue,
+          activeServiceRequestCountValue,
+          complaintsTotalCount,
+        ] = await Promise.all([
+          totalCustomer(),
+          totalServiceRequest(),
+          onlineCustomers(),
+          leadServiceRequestCount(),
+          activeServiceRequestCount(),
+          complaintsTotal(),
+        ]);
+
+        const counts = [
+          totalCustomerCount,
+          onlineCustomerCount,
+          totalServiceRequestCount,
+          leadServiceRequestCountValue,
+          activeServiceRequestCountValue,
+          complaintsTotalCount,
+        ];
+
+        // Merge counts with initial card config
+        const updatedCardConfig = initialCardConfig.map((card, index) => ({
+          ...card,
+          count: counts[index] || 0, // Use 0 as a fallback if count is undefined
+        }));
+
+        setCardConfig(updatedCardConfig);
+      } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        // Optionally, handle errors with a fallback configuration
+      }
+    };
+
+    fetchData();
+  }, []);
+  console.log(cardConfig, "cardConfig");
 
 
-  const tableDataConfig = [
-       
-    {
-        name: "Samanta William",
-        id: "129876543",
-        date: "May 25, 2024",
-        totalCompletedWork: "10",
-        location: "Sydney",
-        image:"/tableimage.png",
-        contact: { phone: "123456789", mail: "michael.smith@example.com" },
-        status: "Active"
-    },
-    
-    {
-        name: "Michael Smith",
-        id: "122345343",
-        date: "December 25, 2023",
-        image:"/tableimage.png",
-        totalCompletedWork: "10",
-        location: "Sydney",
-        contact: { phone: "123456789", mail: "michael.smith@example.com" },
-        status: "Not Active"
-    },
-    {
-        name: "Samanta Willam",
-        id: "134567985",
-        date: "March 25, 2022",
-        image:"/tableimage.png",
-        totalCompletedWork: "5",
-        location: "Mumbai",
-        contact: { phone: "123469798", mail: "samantha@gmail.com" },
-        status: "Active"
-    },
-    {
-        name: "John Doe",
-        id: "125538065",
-        date: "April 10, 2022",
-        image:"/tableimage.png",
-        totalCompletedWork: "8",
-        location: "New York",
-        contact: { phone: "987654321", mail: "john.doe@example.com" },
-        status: "Not Active"
-    },
-    {
-        name: "Emily Clarke",
-        id: "127838765",
-        date: "May 15, 2022",
-        image:"/tableimage.png",
-        totalCompletedWork: "7",
-        location: "London",
-        contact: { phone: "456789012", mail: "emily.clarke@example.com" },
-        status: "Active"
-    },
-    {
-        name: "Michael Smith",
-        id: "129846543",
-        date: "June 20, 2022",
-        image:"/tableimage.png",
-        totalCompletedWork: "10",
-        location: "Sydney",
-        contact: { phone: "123456789", mail: "michael.smith@example.com" },
-        status: "Active"
-    }
-];
+  // user table data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const users = await listUser();
+        setTableDataConfig(Array.isArray(users) ? users : []);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setTableDataConfig([]); // Set to an empty array in case of error
+      }
+    };
 
-const tableColConfig = ["Name","ID","Date","Total Completed Services","Location","Contact","Status","Action"]
+    fetchData();
+  }, []);
+  // console.log(tableDataConfig, "tableDataConfig");
 
-const cardConfig = [
-  {title:"22K",subtitle:"Total Users", iconBg:"bg-[#6F4FF2]"},
-  {title:"82K",subtitle:"Online", iconBg:"bg-[#50BB25]"},
-  {title:"200",subtitle:"Service Requests", iconBg:"bg-[#F9D62C]"},
-  {title:"89",subtitle:"Lead Requests", iconBg:"bg-[#28B5E1]"},
-  {title:"89",subtitle:"Active Services", iconBg:"bg-[#167F71]"},
-  {title:"89",subtitle:"Complaints", iconBg:"bg-[#DC3546]"},
-]
+  const tableColConfig = [
+    "Name",
+    "ID",
+    "Date",
+    "Total Completed Services",
+    "Location",
+    "Contact",
+    "Status",
+    "Action",
+  ];
 
   return (
     <div className="w-full font-poppins px-6 pb-10 pt-10 h-full ">
       <div className="flex flex-wrap gap-2 pb-10">
-        {cardConfig.map((item,index) => (
-          <UserManagementCard  key={index} item={item} />
+        {cardConfig.map((item, index) => (
+          <UserManagementCard key={index} item={item} />
         ))}
       </div>
 
@@ -96,11 +112,10 @@ const cardConfig = [
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}
         tableConfig={tableConfig}
-        path={'/user-management'}
-      />     
+        path={"/user-management"}
+      />
     </div>
   );
-}
+};
 
-
-export default UserManagement
+export default UserManagement;
