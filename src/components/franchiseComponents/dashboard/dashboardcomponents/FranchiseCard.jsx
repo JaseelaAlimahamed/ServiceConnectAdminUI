@@ -8,7 +8,7 @@ import { SlOptions } from "react-icons/sl";
 const FranchiseCard = () => (
   
   <ProfileCard
-    name="Franchise Name"
+    name="Franchisee Name"
     franchise="K Top"
     address="Jakarta, Indonesia"
     phone="+123456789"
@@ -67,7 +67,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
            
           </div>
 
-          <p className="font-semibold py-2 text-start text-gray-500">Franchise</p>
+          <p className="font-semibold py-2 text-start text-gray-500">Franchisee</p>
           <div className=" flex gap-3">
 
           <p className="font-semibold  text-start text-gray-500">45 days left</p>
@@ -99,7 +99,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
             <div className="w-10  mt-2 h-10 bg-[#FB7D5B] rounded-full flex items-center justify-center">
             <HiLocationMarker className="text-white text-xl" />
             </div>
-              <p className=" text-dark_blue font-bold">Justin Joseph</p>
+              <p className=" text-dark_blue font-bold">Jakarta, Indonesia</p>
             </div>
         </div>
         <div className=" ">
@@ -109,7 +109,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
             <div className="w-10  mt-2 h-10 bg-[#FB7D5B] rounded-full flex items-center justify-center">
             <HiPhone className="text-white text-xl" />
             </div>
-              <p className=" text-dark_blue font-bold">Justin Joseph</p>
+              <p className=" text-dark_blue font-bold">+12 345 6789 0</p>
             </div>
         </div>
         <div className=" ">
@@ -119,7 +119,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
             <div className="w-10  mt-2 h-10 bg-[#FB7D5B] rounded-full flex items-center justify-center">
             <FiMail className="text-white text-xl" />
             </div>
-              <p className=" text-dark_blue font-bold">Justin Joseph</p>
+              <p className=" text-dark_blue font-bold">Hope@mail.com</p>
             </div>
         </div>
         
