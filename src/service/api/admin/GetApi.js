@@ -28,7 +28,7 @@ export const getActiveFranchiseeStats = async () => {
     }
   };
   
-=======
+//=======
 // list users
 export const listUser = async () => {
     try {

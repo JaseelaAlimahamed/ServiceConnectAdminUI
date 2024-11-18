@@ -26,7 +26,7 @@ apiInstance.interceptors.request.use(
 
     // Set Authorization header if accessToken is available
     if (accessToken) {
-      config.headers.Authorization = `Bearer ${accessToken}`;
+      config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMxOTUxMzgwLCJpYXQiOjE3MzE5NDk1ODAsImp0aSI6IjAwMDVmY2MxNzAyYTQ4MjU5NWM5Y2FlOTZjYWMzY2MxIiwidXNlcl9pZCI6MTN9.hf7q72A6R0blK5yR-Z5WTW18zsZ3KRk3KjrwwIZaQqo`;
     }
 
     return config;
