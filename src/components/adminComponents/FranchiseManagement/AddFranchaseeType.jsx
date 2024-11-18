@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getFranchiseeTypes } from "../../../service/api/franchise/GetApi";
-import { deleteFranchiseeTypes } from "../../../service/api/franchise/DeleteApi";
-import { updateFranchiseeTypes } from "../../../service/api/franchise/PatchApi";
-import { createFranchiseeType } from "../../../service/api/franchise/PostApi";
+import { getFranchiseeTypes } from "../../../service/api/admin/GetApi";
+import { deleteFranchiseeTypes } from "../../../service/api/admin/DeleteApi";
+import { updateFranchiseeTypes } from "../../../service/api/admin/PatchApi";
+import { createFranchiseeType } from "../../../service/api/admin/PostApi";
 const FranchiseeCategory = () => {
   const [franchiseeTypes, setFranchiseeTypes] = useState([]);
   const [selectedFranchisee, setSelectedFranchisee] = useState({
