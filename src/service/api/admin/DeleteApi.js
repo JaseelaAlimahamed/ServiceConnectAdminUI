@@ -27,3 +27,16 @@ export const categorydelete = async (id) => {
       throw error.response ? error.response.id : new Error(error.message);
     }
   }
+
+  //SubCategory Delete Api
+  export const SubcategoryDelete = async (id) => {
+    try {
+      const response = await apiInstance.delete(`subcategories/${id}/`);
+    
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+

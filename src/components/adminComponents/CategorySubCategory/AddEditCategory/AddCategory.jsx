@@ -77,7 +77,7 @@ const AddCategory = () => {
         )}
       </div>
 
-      <input
+      <input 
         type="text"
         placeholder="Title"
         value={title}

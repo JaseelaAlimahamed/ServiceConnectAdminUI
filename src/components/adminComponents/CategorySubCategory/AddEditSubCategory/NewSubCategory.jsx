@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 import ImageUpload from "../editSubcategoryItems/ImageUpload";
 import TitleInput from "../editSubcategoryItems/TitleInput";
@@ -9,10 +9,13 @@ import DropdownInput from "../editSubcategoryItems/DropdownInput";
 import ColorDropDownInput from '../editSubcategoryItems/ColorDropDown';
 import StatusDropdown from "../editSubcategoryItems/StatusDropdown";
 import Buttons from "../editSubcategoryItems/Buttons";
-
+import { SubCategoryGetById } from "../../../../service/api/admin/GetApi";
+import { SubcategoryEdit } from "../../../../service/api/admin/PutApi";
+import { SubcategoryPost } from "../../../../service/api/admin/PostApi";
 const AddEditSubCategory = () => {
-  const { id: subCategoryId } = useParams();
   
+  const { id: subCategoryId } = useParams();
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [serviceType, setServiceType] = useState('');
@@ -24,23 +27,22 @@ const AddEditSubCategory = () => {
   // Load existing sub-category data if subCategoryId exists
   useEffect(() => {
     if (subCategoryId) {
-      // Mock fetching existing data for edit
-      // This would be replaced by an actual API call
+    
       const fetchSubCategory = async () => {
-        const data = {
-          title: "Sample Title",
-          description: "Sample Description",
-          serviceType: "Cleaning",
-          collar: "Blue Collar",
-          status: "Active",
-          image: "sample-image-url.jpg",
-        };
-        setTitle(data.title);
-        setDescription(data.description);
-        setServiceType(data.serviceType);
-        setCollar(data.collar);
-        setStatus(data.status);
-        setImage(data.image);
+       
+        try {
+          const data = await SubCategoryGetById(subCategoryId); // Wait for the promise to resolve
+          
+          setTitle(data.title);
+          setDescription(data.description);
+          setServiceType(data.service_type);
+          setCollar(data.collar);
+          setStatus(data.status);
+          setImage(data.image);
+      } catch (error) {
+          console.error('Error fetching categories:', error);
+      }
+       
       };
 
       fetchSubCategory();
@@ -53,40 +55,70 @@ const AddEditSubCategory = () => {
     setStatus(newStatus);
     setDropdownOpen(false);
   };
+  
+  const handleEditImage = (event) => {
+    console.log("image")
+    setImage(event.target.files[0]); // Store the selected file
+    
+  };
+  // demo value
+const category=1
+const collarid=1
+const service_type=2
 
-  const handleEditImage = () => {
-    const newImage = prompt("Enter new image URL");
-    if (newImage) {
-      setImage(newImage);
+const subCategoryData = async () => {
+  const formData = new FormData();
+
+  // Append fields to FormData
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("status", status);
+  formData.append("service_type", serviceType);
+  formData.append("collar", collar);
+  formData.append("category", category);
+
+  if (image instanceof File) {
+    formData.append("image", image);
+  }
+
+  return formData;
+};
+
+  const handleSave = async () => {
+    
+    const formData = new FormData();
+
+    // Append fields to FormData
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("status", status);
+    formData.append("service_type", service_type);
+    formData.append("collar", collarid);
+    formData.append("category", category);
+  
+    if (image instanceof File) {
+      formData.append("image", image);
     }
+    SubcategoryPost(formData)
+    navigate('/sub-categories'); // Redirect after saving
+      console.log("New SubCategory created successfully.");
+      
+   
   };
 
-  const handleSave = () => {
-    const subCategoryData = {
-      title,
-      description,
-      serviceType,
-      collar,
-      status,
-      image,
-    };
-
-    if (subCategoryId) {
-      console.log("Updated SubCategory:", subCategoryData);
-      // Call update API here
-    } else {
-      console.log("New SubCategory:", subCategoryData);
-      // Call create API here
+  const handleEdit = async () => {
+    try {
+      const formData = await subCategoryData();
+      await SubcategoryEdit(subCategoryId, formData);
+      console.log("SubCategory updated successfully.");
+      navigate('/sub-categories'); // Redirect after editing
+    } catch (error) {
+      console.error("Error saving sub-category:", error);
     }
   };
 
   const handleDelete = () => {
-    setTitle('');
-    setDescription('');
-    setServiceType('');
-    setCollar('');
-    setStatus('Status');
-    setImage(null);
+   
     alert("SubCategory Deleted");
   };
 
@@ -96,7 +128,7 @@ const AddEditSubCategory = () => {
         {subCategoryId ? "Edit Sub Category Details" : "Add Sub Category Details"}
       </h2>
 
-      <ImageUpload image={image} handleEditImage={handleEditImage} />
+      <ImageUpload image={image} onEditImage={handleEditImage} />
       <TitleInput title={title} setTitle={setTitle} />
       <DescriptionInput description={description} setDescription={setDescription} />
 
@@ -121,7 +153,7 @@ const AddEditSubCategory = () => {
           handleStatusChange={handleStatusChange}
         />
 
-        <Buttons handleDelete={handleDelete} handleSave={handleSave} />
+        <Buttons handleDelete={handleDelete} handleSave={handleSave} handleEdit={handleEdit} id={subCategoryId}/>
       </div>
     </div>
   );
