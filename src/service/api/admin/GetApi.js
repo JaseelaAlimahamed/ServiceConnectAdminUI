@@ -37,6 +37,7 @@ export const getActiveFranchiseeStats = async () => {
     }
   };
   
+
 // list users
 export const listUser = async () => {
     try {
@@ -148,3 +149,18 @@ export const DashboardDetails = async () => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  export const getFranchiseeTypes = async() =>
+    {
+      try {
+       
+        const response = await apiInstance.get("franchiseetype/")
+        
+       
+       
+        return response.data
+      } catch (error) {
+        console.error(error);
+        throw error.response ? error.response.data : new Error(error.message);
+      }
+    }

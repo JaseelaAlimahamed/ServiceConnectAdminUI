@@ -78,3 +78,23 @@ export const addCategory = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  export const createFranchiseeType = async (frachiseeTypeData) => {
+    try {
+      const response = await apiInstance.post(
+        "/franchiseetype/",
+  
+        {
+          name: frachiseeTypeData.name,
+          details: frachiseeTypeData.details,
+          amount: frachiseeTypeData.amount,
+          currency: frachiseeTypeData.currency,
+        }
+      );
+  
+      return response;
+    } catch (error) {
+      if (err) console.log(error);
+    }
+  };
+  
