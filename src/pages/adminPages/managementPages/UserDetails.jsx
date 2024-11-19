@@ -125,6 +125,7 @@ const UserDetails = () => {
 
     fetchUser();
   }, []);
+  console.log(userdetails);
 
   useEffect( () => {
     const fetchPaymentHistory = async () => {
@@ -139,7 +140,7 @@ const UserDetails = () => {
 
     fetchPaymentHistory();
   }, []);
-  
+  console.log(tableDataConfig);
 
   return (
     <div className="py-12 flex max-lg:flex-col gap-4 justify-around  p-4">
