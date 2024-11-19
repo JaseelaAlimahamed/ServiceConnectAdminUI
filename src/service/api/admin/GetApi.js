@@ -23,6 +23,11 @@ export const categoryListGet = async () => {
        const list = response.data
       
       return list;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  }
 /**
  * Fetch Active Franchisee Stats
  * @returns {Promise<Object>} - API response
