@@ -28,7 +28,6 @@ export const getActiveFranchiseeStats = async () => {
     }
   };
   
-=======
 // list users
 export const listUser = async () => {
     try {
@@ -41,7 +40,7 @@ export const listUser = async () => {
     }
   };
 
-  // totalcustomer
+  // total customer
   export const totalCustomer = async () => {
     try {
       const response = await apiInstance.get("total-customer/");
@@ -53,7 +52,7 @@ export const listUser = async () => {
     }
   };
 
-   // totalservicerequest
+   // total service request
    export const totalServiceRequest = async () => {
     try {
       const response = await apiInstance.get("total-servicerequest/");
@@ -66,7 +65,7 @@ export const listUser = async () => {
   };
 
 
-  // onlinecustomers
+  // online customers
   export const onlineCustomers = async () => {
     try {
       const response = await apiInstance.get("online-customers/");
@@ -78,7 +77,7 @@ export const listUser = async () => {
     }
   };
 
-  // leadservicerequestcount
+  // lead service requestcount
   export const leadServiceRequestCount = async () => {
     try {
       const response = await apiInstance.get("lead-service-request-count/");
@@ -90,7 +89,7 @@ export const listUser = async () => {
     }
   };
 
-   // activeservicerequestcount
+   // active service request count
    export const activeServiceRequestCount = async () => {
     try {
       const response = await apiInstance.get("active-service-request-count/");
@@ -115,7 +114,7 @@ export const listUser = async () => {
   };
 
 
-export const Dashboarddetails = async () => {
+export const DashboardDetails = async () => {
     try {
       const response = await apiInstance.get("dashboard/");
       console.log(response);
@@ -128,7 +127,7 @@ export const Dashboarddetails = async () => {
 
 
 
-  export const Totalusers = async () => {
+  export const TotalUsers = async () => {
     try {
       const response = await apiInstance.get("total-customer/");
       console.log(response);
