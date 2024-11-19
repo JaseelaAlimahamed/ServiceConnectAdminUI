@@ -11,12 +11,11 @@ const roleComponents = {
 
 const Dashboard = () => {
   const { role } = useSelector((state) => state.auth);
-
   const RoleDashboard = roleComponents[role] || null;
 
   return (
     <div className="h-screen">
-      {RoleDashboard ? <RoleDashboard /> : <p>Invalid role. Please check your permissions.</p>}
+      {RoleDashboard ? <RoleDashboard role={role} /> : <p>Invalid role. Please check your permissions.</p>}
     </div>
   );
 };

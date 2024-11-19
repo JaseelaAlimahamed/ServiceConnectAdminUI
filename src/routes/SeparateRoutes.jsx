@@ -136,7 +136,7 @@ const SeparateRoutes = [
   {
     path: 'service-providers/add-new',
     // Page for crete  an  service provider restricted to franchise
-    element: protect(< AddServiceProvider/>, ["franchise"," admin"]), 
+    element: protect(< AddServiceProvider/>, ["franchise","admin"]), 
   }
 
 
