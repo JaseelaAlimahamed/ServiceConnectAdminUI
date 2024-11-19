@@ -19,7 +19,7 @@ const DropButtons = ({ categories=[], onCategorySelect }) => {
         setSelectedCategory(category); // Set the selected category
         onCategorySelect(category); // Pass the selected category to the parent
         setMainDropdownOpen(false); // Close the dropdown after selection
-        console.log(category)
+        
     };
 
     // Toggle functions for dropdowns

@@ -18,6 +18,7 @@ const SubCategoryList = () => {
     const [viewSubCategory, setViewSubCategory] = useState(null);
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [deleteCategoryId, setDeleteCategoryId] = useState(null); 
     const [editService, setEditService] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [refresh, setRefresh] = useState(false);
@@ -44,32 +45,38 @@ const SubCategoryList = () => {
         setIsViewModalOpen(true);
     };
     // Handle delete
-    const handleDelete = (categoryId) => {
-        setIsModalOpen(false);
-        SubcategoryDelete(categoryId)
-        setRefresh(prev => !prev);
-        console.log('Deleting:', categoryId);
-        
+    const handleDelete = () => {
+        try {
+            setIsModalOpen(false);
+             SubcategoryDelete(deleteCategoryId);  // Wait for delete to finish
+            setRefresh(prev => !prev);  // Toggle refresh to trigger useEffect
+            console.log('Deleting:', deleteCategoryId);
+        } catch (error) {
+            console.error('Error deleting category:', error);
+        } finally {
+            setIsModalOpen(false);  // Close the modal after deletion attempt
+            setDeleteCategoryId(null);  // Clear the delete category ID
+        }
     };
 
 
 
 
     // const filteredSubcategories = subcategoryList
-    // ? subcategoryList.filter(subcategory =>
-    //     subcategory.categoryId === selectedCategory.id &&
-    //     subcategory && subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
-    // )
-    // : subcategoryList.filter(subcategory =>
-    //     subcategory && subcategory.name.toLowerCase().includes(searchQuery.toLowerCase())
-    // ); // Show all subcategories matching the search query when no category is selected
+    //  ?subcategoryList.filter(subcategory =>
+    //     subcategory.id === selectedCategory.id &&
+    //     subcategory && subcategory.title.toLowerCase().includes(searchQuery.toLowerCase())
+    // ):
+     subcategoryList.filter(subcategory =>
+        subcategory && subcategory.title.toLowerCase().includes(searchQuery.toLowerCase())
+    ); // Show all subcategories matching the search query when no category is selected
 
     return (
         <div>
             <div className='bg-white p-6 shadow-lg rounded-lg '>
                 <div className="flex flex-col md:flex-row justify-between  gap-3 items-center mb-5">
                     <h1 className="text-3xl text-dark_blue font-bold mb-4">
-                        {selectedCategory ? selectedCategory.name : "Sub Categories"}
+                        {selectedCategory ? selectedCategory.title : "Sub Categories"}
                     </h1>
 
                     <div className="flex flex-grow md:max-w-md">
@@ -96,12 +103,12 @@ const SubCategoryList = () => {
                                 <div className="flex justify-center gap-5 text-xl mt-2">
                                     <button onClick={() => handleView(category)}><MdOutlineRemoveRedEye /></button>
                                     <Link to={`/edit-subcategory/${category.id}`} ><FaRegEdit /></Link>
-                                    <button onClick={() => setIsModalOpen(true)}><FaRegTrashAlt /></button>
+                                    <button onClick={() =>{ setIsModalOpen(true), setDeleteCategoryId(category.id); }}><FaRegTrashAlt /></button>
                                 </div>
                                 <DeleteModal
                                     isOpen={isModalOpen}
                                     onClose={() => setIsModalOpen(false)}
-                                    onConfirm={() => handleDelete(category.id)}
+                                    onConfirm={() => handleDelete()}
                                 />
                             </div>
 

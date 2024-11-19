@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 import ImageUpload from "../editSubcategoryItems/ImageUpload";
 import TitleInput from "../editSubcategoryItems/TitleInput";
@@ -15,7 +15,7 @@ import { SubcategoryPost } from "../../../../service/api/admin/PostApi";
 const AddEditSubCategory = () => {
   
   const { id: subCategoryId } = useParams();
-  
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [serviceType, setServiceType] = useState('');
@@ -55,38 +55,67 @@ const AddEditSubCategory = () => {
     setStatus(newStatus);
     setDropdownOpen(false);
   };
+  
+  const handleEditImage = (event) => {
+    console.log("image")
+    setImage(event.target.files[0]); // Store the selected file
+    
+  };
+  // demo value
+const category=1
+const collarid=1
+const service_type=2
 
-  const handleEditImage = () => {
-    const newImage = prompt("Enter new image URL");
-    if (newImage) {
-      setImage(newImage);
+const subCategoryData = async () => {
+  const formData = new FormData();
+
+  // Append fields to FormData
+  formData.append("title", title);
+  formData.append("description", description);
+  formData.append("status", status);
+  formData.append("service_type", serviceType);
+  formData.append("collar", collar);
+  formData.append("category", category);
+
+  if (image instanceof File) {
+    formData.append("image", image);
+  }
+
+  return formData;
+};
+
+  const handleSave = async () => {
+    
+    const formData = new FormData();
+
+    // Append fields to FormData
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("status", status);
+    formData.append("service_type", service_type);
+    formData.append("collar", collarid);
+    formData.append("category", category);
+  
+    if (image instanceof File) {
+      formData.append("image", image);
+    }
+    SubcategoryPost(formData)
+    navigate('/sub-categories'); // Redirect after saving
+      console.log("New SubCategory created successfully.");
+      
+   
+  };
+
+  const handleEdit = async () => {
+    try {
+      const formData = await subCategoryData();
+      await SubcategoryEdit(subCategoryId, formData);
+      console.log("SubCategory updated successfully.");
+      navigate('/sub-categories'); // Redirect after editing
+    } catch (error) {
+      console.error("Error saving sub-category:", error);
     }
   };
-const category=1
-  const subCategoryData = {
-    title,
-    description,
-    serviceType,
-    collar,
-    status,
-    image,
-    category
-  };
-
-  const handleSave = () => {
-   
-      console.log("New SubCategory:", subCategoryData);
-      SubcategoryPost(subCategoryData)
-      navigator('/sub-categories')
-    
-  };
-
-  const handleEdit =()=>{
-    
-    SubcategoryEdit(subCategoryId,subCategoryData)
-    console.log("Edit SubCategory:", subCategoryData);
-    // navigator('/sub-categories')
-  }
 
   const handleDelete = () => {
    
@@ -99,7 +128,7 @@ const category=1
         {subCategoryId ? "Edit Sub Category Details" : "Add Sub Category Details"}
       </h2>
 
-      <ImageUpload image={image} handleEditImage={handleEditImage} />
+      <ImageUpload image={image} onEditImage={handleEditImage} />
       <TitleInput title={title} setTitle={setTitle} />
       <DescriptionInput description={description} setDescription={setDescription} />
 
