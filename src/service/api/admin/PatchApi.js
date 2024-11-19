@@ -17,6 +17,8 @@ export const updateFranchiseeTypes = async (franchiseetypeData) => {
       return response;
     } catch (error) {
       console.error(error);
+    }
+  }
 
 export const editCategory = async (data) => {
     try {
