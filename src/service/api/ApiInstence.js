@@ -33,7 +33,8 @@ apiInstance.interceptors.request.use(
   },
   (error) => {
     // logError(error, store);
-    return Promise.reject(error);
+    // return Promise.reject(error);
+    console.log(error)
   }
 );
 
@@ -88,9 +89,11 @@ function attachResponseInterceptor() {
           attachResponseInterceptor(); 
         }
       }
-      store?.dispatch(clearAccessToken());
+      // store?.dispatch(clearAccessToken());
+      console.log(error);
+      
       //  logError(error, store); 
-      return Promise.reject(error);
+      // return Promise.reject(error);
     }
   );
 }
