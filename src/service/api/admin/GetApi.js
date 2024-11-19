@@ -1,4 +1,4 @@
- import { apiInstance } from "../ApiInstence";
+import { apiInstance } from "../ApiInstence";
 
 /**
  * Fetch user profile details
@@ -12,4 +12,6 @@ export const getUserProfile = async () => {
     console.error("Error fetching user profile:", error);
     throw error.response ? error.response.data : new Error(error.message);
   }
-};
+ };
+
+
