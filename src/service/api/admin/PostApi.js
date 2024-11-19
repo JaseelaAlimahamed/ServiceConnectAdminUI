@@ -20,6 +20,22 @@ export const signInAdmin = async (data) => {
     }
   };
 
+
+export const addCategory = async (data) => {
+  try {
+    const response = await apiInstance.post('/categories/', 
+      data,
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+      }
+    );
+    return response
+  } catch (error) {
+    console.error("Error adding category:", error.response?.data || error.message);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+
   
   export const FinanceReport = async (data) => {
       try {

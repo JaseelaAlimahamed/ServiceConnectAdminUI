@@ -14,6 +14,15 @@ export const getFranchiseeStats = async () => {
     }
 };
 
+
+
+export const categoryListGet = async () => {
+    try {
+      const response = await apiInstance.get("categories/");
+    
+       const list = response.data
+      
+      return list;
 /**
  * Fetch Active Franchisee Stats
  * @returns {Promise<Object>} - API response
@@ -63,6 +72,8 @@ export const listUser = async () => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  
 
 
   // online customers
