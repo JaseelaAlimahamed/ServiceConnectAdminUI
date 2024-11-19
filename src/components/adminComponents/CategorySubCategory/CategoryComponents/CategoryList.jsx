@@ -60,7 +60,7 @@ const CategoryList = () => {
     
 
     // Filter categories based on search query
-     categoriesList.filter(category =>
+    const filteredCategories = categoriesList.filter(category =>
         category && category.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -75,12 +75,12 @@ const CategoryList = () => {
                 </div>
 
                 <div className="mt-4 md:mt-0">
-                    <DropButtons categories={categoriesList} onCategorySelect={categoriesList}/>
+                    <DropButtons categories={filteredCategories} onCategorySelect={setSearchQuery}/>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-                {categoriesList.map((category) => (
+                {filteredCategories.map((category) => (
                     <div key={category.id} className="shadow-lg bg-blue_bg rounded-lg p-4 relative w-full">
                         <div className="bg-gray-200 rounded-t-lg w-full h-40">
                             <img
