@@ -8,7 +8,7 @@ const ViewModal = ({ isOpen, onClose, category }) => {
             <div className="bg-blue_bg rounded-lg shadow-lg p-6 w-96">
                 <h2 className="text-xl font-bold mb-4">{category.title}</h2>
                 <img
-                    src={`${import.meta.env.VITE_API_URL}${category.image}`}
+                    src={category.image}
                     alt={category.title}
                     className="w-full h-40 object-cover mb-4"
                 />

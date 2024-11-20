@@ -14,7 +14,7 @@ const EditCategory = () => {
   const [status, setStatus] = useState("Active");
   const [newImage, setNewImage] = useState(null);
   const [image, setImage] = useState( '')
-
+  const [error,setError] = useState("");
   // Fetch category  
   useEffect(() => {
     if (CategoryId) {
@@ -59,14 +59,14 @@ const EditCategory = () => {
       if (newImage instanceof File) {
         formData.append("image", newImage); 
       }
-
-      await editCategory(formData);
-
-      navigate("/categories");
-
+      if(status==="Active"){
+        await editCategory(formData);
+         navigate("/categories")
+        }setError(`Not Allowd Status ${status} Please use Active Status`)
+      
     } catch (err){
       console.log(err)
-      alert("field is blank")
+      setError(`Not Allowd Status ${status} `)
     }
   };
 
@@ -169,6 +169,9 @@ const EditCategory = () => {
           >
             Cancel
           </button>
+      </div>
+      <div className="text-red flex justify-center items-center ">
+        {error}
       </div>
     </div>
   );

@@ -12,6 +12,8 @@ import Buttons from "../editSubcategoryItems/Buttons";
 import { SubCategoryGetById } from "../../../../service/api/admin/GetApi";
 import { SubcategoryEdit } from "../../../../service/api/admin/PutApi";
 import { SubcategoryPost } from "../../../../service/api/admin/PostApi";
+import { SubcategoryDelete } from "../../../../service/api/admin/DeleteApi";
+
 const AddEditSubCategory = () => {
   
   const { id: subCategoryId } = useParams();
@@ -23,7 +25,8 @@ const AddEditSubCategory = () => {
   const [status, setStatus] = useState('Status');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [image, setImage] = useState(null);
-
+  const [error,setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // Load existing sub-category data if subCategoryId exists
   useEffect(() => {
     if (subCategoryId) {
@@ -99,27 +102,37 @@ const subCategoryData = async () => {
     if (image instanceof File) {
       formData.append("image", image);
     }
-    SubcategoryPost(formData)
-    navigate('/sub-categories'); // Redirect after saving
-      console.log("New SubCategory created successfully.");
-      
+      if(status==="Active"){
+        await SubcategoryPost(formData)
+        navigate('/sub-categories'); 
+        }setError(`Not Allowd Status ${status} Please use Active Status`)
+     
    
   };
 
   const handleEdit = async () => {
     try {
       const formData = await subCategoryData();
-      await SubcategoryEdit(subCategoryId, formData);
-      console.log("SubCategory updated successfully.");
-      navigate('/sub-categories'); // Redirect after editing
+      
+      if(status==="Active"){
+        await SubcategoryEdit(subCategoryId, formData);
+        navigate('/sub-categories'); 
+        }setError(`Not Allowd Status ${status} Please use Active Status`)
+     
     } catch (error) {
       console.error("Error saving sub-category:", error);
     }
   };
 
-  const handleDelete = () => {
-   
-    alert("SubCategory Deleted");
+  const handleDelete = (subCategoryId) => {
+    try{
+      setIsModalOpen(false)
+    SubcategoryDelete(subCategoryId)
+    navigate('/sub-categories'); 
+    }
+    catch(err){
+      console.error("Error delete sub-category:", error);
+    }
   };
 
   return (
@@ -153,7 +166,17 @@ const subCategoryData = async () => {
           handleStatusChange={handleStatusChange}
         />
 
-        <Buttons handleDelete={handleDelete} handleSave={handleSave} handleEdit={handleEdit} id={subCategoryId}/>
+        <Buttons 
+        handleDelete={handleDelete} 
+        handleSave={handleSave} 
+        handleEdit={handleEdit} 
+        id={subCategoryId}
+        setIsModalOpen={setIsModalOpen}
+        isModalOpen={isModalOpen}
+        />
+      </div>
+      <div className="text-red flex justify-center items-center">
+        {error}
       </div>
     </div>
   );

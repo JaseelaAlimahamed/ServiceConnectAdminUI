@@ -10,7 +10,7 @@ const AddCategory = () => {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Active");
   const [newImage, setNewImage] = useState(null);
-
+  const [error,setError] = useState("");
   
 
   const handleFileChange = (event) => {
@@ -30,16 +30,21 @@ const AddCategory = () => {
       if (newImage instanceof File) {
         formData.append("image", newImage); 
       }
-
-      await addCategory(formData)
-
-      navigate("/categories");
-
+      if(status==="Active"){
+      addCategory(formData)
+       navigate("/categories")
+      }setError(`Not Allowd Status ${status} Please use Active Status`)
     } catch (error){
       console.log(error)
-      alert("field is blank")
+      setError(`Not Allowd Status ${status}`)
     }
   };
+
+  const imageSrc = 
+  newImage instanceof File 
+      ? URL.createObjectURL(newImage) // For newly uploaded files
+      : newImage || "https://via.placeholder.com/250x150"; // For existing URLs or placeholder
+
 
   return (
     <div className="max-w-2xl mx-auto p-4 sm:p-8 bg-white shadow-lg rounded-lg flex flex-col h-2xl space-y-6">
@@ -47,14 +52,13 @@ const AddCategory = () => {
         Add Category Details
       </h2>
       <div className="flex items-start">
-        {newImage && (
+        
           <img
-            src={URL.createObjectURL(newImage)} // Show the new image preview
+            src={imageSrc} // Show the new image preview
             alt="New Preview"
             className="w-64 h-64 object-cover rounded-lg mt-6"
           />
-        ) } 
-        {newImage  ? (
+        
           <label className="ml-2 p-2 bg-transparent border-none cursor-pointer text-gray flex items-center space-x-2">
             <img src={editIcon} alt="Edit Icon" className="w-6 h-6" />
             <input
@@ -64,17 +68,7 @@ const AddCategory = () => {
               className="hidden"
             />
           </label>
-        ):(
-          <label className="text-gray-700 font-semibold">
-            Image:
-            <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="p-3 border border-gray rounded-lg"
-            />
-          </label>
-        )}
+        
       </div>
 
       <input 
@@ -91,7 +85,7 @@ const AddCategory = () => {
         onChange={(e) => setDescription(e.target.value)}
         className="w-48 p-1 mx-3 border border-id_gray rounded-md text-secondary h-8 placeholder-id_gray"
       />
-
+       
       <div className="flex justify-end items-end mt-4 py-20 p-4 space-x-2">
         <select
           value={status}
@@ -116,6 +110,10 @@ const AddCategory = () => {
           >
             Cancel
           </button>
+         
+      </div>
+      <div className="text-red flex justify-center items-center ">
+        {error}
       </div>
     </div>
   );
