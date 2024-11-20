@@ -23,18 +23,22 @@ export const getUserProfile = async () => {
   }
 };
 
+
+//categoryList api 
 export const categoryListGet = async () => {
-  try {
-    const response = await apiInstance.get("categories/");
-
-    const list = response.data;
-
-    return list;
-  } catch (error) {
-    console.error("Error fetching active franchisee stats:", error);
-    throw error.response ? error.response.data : new Error(error.message);
+    try {
+      const response = await apiInstance.get("categories/");
+    
+       const list = response.data
+      
+      return list;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
   }
-};
+
+   
 
 /**
  * Fetch Active Franchisee Stats
@@ -52,15 +56,46 @@ export const getActiveFranchiseeStats = async () => {
 
 // list users
 export const listUser = async () => {
-  try {
-    const response = await apiInstance.get("usersview/");
-    console.log(response);
-    return response.data.results;
-  } catch (error) {
-    console.error(error);
-    throw error.response ? error.response.data : new Error(error.message);
-  }
-};
+    try {
+      const response = await apiInstance.get("usersview/");
+      console.log(response);
+      return response.data.results;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+
+
+
+  //SubCategoryList Api
+  export const SubcategoryGet = async () => {
+    try {
+      const response = await apiInstance.get("subcategories/");
+    
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+  //SubCategoryGetById Api
+  export const SubCategoryGetById = async (id) => {
+
+    try {
+      const response = await apiInstance.get(`subcategories/${id}/`);
+    
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+
+
 
 // total customer
 export const totalCustomer = async () => {
