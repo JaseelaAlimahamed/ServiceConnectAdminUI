@@ -17,6 +17,7 @@ import AddEditSubCategory from "../components/adminComponents/CategorySubCategor
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
 import AddServiceProvider from "../pages/franchisePages/AddServiceProvider";
 import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage";
+import AddDealer from "../pages/dealerPages/AddDealer";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -26,25 +27,24 @@ const SeparateRoutes = [
   {
     path: "user-management",
     // Route for viewing user management page, restricted to admin
-    element: protect(<UserManagementPage />, ["admin"]), 
+    element: protect(<UserManagementPage />, ["admin"]),
   },
   {
     path: "user-management/add-new",
     // Route for adding a new user, restricted to admin
-    element: protect(<AddNewUser />, ["admin"]), 
+    element: protect(<AddNewUser />, ["admin"]),
   },
   {
     path: "user-management/edit/:id",
     // Route for adding a new user, restricted to admin
-    element: protect(<AddNewUser />, ["admin"]), 
+    element: protect(<AddNewUser />, ["admin"]),
   },
   {
     path: "user-management/details/:id",
     // Route for viewing user details by ID, restricted to admin
-    element: protect(<UserDetails />, ["admin"]), 
+    element: protect(<UserDetails />, ["admin"]),
   },
 
-  
   {
     // Franchise management section
     path: "franchise",
@@ -75,7 +75,7 @@ const SeparateRoutes = [
     path: "franchisee",
     element: protect(<FranchiseProfileDetails />, ["dealer"]), // Franchise profile for dealer role, restricted to dealer
   },
-  
+
   {
     // Ads management section
     path: "ads-management",
@@ -86,6 +86,11 @@ const SeparateRoutes = [
     element: protect(<DealersPage />, ["franchise"]), // Dealers page for franchise role, restricted to franchise
   },
   {
+    path: "Dealers/add-new",
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(<AddDealer />, ["franchise", "admin"]),
+  },
+  {
     path: "payment",
     element: protect(<PaymentForm />, ["franchise"]),
   },
@@ -94,52 +99,49 @@ const SeparateRoutes = [
     path: "dealers/dealer-management/:id",
     element: protect(<FranchiseProfileDetails />, ["franchise"]), // Franchise profile details view for a specific dealer, restricted to franchise
   },
-  
+
   // Category management section
   {
-    path: '/categories',
+    path: "/categories",
     element: protect(<CategoryPage />, ["admin"]), // Main categories management page, restricted to admin
   },
   {
-    path: '/Add-Category',
+    path: "/Add-Category",
     element: protect(<AddCategoryPage />, ["admin"]), // Page for adding a new category, restricted to admin
   },
   {
-    path: '/edit-Category/:id',
+    path: "/edit-Category/:id",
     element: protect(<EditCategoryPage />, ["admin"]), // Page for editing an existing category, restricted to admin
   },
 
   //Sub  Category management section
 
   {
-    path: '/sub-categories',
+    path: "/sub-categories",
     element: protect(<SubCategoryPage />, ["admin"]), // Sub-category management page, restricted to admin
   },
   {
-    path: '/add-subcategory',
+    path: "/add-subcategory",
     element: protect(<AddEditSubCategory />, ["admin"]), // Page for adding a new sub-category, restricted to admin
   },
   {
-    path: 'edit-subcategory/:id',
+    path: "edit-subcategory/:id",
     // Page for editing an existing sub-category, restricted to admin
-    element: protect(< AddEditSubCategory/>, ["admin"]), 
+    element: protect(<AddEditSubCategory />, ["admin"]),
   },
-
 
   //service provider verification restricted for dealer only
   {
-    path: 'service-providers/verify/:id',
+    path: "service-providers/verify/:id",
     // Page for editing an existing sub-category, restricted to admin
-    element: protect(< ServiceProviderVerification/>, ["dealer"]), 
+    element: protect(<ServiceProviderVerification />, ["dealer"]),
   },
-    // add service provider 
+  // add service provider
   {
-    path: 'service-providers/add-new',
+    path: "service-providers/add-new",
     // Page for crete  an  service provider restricted to franchise
-    element: protect(< AddServiceProvider/>, ["franchise","admin"]), 
+    element: protect(<AddServiceProvider />, ["franchise", "admin"]),
   }
-
-
- ];
+];
 
 export default SeparateRoutes;

@@ -18,3 +18,33 @@ export const loginUser = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  /**
+ * Fetch franchisee dealer count
+ * @returns {Promise<object>} - Franchisee dealer count data
+ */
+export const getFranchiseeDealerCount = async () => {
+  try {
+    const response = await apiInstance.get("/franchisee-dealer-count/");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching franchisee dealer count:", error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+
+/**
+ * Fetch service provider counts
+ * @returns {Promise<object>} - Service provider count statistics
+ */
+export const getServiceProviderCounts = async () => {
+  try {
+    const response = await apiInstance.get("/service-provider-counts/");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching service provider counts:", error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+
+

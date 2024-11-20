@@ -18,3 +18,38 @@ export const signInFranchise = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+export const createDealer = async (dealerData) => {
+  try {
+    // Prepare data for the request
+    const response = await apiInstance.post(
+      "dealers/create/",
+      {
+        full_name: dealerData.fullName,
+        email: dealerData.email,
+        phone_number: dealerData.phoneNumber,
+        address: dealerData.address,
+        landmark: dealerData.landmark,
+        pin_code: dealerData.pinCode,
+        watsapp: dealerData.watsapp,
+        country_code: dealerData.countryCode,
+        district: dealerData.district,
+        state: dealerData.state,
+        about: dealerData.about,
+        service_providers: dealerData.serviceProviders,
+        franchisee: dealerData.franchisee,
+        status: dealerData.status,
+        verification_id: dealerData.verificationId,
+        verificationid_number: dealerData.verificationIdNumber,
+        image: dealerData.image, // Add image field here
+        // id: dealerData.id // Add id field here
+      }      
+    );
+
+    console.log(response); // Log the response for debugging
+    return response; // Return the API response
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    throw error.response ? error.response.data : new Error(error.message); // Return error data if available
+  }
+};
