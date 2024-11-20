@@ -3,19 +3,21 @@ import React from "react";
 const ProfileSidebar = ({ user }) => (
   <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl flex flex-col items-center mt-2 mx-2 md:mx-0 ">
     <img
-      src={user.image}
-      alt={user.name}
+      src={user?.image || 'default-avatar.png'} // Use default image if no image is available
+      alt={user?.name} // Fallback to 'User' if name is missing
       className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-32 lg:h-32 rounded-full mb-4 border-4 p-1 border-pink-500"
     />
-
     <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-center">
-      {user.name}
+      {user?.name || 'N/A'} {/* Display 'N/A' if name is not available */}
     </h2>
     <p className="text-gray-500 text-center">
-      {user.location}, {user.country}
+      {user?.location && user?.country ? `${user.location}, ${user.country}` : 'N/A'} {/* Check for both location and country */}
+    </p>
+    <p className="text-gray-500 text-center">
+      {user?.designation || 'N/A'} {/* Check for both location and country */}
     </p>
 
-    <div className="border border-slate-400  border-x-neutral-50 mt-2  w-full flex items-center justify-center py-3">
+    <div className="border border-slate-400 border-x-neutral-50 mt-2 w-full flex items-center justify-center py-3">
       <p className="flex items-center space-x-2 font-semibold">
         <span className="mb-1">
           <svg
@@ -33,7 +35,7 @@ const ProfileSidebar = ({ user }) => (
             />
           </svg>
         </span>
-        <span>{user.role}</span>
+        <span>{user?.role || 'N/A'}</span> {/* Display 'N/A' if role is missing */}
       </p>
     </div>
 
@@ -55,7 +57,7 @@ const ProfileSidebar = ({ user }) => (
             />
           </svg>
         </span>
-        <span>{user.phone}</span>
+        <span>{user?.phone || 'N/A'}</span> {/* Display 'N/A' if phone is missing */}
       </p>
       <p className="flex items-center gap-2 text-gray-600">
         <span>
@@ -74,7 +76,7 @@ const ProfileSidebar = ({ user }) => (
             />
           </svg>
         </span>
-        <span>{user.email}</span>
+        <span>{user?.email || 'N/A'}</span> {/* Display 'N/A' if email is missing */}
       </p>
       <p className="flex items-center gap-2 text-gray-600">
         <span>
@@ -93,7 +95,7 @@ const ProfileSidebar = ({ user }) => (
             />
           </svg>
         </span>
-        <span>{user.pdt}</span>
+        <span>{user?.pdt || 'N/A'}</span> {/* Display 'N/A' if PDT is missing */}
       </p>
     </div>
   </div>

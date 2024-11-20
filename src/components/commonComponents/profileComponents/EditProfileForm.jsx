@@ -1,16 +1,19 @@
 import { useState } from "react";
+import { editProfile } from "../../../service/api/admin/PutApi";
 
 const EditProfileForm = ({ user, onSubmit }) => {
   const [formData, setFormData] = useState({
-    firstName: user.name.split(" ")[0] || "",
-    lastName: user.name.split(" ")[1] || "",
+    firstName: user.name ? user.name.split(" ")[0] : "",  // Safe check
+    lastName: user.name ? user.name.split(" ")[1] : "",   // Safe check
     email: user.email || "",
-    phone: user.phone || "",
+    phone: user.mobile_number || "",
     password: "",
     nationality: user.country,
-    designation: "",
+    designation: user.designation || "",
     countryCode: "+1",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,15 +23,28 @@ const EditProfileForm = ({ user, onSubmit }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit({
+    setIsSubmitting(true);
+
+    const profileData = {
       name: `${formData.firstName} ${formData.lastName}`,
       email: formData.email,
       phone: formData.countryCode + formData.phone,
       country: formData.nationality,
       designation: formData.designation,
-    });
+    };
+    console.log("profiledata",profileData);
+
+    try {
+      const response = await editProfile(profileData); // Call API
+      console.log("Profile updated successfully", response);
+      if (onSubmit) onSubmit(profileData); // Notify parent component if needed
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -169,7 +185,7 @@ const EditProfileForm = ({ user, onSubmit }) => {
             <option value="Backend Developer">Backend Developer</option>
             <option value="Project Management">Project Management</option>
           </select>
-
+          
           {/*arrow icon */}
           <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
             <svg
@@ -193,9 +209,9 @@ const EditProfileForm = ({ user, onSubmit }) => {
       <div className="text-center mt-10">
         <button
           type="submit"
-          className="mt-4 w-full sm:w-[195px] h-14 bg-[#5570F1] rounded-lg text-white py-2 px-4"
+         className="mt-4 w-full sm:w-[195px] h-14 bg-[#5570F1] rounded-lg text-white py-2 px-4"
         >
-          Save
+           Save
         </button>
       </div>
     </form>
