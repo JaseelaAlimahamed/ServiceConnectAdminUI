@@ -17,16 +17,20 @@ const ReUsableTable = ({
   const [openActionId, setOpenActionId] = useState(null); // Opened action dropdown for each row
   const navigate = useNavigate();
   // Sort the data by date, either newest or oldest first
-  const sortedUsers = [...tableDataConfig].sort((a, b) => {
+  const sortedUsers = [...(tableDataConfig || [])].sort((a, b) => {
     return sortNewest
       ? new Date(b.date) - new Date(a.date)
       : new Date(a.date) - new Date(b.date);
   });
+ 
+  
 
   // Filter the data by the search term
   const filteredUsers = sortedUsers.filter(
-    (user) => user && user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    (user) => user?.full_name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
+  
 
   // Calculate pagination indexes
   const indexOfLastUser = currentPage * usersPerPage;
@@ -288,44 +292,48 @@ const ReUsableTable = ({
                 </td>
 
                 {/* Name Column */}
-                {data.name && (
+                {data.full_name && (
                   <td className="py-8">
                     <div className="flex items-center gap-2 mr-6">
-                      <img src={data.image} alt="profile" />
+                      { data.image ?
+                        
+                        <img src={data.image} alt="profile" />
+                        : <span className="bg-blue_gray w-12 h-12 rounded-full"></span>
+                        }
                       <span className="text-dark_blue font-bold text-sm">
-                        {data.name}
+                        {data.full_name}
                       </span>
                     </div>
                   </td>
                 )}
 
                 <td className="p-6 text-sm text-violet font-bold">
-                  <span>{data.id}</span>
+                  <span>{data.custom_id}</span>
                 </td>
 
                 {/* Date and Time Column */}
                 <td className="text-sm text-id_gray">
                   <div className="mr-2">
-                    <span className="whitespace-nowrap">{data.date}</span>{" "}
+                    <span className="whitespace-nowrap">{data.joining_date}</span>{" "}
                     {data.time}
                   </div>
                 </td>
 
                 {/* ID Column */}
                 <td className="py-4 text-dark_blue text-center font-semibold">
-                  {data.totalCompletedWork}
+                  {data.completed_services}
                 </td>
 
                 {/* Location Column */}
                 <td className="py-4 text-dark_blue font-semibold text-sm">
-                  {data.location}
+                  {data.address}
                 </td>
 
                 {/* Contact Column */}
                 <td className="py-4">
                   <div className="flex gap-2">
                     <a
-                      href={`tel:${data.contact?.phone}`}
+                      href={`tel:${data.phone_number}`}
                       className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
                     >
                       <img
@@ -335,7 +343,7 @@ const ReUsableTable = ({
                       />
                     </a>
                     <a
-                      href={`mailto:${data.contact?.mail}`}
+                      href={`mailto:${data.email}`}
                       className="p-1 bg-violet bg-opacity-10 rounded-full cursor-pointer"
                     >
                       <img

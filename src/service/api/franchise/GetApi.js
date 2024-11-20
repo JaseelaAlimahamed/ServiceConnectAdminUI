@@ -19,6 +19,22 @@ export const loginUser = async (data) => {
     }
   };
 
+  
+
+
+ 
+  export const getrecentactives = async () => {
+    try {
+      const response = await apiInstance.get('/franchise/recent-activities/');
+      console.log(response);
+      return response.data.results;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  }
+  
+
   // Incomplete booking list
   export const getIncompleteBookingList = async () => {
     try {
