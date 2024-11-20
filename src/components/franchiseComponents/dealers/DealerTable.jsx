@@ -46,7 +46,7 @@ const navigate = useNavigate()
 >
                 {actionIcon}
                 </div>
-                {showActionOverlay === id && <div className={`bg-white fixed z-50 w-32  shadow-md rounded-lg overflow-hidden text-sm flex flex-col right-2 `}>
+                {showActionOverlay === id && <div className={`absolute z-50 bg-white shadow-md rounded-lg overflow-hidden text-sm flex flex-col p-2 right-0 top-0 mt-12 mr-1`}>
                     <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " to={`/Dealers/dealer-management/${id}`} >view</Link>
                     <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " >edit</Link>
                     <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1">delete</Link>
