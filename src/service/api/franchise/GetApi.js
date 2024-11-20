@@ -18,3 +18,63 @@ export const loginUser = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  // Incomplete booking list
+  export const getIncompleteBookingList = async () => {
+    try {
+      const response = await apiInstance.get(`/franchise/incomplete-bookings/`);
+      console.log(response);
+      return response.data.results;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };  
+
+  // Complaints list
+  export const getComplaintsList = async () => {
+    try {
+      const response = await apiInstance.get(`/franchise/complaints/`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+  // Payment History
+  export const getPayments = async () => {
+    try {
+      const response = await apiInstance.get(`/franchisee/payments/`);
+      console.log(response);
+      return response.data.results;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  }
+
+  // dashboard count  
+  export const getDashboardCount = async () => {
+    try {
+      const response = await apiInstance.get(`/franchise-dashboardcount/`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+  // Total Complaints
+  export const getTotalComplaints = async () => {
+    try {
+      const response = await apiInstance.get(`/franchise-dashboardcount-complaints/`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
