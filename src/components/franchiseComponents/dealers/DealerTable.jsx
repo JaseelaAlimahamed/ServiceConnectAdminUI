@@ -6,9 +6,7 @@ const navigate = useNavigate()
     const [showActionOverlay , setShowActionOverlay] = useState("");
     console.log(showActionOverlay)
 
-    const handleView = () => {
-        navigate('/Dealers/dealer-management/2')
-    }
+   
   return (
   <div className="px-5 pt-5  bg-gray-100">
     <div className="overflow-auto rounded-t-lg shadow hidden md:block">
@@ -25,9 +23,9 @@ const navigate = useNavigate()
         </thead>
         <tbody className="divide-y divide-[#DBDBDB]">
             {tableData.map(({checkBox , name , id , serviceProviders , location , contact , status , actionIcon}) => (
-            <tr  key={id} className="bg-white cursor-pointer" onClick={handleView}>
+            <tr  key={id} className="bg-white cursor-pointer" >
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
-                {checkBox}
+                <input type="checkbox"></input>
               </td>
               <td className="p-3 text-sm font-bold text-dark_blue gap-2 whitespace-nowrap text-center flex items-center ">
                 {page === "dealers" && <div className='w-10 h-10 rounded-full bg-blue_gray'></div>}
@@ -49,7 +47,7 @@ const navigate = useNavigate()
                 {actionIcon}
                 </div>
                 {showActionOverlay === id && <div className={`bg-white fixed z-50 w-32  shadow-md rounded-lg overflow-hidden text-sm flex flex-col right-2 `}>
-                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " >view</Link>
+                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " to={`/Dealers/dealer-management/${id}`} >view</Link>
                     <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " >edit</Link>
                     <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1">delete</Link>
                 </div>}

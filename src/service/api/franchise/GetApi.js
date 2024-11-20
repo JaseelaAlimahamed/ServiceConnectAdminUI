@@ -47,4 +47,14 @@ export const getServiceProviderCounts = async () => {
   }
 };
 
+export const getDealerList = async (data) => {
+  try {
+    const response = await apiInstance.get("/franchise/franchisee-dealers/");
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
 

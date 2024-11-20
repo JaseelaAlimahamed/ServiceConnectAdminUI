@@ -19,47 +19,7 @@ function DealersPage() {
 
   const tableHeadings = ["Name", 'ID', "Service Providers", "Locations", "Contact", "Status", "Action"];
   const dropdownValues = ["Newest", "Oldest"];
-  const tableData = [
-    {
-      checkBox: <input type='checkbox' />,
-      name: "Samanta William",
-      id: "#123456790",
-      serviceProviders: 2,
-      location: "Jakarta",
-      contact: <div className='flex items-center justify-center gap-3'>
-        <button className='w-8 h-8 bg-dark_blue bg-opacity-10 text-dark_blue rounded-full flex justify-center items-center'><IoCallOutline size={20} /></button>
-        <button className='w-8 h-8 bg-dark_blue bg-opacity-10 text-dark_blue rounded-full flex justify-center items-center'><IoMailOutline size={20} /></button>
-      </div>,
-      status: "Not Active",
-      actionIcon: <BsThreeDots className='inline' />
-    },
-    {
-      checkBox: <input type='checkbox' />,
-      name: "John Doe",
-      id: "#123456789",
-      serviceProviders: 5,
-      location: "Bali",
-      contact: <div className='flex items-center justify-center gap-3'>
-        <button className='w-8 h-8 bg-dark_blue bg-opacity-10 text-dark_blue rounded-full flex justify-center items-center'><IoCallOutline size={20} /></button>
-        <button className='w-8 h-8 bg-dark_blue bg-opacity-10 text-dark_blue rounded-full flex justify-center items-center'><IoMailOutline size={20} /></button>
-      </div>,
-      status: "Active",
-      actionIcon: <BsThreeDots className='inline' />
-    },
-    {
-      checkBox: <input type='checkbox' />,
-      name: "Alice Smith",
-      id: "#234567890",
-      serviceProviders: 3,
-      location: "Surabaya",
-      contact: <div className='flex items-center justify-center gap-3'>
-        <button className='w-8 h-8 bg-dark_blue bg-opacity-10 text-dark_blue rounded-full flex justify-center items-center'><IoCallOutline size={20} /></button>
-        <button className='w-8 h-8 bg-dark_blue bg-opacity-10 text-dark_blue rounded-full flex justify-center items-center'><IoMailOutline size={20} /></button>
-      </div>,
-      status: "Not Active",
-      actionIcon: <BsThreeDots className='inline' />
-    }
-  ];
+  
 
   useEffect(() => {
     const fetchDealerStats = async () => {
