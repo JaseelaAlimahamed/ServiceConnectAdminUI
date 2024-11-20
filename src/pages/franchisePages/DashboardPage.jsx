@@ -8,7 +8,30 @@ import { FaRegUser } from "react-icons/fa";
 import BalanceAnalytics from '../../components/FranchiseComponents/dashboard/dashboardcomponents/BalanceAnalytics';
 import Complaints from '../../components/FranchiseComponents/dashboard/dashboardcomponents/complaints';
 import IncompleteBookings from '../../components/FranchiseComponents/dashboard/dashboardcomponents/IncompleBookings';
+
+import { useEffect, useState } from 'react';
+import { getrecentactives } from '../../service/api/franchise/GetApi';
 const DashboardPage = () => {
+  const [recentactivites,setrecentactivites]  = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getrecentactives(); 
+        console.log(data);
+        setrecentactivites(data)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData(); // Call the async function
+  
+  }, []); // Empty dependency array to run the effect only once (on mount)
+  
+
+
+
   return (
 
     <div className=''>
@@ -38,10 +61,8 @@ const DashboardPage = () => {
          <h3 className="text-xl mb-3  font-poppins text-dark_blue font-bold">Recent Activites</h3>
          <p className=' text-id_gray font-bold'>Tuesday April 12 2012</p>
         </div>
-            <ActivitesCard bg="bg-red"/>
-            <ActivitesCard bg="bg-blue-700"/>
-            <ActivitesCard bg="bg-violet"/>
-            <ActivitesCard bg="bg-green-700"/>
+        {recentactivites&&recentactivites.map((data)=><ActivitesCard data={data} bg={data.details.status!=='Active'?'bg-red':'bg-green-700'}/>)}
+            
 
 
             <div className=' mt-10 h-9 bg-violet text-white rounded-full  flex justify-center items-center'><button>View More</button></div>

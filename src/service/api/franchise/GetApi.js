@@ -18,3 +18,19 @@ export const loginUser = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  
+
+
+ 
+  export const getrecentactives = async () => {
+    try {
+      const response = await apiInstance.get('/franchise/recent-activities/');
+      console.log(response);
+      return response.data.results;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  }
+  
