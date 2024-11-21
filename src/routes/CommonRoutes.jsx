@@ -11,6 +11,7 @@ import ServiceType from "../pages/adminPages/ServiceType";
 import ServiceProviderTable from "../pages/commonPages/ServiceProviderManagement";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
 import DashboardPage from "../pages/commonPages/ServiceProviderDashboardPage";
+import PayoutSchedule from "../pages/adminPages/PayoutSchedule";
 
 // Utility function to wrap routes with ProtectedRoute
 const protectedRoute = (element) => (
@@ -21,7 +22,9 @@ const protectedRoute = (element) => (
 
 const CommonRoutes = [
   { path: "dashboard", element: protectedRoute(<Dashboard />) },
-  { path: "profile", element: protectedRoute(<ProfilePage />) },
+  // { path: "profile", element: protectedRoute(<ProfilePage />) },
+  { path: "profile", element: protectedRoute(<PayoutSchedule />) },
+
   { path: "service-providers", element: protectedRoute(<ServiceProviderTable />) },
   { path: "service-providers/details/:id", element: protectedRoute(<DashboardPage />) },
   { path: "finance", element: protectedRoute(<Finance />) },
@@ -30,6 +33,7 @@ const CommonRoutes = [
 
   { path: "settings", element: protectedRoute(<SettingsPage />) },
   { path: "service-management", element: protectedRoute(<ServiceType />) },
+  
 
   
   // Uncomment if needed
