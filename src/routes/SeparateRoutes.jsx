@@ -155,7 +155,8 @@ const SeparateRoutes = [
     path: 'service-management',
     // Page for crete  an  service provider restricted to franchise
     element: protect(< ServiceType/>, ["admin"]), 
-  }
+  },
+  
   
   
 
