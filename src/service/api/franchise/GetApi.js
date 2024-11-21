@@ -8,6 +8,7 @@ import { apiInstance } from "../ApiInstence";
  *
  */
 export const loginUser = async (data) => {
+
   try {
     const response = await apiInstance.post("/login", data);
     console.log(response);
