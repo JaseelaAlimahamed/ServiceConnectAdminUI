@@ -1,6 +1,6 @@
 import Layout from "../layouts/Layout";
 import NotFound from "../pages/commonPages/NotFound";
-import AuthRoutes from "./authRoutes/AuthRoutes";
+import AuthRoutes from "./authRoutes/AuthRoutes.jsx";
 import CommonRoutes from "./CommonRoutes";
 import SeparateRoutes from "./SeparateRoutes";
 
