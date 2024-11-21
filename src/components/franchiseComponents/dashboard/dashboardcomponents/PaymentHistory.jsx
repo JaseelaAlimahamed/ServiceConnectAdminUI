@@ -1,10 +1,27 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
+import { getPayments } from '../../../../service/api/franchise/GetApi';
 
 const PaymentHistory = () => {
 
+  const [paymentsConfig, setPaymentsConfig] = useState([]);
 
+  useEffect ( () => {
+    const fetchPayments = async () => {
+      try {
+        const payment = await getPayments();
+        console.log(payment,"payment");
+        setPaymentsConfig(Array.isArray(payment) ? payment : [] );
+      } catch (error) {
+        console.error(error,"Failed to fetch Complaints");
+        setPaymentsConfig([]);
+      }
+    };
+
+    fetchPayments();
+  }, []);
+  console.log(paymentsConfig,"payments config");
 
   const payments = [
     {
@@ -92,10 +109,10 @@ const PaymentHistory = () => {
   // Get current items based on pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = payments.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = paymentsConfig.slice(indexOfFirstItem, indexOfLastItem);
 
   // Calculate total pages
-  const totalPages = Math.ceil(payments.length / itemsPerPage);
+  const totalPages = Math.ceil(paymentsConfig.length / itemsPerPage);
 
   // Change page
   const paginate = (pageNumber) => {
@@ -113,7 +130,7 @@ const PaymentHistory = () => {
       for (let i=start; i<=end; i++){
           range.push(i);
       }
-      console.log(range)
+      //console.log(range)
       return range
   };
   
@@ -146,10 +163,10 @@ const PaymentHistory = () => {
         ))}
          <div className="flex justify-between items-center mt-6">
         <p className="text-sm text-gray-500"> Showing {indexOfFirstItem + 1}-
-            {indexOfLastItem > payments.length
-                ? payments.length
+            {indexOfLastItem > paymentsConfig.length
+                ? paymentsConfig.length
                 : indexOfLastItem}{" "}
-            of {payments.length} data</p>
+            of {paymentsConfig.length} data</p>
         <div className="flex items-center space-x-2">
           <button disabled={currentPage === 1} onClick={()=>{paginate(currentPage-1)}} className="p-2 bg-gray-200 rounded-full">
             <ChevronLeft size={20} />
