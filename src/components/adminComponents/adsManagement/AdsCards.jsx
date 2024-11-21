@@ -8,7 +8,7 @@ function AdsCards() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetchAdData();
-      setData(response.data);
+      setData(response);
     };
     fetchData();
   }, []);
