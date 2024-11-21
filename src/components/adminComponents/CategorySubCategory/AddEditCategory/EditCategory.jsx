@@ -4,6 +4,7 @@ import { categoryListGet } from "../../../../service/api/admin/GetApi";
 import { editCategory } from "../../../../service/api/admin/PatchApi";
 import { categorydelete } from "../../../../service/api/admin/DeleteApi";
 import editIcon from '../../../../assets/icons/EditSubCategory.svg'
+import DeleteModal from '../CategoryComponents/DeleteModal'
 
 const EditCategory = () => {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ const EditCategory = () => {
   const [newImage, setNewImage] = useState(null);
   const [image, setImage] = useState( '')
   const [error,setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   // Fetch category  
   useEffect(() => {
     if (CategoryId) {
@@ -152,11 +155,16 @@ const EditCategory = () => {
         </select>
 
           <button
-            onClick={handleDelete}
+            onClick={()=>setIsModalOpen(true)}
             className="bg-red text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 hover:bg-red-600"
           >
             Delete
           </button>
+          <DeleteModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={() => handleDelete(CategoryId)}
+        />
         <button
           onClick={handleSave}
           className="bg-purple text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 hover:bg-purple-800"
