@@ -17,7 +17,10 @@ import AddEditSubCategory from "../components/adminComponents/CategorySubCategor
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
 import AddServiceProvider from "../pages/franchisePages/AddServiceProvider";
 import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage";
-import AddDealer from "../pages/dealerPages/AddDealer";
+
+import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
+import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
+import ServiceType from "../pages/adminPages/ServiceType";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -142,6 +145,27 @@ const SeparateRoutes = [
     // Page for crete  an  service provider restricted to franchise
     element: protect(<AddServiceProvider />, ["franchise", "admin"]),
   }
-];
+
+    element: protect(< AddServiceProvider/>, ["franchise","admin"]), 
+  },
+  {
+    path: 'booking-details',
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(< BookingDetailsPage/>, ["admin"]), 
+  },
+  {
+    path: 'Payment-RequestForm',
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(< PaymentRequestPage/>, ["dealer"]), 
+  },
+  {
+    path: 'service-management',
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(< ServiceType/>, ["admin"]), 
+  }
+  
+  
+
+ ];
 
 export default SeparateRoutes;

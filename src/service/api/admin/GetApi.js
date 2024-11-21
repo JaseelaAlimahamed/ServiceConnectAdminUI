@@ -1,10 +1,19 @@
 import { apiInstance } from "../ApiInstence";
 
 /**
- * Fetch franchisee statistics
- * @returns {Promise<object>} - Franchisee statistics data
+ * Fetch user profile details
+ * @returns {Promise<object>} - Returns user profile data
  */
-export const getFranchiseeStats = async () => {
+export const getUserProfile = async () => {
+  try {
+    const response = await apiInstance.get("profile/");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+ };
+ export const getFranchiseeStats = async () => {
   try {
     const response = await apiInstance.get("/franchisee-stats/");
     return response.data;
@@ -14,18 +23,22 @@ export const getFranchiseeStats = async () => {
   }
 };
 
+
+//categoryList api 
 export const categoryListGet = async () => {
-  try {
-    const response = await apiInstance.get("categories/");
-
-    const list = response.data;
-
-    return list;
-  } catch (error) {
-    console.error("Error fetching active franchisee stats:", error);
-    throw error.response ? error.response.data : new Error(error.message);
+    try {
+      const response = await apiInstance.get("categories/");
+    
+       const list = response.data
+      
+      return list;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
   }
-};
+
+   
 
 /**
  * Fetch Active Franchisee Stats
@@ -43,15 +56,46 @@ export const getActiveFranchiseeStats = async () => {
 
 // list users
 export const listUser = async () => {
-  try {
-    const response = await apiInstance.get("usersview/");
-    console.log(response);
-    return response.data.results;
-  } catch (error) {
-    console.error(error);
-    throw error.response ? error.response.data : new Error(error.message);
-  }
-};
+    try {
+      const response = await apiInstance.get("usersview/");
+      console.log(response);
+      return response.data.results;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+
+
+
+  //SubCategoryList Api
+  export const SubcategoryGet = async () => {
+    try {
+      const response = await apiInstance.get("subcategories/");
+    
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+  //SubCategoryGetById Api
+  export const SubCategoryGetById = async (id) => {
+
+    try {
+      const response = await apiInstance.get(`subcategories/${id}/`);
+    
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+
+
+
 
 // total customer
 export const totalCustomer = async () => {
@@ -158,16 +202,3 @@ export const getFranchiseeTypes = async () => {
   }
 };
 
-/**
- * Fetch Active Franchisee Stats
- * @returns {Promise<Object>} - API response
- */
-export const getInActiveFranchiseeStats = async () => {
-  try {
-    const response = await apiInstance.get("/franchisee-inactive-stats/");
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching inactive franchisee stats:", error);
-    throw error.response ? error.response.data : new Error(error.message);
-  }
-};
