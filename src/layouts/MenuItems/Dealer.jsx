@@ -67,15 +67,15 @@ export const dealer = [
   
     },
   
-    {
-      name: "Service Management",
-      to: "Service-Management",
-      icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 8H15V6H9V8ZM2 20V15H6V16H8V15H16V16H18V15H22V20H2ZM2 14V8H7V4H17V8H22V14H18V12H16V14H8V12H6V14H2Z" fill="#C1BBEB" />
-      </svg>
+    // {
+    //   name: "Service Management",
+    //   to: "Service-Management",
+    //   icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    //     <path d="M9 8H15V6H9V8ZM2 20V15H6V16H8V15H16V16H18V15H22V20H2ZM2 14V8H7V4H17V8H22V14H18V12H16V14H8V12H6V14H2Z" fill="#C1BBEB" />
+    //   </svg>
   
   
-    }
+    // }
     ,
     {
       name: "Notifications",

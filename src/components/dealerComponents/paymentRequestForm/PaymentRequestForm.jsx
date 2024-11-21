@@ -33,28 +33,26 @@ const PaymentRequestForm = () => {
         setDocumentName(file ? file.name : 'No file chosen');
     };
 
-    const validateForm = () => fields.every(({ name }) => formData[name]);
+    const validateForm = () => {
+        return fields.every(({ name }) => formData[name]) && formData.supportingDocuments;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (validateForm()) setIsModalOpen(true);
-       try {
-        const response = createPaymentRequest(formData)
-       } catch (error) {
-            
-       }
-
-
-        else console.error('Validation failed: Fill in all fields.');
+        if (validateForm()) {
+            setIsModalOpen(true);
+        } else {
+            console.error('Validation failed: Fill in all fields.');
+        }
     };
 
     const handleConfirm = async () => {
         setIsModalOpen(false);
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock async
-            console.log("Form submitted:", formData);
+            const response = await createPaymentRequest(formData);
+            console.log('Payment request created successfully:', response);
         } catch (error) {
-            console.error("Submission failed:", error);
+            console.error('Error creating payment request:', error);
         }
     };
 
@@ -75,7 +73,6 @@ const PaymentRequestForm = () => {
                     </div>
                 ))}
 
-                {/* Payment Method */}
                 <div className="col-span-1">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Payment Method</label>
                     <select
@@ -92,7 +89,6 @@ const PaymentRequestForm = () => {
                     </select>
                 </div>
 
-                {/* Supporting Documents */}
                 <div className="col-span-1">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Supporting Documents</label>
                     <div className="relative">
@@ -112,7 +108,6 @@ const PaymentRequestForm = () => {
                     </div>
                 </div>
 
-                {/* Buttons */}
                 <div className="md:col-span-2 flex justify-end mt-4">
                     <button
                         type="reset"
