@@ -1,5 +1,8 @@
 import React from 'react';
 import PayoutScheduleTable from '../../components/adminComponents/PayoutSchedules/PayoutScheduleTable';
+import PayoutScheduleForm from '../../components/adminComponents/PayoutSchedules/PayoutScheduleForm';
+import avtar1 from '../../assets/AdminAssets/Avatar1.jpeg'
+import avtar2 from '../../assets/AdminAssets/Avatar2.jpeg'
 
 const PayoutSchedule = () => {
 
@@ -10,28 +13,28 @@ const PayoutSchedule = () => {
           type: "Monthly",
           role: "All Dealers",
           date: "",
-          icon: "https://cdn.openart.ai/published/yFPd4qLOC4gLwjBdASN6/pxaLRO6Y_59vN_1024.webp",
+          icon: `${avtar1}`,
         },
         {
           name: "All Franchisee",
           type: "Monthly",
           role: "All Franchisee",
           date: "",
-          icon: "https://cdn.openart.ai/published/yFPd4qLOC4gLwjBdASN6/Ki5lOnzo_1ILJ_1024.webp",
+          icon: `${avtar2}`,
         },
         {
           name: "All Service Providers",
           type: "Weekly",
           role: "All Service Providers",
           date: "",
-          icon: "https://cdn.openart.ai/published/yFPd4qLOC4gLwjBdASN6/Ki5lOnzo_1ILJ_1024.webp",
+          icon: `${avtar2}`,
         },
         {
           name: "Thomas",
           type: "Service Provider",
           role: "Service Provider",
           date: "Feb 24",
-          icon: "https://cdn.openart.ai/published/yFPd4qLOC4gLwjBdASN6/Ki5lOnzo_1ILJ_1024.webp",
+          icon: `${avtar2}`,
         },
         {
           name: "Banu",
@@ -43,8 +46,12 @@ const PayoutSchedule = () => {
       ];
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
+    <div className="max-w-4xl mx-auto p-4">
       <PayoutScheduleTable schedules={schedules} />
+      <div className='mt-11'>
+      <PayoutScheduleForm/>
+
+      </div>
     </div>
   );
 }
