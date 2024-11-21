@@ -19,7 +19,7 @@ const CategoryList = () => {
     const [viewCategory, setViewCategory] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [refresh, setRefresh] = useState(false);
-
+    const [deleteCategoryId, setDeleteCategoryId] = useState(null); 
     useEffect(() => {
        
         const fetchCategories = async () => {
@@ -47,12 +47,12 @@ const CategoryList = () => {
     // Handle edit
 
     // Handle delete
-    const handleDelete = (categoryId) => {
+    const handleDelete = () => {
         setIsModalOpen(false);
         try {
-             categorydelete(categoryId);  // Make the delete request
+             categorydelete(deleteCategoryId);  // Make the delete request
             setRefresh(prev => !prev);  // Toggle the refresh state to trigger useEffect
-            console.log('Deleted:', categoryId);
+            console.log('Deleted:', deleteCategoryId);
         } catch (error) {
             console.error('Error deleting category:', error);
         }
@@ -74,7 +74,7 @@ const CategoryList = () => {
                     <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
                 </div>
 
-                <div className="mt-4 md:mt-0">
+                <div className="mt-4 md:mt-0">   
                     <DropButtons categories={filteredCategories} onCategorySelect={setSearchQuery}/>
                 </div>
             </div>
@@ -95,14 +95,14 @@ const CategoryList = () => {
                             <div className="flex justify-center gap-5 text-xl mt-2">
                                 <button onClick={() => handleView(category)}><MdOutlineRemoveRedEye /></button>
                                 <Link to={`/edit-Category/${category.id}`}><FaRegEdit /></Link>
-                                <button onClick={() => setIsModalOpen(true)}><FaRegTrashAlt /></button>
+                                <button onClick={() => {setIsModalOpen(true),setDeleteCategoryId(category.id)}}><FaRegTrashAlt /></button>
                                
                             </div>
                         </div>
                         <DeleteModal
                             isOpen={isModalOpen}
                             onClose={() => setIsModalOpen(false)}
-                            onConfirm={() => handleDelete(category.id)}
+                            onConfirm={() => handleDelete()}
                         />
                         
                     </div>
