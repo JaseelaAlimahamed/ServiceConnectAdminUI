@@ -15,6 +15,8 @@ import PaymentForm from "../pages/franchisePages/PaymentForm";
 import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
+import PaymentRequestForm from "../components/dealerComponents/paymentRequestForm/PaymentRequestForm";
+
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -129,7 +131,15 @@ const SeparateRoutes = [
     path: 'service-providers/verify/:id',
     // Page for editing an existing sub-category, restricted to admin
     element: protect(< ServiceProviderVerification/>, ["dealer"]), 
-  }
+  },
+
+
+  {
+    path: "PaymentRequestform",
+    element: protect(<PaymentRequestForm />, ["dealer"]), 
+  },
+
+  
  ];
 
 export default SeparateRoutes;

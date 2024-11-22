@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // import profilePic from "../../../assets/dealerprofilepic";
 import DealerEditButton from "./DealerEditButton";
+import { franchisedetail } from "../../../service/api/dealer/GetApi";
 
 function DealerDetails() {
+  const [franchisee, setFranchisee] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+ 
 
   const navigateToEditpage = () => {
     navigate("/franchise/dealer/editdealer");
@@ -17,12 +23,32 @@ function DealerDetails() {
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.",
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    address: "",
+    address: "Bazzar Street",
     contact: 9878767656,
     email: "abc@gmail.com",
     whatsapp: 8977675656,
-    profilePic: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&s',
+    profilePic:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&s",
   };
+
+  //fetchFranchisee
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await franchisedetail();
+        setFranchisee(result.data);
+      } catch (err) {
+        setError(err.message || "Something went wrong");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -88,12 +114,19 @@ function DealerDetails() {
               <h3 className="text-dark_blue font-poppins font-bold text-center lg:text-left">
                 Contact
               </h3>
-              <ul className="space-y-5 text-light_gray font-poppins mt-2">
-                <li>Address: {dealerdetails.address}</li>
-                <li>Contact: {dealerdetails.contact}</li>
-                <li>Email: {dealerdetails.email}</li>
-                <li>Whatsapp: {dealerdetails.whatsapp}</li>
-              </ul>
+
+              {franchisee ? (
+                <ul className="space-y-5 text-light_gray font-poppins mt-2">
+                  <li>Address: {dealerdetails.address}</li>
+                  <li>Contact: {franchisee.phone_number}</li>
+                  <li>Email: {franchisee.email}</li>
+                  <li>Whatsapp: {franchisee.phone_number}</li>
+                </ul>
+              ) : (
+                <p className="text-light_gray font-poppins">
+                  No contact data available
+                </p>
+              )}
             </div>
           </div>
         </div>

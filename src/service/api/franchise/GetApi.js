@@ -18,3 +18,4 @@ export const loginUser = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+

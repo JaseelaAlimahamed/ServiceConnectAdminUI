@@ -9,7 +9,8 @@ import { apiInstance } from "../ApiInstence";
  * @param {string} data.password - Password for the dealer account
  * 
  */
-export const signInDealer = async (data) => {
+
+  export const signInDealer = async (data) => {
     try {
       const response = await apiInstance.post("login/", data);
       console.log(response);
@@ -19,3 +20,15 @@ export const signInDealer = async (data) => {
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+
+  export const paymentData = async (data) => {
+    try {
+      const response = await apiInstance.post("/payment-request/create/", data);
+      console.log(response);
+      return response;
+    } catch (error) {
+      console.error(error);
+      throw error.response ? error.response.data : new Error(error.message);
+    }
+  };
+

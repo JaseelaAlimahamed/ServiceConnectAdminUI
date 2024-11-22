@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputFieldComponent from '../../reUsableComponents/InputFieldComponent';
 import ReUsableModal from '../../reUsableComponents/ReUsableModal';
+import {paymentData} from  "../../../service/api/dealer/PostApi"
 
 const fields = [
     { label: 'Full Name', name: 'fullName', type: 'text', placeholder: 'Enter full name' },
@@ -40,16 +41,44 @@ const PaymentRequestForm = () => {
         else console.error('Validation failed: Fill in all fields.');
     };
 
+    // const handleConfirm = async () => {
+    //     setIsModalOpen(false);
+    //     try {
+    //         await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock async
+    //         console.log("Form submitted:", formData);
+    //     } catch (error) {
+    //         console.error("Submission failed:", error);
+    //     }
+    // };
+
+    const prepareSubmissionData = () => ({
+        amount: formData.paymentAmount,
+        description: "Payment Request", // If not provided by the form, set a default
+        phone: formData.contactNumber,
+        email: formData.emailAddress,
+        payment_method: formData.paymentMethod,
+        account_holder_name: formData.accountHolderName,
+        account_number: formData.accountNumber,
+        bank_branch: formData.bankBranch,
+        bank_name: formData.bankName,
+        ifsc_code: formData.ifscCode,
+    });
+    
+
     const handleConfirm = async () => {
         setIsModalOpen(false);
+    
+        const submissionData = prepareSubmissionData(); // Prepare mapped data
+    
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock async
-            console.log("Form submitted:", formData);
+            const response = await paymentData(submissionData);
+            console.log("Form submitted successfully:", response.data);
         } catch (error) {
-            console.error("Submission failed:", error);
+            console.error("Submission failed:", error.response?.data || error.message);
         }
     };
-
+    
+    
     return (
         <div className="flex justify-center items-center min-h-screen bg-blue_bg">
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-2/3 lg:w-1/2 p-12 bg-white rounded-2xl shadow-xl m-8">

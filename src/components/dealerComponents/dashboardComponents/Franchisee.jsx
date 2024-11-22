@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { useState ,useEffect} from "react";
 import { CiLocationOn, CiMail, CiPhone } from "react-icons/ci";
 import { MdAccountBox } from "react-icons/md";
 function Franchisee({
@@ -10,7 +12,8 @@ function Franchisee({
   phone,
   email,
 }) {
-  console.log(franchiseename)
+
+
   return (
     <div className="container border w-[100%] rounded-xl overflow-hidden h-fit  max-[1099px]:w-[150%]    ">
       <div className="bg-violet w-full h-36 relative">
@@ -33,66 +36,57 @@ function Franchisee({
           <p className="text-lg font-semibold text-light_gray">Franchisee</p>
           <p className="text-lg font-bold text-dark_blue">
             {daysleft}days left{" "}
-            <span className="ml-5"> Valid up to {validity} </span> 
+            <span className="ml-5"> Valid up to {validity} </span>
           </p>
         </div>
         <div className="grid grid-cols-4   mx-5 my-5 max-[870px]:grid-cols-2  max-[390px]:grid-cols-1">
           <div className="flex flex-col">
-             <p className="text-lg font-semibold mb-2 text-light_gray">Contact name:</p>
+            <p className="text-lg font-semibold mb-2 text-light_gray">
+              Contact name:
+            </p>
 
-             <div className="flex items-center">
-        
+            <div className="flex items-center">
               <div className="bg-orange w-fit rounded-full p-3">
-              
                 <MdAccountBox style={{ color: "#fff", fontSize: "1.5rem" }} />
               </div>
               <h2 className="ml-2 font-bold text-blue-950">{contactname} </h2>{" "}
             </div>
-            
           </div>
           <div className="flex flex-col">
-             <p className="text-lg font-semibold mb-2 text-light_gray">Address:</p>
+            <p className="text-lg font-semibold mb-2 text-light_gray">
+              Address:
+            </p>
 
-             <div className="flex items-center">
-        
+            <div className="flex items-center">
               <div className="bg-orange w-fit rounded-full p-3">
                 <CiLocationOn style={{ color: "#fff", fontSize: "1.5rem" }} />
               </div>
               <h2 className="ml-2 font-bold text-blue-950">{address}</h2>{" "}
             </div>
-            
           </div>
           <div className="flex flex-col">
-             <p className="text-lg font-semibold mb-2 text-light_gray">Phone:</p>
+            <p className="text-lg font-semibold mb-2 text-light_gray">Phone:</p>
 
-             <div className="flex items-center">
-        
+            <div className="flex items-center">
               <div className="bg-orange w-fit rounded-full p-3">
-              <CiPhone 
-                style={{ color: "#fff", fontSize: "1.5rem" }}
-              />
+                <CiPhone style={{ color: "#fff", fontSize: "1.5rem" }} />
               </div>
               <h2 className="ml-2 font-bold text-blue-950">{phone}</h2>{" "}
             </div>
-            
           </div>
           <div className="flex flex-col">
-             <p className="text-lg font-semibold mb-2 text-light_gray">Email address:</p>
+            <p className="text-lg font-semibold mb-2 text-light_gray">
+              Email address:
+            </p>
 
-             <div className="flex items-center">
-        
+            <div className="flex items-center">
               <div className="bg-orange w-fit rounded-full p-3">
-              <CiMail 
-                style={{ color: "#fff", fontSize: "1.5rem" }}
-              /> 
+                <CiMail style={{ color: "#fff", fontSize: "1.5rem" }} />
               </div>
               <h2 className="ml-2 font-bold text-blue-950">{email}</h2>{" "}
             </div>
-            
           </div>
         </div>
-
-       
       </div>
     </div>
   );
