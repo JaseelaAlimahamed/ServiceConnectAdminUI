@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InputFieldComponent from "../../components/reUsableComponents/InputFieldComponent";
+import InputFieldComponent from "../../components/reUsableComponents/InputFieldComponent.jsx";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { createDealer } from "../../service/api/franchise/PostApi.js";

@@ -20,6 +20,7 @@ import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditC
 import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
 import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
 import ServiceType from "../pages/adminPages/ServiceType";
+import AddDealer from "../pages/commonPages/AddDealer";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -138,25 +139,29 @@ const SeparateRoutes = [
     // add service provider 
   {
     path: 'service-providers/add-new',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< AddServiceProvider/>, ["franchise","admin"]), 
   },
   {
     path: 'booking-details',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< BookingDetailsPage/>, ["admin"]), 
   },
   {
     path: 'Payment-RequestForm',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< PaymentRequestPage/>, ["dealer"]), 
   },
   {
     path: 'service-management',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< ServiceType/>, ["admin"]), 
   },
-  
+  {
+    path: "Dealers/add-new",
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(<AddDealer />, ["franchise", "admin"]),
+  },
   
   
 
