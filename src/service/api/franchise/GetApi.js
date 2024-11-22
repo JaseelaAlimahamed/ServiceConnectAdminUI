@@ -195,3 +195,38 @@ export const getTotalComplaints = async () => {
     throw error.response ? error.response.data : new Error(error.message);
   }
 };
+
+export const getStates = async () => {
+  try {
+    const response = await apiInstance.get("/states/");
+    return response.data; // Adjust based on your API response structure
+  } catch (error) {
+    console.error("Error fetching states:", error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+
+
+// Fetch all districts (no state filtering)
+export const getDistricts = async () => {
+  try {
+    const response = await apiInstance.get(`/districts/`); // Fetch all districts
+    return response.data; // Return the data of districts
+  } catch (error) {
+    console.error("Error fetching districts:", error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+
+// Filter districts based on state ID
+export const getDistrictsByState = async (stateId) => {
+  try {
+    // Fetch all districts
+    const districts = await getDistricts();
+    // Filter the districts where the state ID matches the selected state ID
+    return districts.filter((district) => district.state.id === stateId);
+  } catch (error) {
+    console.error("Error fetching districts for state:", error);
+    return []; // Return an empty array if an error occurs
+  }
+};

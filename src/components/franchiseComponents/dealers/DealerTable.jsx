@@ -6,6 +6,13 @@ const navigate = useNavigate()
     const [showActionOverlay , setShowActionOverlay] = useState("");
     console.log(showActionOverlay)
 
+    const handleView = (id) => {
+      
+       
+      navigate(`/Dealers/dealer-management/${id}`)
+    }
+
+    
    
   return (
   <div className="px-5 pt-5  bg-gray-100">
@@ -23,7 +30,7 @@ const navigate = useNavigate()
         </thead>
         <tbody className="divide-y divide-[#DBDBDB]">
             {tableData.map(({checkBox , name , id , serviceProviders , location , contact , status , actionIcon}) => (
-            <tr  key={id} className="bg-white cursor-pointer" >
+            <tr onClick={()=>{ handleView(id)}} key={id} className="bg-white cursor-pointer" >
               <td className="p-3 text-sm text-gray-700 whitespace-nowrap">
                 <input type="checkbox"></input>
               </td>
@@ -39,19 +46,40 @@ const navigate = useNavigate()
                 <span
                   className={`p-1.5 text-xs font-medium tracking-wider text-white ${status != "Active" ? 'bg-orange': "bg-fluracent_green"} rounded-full `}>{status}</span>
               </td>
-              <td className="p-3 text-lg relative text-light_gray  text-center  ">
-                <div 
-                className='cursor-pointer relative'
-                onClick={() => setShowActionOverlay(showActionOverlay === id ? "" : id)}
->
+              <td className="p-3 text-lg relative text-light_gray text-center">
+              <div
+                className="cursor-pointer relative"
+                onClick={(e) => {
+                  // Prevent click propagation to the row
+                  e.stopPropagation();
+                  setShowActionOverlay(showActionOverlay === id ? "" : id);
+                }}
+              >
                 {actionIcon}
+              </div>
+              {showActionOverlay === id && (
+                <div
+                  id="child"
+                  className="absolute z-50 bg-white shadow-md rounded-lg overflow-hidden text-sm flex flex-col p-2 right-0 top-0 mt-12 mr-1"
+                  onClick={(e) => e.stopPropagation()} // Prevent row click
+                >
+                  <Link
+                    className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1"
+                    to={`/Dealers/dealer-management/${id}`}
+                  >
+                    view
+                  </Link>
+                  <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1">
+                    edit
+                  </Link>
+                  <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1">
+                    delete
+                  </Link>
                 </div>
-                {showActionOverlay === id && <div className={`absolute z-50 bg-white shadow-md rounded-lg overflow-hidden text-sm flex flex-col p-2 right-0 top-0 mt-12 mr-1`}>
-                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " to={`/Dealers/dealer-management/${id}`} >view</Link>
-                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1 " >edit</Link>
-                    <Link className="bg-primary cursor-pointer capitalize hover:bg-slate-100 px-7 py-1">delete</Link>
-                </div>}
-              </td>
+              )}
+            </td>
+
+
             </tr>
             ))}
         </tbody>
