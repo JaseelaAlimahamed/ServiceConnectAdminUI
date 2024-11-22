@@ -35,3 +35,20 @@ export const dashboardCount = async (data) => {
     throw error.response ? error.response.data : new Error(error.message);
   }
 };
+
+
+/**
+ * Fetch user profile details
+ * @returns {Promise<object>} - Returns user profile data
+ */
+export const getUserProfile = async () => {
+  try {
+    console.log("Fetching user profile...");
+    const response = await apiInstance.get("dealer/dashboard/");
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user profile:", error.response || error.message);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};

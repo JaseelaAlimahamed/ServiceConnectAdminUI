@@ -1,11 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';  // Import useSelector hook
 import ProfileSidebar from '../../components/commonComponents/profileComponents/ProfileSideBar';
 import EditProfileForm from '../../components/commonComponents/profileComponents/EditProfileForm';
 import ProgressBar from '../../components/commonComponents/profileComponents/ProgressBar';
-import { getUserProfile } from '../../service/api/admin/GetApi'; // Import the API call
+
+// Default import for the admin API
+import { getUserProfile as getAdminProfile } from '../../service/api/admin/GetApi';
+// Import for the dealer API
+import { getUserProfile as getDealerProfile } from '../../service/api/dealer/GetApi';
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null); // Initially set user as null 
+  // Fetch the role from Redux store
+  const role = useSelector((state) => state.auth.role); // Adjust according to your state structure
+
+  const [user, setUser] = useState(null); // Initially set user as null
   const [loading, setLoading] = useState(true); // To track loading state
   const [error, setError] = useState(null); // To track errors
 
@@ -13,6 +21,8 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        // Use the correct API based on the role
+        const getUserProfile = role === 'dealer' ? getDealerProfile : getAdminProfile;
         const data = await getUserProfile(); // Fetch user profile
         setUser(data); // Update the state with fetched data
       } catch (err) {
@@ -23,7 +33,7 @@ const ProfilePage = () => {
     };
 
     fetchUserData();
-  }, []); // Empty array means this will run once when the component mounts
+  }, [role]); // Add role as a dependency to re-run effect when role changes
 
   // If loading, show a loading spinner or message
   if (loading) {
@@ -68,4 +78,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-
