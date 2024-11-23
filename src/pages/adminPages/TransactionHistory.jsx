@@ -1,6 +1,7 @@
 import React from "react";
+import TransactionCard from "../../components/adminComponents/HistoryComponent/transactionHistoryComponent/transactionCard";
+import TranasactionTable from "../../components/adminComponents/HistoryComponent/transactionHistoryComponent/transactionTable";
 
-import TranasactionTable from "../../components/dealerComponents/transactionHistroyComponents/TranasactionTable";
 function TransactionHistory() {
   const tableDataConfig = [
     {
@@ -44,7 +45,6 @@ function TransactionHistory() {
       status: "Completed",
     },
     {
-      
       transactionId: "#23253",
       date: "Aug 14 2024,12:45 PM",
       description: "Description",
@@ -63,6 +63,7 @@ function TransactionHistory() {
   ];
   return (
     <div className="w-full overflow-x-auto">
+      <TransactionCard />
       <TranasactionTable
         tableColConfig={tableColConfig}
         tableDataConfig={tableDataConfig}

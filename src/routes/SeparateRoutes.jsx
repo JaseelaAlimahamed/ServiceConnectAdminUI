@@ -20,6 +20,7 @@ import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditC
 import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
 import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
 import ServiceType from "../pages/adminPages/ServiceType";
+import TransactionHistory from "../pages/adminPages/TransactionHistory";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -155,6 +156,11 @@ const SeparateRoutes = [
     path: 'service-management',
     // Page for crete  an  service provider restricted to franchise
     element: protect(< ServiceType/>, ["admin"]), 
+  },
+  
+  {
+    path: 'transaction-history',
+    element: protect(< TransactionHistory/>, ["admin"]), 
   }
   
   
