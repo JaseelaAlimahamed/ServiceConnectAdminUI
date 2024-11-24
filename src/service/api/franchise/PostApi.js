@@ -21,27 +21,35 @@ export const signInFranchise = async (data) => {
 
 export const createDealer = async (dealerData) => {
   try {
-    // Prepare data for the request
-    const response = await apiInstance.post("dealers/create/", {
-      full_name: dealerData.fullName,
-      email: dealerData.email,
-      phone_number: dealerData.phoneNumber,
-      address: dealerData.address,
-      landmark: dealerData.landmark,
-      pin_code: dealerData.pinCode,
-      watsapp: dealerData.watsapp,
-      country_code: dealerData.countryCode,
-      district: dealerData.district,
-      state: dealerData.state,
-      about: dealerData.about,
-      service_providers: dealerData.serviceProviders,
-      franchisee: dealerData.franchisee,
-      status: dealerData.status,
-      verification_id: dealerData.verificationId,
-      verificationid_number: dealerData.verificationIdNumber,
-      image: dealerData.image, // Add image field here
-      // id: dealerData.id // Add id field here
-    });
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append("full_name", dealerData.fullName);
+    formData.append("email", dealerData.email);
+    formData.append("phone_number", dealerData.phoneNumber);
+    formData.append("address", dealerData.address);
+    formData.append("landmark", dealerData.landmark);
+    formData.append("pin_code", dealerData.pinCode);
+    formData.append("watsapp", dealerData.watsapp);
+    formData.append("country_code", dealerData.countryCode);
+    formData.append("district", dealerData.district);
+    formData.append("state", dealerData.state);
+    formData.append("about", dealerData.about);
+    formData.append("service_providers", dealerData.serviceProviders);
+    formData.append("franchisee", dealerData.franchisee);
+    formData.append("status", dealerData.status);
+    formData.append("verification_id", dealerData.verificationId);
+    formData.append("verificationid_number", dealerData.verificationIdNumber);
+
+    // Add file fields if they exist
+    if (dealerData.image) {
+      formData.append("profile_image", dealerData.image); // Profile image
+    }
+    if (dealerData.idCopy) {
+      formData.append("id_copy", dealerData.idCopy); // ID copy
+    }
+
+    // Make the API call with FormData
+    const response = await apiInstance.post("dealers/create/", formData);
 
     return response; // Return the API response
   } catch (error) {
@@ -109,5 +117,32 @@ export const createServiceProviders = async (data) => {
     return response;
   } catch (error) {
     return error;
+  }
+};
+
+export const ServiceprovideDetails = async (id) => {
+  try {
+    const response = await apiInstance.post(
+      "service-provider-details/",
+
+      {
+        custom_id: id,
+      }
+    );
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const getdealerProfile = async (id) => {
+  try {
+    const response = await apiInstance.post("franchisee-dealers-details/", {
+      custom_id: `${id}`,
+    });
+    return response;
+  } catch (error) {
+    console.error("Error during API call:", error);
+    throw error.response ? error.response.data : new Error(error.message);
   }
 };
