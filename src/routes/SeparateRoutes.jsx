@@ -20,7 +20,9 @@ import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditC
 import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
 import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
 import ServiceType from "../pages/adminPages/ServiceType";
-import AddDealer from "../pages/commonPages/AddDealer";
+
+import AddDealer from "../pages/dealerPages/AddDealer";
+import IncomeManagementPage from "../pages/adminPages/IncomeManagementPage";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -90,6 +92,11 @@ const SeparateRoutes = [
     element: protect(<DealersPage />, ["franchise"]), // Dealers page for franchise role, restricted to franchise
   },
   {
+    path: "Dealers/add-new",
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(<AddDealer />, ["franchise", "admin"]),
+  },
+  {
     path: "payment",
     element: protect(<PaymentForm />, ["franchise"]),
   },
@@ -97,6 +104,11 @@ const SeparateRoutes = [
   {
     path: "dealers/dealer-management/:id",
     element: protect(<FranchiseProfileDetails />, ["franchise"]), // Franchise profile details view for a specific dealer, restricted to franchise
+  },
+
+  {
+    path: "income-management",
+    element: protect(<IncomeManagementPage />, ["admin"]), // Franchise profile details view for a specific dealer, restricted to franchise
   },
   
   // Category management section
