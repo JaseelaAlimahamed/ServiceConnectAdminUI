@@ -15,10 +15,6 @@ import PaymentForm from "../pages/franchisePages/PaymentForm";
 import AddCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
-
-import PaymentRequestForm from "../components/dealerComponents/paymentRequestForm/PaymentRequestForm";
-
-
 import AddServiceProvider from "../pages/franchisePages/AddServiceProvider";
 import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage";
 import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
@@ -27,7 +23,6 @@ import ServiceType from "../pages/adminPages/ServiceType";
 
 import AddDealer from "../pages/dealerPages/AddDealer";
 import IncomeManagementPage from "../pages/adminPages/IncomeManagementPage";
-
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -153,16 +148,6 @@ const SeparateRoutes = [
     // Page for editing an existing sub-category, restricted to admin
     element: protect(< ServiceProviderVerification/>, ["dealer"]), 
   },
-
-
-
-  {
-    path: "PaymentRequestform",
-    element: protect(<PaymentRequestForm />, ["dealer"]), 
-  },
-
-  
-
     // add service provider 
   {
     path: 'service-providers/add-new',
@@ -191,7 +176,6 @@ const SeparateRoutes = [
   },
   
   
-
 
  ];
 

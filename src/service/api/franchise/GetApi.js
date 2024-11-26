@@ -9,20 +9,15 @@ import { apiInstance } from "../ApiInstence";
  */
 export const loginUser = async (data) => {
 
-    try {
-      const response = await apiInstance.post("/login", data);
-      console.log(response);
-      return response;
-    } catch (error) {
-      console.error(error);
-      throw error.response ? error.response.data : new Error(error.message);
-    }
-  };
-
-
-
-  
-
+  try {
+    const response = await apiInstance.post("/login", data);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
 
 /**
  * Fetch franchisee dealer count
@@ -235,6 +230,3 @@ export const getDistrictsByState = async (stateId) => {
     return []; // Return an empty array if an error occurs
   }
 };
-
-};
-
