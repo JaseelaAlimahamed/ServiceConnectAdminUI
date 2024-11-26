@@ -42,8 +42,8 @@ export const dealer = [
       </svg>
     },
     {
-      name: "Payment Request form",
-      to: "Payment-RequestForm",
+      name: "PaymentRequestform",
+      to: "PaymentRequestform",
       icon: <svg width="35" height="40" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path strokeWidth="2.5" d="M25.9419 33.3927C31.6895 33.3927 36.3489 31.451 36.3489 29.0557C36.3489 26.6605 31.6895 24.7188 25.9419 24.7188C20.1943 24.7188 15.5349 26.6605 15.5349 29.0557C15.5349 31.451 20.1943 33.3927 25.9419 33.3927Z" stroke="#C1BBEB" strokeLinecap="round" strokeLinejoin="round" />
         <path strokeWidth="2.5" d="M36.349 31.837V29.055M15.535 29.055V33.392C15.535 35.787 20.194 37.729 25.942 37.729C27.8703 37.7432 29.7921 37.5039 31.658 37.017M22.687 16.85C20.2238 15.8268 17.5735 15.3308 14.907 15.394C9.16 15.394 4.5 17.335 4.5 19.73C4.5 22.125 9.16 24.067 14.907 24.067C17.5735 24.1303 20.2238 23.6343 22.687 22.611" stroke="#C1BBEB" strokeLinecap="round" strokeLinejoin="round" />

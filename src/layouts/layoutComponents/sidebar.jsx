@@ -16,7 +16,7 @@ const Sidebar = ({ isOpen, toggleSidebar, role }) => {
   
   // Set activeItem based on current path
   const [activeItem, setActiveItem] = useState(path);
-
+  console.log(activeItem,"activeItem---")
   // Update activeItem when location changes
   useEffect(() => {
     setActiveItem(path);
