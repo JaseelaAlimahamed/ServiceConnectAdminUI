@@ -18,32 +18,6 @@ export const dashboard = async (data) => {
 };
 
 
-export const recentactivities = async (data) => {
-  try {
-    const response = await apiInstance.get("recent-activities/", data);
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.error(error);
-    throw error.response ? error.response.data : new Error(error.message);
-  }
-};
-
-
-
-export const franchisedetail = async (data) => {
-  try {
-    const response = await apiInstance.get("franchise-details/", data);
-    console.log(response);
-    return response;
-  } catch (error) {
-    console.error(error);
-    throw error.response ? error.response.data : new Error(error.message);
-  }
-};
-
-
-
 
 /**
  * Fetches dealer dashboard data.
@@ -51,9 +25,9 @@ export const franchisedetail = async (data) => {
  * @returns {Promise<object>} - The dealer dashboard data.
  * @throws Will throw an error if the request fails.
  */
-export const franchisedetails = async (data) => {
+export const dashboardCount = async (data) => {
   try {
-    const response = await apiInstance.get("franchise-details/", data);
+    const response = await apiInstance.get("dealer-dashboard-count/", data);
     console.log(response);
     return response;
   } catch (error) {
@@ -78,4 +52,3 @@ export const getUserProfile = async () => {
     throw error.response ? error.response.data : new Error(error.message);
   }
 };
-

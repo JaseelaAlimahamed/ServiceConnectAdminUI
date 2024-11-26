@@ -1,59 +1,37 @@
 import React, { useEffect, useState } from "react";
 import Dealerinfocard from "../../components/dealerComponents/dashboardComponents/Dealerinfocard";
 import Franchisee from "../../components/dealerComponents/dashboardComponents/Franchisee";
-import PaymentHistoryTable from "../../components/commonComponents/profileComponents/PaymentHistoryTable";
+import PaymentHistoryTable from "../../components/commonComponents/profileComponents/PaymentHistoryTable"   
 // import ReUsableTable from "../../components/reUsableComponents/ReUsableTable"
 import Activitycard from "../../components/dealerComponents/dashboardComponents/Activitycard";
 import Graph from "../../components/dealerComponents/dashboardComponents/Graph";
-import { dashboard,recentactivities } from "../../service/api/dealer/GetApi";
+import { dashboard } from "../../service/api/dealer/GetApi";
+
 
 function DealerDashboard() {
-  const [recentActivities, setRecentActivities] = useState([]);
-  const [data, setData] = useState(null);
+
+  const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  //recentactivities
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await recentactivities();
-        setRecentActivities(result.data.results);
-        console.log(result.data,"recentactivities ---")
+        setLoading(true); 
+        const response = await dashboard();
+        
       } catch (err) {
-        setError(err.message || "Something went wrong");
+        console.error("Failed to fetch dealer dashboard data:", err);
+        setError("Failed to load dashboard data. Please try again.");
       } finally {
         setLoading(false);
       }
     };
-
+    
     fetchData();
-  }, []);
-
-  //dashboard Data
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await dashboard();
-        setData(result.data.dealer);
-        console.log(result.data.dealer,"dataresult ---")
-      } catch (err) {
-        setError(err.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-
+  }, [ ]);
   const tableConfig = { title: "Payment History", type: "paymentslog" };
-
+ 
   const tableDataConfig = [
     {
       paymentId: "#12345678",
@@ -160,17 +138,17 @@ function DealerDashboard() {
       </div>
       <div className="py-12 flex max-lg:flex-col gap-4 justify-around  p-4 max-[1100px]:flex-col   ">
         <div className="w-[67%]">
-          {data && (
-            <Franchisee
-              franchiseename={data.franchisee_name || "Unknown"}
-              daysleft={45} 
-              validity={"13/02/2024"} 
-              contactname={data.full_name || "Unknown"}
-              address={data.address || "No Address"}
-              phone={data.phone_number || "No Phone"}
-              email={data.email || "No Email"}
-            />
-          )}
+          <Franchisee
+            franchiseename={"franchisee"}
+            daysleft={45}
+            validity={"13/02/2024"}
+            contactname={"amarnadh"}
+            address={"kochi,kerala"}
+            phone={2323242}
+            email={"ajfs@gmail.com"}
+          >
+            {" "}
+          </Franchisee>
 
           <div className=" p-5 w-full overflow-x-auto max-[1099px]:w-[150%]">
             <PaymentHistoryTable
@@ -181,23 +159,45 @@ function DealerDashboard() {
           </div>
         </div>
         <div className="flex  flex-col gap-5   items-center ">
+          <Activitycard type={"Titlecard"} title={"Recent Activites"} date={"Monday 12th March 2023"}></Activitycard>
           <Activitycard
-            type={"Titlecard"}
-            title={"Recent Activites"}
-            date={"Monday 12th March 2023"}
+            type="Activitycard"
+            status={"Active"}
+            title={"New service registration"}
+            date={"mar 20,2021"}
+            time={"9:00 - 10:00 AM"}
+            subtitle={"tapwork"}
+            name={"rakhavan"}
           ></Activitycard>
-          {recentActivities.map((activity, index) => (
-            <Activitycard
-              key={activity.id || index}
-              type="Activitycard"
-              status={activity.status || "Unknown"}
-              title={activity.title || "No Title"}
-              date={new Date(activity.created).toLocaleDateString() || "No Date"}
-              time={new Date(activity.created).toLocaleTimeString() || "No Time"}
-              subtitle={activity.description || "No Description"}
-              name={`Provider ID: ${activity.service_provider || "Unknown"}`}
-            />
-          ))}
+          <Activitycard
+            type="Activitycard"
+            status={"Pending"}
+            title={"New ad posted"}
+            date={"april 15,2023"}
+            time={"9:00 - 10:00 AM"}
+            name={"Raju"}
+            subtitle={"50% off"}
+          ></Activitycard>
+
+          <Activitycard
+            type="Activitycard"
+            status={"Disable"}
+            title={"New ad posted"}
+            date={"april 15,2023"}
+            time={"9:00 - 10:00 AM"}
+            name={"Raju"}
+            subtitle={"50% off"}
+          ></Activitycard>
+          <Activitycard
+            type="Activitycard"
+           status={"Active"}
+            title={"New ad posted"}
+            date={"april 15,2023"}
+            time={"9:00 - 10:00 AM"}
+            name={"Raju"}
+            subtitle={"50% off"}
+          ></Activitycard>
+
           <button className="bg-slate-300 rounded-3xl text-violet h-14 text-xl mt-10 w-[100%] ">
             View more{" "}
           </button>
@@ -207,5 +207,6 @@ function DealerDashboard() {
     </div>
   );
 }
+
 
 export default DealerDashboard;

@@ -11,8 +11,6 @@ import ServiceType from "../pages/adminPages/ServiceType";
 import ServiceProviderTable from "../pages/commonPages/ServiceProviderManagement";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
 import DashboardPage from "../pages/commonPages/ServiceProviderDashboardPage";
-import PaymentRequestForm from "../components/dealerComponents/paymentRequestForm/PaymentRequestForm";
-
 
 // Utility function to wrap routes with ProtectedRoute
 const protectedRoute = (element) => (
@@ -26,10 +24,10 @@ const CommonRoutes = [
   { path: "profile", element: protectedRoute(<ProfilePage />) },
   { path: "service-providers", element: protectedRoute(<ServiceProviderTable />) },
   { path: "service-providers/details/:id", element: protectedRoute(<DashboardPage />) },
-  { path: "PaymentRequestform", element: protectedRoute(<PaymentRequestForm />) },
   { path: "finance", element: protectedRoute(<Finance />) },
   { path: "accounts", element: protectedRoute(<AccountPage />) },
   { path: "notifications", element: protectedRoute(<NotificationPage />) },
+
   { path: "settings", element: protectedRoute(<SettingsPage />) },
 
   

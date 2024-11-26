@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 // import profilePic from "../../../assets/dealerprofilepic";
@@ -6,11 +5,7 @@ import DealerEditButton from "./DealerEditButton";
 import { getdealerProfile } from "../../../service/api/franchise/PostApi";
 
 function DealerDetails() {
-  const [franchisee, setFranchisee] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
-
 
   const { id } = useParams();
  
@@ -36,25 +31,10 @@ function DealerDetails() {
 
 
 
+  const navigateToEditpage = () => {
+    navigate("/franchise/dealer/editdealer");
+  };
 
-  //fetchFranchisee
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await franchisedetail();
-        setFranchisee(result.data);
-      } catch (err) {
-        setError(err.message || "Something went wrong");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
 
   return (
     <>
@@ -120,7 +100,6 @@ function DealerDetails() {
               <h3 className="text-dark_blue font-poppins font-bold text-center lg:text-left">
                 Contact
               </h3>
-
               <ul className="space-y-5 text-light_gray font-poppins mt-2">
                 <li>Address: {dealerdetails.user?.address|| "NA"}</li>
                 <li>Contact: {dealerdetails.user?.phone_number || "NA"}</li>
