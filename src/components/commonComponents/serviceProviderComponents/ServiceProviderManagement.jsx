@@ -39,7 +39,6 @@ const ServiceProviderManagement = () => {
       try {
         const response = await GetServiceProviderData();
         setTableDataConfig(response.data.results);
-        console.log("Fetched data:", response.data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.response ? error.response.data : error.message);
@@ -51,7 +50,10 @@ const ServiceProviderManagement = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentTableDataConfig = tableDataConfig.slice(indexOfFirstItem, indexOfLastItem);
+  const currentTableDataConfig = tableDataConfig.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   const totalPages = Math.ceil(tableDataConfig.length / itemsPerPage);
@@ -79,7 +81,9 @@ const ServiceProviderManagement = () => {
 
   const filteredTableDataConfig = sortTableDataConfig(
     tableDataConfig.filter((data) => {
-      const matchesSearch = data.name?.toLowerCase().includes(searchTerm.toLowerCase() || "");
+      const matchesSearch = data.name
+        ?.toLowerCase()
+        .includes(searchTerm.toLowerCase() || "");
       const matchesStatus = !statusFilter || data.status === statusFilter;
       return matchesSearch && matchesStatus;
     })
@@ -98,31 +102,30 @@ const ServiceProviderManagement = () => {
       {/* Search, Filter and Sort Inputs */}
       <div className="flex flex-wrap justify-between">
         <span className="relative rounded-full overflow-hidden h-12 mb-2">
-        <div className="relative flex items-center">
-          <input
-            type="text"
-            placeholder="Search here..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-40 px-4 py-2 border border-violet rounded-full shadow-sm focus:ring-2 focus:ring-violet pl-10"
-          />
-          <FiSearch className="absolute left-3 text-violet" />
-        </div>
-
+          <div className="relative flex items-center">
+            <input
+              type="text"
+              placeholder="Search here..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-40 px-4 py-2 border border-violet rounded-full shadow-sm focus:ring-2 focus:ring-violet pl-10"
+            />
+            <FiSearch className="absolute left-3 text-violet" />
+          </div>
         </span>
 
         <div className="flex gap-4 flex-wrap">
           {/* Sort button */}
-          
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="border border-violet text-violet text-sm rounded-full px-4 py-2 focus:ring-2 focus:ring-violet w-full md:w-auto"
-        >
-          <option value="">Franchisee Type</option>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
+
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="border border-violet text-violet text-sm rounded-full px-4 py-2 focus:ring-2 focus:ring-violet w-full md:w-auto"
+          >
+            <option value="">Franchisee Type</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+          </select>
 
           <Link
             to={`/service-providers/add-new`}
@@ -153,29 +156,51 @@ const ServiceProviderManagement = () => {
               <th className="w-40 p-3 text-sm text-violet  font-semibold tracking-wide text-left">
                 Name
               </th>
-              <th className="p-3 text-sm text-violet font-semibold tracking-wide text-left">ID</th>
-              <th className="w-24 p-3 text-sm text-violet font-semibold tracking-wide text-left">Registered Services</th>
-              <th className="w-24 p-3 text-sm text-violet font-semibold tracking-wide text-left">Active Jobs</th>
+              <th className="p-3 text-sm text-violet font-semibold tracking-wide text-left">
+                ID
+              </th>
+              <th className="w-24 p-3 text-sm text-violet font-semibold tracking-wide text-left">
+                Registered Services
+              </th>
+              <th className="w-24 p-3 text-sm text-violet font-semibold tracking-wide text-left">
+                Active Jobs
+              </th>
               <th className="w-32 p-3 text-sm text-violet font-semibold tracking-wide text-left">
                 Location
               </th>
-              <th className="w-32 p-3 text-sm text-violet font-semibold tracking-wide text-left">Status</th>
-              <th className="w-32 p-3 text-sm text-violet font-semibold tracking-wide text-left">Contact</th>
-              <th className="w-32 p-3 text-sm text-violet font-semibold tracking-wide text-left">Action</th>
+              <th className="w-32 p-3 text-sm text-violet font-semibold tracking-wide text-left">
+                Status
+              </th>
+              <th className="w-32 p-3 text-sm text-violet font-semibold tracking-wide text-left">
+                Contact
+              </th>
+              <th className="w-32 p-3 text-sm text-violet font-semibold tracking-wide text-left">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-primary">
             {currentTableDataConfig.map((data, index) => (
-              
-              <tr onClick={() => { handleView(data.id) }} key={data.id} className={index % 2 === 0 ? "bg-white  cursor-pointer" : "bg-gray-50 cursor-pointer"}>
-                
+              <tr
+                onClick={() => {
+                  handleView(data.custom_id);
+                }}
+                key={data.custom_id}
+                className={
+                  index % 2 === 0
+                    ? "bg-white  cursor-pointer"
+                    : "bg-gray-50 cursor-pointer"
+                }
+              >
                 <td className="py-3 px-6">
                   <input
                     type="checkbox"
                     className="h-4 w-4 border border-violet rounded-none focus:ring-violet"
                   />
                 </td>
-                <td className="p-3 text-s text-violet whitespace-nowrap">{data.full_name}</td>
+                <td className="p-3 text-s text-violet whitespace-nowrap">
+                  {data.full_name}
+                </td>
                 <td className="p-3 text-sm text-violet whitespace-nowrap">
                   <a href="#" className="font-bold text-violet hover:underline">
                     {data.custom_id}
@@ -192,10 +217,11 @@ const ServiceProviderManagement = () => {
                 </td>
                 <td className="p-3 text-sm text-violet whitespace-nowrap">
                   <span
-                    className={`p-1.5 text-xs font-medium uppercase tracking-wider ${data.status === "Active"
-                      ? "text-primary bg-fluracent_green"
-                      : "text-primary bg-orange"
-                      } rounded-full `}
+                    className={`p-1.5 text-xs font-medium uppercase tracking-wider ${
+                      data.status === "Active"
+                        ? "text-primary bg-fluracent_green"
+                        : "text-primary bg-orange"
+                    } rounded-full `}
                   >
                     {data.status}
                   </span>
@@ -233,9 +259,32 @@ const ServiceProviderManagement = () => {
                       className="absolute bg-white border shadow-lg right-0 mt-2 rounded-lg z-10"
                     >
                       <ul>
-                        <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleEdit(data.id) }} >Edit</li>
-                        <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleDelete(data.id); toggleDropdown(null); }}>Delete</li>
-                        <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleView(data.id); toggleDropdown(null); }}>View</li>
+                        <li
+                          className="p-2 hover:bg-text-violet cursor-pointer"
+                          onClick={() => {
+                            handleEdit(data.id);
+                          }}
+                        >
+                          Edit
+                        </li>
+                        <li
+                          className="p-2 hover:bg-text-violet cursor-pointer"
+                          onClick={() => {
+                            handleDelete(data.id);
+                            toggleDropdown(null);
+                          }}
+                        >
+                          Delete
+                        </li>
+                        <li
+                          className="p-2 hover:bg-text-violet cursor-pointer"
+                          onClick={() => {
+                            handleView(data.custom_id);
+                            toggleDropdown(null);
+                          }}
+                        >
+                          View
+                        </li>
                       </ul>
                     </div>
                   )}
@@ -249,7 +298,9 @@ const ServiceProviderManagement = () => {
       {/* Pagination Controls */}
       <div className="flex justify-between items-center mt-4">
         <p className="text-sm text-violet">
-          Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, tableDataConfig.length)} of {tableDataConfig.length} data
+          Showing {indexOfFirstItem + 1} to{" "}
+          {Math.min(indexOfLastItem, tableDataConfig.length)} of{" "}
+          {tableDataConfig.length} data
         </p>
         <div className="flex space-x-1 items-center">
           {/* Left Arrow (Previous Page Button) */}
@@ -266,8 +317,11 @@ const ServiceProviderManagement = () => {
             <button
               key={pageIndex}
               onClick={() => paginate(pageIndex + 1)}
-              className={`px-4 py-2 border rounded-full ${currentPage === pageIndex + 1 ? 'bg-violet text-white' : 'bg-white text-violet'
-                } hover:bg-violet hover:text-white`}
+              className={`px-4 py-2 border rounded-full ${
+                currentPage === pageIndex + 1
+                  ? "bg-violet text-white"
+                  : "bg-white text-violet"
+              } hover:bg-violet hover:text-white`}
             >
               {pageIndex + 1}
             </button>
@@ -284,7 +338,6 @@ const ServiceProviderManagement = () => {
         </div>
       </div>
 
-
       {/* Cards for smaller screens */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden">
         {currentTableDataConfig.map((data) => (
@@ -293,7 +346,7 @@ const ServiceProviderManagement = () => {
             className="bg-white space-y-3 p-4 rounded-lg shadow"
           >
             <div className="flex items-center space-x-2 text-sm">
-              <div> 
+              <div>
                 <a href="#" className="text-violet font-bold hover:underline">
                   {data.name}
                 </a>
@@ -301,10 +354,11 @@ const ServiceProviderManagement = () => {
               <div className="text-violet">{data.validUntil}</div>
               <div>
                 <span
-                  className={`p-1.5 text-xs font-medium uppercase tracking-wider ${data.status === "Active"
-                    ? "text-green-800 bg-green-200"
-                    : "text-gray-800 bg-gray-200"
-                    } rounded-lg bg-opacity-50`}
+                  className={`p-1.5 text-xs font-medium uppercase tracking-wider ${
+                    data.status === "Active"
+                      ? "text-green-800 bg-green-200"
+                      : "text-gray-800 bg-gray-200"
+                  } rounded-lg bg-opacity-50`}
                 >
                   {data.status}
                 </span>
@@ -312,14 +366,24 @@ const ServiceProviderManagement = () => {
             </div>
             <div className="text-sm text-violet">Location: {data.location}</div>
             <div className="text-sm text-violet">Revenue: {data.revenue}</div>
-            <div className="text-sm font-medium text-violet">Branches: {data.branches}</div>
-            <div className="text-sm font-medium text-violet">Providers: {data.providers}</div>
+            <div className="text-sm font-medium text-violet">
+              Branches: {data.branches}
+            </div>
+            <div className="text-sm font-medium text-violet">
+              Providers: {data.providers}
+            </div>
 
             <div className="flex space-x-4">
-              <a href={`mailto:${data.email}`} className="text-violet hover:underline">
+              <a
+                href={`mailto:${data.email}`}
+                className="text-violet hover:underline"
+              >
                 <FiMail size={20} />
               </a>
-              <a href={`tel:${data.phone}`} className="text-violet hover:underline">
+              <a
+                href={`tel:${data.phone}`}
+                className="text-violet hover:underline"
+              >
                 <FiPhone size={20} />
               </a>
               {/* Action button for mobile */}
@@ -332,9 +396,32 @@ const ServiceProviderManagement = () => {
               {dropdownOpen === data.id && (
                 <div className="absolute bg-primary border shadow-lg right-0 mt-2 rounded-lg z-10">
                   <ul>
-                    <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleEdit(data.id) }} >Edit</li>
-                    <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleDelete(data.id); toggleDropdown(null); }}>Delete</li>
-                    <li className="p-2 hover:bg-text-violet cursor-pointer" onClick={() => { handleView(data.id); toggleDropdown(null); }}>View</li>
+                    <li
+                      className="p-2 hover:bg-text-violet cursor-pointer"
+                      onClick={() => {
+                        handleEdit(data.id);
+                      }}
+                    >
+                      Edit
+                    </li>
+                    <li
+                      className="p-2 hover:bg-text-violet cursor-pointer"
+                      onClick={() => {
+                        handleDelete(data.id);
+                        toggleDropdown(null);
+                      }}
+                    >
+                      Delete
+                    </li>
+                    <li
+                      className="p-2 hover:bg-text-violet cursor-pointer"
+                      onClick={() => {
+                        handleView(data.id);
+                        toggleDropdown(null);
+                      }}
+                    >
+                      View
+                    </li>
                   </ul>
                 </div>
               )}

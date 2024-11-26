@@ -23,6 +23,9 @@ import ServiceType from "../pages/adminPages/ServiceType";
 import TransactionHistory from "../pages/adminPages/TransactionHistory";
 import ServiceHistory from "../pages/adminPages/ServiceHistory";
 
+import IncomeManagementPage from "../pages/adminPages/IncomeManagementPage";
+import AddDealer from "../pages/commonPages/AddDealer";
+
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
 );
@@ -90,6 +93,7 @@ const SeparateRoutes = [
     path: "dealers",
     element: protect(<DealersPage />, ["franchise"]), // Dealers page for franchise role, restricted to franchise
   },
+  
   {
     path: "payment",
     element: protect(<PaymentForm />, ["franchise"]),
@@ -98,6 +102,11 @@ const SeparateRoutes = [
   {
     path: "dealers/dealer-management/:id",
     element: protect(<FranchiseProfileDetails />, ["franchise"]), // Franchise profile details view for a specific dealer, restricted to franchise
+  },
+
+  {
+    path: "income-management",
+    element: protect(<IncomeManagementPage />, ["admin"]), // Franchise profile details view for a specific dealer, restricted to franchise
   },
   
   // Category management section
@@ -140,23 +149,29 @@ const SeparateRoutes = [
     // add service provider 
   {
     path: 'service-providers/add-new',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< AddServiceProvider/>, ["franchise","admin"]), 
   },
   {
     path: 'booking-details',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< BookingDetailsPage/>, ["admin"]), 
   },
   {
     path: 'Payment-RequestForm',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< PaymentRequestPage/>, ["dealer"]), 
   },
   {
     path: 'service-management',
-    // Page for crete  an  service provider restricted to franchise
+    // Page for create  an  service provider restricted to franchise
     element: protect(< ServiceType/>, ["admin"]), 
+  },
+
+  {
+    path: "Dealers/add-new",
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(<AddDealer/>, ["franchise", "admin"]),
   },
   
   {

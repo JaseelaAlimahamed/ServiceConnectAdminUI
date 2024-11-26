@@ -147,6 +147,24 @@ export const admin = [
     </svg>
   },
   {
+    name: "Income Management",
+    to: "income-management",
+    icon: (
+      <svg
+        width="35"
+        height="35"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2ZM13 17H11V15H9V13H11V11H9V9H11V7H13V9H15V11H13V13H15V15H13V17Z"
+          fill="#C1BBEB"
+        />
+      </svg>
+    ),
+  },
+  {
     name: "Service Management",
     to: "service-management",
     icon: <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

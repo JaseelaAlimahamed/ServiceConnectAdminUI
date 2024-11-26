@@ -4,6 +4,7 @@ import { categoryListGet } from "../../../../service/api/admin/GetApi";
 import { editCategory } from "../../../../service/api/admin/PatchApi";
 import { categorydelete } from "../../../../service/api/admin/DeleteApi";
 import editIcon from '../../../../assets/icons/EditSubCategory.svg'
+import DeleteModal from '../CategoryComponents/DeleteModal'
 
 const EditCategory = () => {
   const navigate = useNavigate();
@@ -14,6 +15,8 @@ const EditCategory = () => {
   const [status, setStatus] = useState("Active");
   const [newImage, setNewImage] = useState(null);
   const [image, setImage] = useState( '')
+  const [error,setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Fetch category  
   useEffect(() => {
@@ -59,14 +62,14 @@ const EditCategory = () => {
       if (newImage instanceof File) {
         formData.append("image", newImage); 
       }
-
-      await editCategory(formData);
-
-      navigate("/categories");
-
+      if(status==="Active"){
+        await editCategory(formData);
+         navigate("/categories")
+        }setError(`Not Allowd Status ${status} Please use Active Status`)
+      
     } catch (err){
       console.log(err)
-      alert("field is blank")
+      setError(`Not Allowd Status ${status} `)
     }
   };
 
@@ -152,11 +155,16 @@ const EditCategory = () => {
         </select>
 
           <button
-            onClick={handleDelete}
+            onClick={()=>setIsModalOpen(true)}
             className="bg-red text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 hover:bg-red-600"
           >
             Delete
           </button>
+          <DeleteModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={() => handleDelete(CategoryId)}
+        />
         <button
           onClick={handleSave}
           className="bg-purple text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 hover:bg-purple-800"
@@ -169,6 +177,9 @@ const EditCategory = () => {
           >
             Cancel
           </button>
+      </div>
+      <div className="text-red flex justify-center items-center ">
+        {error}
       </div>
     </div>
   );

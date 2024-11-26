@@ -1,5 +1,8 @@
 import { apiInstance } from "../ApiInstence";
 
+
+
+
 /**
  * Fetch user profile details
  * @returns {Promise<object>} - Returns user profile data
@@ -7,13 +10,15 @@ import { apiInstance } from "../ApiInstence";
 export const getUserProfile = async () => {
   try {
     const response = await apiInstance.get("profile/");
-    return response.data;
+    return /*response.data*/ 'hyy';
   } catch (error) {
     console.error("Error fetching user profile:", error);
     throw error.response ? error.response.data : new Error(error.message);
   }
-};
-export const getFranchiseeStats = async () => {
+
+ };
+ 
+ export const getFranchiseeStats = async () => {
   try {
     const response = await apiInstance.get("/franchisee-stats/");
     return response.data;
@@ -228,3 +233,4 @@ export const fetchAdData = async () => {
     throw error;
   }
 };
+

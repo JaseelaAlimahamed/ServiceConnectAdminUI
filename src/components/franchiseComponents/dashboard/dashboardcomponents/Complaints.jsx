@@ -1,7 +1,8 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMdArrowDropright, IoMdArrowDropleft} from "react-icons/io";
 import { FaArrowTrendUp } from "react-icons/fa6";
+import { getComplaintsList } from "../../../../service/api/franchise/GetApi";
 
 const complaints = [
   { id: "#123456789", status: "Complete", amount: "$50,036", date: "2 March 2021, 13:45 PM" },
@@ -38,16 +39,31 @@ const statusStyles = {
 
 const Complaints = () => {
 
+    const [complaintsConfig, setComplaintsConfig] = useState([]);
+    useEffect( () => {
+      const fetchComplaints = async () => {
+        try {
+          const complaint = await getComplaintsList();
+          setComplaintsConfig(Array.isArray(complaint) ? complaint : []);
+        } catch (error){
+          console.error(error,"Failed to fetch Complaints");
+          setComplaintsConfig([]);
+        }
+      };
+      fetchComplaints();
+    }, []);
+    //console.log(complaintsConfig, "complaints");
+
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
     
     // Get current items based on pagination
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = complaints.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = complaintsConfig.slice(indexOfFirstItem, indexOfLastItem);
 
     // Calculate total pages
-    const totalPages = Math.ceil(complaints.length / itemsPerPage);
+    const totalPages = Math.ceil(complaintsConfig.length / itemsPerPage);
 
     // Change page
     const paginate = (pageNumber) => {
@@ -86,7 +102,7 @@ const Complaints = () => {
                         {complaint.id}
                     </span>
                     <span className="text-xs hidden sm:block text-[#A098AE]">
-                        {complaint.date}
+                        {complaint.submitted_at}
                     </span>
                 </div>
             </div>
@@ -94,7 +110,7 @@ const Complaints = () => {
                 <span className="text-sm font-bold text-[#303972] ">{complaint.amount}</span>
             </div>
             <div className="flex items-center space-x-2 text-center">
-                <span className={`text-sm font-semibold items-center ${statusStyles[complaint.status]}`}>
+                <span className={`text-sm font-semibold items-center ${statusStyles [complaint.status]}`}>
                     {complaint.status}
                 </span>
             </div>
@@ -105,10 +121,10 @@ const Complaints = () => {
       <div className="flex justify-between items-center mt-4">
             <p className="text-xs text-gray-500">
             Showing {indexOfFirstItem + 1}-
-            {indexOfLastItem > complaints.length
-                ? complaints.length
+            {indexOfLastItem > complaintsConfig.length
+                ? complaintsConfig.length
                 : indexOfLastItem}{" "}
-            of {complaints.length} data
+            of {complaintsConfig.length} data
             </p>
 
             <div className="flex space-x-2">

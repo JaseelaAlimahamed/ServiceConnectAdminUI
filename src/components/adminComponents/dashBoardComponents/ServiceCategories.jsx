@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const ServiceCategories = ({Categories}) => {
@@ -35,9 +35,11 @@ const ServiceCategories = ({Categories}) => {
     ))}
 
     <div className="flex justify-center mt-4">
+      <Link to='/categories'>
       <button onClick={handleCategory} className="w-full bg-blue_gray text-violet font-bold px-6 py-2 rounded-full hover:bg-purple-200">
         View More
       </button>
+      </Link>
     </div>
   </div>
   )

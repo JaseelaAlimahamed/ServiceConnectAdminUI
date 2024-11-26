@@ -1,11 +1,17 @@
-const Buttons = ({ handleDelete, handleSave,handleEdit,id}) => {
+
+import DeleteModal from '../CategoryComponents/DeleteModal'
+
+const Buttons = ({ handleDelete, handleSave,handleEdit,id,isModalOpen,setIsModalOpen}) => {
+
+  
     return (
       <div className="flex justify-end items-end mt-4 space-x-3">
         {/* Delete Button */}
         <button
-          onClick={handleDelete}
+         onClick={()=>{setIsModalOpen(true)}}
           className="bg-red text-primary border border-red   px-3 py-1 rounded-full flex"
         >
+          
           Delete
         </button>
         {id?
@@ -21,6 +27,12 @@ const Buttons = ({ handleDelete, handleSave,handleEdit,id}) => {
         >
           Save
         </button>}
+
+       {id? <DeleteModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={() => handleDelete(id)}
+        />:""}
       </div>
     );
   };
