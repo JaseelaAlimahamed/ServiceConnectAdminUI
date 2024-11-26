@@ -21,6 +21,7 @@ import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
 import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
 import ServiceType from "../pages/adminPages/ServiceType";
 import TransactionHistory from "../pages/adminPages/TransactionHistory";
+import ServiceHistory from "../pages/adminPages/ServiceHistory";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -161,9 +162,12 @@ const SeparateRoutes = [
   {
     path: 'transaction-history',
     element: protect(< TransactionHistory/>, ["admin"]), 
-  }
+  },
   
-  
+  {
+    path: 'service-history',
+    element: protect(< ServiceHistory/>, ["admin"]), 
+  }
 
  ];
 
