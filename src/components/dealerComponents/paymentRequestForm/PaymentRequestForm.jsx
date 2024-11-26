@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import InputFieldComponent from '../../reUsableComponents/InputFieldComponent';
 import ReUsableModal from '../../reUsableComponents/ReUsableModal';
-<<<<<<< HEAD
+
 import {paymentData} from  "../../../service/api/dealer/PostApi"
-=======
 import { createPaymentRequest } from '../../../service/api/dealer/PostApi';
->>>>>>> develop
+import { createPaymentRequest } from '../../../service/api/dealer/PostApi';
 
 const fields = [
     { label: 'Full Name', name: 'fullName', type: 'text', placeholder: 'Enter full name' },
@@ -47,6 +46,17 @@ const PaymentRequestForm = () => {
             setIsModalOpen(true);
         } else {
             console.error('Validation failed: Fill in all fields.');
+
+        }
+    };
+
+    const handleConfirm = async () => {
+        setIsModalOpen(false);
+        try {
+            const response = await createPaymentRequest(formData);
+            console.log('Payment request created successfully:', response);
+        } catch (error) {
+            console.error('Error creating payment request:', error);
         }
     };
 
@@ -80,17 +90,11 @@ const PaymentRequestForm = () => {
         const submissionData = prepareSubmissionData(); // Prepare mapped data
     
         try {
-<<<<<<< HEAD
-            const response = await paymentData(submissionData);
-            console.log("Form submitted successfully:", response.data);
-        } catch (error) {
-            console.error("Submission failed:", error.response?.data || error.message);
-=======
+
             const response = await createPaymentRequest(formData);
             console.log('Payment request created successfully:', response);
         } catch (error) {
             console.error('Error creating payment request:', error);
->>>>>>> develop
         }
     };
     

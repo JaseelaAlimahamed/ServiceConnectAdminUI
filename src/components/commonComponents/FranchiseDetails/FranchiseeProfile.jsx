@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 // import profilePic from "../../../assets/dealerprofilepic";
 import DealerEditButton from "./DealerEditButton";
-import { franchisedetail } from "../../../service/api/dealer/GetApi";
-
+import { getdealerProfile } from "../../../service/api/franchise/PostApi";
 
 function DealerDetails() {
   const [franchisee, setFranchisee] = useState([]);
@@ -12,9 +12,28 @@ function DealerDetails() {
   const navigate = useNavigate();
 
 
-  const navigateToEditpage = () => {
-    navigate("/franchise/dealer/editdealer");
+  const { id } = useParams();
+ 
+
+ let [dealerdetails,setdealerdetails]=useState({})
+
+  
+
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await getdealerProfile(id);
+     
+     
+      setdealerdetails(response.data)
+    } catch (error) {
+      console.error("Error occurred while fetching dealer profile:", error);
+    }
   };
+
+  fetchData(); 
+}, [id]); 
+
 
 
 

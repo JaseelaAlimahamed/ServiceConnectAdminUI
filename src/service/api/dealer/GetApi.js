@@ -30,7 +30,7 @@ export const recentactivities = async (data) => {
 };
 
 
-<<<<<<< HEAD
+
 export const franchisedetail = async (data) => {
   try {
     const response = await apiInstance.get("franchise-details/", data);
@@ -62,7 +62,7 @@ export const franchisedetails = async (data) => {
   }
 };
 
-=======
+
 /**
  * Fetch user profile details
  * @returns {Promise<object>} - Returns user profile data
@@ -78,4 +78,4 @@ export const getUserProfile = async () => {
     throw error.response ? error.response.data : new Error(error.message);
   }
 };
->>>>>>> develop
+
