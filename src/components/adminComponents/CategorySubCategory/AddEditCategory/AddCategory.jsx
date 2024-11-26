@@ -1,132 +1,119 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {addCategory} from "../../../../service/api/admin/PostApi"
+import editIcon from '../../../../assets/icons/EditSubCategory.svg'
 
 const AddCategory = () => {
   const navigate = useNavigate();
-  const { id: CategoryId } = useParams();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Active");
-  const [image, setImage] = useState("https://via.placeholder.com/300");
+  const [newImage, setNewImage] = useState(null);
+  const [error,setError] = useState("");
+  
 
-  // Fetch category details if we are editing
-  useEffect(() => {
-    if (CategoryId) {
-      // Fetch the category data by ID
-      // This is a placeholder for the actual fetch call
-      // Assuming fetchCategoryDetails is a function that fetches category data
-      fetchCategoryDetails(CategoryId);
-    }
-  }, [CategoryId]);
-
-  // Function to fetch category details by ID
-  const fetchCategoryDetails = async (id) => {
-    try {
-      // Fetch data from backend (replace with actual API call)
-      const response = await fetch(`/api/categories/${id}`);
-      const data = await response.json();
-      setTitle(data.title);
-      setDescription(data.description);
-      setStatus(data.status);
-      setImage(data.image || "https://via.placeholder.com/300");
-    } catch (error) {
-      console.error("Failed to fetch category details:", error);
-    }
+  const handleFileChange = (event) => {
+    setNewImage(event.target.files[0]); // Store the selected file
   };
 
   // Function to save or update the category
-  const handleSave = () => {
-    const categoryData = { title, description, status, image };
+  const handleSave = async () => {
+    try{
+      const formData=new FormData()
 
-    if (CategoryId) {
-      console.log("Updating Category:", categoryData);
-      // API call to update existing category
-      // Example: await fetch(`/api/categories/${CategoryId}`, { method: "PUT", body: JSON.stringify(categoryData) })
-    } else {
-      console.log("Creating New Category:", categoryData);
-      // API call to create a new category
-      // Example: await fetch("/api/categories", { method: "POST", body: JSON.stringify(categoryData) })
-    }
+      // Append fields to FormData
+      formData.append("title", title);
+      formData.append("description", description);
+      formData.append("status", status);
 
-    navigate("/admin/categories");
-  };
-
-  const handleDelete = () => {
-    setTitle("");
-    setDescription("");
-    setStatus("Active");
-    setImage("https://via.placeholder.com/300");
-    alert("Category Deleted");
-  };
-
-  const handleEditImage = () => {
-    const newImage = prompt("Enter new image URL");
-    if (newImage) {
-      setImage(newImage);
+      if (newImage instanceof File) {
+        formData.append("image", newImage); 
+      }
+      if(status==="Active"){
+      addCategory(formData)
+       navigate("/categories")
+      }setError(`Not Allowd Status ${status} Please use Active Status`)
+    } catch (error){
+      console.log(error)
+      setError(`Not Allowd Status ${status}`)
     }
   };
+
+  const imageSrc = 
+  newImage instanceof File 
+      ? URL.createObjectURL(newImage) // For newly uploaded files
+      : newImage || "https://via.placeholder.com/250x150"; // For existing URLs or placeholder
+
 
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-8 bg-white shadow-lg rounded-lg flex flex-col h-full space-y-6">
+    <div className="max-w-2xl mx-auto p-4 sm:p-8 bg-white shadow-lg rounded-lg flex flex-col h-2xl space-y-6">
       <h2 className="text-2xl font-bold text-violet">
-        {CategoryId ? "Edit Category Details" : "Add Category Details"}
+        Add Category Details
       </h2>
-
       <div className="flex items-start">
-        <img
-          src={image}
-          alt="Category"
-          className="w-64 h-64 object-cover rounded-lg mt-6"
-        />
-        <button
-          onClick={handleEditImage}
-          className="ml-0 p-2 bg-transparent border-none cursor-pointer text-gray-600"
-        >
-          {/* Icon SVG for editing */}
-        </button>
+        
+          <img
+            src={imageSrc} // Show the new image preview
+            alt="New Preview"
+            className="w-64 h-64 object-cover rounded-lg mt-6"
+          />
+        
+          <label className="ml-2 p-2 bg-transparent border-none cursor-pointer text-gray flex items-center space-x-2">
+            <img src={editIcon} alt="Edit Icon" className="w-6 h-6" />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="hidden"
+            />
+          </label>
+        
       </div>
 
-      <div className="h-full space-y-4">
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-medium p-3 border border-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          className="w-medium p-3 border border-gray rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-        />
-      </div>
-
-      <div className="flex space-x-4 justify-end items-center">
+      <input 
+        type="text"
+        placeholder="Title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="w-48 p-1 mx-3 border border-id_gray rounded-md text-secondary h-8 placeholder-id_gray"
+      />
+      <input
+        type="text"
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        className="w-48 p-1 mx-3 border border-id_gray rounded-md text-secondary h-8 placeholder-id_gray"
+      />
+       
+      <div className="flex justify-end items-end mt-4 py-20 p-4 space-x-2">
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className="w-medium sm:w-auto p-3 border border-purple rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
         >
-          <option value="Active">Status: Active</option>
-          <option value="Completed">Status: Completed</option>
-          <option value="Incomplete">Status: Incomplete</option>
-          <option value="Cancelled">Status: Cancelled</option>
+          <option value="Active">Active</option>
+          <option value="Completed">Completed</option>
+          <option value="Incomplete">Incomplete</option>
+          <option value="Cancelled">Cancelled</option>
         </select>
 
-        <button
-          onClick={handleDelete}
-          className="bg-red text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 hover:bg-red-600"
-        >
-          Delete
-        </button>
         <button
           onClick={handleSave}
           className="bg-purple text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 hover:bg-purple-800"
         >
-          {CategoryId ? "Update" : "Save"}
+          Save
         </button>
+        <button
+            onClick={()=>navigate("/categories")}
+            className="px-6 py-3 bg-custom_gray text-primary font-medium rounded-lg shadow-md hover:bg-gray-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-300 ease-in-out"
+          >
+            Cancel
+          </button>
+         
+      </div>
+      <div className="text-red flex justify-center items-center ">
+        {error}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ function DealerCard({ icon, title, count, percentage, percentageColor , iconBack
             <h1 className="font-bold text-dark_blue">{count}</h1>
             <div className='flex items-center gap-1'>
                 <p className={`text-sm font-semibold ${percentageColor}`}>
-                    {percentage}
+                    {percentage}%
                 </p>
                 <span className='text-sm text-light_gray' >than last month</span>
             </div>

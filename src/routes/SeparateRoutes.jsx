@@ -12,11 +12,22 @@ import CategoryPage from "../pages/adminPages/CategorySubCategoryPages/CategoryP
 import SubCategoryPage from "../pages/adminPages/CategorySubCategoryPages/SubCategoryPage";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
 import PaymentForm from "../pages/franchisePages/PaymentForm";
-import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
+import AddCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
+<<<<<<< HEAD
 import PaymentRequestForm from "../components/dealerComponents/paymentRequestForm/PaymentRequestForm";
 
+=======
+import AddServiceProvider from "../pages/franchisePages/AddServiceProvider";
+import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage";
+import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
+import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
+import ServiceType from "../pages/adminPages/ServiceType";
+
+import AddDealer from "../pages/dealerPages/AddDealer";
+import IncomeManagementPage from "../pages/adminPages/IncomeManagementPage";
+>>>>>>> develop
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -86,6 +97,11 @@ const SeparateRoutes = [
     element: protect(<DealersPage />, ["franchise"]), // Dealers page for franchise role, restricted to franchise
   },
   {
+    path: "Dealers/add-new",
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(<AddDealer />, ["franchise", "admin"]),
+  },
+  {
     path: "payment",
     element: protect(<PaymentForm />, ["franchise"]),
   },
@@ -93,6 +109,11 @@ const SeparateRoutes = [
   {
     path: "dealers/dealer-management/:id",
     element: protect(<FranchiseProfileDetails />, ["franchise"]), // Franchise profile details view for a specific dealer, restricted to franchise
+  },
+
+  {
+    path: "income-management",
+    element: protect(<IncomeManagementPage />, ["admin"]), // Franchise profile details view for a specific dealer, restricted to franchise
   },
   
   // Category management section
@@ -102,11 +123,11 @@ const SeparateRoutes = [
   },
   {
     path: '/Add-Category',
-    element: protect(<AddEditCategoryPage />, ["admin"]), // Page for adding a new category, restricted to admin
+    element: protect(<AddCategoryPage />, ["admin"]), // Page for adding a new category, restricted to admin
   },
   {
     path: '/edit-Category/:id',
-    element: protect(<AddEditCategoryPage />, ["admin"]), // Page for editing an existing category, restricted to admin
+    element: protect(<EditCategoryPage />, ["admin"]), // Page for editing an existing category, restricted to admin
   },
 
   //Sub  Category management section
@@ -132,6 +153,7 @@ const SeparateRoutes = [
     // Page for editing an existing sub-category, restricted to admin
     element: protect(< ServiceProviderVerification/>, ["dealer"]), 
   },
+<<<<<<< HEAD
 
 
   {
@@ -140,6 +162,37 @@ const SeparateRoutes = [
   },
 
   
+=======
+    // add service provider 
+  {
+    path: 'service-providers/add-new',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< AddServiceProvider/>, ["franchise","admin"]), 
+  },
+  {
+    path: 'booking-details',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< BookingDetailsPage/>, ["admin"]), 
+  },
+  {
+    path: 'Payment-RequestForm',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< PaymentRequestPage/>, ["dealer"]), 
+  },
+  {
+    path: 'service-management',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< ServiceType/>, ["admin"]), 
+  },
+  {
+    path: "Dealers/add-new",
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(<AddDealer />, ["franchise", "admin"]),
+  },
+  
+  
+
+>>>>>>> develop
  ];
 
 export default SeparateRoutes;

@@ -1,7 +1,7 @@
 import React from 'react'
 import AddCategory from '../../../components/adminComponents/CategorySubCategory/AddEditCategory/AddCategory'
 
-const AddEditCategoryPage = () => {
+const AddCategoryPage = () => {
   return (
     <div>
       <AddCategory/>
@@ -9,4 +9,4 @@ const AddEditCategoryPage = () => {
   )
 }
 
-export default AddEditCategoryPage
+export default AddCategoryPage

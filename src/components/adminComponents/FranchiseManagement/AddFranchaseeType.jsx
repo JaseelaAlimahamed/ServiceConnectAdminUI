@@ -1,36 +1,169 @@
-import  { useState } from 'react';
-
+import { useEffect, useState } from "react";
+import { getFranchiseeTypes } from "../../../service/api/admin/GetApi";
+import { deleteFranchiseeTypes } from "../../../service/api/admin/DeleteApi";
+import { updateFranchiseeTypes } from "../../../service/api/admin/PatchApi";
+import { createFranchiseeType } from "../../../service/api/admin/PostApi";
+import ReUsableModal from "../../reUsableComponents/ReusableModal";
 const FranchiseeCategory = () => {
-  const [franchiseeTypes, setFranchiseeTypes] = useState(['Grama panchayat', 'Municipality', 'Cooperation']);
-  const [formData, setFormData] = useState({
-    details: '',
-    rate: '',
-    currency: '',
+  const [franchiseeTypes, setFranchiseeTypes] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedFranchisee, setSelectedFranchisee] = useState({
+    name: "",
+    details: "",
+    amount: "",
+    currency: "",
   });
+  const [formdata, setFormdata] = useState({
+    name: "",
+    details: "",
+    amount: "",
+    currency: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
+  useEffect(() => {
+    const fetchFranchiseeTypes = async () => {
+      try {
+        const response = await getFranchiseeTypes();
 
-  const handleDelete = (type) => {
-    setFranchiseeTypes(franchiseeTypes.filter((t) => t !== type));
+        setSelectedFranchisee(response[0]); // select first element of array
+        setFranchiseeTypes(response);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchFranchiseeTypes();
+  }, []);
+
+  const formValidation = () => {
+    const validCurrencies = [
+      "USD",
+      "EUR",
+      "INR",
+      "GBP",
+      "AUD",
+      "CAD",
+      "JPY", 
+      "CNY",
+      "CHF",
+      "SGD",
+    ];
+    const newError = {};
+    if (!selectedFranchisee.name.trim()) {
+      newError.name = "Franchisee name is required";
+    }
+    console.log(selectedFranchisee.details);
+    if (!selectedFranchisee.details.trim()) {
+      newError.details = "Franchisee details is required";
+    } else if (selectedFranchisee.details.trim().length < 3) {
+      newError.details = "Enter deatails more than 3 ";
+    }
+    if (!selectedFranchisee.amount.trim()) {
+      newError.amount = "Amount is required";
+    } else if (isNaN(selectedFranchisee.amount)) {
+      newError.amount = "Enter a valid amount";
+    }
+
+    if (!selectedFranchisee.currency.trim()) {
+      newError.currency = "Currency is required";
+    } else if (
+      !validCurrencies.includes(
+        selectedFranchisee.currency.trim().toUpperCase()
+      )
+    ) {
+      newError.currency = "Currency must be one of 'USD', 'EUR', 'INR', 'GBP', 'AUD', 'CAD', 'JPY', 'CNY', 'CHF', 'SGD'";
+    }
+
+    setFormErrors(newError);
+    return Object.keys(newError).length === 0;
+  };
+
+  const handleDelete = async (type) => {
+    const response = await deleteFranchiseeTypes(selectedFranchisee.id);
+
+    if (response.status === 204) {
+      setFranchiseeTypes((prev) =>
+        prev.filter((item) => item.id !== selectedFranchisee.id)
+      );
+
+      setModalOpen(false);
+    }
   };
 
   const handleSave = () => {
-    console.log('Saved:', formData);
+    if (formValidation()) {
+      alert("Form submitted successfully!");
+      const exist = franchiseeTypes.find(
+        (item) => item.id === selectedFranchisee.id
+      );
+      if (exist) {
+        const update = async () => {
+          const response = await updateFranchiseeTypes(selectedFranchisee);
+
+          if (response.status === 200) {
+            // Update the state with the modified item
+            setFranchiseeTypes((prev) =>
+              prev.map((item) =>
+                item.id === selectedFranchisee.id ? response.data : item
+              )
+            );
+          }
+        };
+
+        return update();
+      } else {
+        const add = async () => {
+          const response = await createFranchiseeType(selectedFranchisee);
+
+          if (response.status === 201) {
+            // add new item
+
+            setFranchiseeTypes((prev) => [...prev, response.data]);
+          }
+        };
+        return add();
+      }
+    }
   };
 
-  const handleSaveDraft = () => {
-    console.log('Draft saved:', formData);
+  const handleSaveDraft = () => {};
+
+  const handleClick = (id) => {
+    const clickedItem = franchiseeTypes.find((item) => item.id === id);
+
+    setSelectedFranchisee(clickedItem);
   };
 
   const handleAddItem = () => {
-
-    console.log('Add item button clicked');
+    setSelectedFranchisee({ name: "", details: "", amount: "", currency: "" });
   };
 
+  const handleChange = (key, value) => {
+    setSelectedFranchisee((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
   return (
     <div className="flex flex-col md:flex-row bg-gray min-h-screnn h-full  p-4 ">
+      <ReUsableModal
+        isOpen={modalOpen}
+        heading={"Are you want to delete"}
+        confirm={true}
+        confirm_label="YES"
+        cancel={true}
+        cancel_label="NO"
+        onConfirm={handleDelete}
+        onClose={() => {
+          setModalOpen(false);
+        }}
+      ></ReUsableModal>
       {/* Type Section */}
       <div className="w-full md:w-1/4 h-auto bg-primary rounded-lg shadow-lg  mr-0 md:mr-4  md:mb-0">
         <div className="flex justify-between items-center mb-10">
-          <h2 className="text-2xl font-bold   text-dark_blue mt-3 ml-2">Type</h2>
+          <h2 className="text-2xl font-bold   text-dark_blue mt-3 ml-2">
+            Type
+          </h2>
           <svg
             width="24"
             height="24"
@@ -46,61 +179,100 @@ const FranchiseeCategory = () => {
               strokeLinejoin="round"
             />
           </svg>
-        </div> 
+        </div>
         {/* type */}
         <div className="flex flex-col items-center">
-        <ul className="flex flex-col items-center w-full  space-y-5">
-          {franchiseeTypes.map((type, index) => (
-            <li
-              key={index}
-              className="bg-gray text-secondary text-center p-2  mb- rounded-lg cursor-pointer hover:bg-blue_gray w-3/4  flex justify-center "
-            >
-              {type}
-              <button
-                onClick={() => handleDelete(type)}
-                className="text-red ml-2"
+          <ul className="flex flex-col items-center w-full  space-y-5">
+            {franchiseeTypes.map((each, index) => (
+              <li
+                key={each.id}
+                className={
+                  selectedFranchisee.id === each.id
+                    ? "bg-blue_gray text-secondary text-center p-2 mb- rounded-lg cursor-pointer w-3/4 flex justify-center"
+                    : "bg-gray text-secondary text-center p-2 mb- rounded-lg cursor-pointer hover:bg-blue_gray w-3/4 flex justify-center"
+                }
+                onClick={() => {
+                  handleClick(each.id);
+                }}
               >
+                {each.name}
+              </li>
+            ))}
+          </ul>
 
-              </button>
-            </li>
-          ))}
-        </ul> 
-
-   {/* Add Item Button */}
-  <button
-    onClick={handleAddItem}
-    className="bg-gray text-secondary p-2 w-3/4 h-9 mb-2 rounded-lg hover:bg-blue_gray mt-5"
-  >
-    + Add Item
-  </button>
-</div>
-
-
- 
-</div> 
-
-{/* Form Section */}
- <div className="flex-1 bg-primary rounded-lg shadow-lg p-8 relative max-w-full h-[300px] overflow-auto mt-2">
-  <h2 className="text-xl font-semibold mb-1 text-secondary">Franchisee Type</h2>
-  <div className="space-y-4">
-    {['Grama panchayat', 'Details', 'Rate', 'Currency'].map((label, index) => (
-      <div key={index} className="flex justify-center text-secondary">
-        <input
-          type="text"
-          placeholder={label}
-          className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
-          
-        />
-
+          {/* Add Item Button */}
+          <button
+            onClick={handleAddItem}
+            className="bg-gray text-secondary p-2 w-3/4 h-9 mb-2 rounded-lg hover:bg-blue_gray mt-5"
+          >
+            + Add Item
+          </button>
+        </div>
       </div>
-    ))}
-  </div>
-</div> 
+
+      {/* Form Section */}
+      <div className="flex-1 bg-primary rounded-lg shadow-lg p-8 relative max-w-full h-[300px] overflow-auto mt-2">
+        <h2 className="text-xl font-semibold mb-1 text-secondary">
+          Franchisee Type
+        </h2>
+        <div className="space-y-4">
+          <div className="flex  flex-col justify-center items-center  text-secondary ">
+            <input
+              type="text"
+              placeholder={"Enter franchisee type name"}
+              value={selectedFranchisee.name}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              onChange={(e) => handleChange("name", e.target.value)}
+            />
+            {formErrors.name && <p className="text-red">{formErrors.name}</p>}
+          </div>
+
+          <div className="flex  flex-col justify-center items-center  text-secondary ">
+            <input
+              type="text"
+              placeholder={"Enter details"}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              onChange={(e) => handleChange("details", e.target.value)}
+              value={selectedFranchisee.details}
+            />
+            {formErrors.details && (
+              <p className="text-red">{formErrors.details}</p>
+            )}
+          </div>
+          <div className="flex  flex-col justify-center items-center  text-secondary ">
+            <input
+              type="text"
+              placeholder={"Enter amount"}
+              onChange={(e) => handleChange("amount", e.target.value)}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              value={selectedFranchisee.amount}
+            />
+            {formErrors.amount && (
+              <p className="text-red">{formErrors.amount}</p>
+            )}
+          </div>
+          <div className="flex  flex-col justify-center items-center  text-secondary ">
+            <input
+              type="text"
+              placeholder={"Enter currency"}
+              className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+              onChange={(e) => handleChange("currency", e.target.value)}
+              value={selectedFranchisee.currency}
+            />
+
+            {formErrors.currency && (
+              <p className="text-red">{formErrors.currency}</p>
+            )}
+          </div>
+        </div>
+      </div>
 
       {/* Buttons */}
       <div className="flex   md:flex-row   flex-col  md:absolute  md:mt-0 justify-end bottom-0 right-0 mr-2 p-4 space-y-2 md:space-y-0 md:jusfity-end ">
         <button
-          onClick={handleDelete}
+          onClick={() => {
+            setModalOpen(true);
+          }}
           className="w-full md:w-24 h-10 border bg-red text-primary px-3 py-1 rounded-full flex justify-center items-center"
         >
           Delete
@@ -121,8 +293,7 @@ const FranchiseeCategory = () => {
         </button>
       </div>
     </div>
-    
   );
 };
 
-export default FranchiseeCategory;   
+export default FranchiseeCategory;

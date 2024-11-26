@@ -1,8 +1,8 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
-const ServiceCategories = () => {
+const ServiceCategories = ({Categories}) => {
 
     const mockCategories = [
         { id: 1, name: "Home Services", image: "https://media.istockphoto.com/id/1457385092/photo/an-asian-young-technician-service-man-wearing-blue-uniform-checking-cleaning-air-conditioner.jpg?s=612x612&w=0&k=20&c=Tqu5jMzD1TKFO1Fvow6d0JMDsEGU8T3kToP706bQFQI=", description: "Services to maintain and enhance your home." },
@@ -21,13 +21,13 @@ const ServiceCategories = () => {
      
     <h2 className="text-xl font-bold text-dark_blue mb-8 ">Service Categories</h2>
     
-    {mockCategories.slice(0, 3).map((category,index) => (
+    {Categories.slice(0, 3).map((category,index) => (
       <div key={category.index} className="relative w-full flex flex-col gap-10">
-      <h1 className='mt-3 text-lg text-violet'>{category.name}</h1>
+      <h1 className='mt-3 text-lg text-violet'>{category.title}</h1>
       <div className="bg-light_gray rounded-t-lg w-full h-40">
           <img
               src={category.image}
-              alt={category.name}
+              alt={category.title}
               className="object-cover w-full h-full rounded-t-lg"
           />
       </div>
@@ -35,9 +35,11 @@ const ServiceCategories = () => {
     ))}
 
     <div className="flex justify-center mt-4">
+      <Link to='/categories'>
       <button onClick={handleCategory} className="w-full bg-blue_gray text-violet font-bold px-6 py-2 rounded-full hover:bg-purple-200">
         View More
       </button>
+      </Link>
     </div>
   </div>
   )

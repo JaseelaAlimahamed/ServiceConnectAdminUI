@@ -1,17 +1,25 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { IoMdArrowDropdown } from 'react-icons/io';
 
-const DropButtons = ({ categories, onCategorySelect }) => {
+
+const DropButtons = ({ categories=[], onCategorySelect }) => {
+
+   
+
     // State for managing dropdown visibility
     const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
     const [mainDropdownOpen, setMainDropdownOpen] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState(null); // Track the selected category
+
+
+   
 
     // Handle select category
     const handleCategorySelect = (category) => {
         setSelectedCategory(category); // Set the selected category
         onCategorySelect(category); // Pass the selected category to the parent
         setMainDropdownOpen(false); // Close the dropdown after selection
+        
     };
 
     // Toggle functions for dropdowns
@@ -73,7 +81,7 @@ const DropButtons = ({ categories, onCategorySelect }) => {
                                     className="px-4 py-2 hover:bg-light_gray cursor-pointer"
                                     onClick={() => handleCategorySelect(category)}
                                 >
-                                    {category.name}
+                                    {category.title}
                                 </li>
                             ))}
                         </ul>

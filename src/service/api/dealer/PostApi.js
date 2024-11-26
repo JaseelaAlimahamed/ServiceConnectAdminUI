@@ -21,9 +21,16 @@ import { apiInstance } from "../ApiInstence";
     }
   };
 
+<<<<<<< HEAD
   export const paymentData = async (data) => {
     try {
       const response = await apiInstance.post("/payment-request/create/", data);
+=======
+
+  export const createPaymentRequest = async (data) => {
+    try {
+      const response = await apiInstance.post("payment-request/create//", data);
+>>>>>>> develop
       console.log(response);
       return response;
     } catch (error) {
@@ -31,4 +38,7 @@ import { apiInstance } from "../ApiInstence";
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop

@@ -1,27 +1,27 @@
 import React from 'react'
 import Card from '../../reUsableComponents/Card';
-const AdminCard = () => {
+const AdminCard = ({Total_Franchisees,Total_Dealers,Total_Service_Providers,total_customers}) => {
     const cardConfigs = [
         {
-          title: "962",
+          title: Total_Franchisees,
           subtitle: "Franchisee",
           iconBg: "bg-violet", 
           icon: <img src="/Teacher.svg" alt="" /> , 
         },
         {
-          title: "962",
+          title: Total_Dealers,
           subtitle: "Dealers",
           iconBg:"bg-orange" , 
           icon: <img src="/Student.svg" alt="" />, 
         },
         {
-          title: "962",
+          title: Total_Service_Providers,
           subtitle: "Service Providers",
           iconBg: "bg-yellow", 
           icon: <img src="/Calendar.svg" alt="" />, 
         },
         {
-          title: "962",
+          title: total_customers,
           subtitle: "Users",
           iconBg: "bg-dark_blue", 
           icon: <img src="/food.svg" alt="" />, 
