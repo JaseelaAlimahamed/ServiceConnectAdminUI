@@ -15,8 +15,14 @@ import PaymentForm from "../pages/franchisePages/PaymentForm";
 import AddCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
-import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage"
+import AddServiceProvider from "../pages/franchisePages/AddServiceProvider";
+import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage";
+import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
+import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
+import ServiceType from "../pages/adminPages/ServiceType";
 
+import IncomeManagementPage from "../pages/adminPages/IncomeManagementPage";
+import AddDealer from "../pages/commonPages/AddDealer";
 
 const protect = (element, allowedRoles) => (
   <ProtectedRoute allowedRoles={allowedRoles}>{element}</ProtectedRoute>
@@ -85,6 +91,7 @@ const SeparateRoutes = [
     path: "dealers",
     element: protect(<DealersPage />, ["franchise"]), // Dealers page for franchise role, restricted to franchise
   },
+  
   {
     path: "payment",
     element: protect(<PaymentForm />, ["franchise"]),
@@ -93,6 +100,11 @@ const SeparateRoutes = [
   {
     path: "dealers/dealer-management/:id",
     element: protect(<FranchiseProfileDetails />, ["franchise"]), // Franchise profile details view for a specific dealer, restricted to franchise
+  },
+
+  {
+    path: "income-management",
+    element: protect(<IncomeManagementPage />, ["admin"]), // Franchise profile details view for a specific dealer, restricted to franchise
   },
   
   // Category management section
@@ -131,7 +143,36 @@ const SeparateRoutes = [
     path: 'service-providers/verify/:id',
     // Page for editing an existing sub-category, restricted to admin
     element: protect(< ServiceProviderVerification/>, ["dealer"]), 
-  }
+  },
+    // add service provider 
+  {
+    path: 'service-providers/add-new',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< AddServiceProvider/>, ["franchise","admin"]), 
+  },
+  {
+    path: 'booking-details',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< BookingDetailsPage/>, ["admin"]), 
+  },
+  {
+    path: 'Payment-RequestForm',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< PaymentRequestPage/>, ["dealer"]), 
+  },
+  {
+    path: 'service-management',
+    // Page for create  an  service provider restricted to franchise
+    element: protect(< ServiceType/>, ["admin"]), 
+  },
+  {
+    path: "Dealers/add-new",
+    // Page for crete  an  service provider restricted to franchise
+    element: protect(<AddDealer />, ["franchise", "admin"]),
+  },
+  
+  
+
  ];
 
 export default SeparateRoutes;

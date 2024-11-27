@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 // import profilePic from "../../../assets/dealerprofilepic";
 import DealerEditButton from "./DealerEditButton";
-import { franchisedetail } from "../../../service/api/dealer/GetApi";
+import { getdealerProfile } from "../../../service/api/franchise/PostApi";
 
 function DealerDetails() {
   const [franchisee, setFranchisee] = useState([]);
@@ -10,26 +11,31 @@ function DealerDetails() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+
+  const { id } = useParams();
  
 
-  const navigateToEditpage = () => {
-    navigate("/franchise/dealer/editdealer");
+ let [dealerdetails,setdealerdetails]=useState({})
+
+  
+
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await getdealerProfile(id);
+     
+     
+      setdealerdetails(response.data)
+    } catch (error) {
+      console.error("Error occurred while fetching dealer profile:", error);
+    }
   };
 
-  const dealerdetails = {
-    id: 3543324,
-    name: "Anoai",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    address: "Bazzar Street",
-    contact: 9878767656,
-    email: "abc@gmail.com",
-    whatsapp: 8977675656,
-    profilePic:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHDRlp-KGr_M94k_oor4Odjn2UzbAS7n1YoA&s",
-  };
+  fetchData(); 
+}, [id]); 
+
+
+
 
   //fetchFranchisee
   useEffect(() => {
@@ -60,7 +66,7 @@ function DealerDetails() {
             <div className="flex-shrink-0 w-full lg:w-1/4 mb-6 lg:mb-0 mx-auto lg:mx-0 text-center">
               {dealerdetails?.profilePic ? (
                 <img
-                  src={dealerdetails.profilePic}
+                  src={dealerdetails.profile_image || "NO PHOTO AVAILABLE"}
                   className="w-60 object-cover lg:w-80 h-40 lg:h-60 bg-blue_gray rounded-2xl mx-auto"
                 />
               ) : (
@@ -71,13 +77,13 @@ function DealerDetails() {
             {/* Dealer Information */}
             <div className="w-full lg:w-1/2">
               <h3 className="text-dark_blue font-poppins font-bold text-center lg:text-left">
-                {dealerdetails.name}
+                {dealerdetails.user?.full_name || "NA"}
               </h3>
               <p className="text-light_gray font-poppins text-sm text-center lg:text-left">
-                #id:{dealerdetails.id}
+                #id:{dealerdetails.custom_id || "NA"}
               </p>
               <p className="mt-4 lg:mt-8 text-light_gray font-poppins text-justify">
-                {dealerdetails.description}
+                {dealerdetails.description || "No description available."}
               </p>
             </div>
 
@@ -105,7 +111,7 @@ function DealerDetails() {
                 About
               </h3>
               <p className="text-light_gray font-poppins mt-2 text-justify">
-                {dealerdetails.about}
+                {dealerdetails.about || "About available."}
               </p>
             </div>
 
@@ -115,18 +121,12 @@ function DealerDetails() {
                 Contact
               </h3>
 
-              {franchisee ? (
-                <ul className="space-y-5 text-light_gray font-poppins mt-2">
-                  <li>Address: {dealerdetails.address}</li>
-                  <li>Contact: {franchisee.phone_number}</li>
-                  <li>Email: {franchisee.email}</li>
-                  <li>Whatsapp: {franchisee.phone_number}</li>
-                </ul>
-              ) : (
-                <p className="text-light_gray font-poppins">
-                  No contact data available
-                </p>
-              )}
+              <ul className="space-y-5 text-light_gray font-poppins mt-2">
+                <li>Address: {dealerdetails.user?.address|| "NA"}</li>
+                <li>Contact: {dealerdetails.user?.phone_number || "NA"}</li>
+                <li>Email: {dealerdetails.user?.email || "NA"}</li>
+                <li>Whatsapp: {dealerdetails.user?.watsapp || "NA"}</li>
+              </ul>
             </div>
           </div>
         </div>

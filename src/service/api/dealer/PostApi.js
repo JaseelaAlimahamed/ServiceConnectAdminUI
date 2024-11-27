@@ -21,9 +21,11 @@ import { apiInstance } from "../ApiInstence";
     }
   };
 
+
   export const paymentData = async (data) => {
     try {
-      const response = await apiInstance.post("/payment-request/create/", data);
+      const response = await apiInstance.post("payment-request/create/", data);
+
       console.log(response);
       return response;
     } catch (error) {

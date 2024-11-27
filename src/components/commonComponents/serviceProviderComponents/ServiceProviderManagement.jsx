@@ -59,7 +59,6 @@ const ServiceProviderManagement = () => {
       try {
         const response = await serviceprovider();
         setTableDataConfig(response.data.results);
-        console.log("Fetched data:", response.data.results);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError(error.response ? error.response.data : error.message);
@@ -237,6 +236,10 @@ const ServiceProviderManagement = () => {
           <tbody className="divide-y divide-primary">
             {currentTableDataConfig.map((data, index) => (
               <tr
+                onClick={() => {
+                  handleView(data.custom_id);
+                }}
+                key={data.custom_id}
                 className={
                   index % 2 === 0
                     ? "bg-white  cursor-pointer"
@@ -338,7 +341,7 @@ const ServiceProviderManagement = () => {
                         <li
                           className="p-2 hover:bg-text-violet cursor-pointer"
                           onClick={() => {
-                            handleView(data.id);
+                            handleView(data.custom_id);
                             toggleDropdown(null);
                           }}
                         >

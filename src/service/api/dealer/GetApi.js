@@ -30,6 +30,7 @@ export const recentactivities = async (data) => {
 };
 
 
+
 export const franchisedetail = async (data) => {
   try {
     const response = await apiInstance.get("franchise-details/", data);
@@ -78,6 +79,23 @@ export const franchisedetails = async (data) => {
     return response;
   } catch (error) {
     console.error(error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+
+
+/**
+ * Fetch user profile details
+ * @returns {Promise<object>} - Returns user profile data
+ */
+export const getUserProfile = async () => {
+  try {
+    console.log("Fetching user profile...");
+    const response = await apiInstance.get("dealer/dashboard/");
+    console.log("API Response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching user profile:", error.response || error.message);
     throw error.response ? error.response.data : new Error(error.message);
   }
 };
