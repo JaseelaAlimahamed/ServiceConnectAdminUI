@@ -31,7 +31,6 @@ const CommonRoutes = [
   { path: "accounts", element: protectedRoute(<AccountPage />) },
   { path: "notifications", element: protectedRoute(<NotificationPage />) },
   { path: "settings", element: protectedRoute(<SettingsPage />) },
-  { path: "service-management", element: protectedRoute(<ServiceType />) },
 
   
   // Uncomment if needed

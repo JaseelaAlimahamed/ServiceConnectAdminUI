@@ -4,6 +4,7 @@ import { IoIosMore } from 'react-icons/io';
 import { LuTrendingUp } from "react-icons/lu";
 
 const AdminTables = ({ tableDataConfig, tableConfig }) => {
+    console.log(tableDataConfig)
     const [currentPage, setCurrentPage] = useState(1);
     const [usersPerPage] = useState(5);
     const [openActionId, setOpenActionId] = useState(null);

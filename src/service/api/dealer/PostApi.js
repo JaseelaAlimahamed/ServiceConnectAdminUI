@@ -31,4 +31,3 @@ import { apiInstance } from "../ApiInstence";
       throw error.response ? error.response.data : new Error(error.message);
     }
   };
-

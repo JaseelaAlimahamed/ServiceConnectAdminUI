@@ -1,32 +1,131 @@
-import  { useState } from 'react';
-
+import  { useEffect, useState } from 'react';
+import { getFranchiseeTypes } from '../../../service/api/admin/GetApi';
+import { deleteFranchiseeTypes } from '../../../service/api/admin/DeleteApi';
+import { updateFranchiseeTypes } from '../../../service/api/admin/PatchApi';
+import { createFranchiseeType } from '../../../service/api/admin/PostApi';
+import ReUsableModal from '../../reUsableComponents/ReusableModal';
 const FranchiseeCategory = () => {
-  const [franchiseeTypes, setFranchiseeTypes] = useState(['Grama panchayat', 'Municipality', 'Cooperation']);
-  const [formData, setFormData] = useState({
-    details: '',
-    rate: '',
-    currency: '',
-  });
+  const [franchiseeTypes, setFranchiseeTypes] = useState([]);
+  const [modalOpen,setModalOpen] = useState(false)
+  const [selectedFranchisee, setSelectedFranchisee] = useState({name:"",details:"",amount:"",currency:""});
+  const [formdata,setFormdata] = useState({name:"",details:"",amount:"",currency:""})
+  useEffect(() => {
+    const fetchFranchiseeTypes = async () => {
+      try {
+        const response = await getFranchiseeTypes();
+     
+        setSelectedFranchisee(response[0]) // select first element of array
+        setFranchiseeTypes(response)
+       
+      } catch (err) {
+        console.log(err)
+      }
+    };
 
-  const handleDelete = (type) => {
-    setFranchiseeTypes(franchiseeTypes.filter((t) => t !== type));
+    fetchFranchiseeTypes();
+  }, []);
+  
+
+
+  const handleDelete = async(type) => {
+
+    
+    const response =  await deleteFranchiseeTypes(selectedFranchisee.id)
+
+    if (response.status === 204) {
+    
+      setFranchiseeTypes((prev) =>
+        prev.filter((item) =>
+          item.id !== selectedFranchisee.id 
+        )
+      );
+
+      setModalOpen(false)
+    
+    }
   };
 
   const handleSave = () => {
-    console.log('Saved:', formData);
+    
+   const exist = franchiseeTypes.find(item => item.id === selectedFranchisee.id)
+   if(exist)
+   {
+
+    const update = async() =>
+      {
+        
+       const response = await updateFranchiseeTypes(selectedFranchisee)
+  
+       if (response.status === 200) {
+        // Update the state with the modified item
+        setFranchiseeTypes((prev) =>
+          prev.map((item) =>
+            item.id === selectedFranchisee.id ? response.data : item
+          )
+        );
+        
+      }
+      }
+     
+      return update()
+   }
+   else
+   {
+    const add = async() =>
+    {
+      const response = await createFranchiseeType(selectedFranchisee)
+       
+      if (response.status === 201) {
+        // add new item
+       setFranchiseeTypes((prev) => [...prev, response.data]);
+  
+      }
+    
+    }
+    return add()
+   }
+   
+
   };
 
   const handleSaveDraft = () => {
-    console.log('Draft saved:', formData);
+    
   };
 
-  const handleAddItem = () => {
+ 
+   const handleClick = (id) =>
+   {
+    
+    const clickedItem = franchiseeTypes.find(item => item.id === id);
+    
+   setSelectedFranchisee(clickedItem)
+    
+   
+   }
 
-    console.log('Add item button clicked');
+     const handleAddItem = () => {
+  
+  setSelectedFranchisee({ name: 'enter franchisee type', details: 'enter details', amount: 'enter amount', currency: 'enter currency' , additem:true })
+
   };
 
+
+ 
+ const handleChange = (key, value) =>
+  {
+
+  
+
+   setSelectedFranchisee((prev) => ({
+
+    ...prev,
+    [key]: value,
+   }))
+   
+  }
   return (
     <div className="flex flex-col md:flex-row bg-gray min-h-screnn h-full  p-4 ">
+      <ReUsableModal isOpen={modalOpen} heading={"Are you want to delete"} confirm={true} confirm_label="YES" cancel={true} cancel_label='NO'  onConfirm={handleDelete} onClose={() =>{setModalOpen(false)}} ></ReUsableModal>
       {/* Type Section */}
       <div className="w-full md:w-1/4 h-auto bg-primary rounded-lg shadow-lg  mr-0 md:mr-4  md:mb-0">
         <div className="flex justify-between items-center mb-10">
@@ -50,19 +149,17 @@ const FranchiseeCategory = () => {
         {/* type */}
         <div className="flex flex-col items-center">
         <ul className="flex flex-col items-center w-full  space-y-5">
-          {franchiseeTypes.map((type, index) => (
+          {franchiseeTypes.map((each, index) => (
             <li
-              key={index}
-              className="bg-gray text-secondary text-center p-2  mb- rounded-lg cursor-pointer hover:bg-blue_gray w-3/4  flex justify-center "
-            >
-              {type}
-              <button
-                onClick={() => handleDelete(type)}
-                className="text-red ml-2"
-              >
-
-              </button>
-            </li>
+              key={each.id}
+              className={selectedFranchisee.id === each.id  ? 
+                "bg-blue_gray text-secondary text-center p-2 mb- rounded-lg cursor-pointer w-3/4 flex justify-center" :
+                "bg-gray text-secondary text-center p-2 mb- rounded-lg cursor-pointer hover:bg-blue_gray w-3/4 flex justify-center"
+              }
+            onClick={  () =>{ handleClick(each.id)}} >
+              {each.name}
+            
+            </li> 
           ))}
         </ul> 
 
@@ -80,27 +177,64 @@ const FranchiseeCategory = () => {
 </div> 
 
 {/* Form Section */}
- <div className="flex-1 bg-primary rounded-lg shadow-lg p-8 relative max-w-full h-[300px] overflow-auto mt-2">
+<div className="flex-1 bg-primary rounded-lg shadow-lg p-8 relative max-w-full h-[300px] overflow-auto mt-2">
   <h2 className="text-xl font-semibold mb-1 text-secondary">Franchisee Type</h2>
   <div className="space-y-4">
-    {['Grama panchayat', 'Details', 'Rate', 'Currency'].map((label, index) => (
-      <div key={index} className="flex justify-center text-secondary">
+    
+      <div  className="flex justify-center text-secondary">
         <input
           type="text"
-          placeholder={label}
+          placeholder={selectedFranchisee.name}
+            value={selectedFranchisee.name}
+          
           className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+          
+          onChange={(e) => handleChange("name", e.target.value)}     />
+
+      </div>
+      <div  className="flex justify-center text-secondary">
+        <input
+          type="text"
+          placeholder={selectedFranchisee.details}
+          className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+          onChange={(e) => handleChange("details", e.target.value)}
+          value={selectedFranchisee.details}
+        />
+
+      </div>
+      <div  className="flex justify-center text-secondary">
+        <input
+          type="text"
+          placeholder={selectedFranchisee.amount}
+          onChange={(e) => handleChange("amount", e.target.value)}
+          className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+          value={selectedFranchisee.amount}
           
         />
 
       </div>
-    ))}
+      <div  className="flex justify-center text-secondary">
+        <input
+          type="text"
+          placeholder={selectedFranchisee.currency} 
+          
+        
+          className="w-full md:w-64 h-9 bg-gray  text-center justify-center placeholder-secondary"
+          onChange={(e) => handleChange("currency", e.target.value)}
+          value={selectedFranchisee.currency}
+        />
+   
+
+      </div>
+    
+   
   </div>
 </div> 
 
       {/* Buttons */}
       <div className="flex   md:flex-row   flex-col  md:absolute  md:mt-0 justify-end bottom-0 right-0 mr-2 p-4 space-y-2 md:space-y-0 md:jusfity-end ">
         <button
-          onClick={handleDelete}
+          onClick={() =>{setModalOpen(true)}}
           className="w-full md:w-24 h-10 border bg-red text-primary px-3 py-1 rounded-full flex justify-center items-center"
         >
           Delete

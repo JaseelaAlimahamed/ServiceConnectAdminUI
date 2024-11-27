@@ -12,10 +12,10 @@ import CategoryPage from "../pages/adminPages/CategorySubCategoryPages/CategoryP
 import SubCategoryPage from "../pages/adminPages/CategorySubCategoryPages/SubCategoryPage";
 import UserDetails from "../pages/adminPages/managementPages/UserDetails";
 import PaymentForm from "../pages/franchisePages/PaymentForm";
-import AddEditCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
+import AddCategoryPage from "../pages/adminPages/categorySubCategoryPages/AddCategoryPage";
 import AddEditSubCategory from "../components/adminComponents/CategorySubCategory/AddEditSubCategory/NewSubCategory";
 import ServiceProviderVerification from "../pages/dealerPages/ServiceProviderVerification";
-import PaymentRequestForm from "../components/dealerComponents/paymentRequestForm/PaymentRequestForm";
+import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditCategoryPage"
 
 
 const protect = (element, allowedRoles) => (
@@ -102,11 +102,11 @@ const SeparateRoutes = [
   },
   {
     path: '/Add-Category',
-    element: protect(<AddEditCategoryPage />, ["admin"]), // Page for adding a new category, restricted to admin
+    element: protect(<AddCategoryPage />, ["admin"]), // Page for adding a new category, restricted to admin
   },
   {
     path: '/edit-Category/:id',
-    element: protect(<AddEditCategoryPage />, ["admin"]), // Page for editing an existing category, restricted to admin
+    element: protect(<EditCategoryPage />, ["admin"]), // Page for editing an existing category, restricted to admin
   },
 
   //Sub  Category management section
@@ -131,15 +131,7 @@ const SeparateRoutes = [
     path: 'service-providers/verify/:id',
     // Page for editing an existing sub-category, restricted to admin
     element: protect(< ServiceProviderVerification/>, ["dealer"]), 
-  },
-
-
-  {
-    path: "PaymentRequestform",
-    element: protect(<PaymentRequestForm />, ["dealer"]), 
-  },
-
-  
+  }
  ];
 
 export default SeparateRoutes;

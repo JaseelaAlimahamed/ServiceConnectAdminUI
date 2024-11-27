@@ -3,7 +3,7 @@ import React from 'react';
 const DeleteModal = ({ isOpen, onClose, onConfirm }) => {
 
     if (!isOpen) return null;
-
+console.log(onConfirm+"deleted")
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-50 bg-opacity-10">
             <div className="bg-blue_bg rounded-lg shadow-lg p-6 w-96">

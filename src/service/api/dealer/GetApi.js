@@ -42,7 +42,28 @@ export const franchisedetail = async (data) => {
 };
 
 
-
+//service provider
+export const serviceprovider = async (data) => {
+  try {
+    const response = await apiInstance.get("service-providers/", data);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+//serviceprovidercount
+export const serviceprovidercount = async (data) => {
+  try {
+    const response = await apiInstance.get("service-provider-counts/", data);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error(error);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
 
 /**
  * Fetches dealer dashboard data.
