@@ -129,7 +129,7 @@ export const admin = [
   },
   {
     name: "Service History",
-    to: "transaction-history",
+    to: "service-history",
     icon: <MdOutlineMiscellaneousServices  className="text-2xl text-gray"/>
   },
   {

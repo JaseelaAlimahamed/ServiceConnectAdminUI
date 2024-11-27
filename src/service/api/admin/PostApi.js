@@ -9,11 +9,6 @@ import { apiInstance } from "../ApiInstence";
  *
  */
 export const signInAdmin = async (data) => {
-    
-
-
-
-
   try {
     const response = await apiInstance.post("login/", data);
     console.log(response);
@@ -97,9 +92,7 @@ export const createFranchiseeType = async (frachiseeTypeData) => {
   }
 };
 
-
 export const SubcategoryPost = async (data) => {
-  
   try {
     // Log FormData before sending
     console.log("Data sent to API:");
@@ -114,36 +107,37 @@ export const SubcategoryPost = async (data) => {
     console.log("Response:", response.data);
     return response;
   } catch (error) {
-    console.error("Error add sub-category:", error.response?.data || error.message);
+    console.error(
+      "Error add sub-category:",
+      error.response?.data || error.message
+    );
     throw error.response ? error.response.data : new Error(error.message);
   }
 };
-
-
 // Fetch User details
 export const getUserDetails = async (user_id) => {
-  try{
-      const response = await apiInstance.post('/user-details/', {
-        user_id: "4"
-      });
-      //console.log(response.data,"user details")
-      return response.data;
+  try {
+    const response = await apiInstance.post("/user-details/", {
+      user_id: "4",
+    });
+    //console.log(response.data,"user details")
+    return response.data;
   } catch (error) {
-      console.error(error);
-      throw error.response ? error.response.data : new Error(error.message);
+    console.error(error);
+    throw error.response ? error.response.data : new Error(error.message);
   }
 };
 
 //user payment history service
 export const getUserPaymentHistory = async (users_id) => {
-  try{
-      const response = await apiInstance.post('/user-payment-history-service/', {
-        users_id: "1"
-      });
-      //console.log(response.data.results,"payment history")
-      return response.data.results;
+  try {
+    const response = await apiInstance.post("/user-payment-history-service/", {
+      users_id: "1",
+    });
+    //console.log(response.data.results,"payment history")
+    return response.data.results;
   } catch (error) {
-      console.error(error);
-      throw error.response ? error.response.data : new Error(error.message);
+    console.error(error);
+    throw error.response ? error.response.data : new Error(error.message);
   }
 };

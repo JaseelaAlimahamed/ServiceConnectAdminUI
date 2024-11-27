@@ -1,17 +1,4 @@
 import { apiInstance } from "../ApiInstence";
-
-
-export const editProfile = async (data) => {
-    try {
-      const response = await apiInstance.patch("profile/", data);
-      console.log(response);
-      return response;
-    } catch (error) {
-      console.error(error);
-      throw error.response ? error.response.data : new Error(error.message);
-    }
-  };
-
 //SubCategory Edit Api
 export const SubcategoryEdit = async (id, data) => {
   try {
@@ -29,6 +16,16 @@ export const SubcategoryEdit = async (id, data) => {
     return response;
   } catch (error) {
     console.error("Error editing sub-category:", error.response?.data || error.message);
+    throw error.response ? error.response.data : new Error(error.message);
+  }
+};
+export const editProfile = async (data) => {
+  try {
+    const response = await apiInstance.patch("profile/", data);
+    console.log(response);
+    return response;
+  } catch (error) {
+    console.error(error);
     throw error.response ? error.response.data : new Error(error.message);
   }
 };

@@ -20,6 +20,8 @@ import EditCategoryPage from "../pages/adminPages/categorySubCategoryPages/EditC
 import BookingDetailsPage from "../pages/adminPages/BookingDetailsPage";
 import PaymentRequestPage from "../pages/dealerPages/PaymentRequestPage";
 import ServiceType from "../pages/adminPages/ServiceType";
+import TransactionHistory from "../pages/adminPages/TransactionHistory";
+import ServiceHistory from "../pages/adminPages/ServiceHistory";
 
 import IncomeManagementPage from "../pages/adminPages/IncomeManagementPage";
 import AddDealer from "../pages/commonPages/AddDealer";
@@ -165,13 +167,22 @@ const SeparateRoutes = [
     // Page for create  an  service provider restricted to franchise
     element: protect(< ServiceType/>, ["admin"]), 
   },
+
   {
     path: "Dealers/add-new",
     // Page for crete  an  service provider restricted to franchise
     element: protect(<AddDealer/>, ["franchise", "admin"]),
   },
   
+  {
+    path: 'transaction-history',
+    element: protect(< TransactionHistory/>, ["admin"]), 
+  },
   
+  {
+    path: 'service-history',
+    element: protect(< ServiceHistory/>, ["admin"]), 
+  }
 
  ];
 

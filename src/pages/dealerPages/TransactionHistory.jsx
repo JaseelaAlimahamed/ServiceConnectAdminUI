@@ -44,6 +44,7 @@ function TransactionHistory() {
       status: "Completed",
     },
     {
+      
       transactionId: "#23253",
       date: "Aug 14 2024,12:45 PM",
       description: "Description",
