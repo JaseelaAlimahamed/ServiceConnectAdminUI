@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import ReUsableModal from "../../reUsableComponents/ReUsableModal";
+import ReUsableModal from "../../reUsableComponents/ReusableModal"
 import { paymentData } from "../../../service/api/dealer/PostApi";
 
 const fields = [
