@@ -1,57 +1,68 @@
 import React from "react";
-import TransactionCard from "../../components/adminComponents/HistoryComponent/transactionHistoryComponent/transactionCard";
-import TranasactionTable from "../../components/adminComponents/HistoryComponent/transactionHistoryComponent/transactionTable";
+import TransactionCard from "../../components/adminComponents/HistoryComponent/ReusableHistoryCard";
+import TranasactionTable from "../../components/adminComponents/HistoryComponent/ReusableHistoryTable";
+import cardIcon1 from "../../assets/AdminAssets/cardIcon1.png";
+import cardIcon2 from "../../assets/AdminAssets/cardIcon2.png";
 
 function TransactionHistory() {
+  const transactionCardData = [
+    {
+      title: "Total Expense",
+      icon: (
+        <img
+          src={cardIcon1}
+          alt="Franchisee Icon"
+          className="w-[3rem] aspect-square"
+        />
+      ),
+      count: 120,
+      change: 10,
+      isPositive: true,
+    },
+    {
+      title: "Total Income",
+      icon: (
+        <img
+          src={cardIcon2}
+          alt="Active Franchisee Icon"
+          className="w-[3rem] aspect-square"
+        />
+      ),
+      count: 85,
+      change: -0.5,
+      isPositive: false,
+    },
+    {
+      title: "Total Expenditure",
+      icon: (
+        <img
+          src={cardIcon2}
+          alt="Inactive Franchisee Icon"
+          className="w-[3rem] aspect-square"
+        />
+      ),
+      count: 35,
+      change: -3,
+      isPositive: false,
+    },
+  ];
+
   const tableDataConfig = [
     {
-      transactionId: "#23242353",
-      date: "July 14 2024,12:45 PM",
-      description: "Description",
-
-      amount: "32,890",
-      status: "Completed",
+      TransactionId: "1",
+      Date: "July 14 2024, 12:45 PM", // Ensure this key is lowercase in data
+      Description: "Description",
+      Amount: "32,890",
+      Status: "Completed",
     },
     {
-      transactionId: "#335353",
-      date: "July 14 2024,12:45 PM",
-      description: "Description",
-
-      amount: "32,890",
-      status: "Canceled",
+      TransactionId: "2",
+      Date: "July 14 2024, 12:45 PM", // Ensure this key is lowercase in data
+      Description: "Description",
+      Amount: "32,890",
+      Status: "Pending",
     },
-    {
-      transactionId: "#335353",
-      date: "Sep 13 2024,12:45 PM",
-      description: "Description",
-
-      amount: "32,890",
-      status: "Pending",
-    },
-    {
-      transactionId: "#335353",
-      date: "Aug 14 2024,12:45 PM",
-      description: "Description",
-
-      amount: "890",
-      status: "Pending",
-    },
-    {
-      transactionId: "#133533",
-      date: "Aug 14 2024,12:45 PM",
-      description: "Description",
-
-      amount: "1200",
-      status: "Completed",
-    },
-    {
-      transactionId: "#23253",
-      date: "Aug 14 2024,12:45 PM",
-      description: "Description",
-
-      amount: "1200",
-      status: "Canceled",
-    },
+    // Add more rows if needed...
   ];
 
   const tableColConfig = [
@@ -61,13 +72,11 @@ function TransactionHistory() {
     "Amount",
     "Status",
   ];
+
   return (
     <div className="w-full overflow-x-auto">
-      <TransactionCard />
-      <TranasactionTable
-        tableColConfig={tableColConfig}
-        tableDataConfig={tableDataConfig}
-      ></TranasactionTable>
+      <TransactionCard data={transactionCardData} />
+      <TranasactionTable columns={tableColConfig} data={tableDataConfig} />
     </div>
   );
 }

@@ -1,85 +1,54 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const ServiceTable = () => {
+const HistoryTable = ({
+  data,
+  columns,
+  rowsPerPage = 5,
+  onSearch,
+  sortConfig = { key: "Date", descending: true },
+}) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [jobsPerPage] = useState(5); // Number of jobs to display per page
-  const [sortNewest, setSortNewest] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-
-  const tableDataConfig = [
-    {
-      JOB_ID: "1",
-      Date: "July 14 2024,12:45 PM",
-      Franchisee: "1",
-      Agent: "abc",
-      Service_Provider_ID: "1",
-      Customer_ID: "1",
-      Customer_Type: "aska",
-      Job_Type: "jkhdkj",
-      Status: "complete",
-      Action: "...",
-    },
-    {
-      JOB_ID: "2",
-      Date: "Aug 14 2024,10:30 AM",
-      Franchisee: "2",
-      Agent: "def",
-      Service_Provider_ID: "2",
-      Customer_ID: "2",
-      Customer_Type: "xyz",
-      Job_Type: "cleaning",
-      Status: "pending",
-      Action: "...",
-    },
-  ];
-
-  const tableColConfig = [
-    "JOB ID",
-    "Date",
-    "Franchisee",
-    "Agent",
-    "Service Provider ID",
-    "Customer ID",
-    "Customer Type",
-    "Job Type",
-    "Status",
-    "Action",
-  ];
-
-  // Sort data by date
-  const sortedJobs = [...tableDataConfig].sort((a, b) =>
-    sortNewest
-      ? new Date(b.Date) - new Date(a.Date)
-      : new Date(a.Date) - new Date(b.Date)
-  );
-
-  // Filter data by search term
-  const filteredJobs = sortedJobs.filter((job) =>
-    Object.values(job).some((value) =>
-      value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-    )
-  );
-
-  // Pagination logic
-  const indexOfLastJob = currentPage * jobsPerPage;
-  const indexOfFirstJob = indexOfLastJob - jobsPerPage;
-  const currentJobs = filteredJobs.slice(indexOfFirstJob, indexOfLastJob);
-
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(filteredJobs.length / jobsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  const toggleSortOrder = () => setSortNewest(!sortNewest);
+  const [sortKey, setSortKey] = useState(sortConfig.key);
+  const [isDescending, setIsDescending] = useState(sortConfig.descending);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
+    if (onSearch) onSearch(e.target.value);
   };
 
+  const toggleSortOrder = () => setIsDescending(!isDescending);
+
+  const sortedData = [...data].sort((a, b) => {
+    if (sortKey) {
+      const aValue = new Date(a[sortKey]) || a[sortKey];
+      const bValue = new Date(b[sortKey]) || b[sortKey];
+      if (isDescending) return aValue > bValue ? -1 : 1;
+      return aValue < bValue ? -1 : 1;
+    }
+    return 0;
+  });
+
+  const filteredData = sortedData.filter((row) =>
+    Object.values(row).some(
+      (value) =>
+        value &&
+        value.toString().toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
+
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(filteredData.length / rowsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
   return (
-    <div className="flex flex-col font-poppins text-secondary">
+    <div className="flex flex-col font-poppins text-secondary px-5">
       {/* Search and Sort */}
       <div className="flex flex-wrap justify-between">
         <span className="relative rounded-full overflow-hidden h-12 mb-2">
@@ -101,11 +70,9 @@ const ServiceTable = () => {
           className="flex items-center justify-center rounded-full px-14 h-12 border-2 border-solid border-violet gap-2"
           onClick={toggleSortOrder}
         >
-          <div className="relative">
-            <span className="text-violet text-sm font-medium">
-              {sortNewest ? "Newest" : "Oldest"}
-            </span>
-          </div>
+          <span className="text-violet text-sm font-medium">
+            {isDescending ? "Newest" : "Oldest"}
+          </span>
           <img src="/dropdown-icon.svg" alt="dropdown" />
         </button>
       </div>
@@ -115,7 +82,7 @@ const ServiceTable = () => {
         <table className="w-full text-center border-collapse">
           <thead>
             <tr>
-              {tableColConfig.map((col, index) => (
+              {columns.map((col, index) => (
                 <th
                   key={index}
                   className="py-5 px-4 text-dark_blue font-bold text-sm"
@@ -127,31 +94,33 @@ const ServiceTable = () => {
           </thead>
 
           <tbody>
-            {currentJobs.map((job, index) => (
+            {currentRows.map((row, index) => (
               <tr key={index} className="border-t border-gray">
-                {tableColConfig.map((col, colIndex) => (
+                {columns.map((col, colIndex) => (
                   <td
                     key={colIndex}
                     className={`py-4 text-center ${
-                      col === "JOB ID"
-                        ? "font-bold text-gray-700" 
-                        : "font-normal text-light_gray" 
+                      col === "JOB_ID" || col === "TransactionId"
+                        ? "font-bold text-gray-700"
+                        : "font-normal text-light_gray"
                     }`}
                   >
                     {col === "Status" ? (
                       <span
                         className={`px-4 py-2 rounded-full text-white text-sm ${
-                          job["Status"] === "pending"
-                            ? "bg-red" 
-                            : job["Status"] === "complete"
-                            ? "bg-green-500" 
-                            : "bg-gray-300"
+                          row["Status"] === "Pending"
+                            ? "bg-red"
+                            : row["Status"] === "Completed"
+                            ? "bg-green-500"
+                            : row["Status"] === "Failed"
+                            ? "bg-gray"
+                            : ""
                         }`}
                       >
-                        {job["Status"]}
+                        {row["Status"]}
                       </span>
                     ) : (
-                      job[col.replace(/\s+/g, "_")] || "-" // Render other fields or fallback to "-"
+                      row[col.replace(/\s+/g, "_")] || "-" // Render other fields or fallback to "-"
                     )}
                   </td>
                 ))}
@@ -163,9 +132,9 @@ const ServiceTable = () => {
         {/* Pagination */}
         <div className="flex justify-between px-6 py-4">
           <span className="text-sm">
-            Showing {indexOfFirstJob + 1}-
-            {Math.min(indexOfLastJob, filteredJobs.length)} of{" "}
-            {filteredJobs.length} entries
+            Showing {indexOfFirstRow + 1}-
+            {Math.min(indexOfLastRow, filteredData.length)} of{" "}
+            {filteredData.length} entries
           </span>
           <div className="flex items-center space-x-3">
             <button
@@ -212,4 +181,4 @@ const ServiceTable = () => {
   );
 };
 
-export default ServiceTable;
+export default HistoryTable;
