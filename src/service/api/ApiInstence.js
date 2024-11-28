@@ -91,6 +91,7 @@ function attachResponseInterceptor() {
       }
       // store?.dispatch(clearAccessToken());
       console.log(error);
+      throw error
       
       //  logError(error, store); 
       // return Promise.reject(error);
