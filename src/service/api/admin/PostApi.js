@@ -101,11 +101,7 @@ export const createFranchiseeType = async (frachiseeTypeData) => {
 export const SubcategoryPost = async (data) => {
   
   try {
-    // Log FormData before sending
-    console.log("Data sent to API:");
-    for (const [key, value] of data.entries()) {
-      console.log(`${key}:`, value);
-    }
+   
 
     const response = await apiInstance.post(`subcategories/`, data, {
       headers: { "Content-Type": "multipart/form-data" },
@@ -114,8 +110,8 @@ export const SubcategoryPost = async (data) => {
     console.log("Response:", response.data);
     return response;
   } catch (error) {
-    console.error("Error add sub-category:", error.response?.data || error.message);
-    throw error.response ? error.response.data : new Error(error.message);
+    console.error("Error add sub-category:", error.response?.data.status || error.message);
+    throw error.response ? error.response.data.status : new Error(error.message);
   }
 };
 

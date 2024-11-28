@@ -27,6 +27,8 @@ const AddEditSubCategory = () => {
   const [image, setImage] = useState(null);
   const [error,setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [condition, setCondition] = useState(false);
+  
   // Load existing sub-category data if subCategoryId exists
   useEffect(() => {
     if (subCategoryId) {
@@ -87,8 +89,17 @@ const subCategoryData = async () => {
   return formData;
 };
 
+
+  if (condition) {
+    setTimeout(() => {
+     
+    }, 5000); // 2-second delay
+  }
+
+
   const handleSave = async () => {
-    
+    setTimeout(() => {
+    try{ 
     const formData = new FormData();
 
     // Append fields to FormData
@@ -102,25 +113,29 @@ const subCategoryData = async () => {
     if (image instanceof File) {
       formData.append("image", image);
     }
-      if(status==="Active"){
-        await SubcategoryPost(formData)
-        navigate('/sub-categories'); 
-        }setError(`Not Allowd Status ${status} Please use Active Status`)
-     
    
+        SubcategoryPost(formData)
+        navigate('/sub-categories');
+       
+        
+        
+      }catch(error){
+        setError(error)
+        console.error("Error saving sub-category:", error);
+
+      }
+    }, 2000); // 2-second delay
   };
 
   const handleEdit = async () => {
     try {
       const formData = await subCategoryData();
-      
-      if(status==="Active"){
         await SubcategoryEdit(subCategoryId, formData);
         navigate('/sub-categories'); 
-        }setError(`Not Allowd Status ${status} Please use Active Status`)
-     
     } catch (error) {
-      console.error("Error saving sub-category:", error);
+      setError(error)
+      console.error("Error edit sub-category:", error);
+      
     }
   };
 
