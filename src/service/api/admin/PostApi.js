@@ -110,8 +110,8 @@ export const SubcategoryPost = async (data) => {
     console.log("Response:", response.data);
     return response;
   } catch (error) {
-    console.error("Error add sub-category:", error.response?.data.status || error.message);
-    throw error.response ? error.response.data.status : new Error(error.message);
+    console.error("Error add sub-category:", error.response?.data || error.message);
+    throw error.response ? error.response.data : new Error(error.message);
   }
 };
 

@@ -6,6 +6,8 @@ import editIcon from '../../../../assets/icons/EditSubCategory.svg'
 const AddCategory = () => {
   const navigate = useNavigate();
 
+  const [isSaveDisabled, setIsSaveDisabled] = useState(false);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Active");
@@ -20,6 +22,7 @@ const AddCategory = () => {
   // Function to save or update the category
   const handleSave = async () => {
     try{
+      setIsSaveDisabled(true)
       const formData=new FormData()
 
       // Append fields to FormData
@@ -30,13 +33,19 @@ const AddCategory = () => {
       if (newImage instanceof File) {
         formData.append("image", newImage); 
       }
-      if(status==="Active"){
-      addCategory(formData)
+      const response = await addCategory(formData)
        navigate("/categories")
-      }setError(`Not Allowd Status ${status} Please use Active Status`)
-    } catch (error){
-      console.log(error)
-      setError(`Not Allowd Status ${status}`)
+    } catch (error) {
+        // Loop through the keys of the error data
+        for (const key in error) {
+          if (Object.prototype.hasOwnProperty.call(error, key)) {
+            setError(`${key}: ${error[key]}`);
+            console.error(`${key}:`, error[key]);
+          }
+        }
+    } finally {
+      // setTimeout(() => setIsSaveDisabled(false), 2000);
+      setIsSaveDisabled(false); // Re-enable the button after the operation
     }
   };
 
@@ -99,10 +108,11 @@ const AddCategory = () => {
         </select>
 
         <button
+          disabled={isSaveDisabled}
           onClick={handleSave}
           className="bg-purple text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 hover:bg-purple-800"
         >
-          Save
+          {isSaveDisabled ? "Processing..." : "Save"}
         </button>
         <button
             onClick={()=>navigate("/categories")}

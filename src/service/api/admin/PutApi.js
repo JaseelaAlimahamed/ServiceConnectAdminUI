@@ -23,6 +23,6 @@ export const SubcategoryEdit = async (id, data) => {
     return response;
   } catch (error) {
     console.error("Error editing sub-category:", error.response?.data.status || error.message);
-    throw error.response ? error.response.data.status : new Error(error.message);
+    throw error.response ? error.response.data : new Error(error.message);
   }
 };

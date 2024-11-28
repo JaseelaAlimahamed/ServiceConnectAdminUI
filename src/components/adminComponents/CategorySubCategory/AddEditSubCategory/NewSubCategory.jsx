@@ -27,7 +27,8 @@ const AddEditSubCategory = () => {
   const [image, setImage] = useState(null);
   const [error,setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [condition, setCondition] = useState(false);
+  const [isSaveDisabled, setIsSaveDisabled] = useState(false);
+
   
   // Load existing sub-category data if subCategoryId exists
   useEffect(() => {
@@ -89,16 +90,8 @@ const subCategoryData = async () => {
   return formData;
 };
 
-
-  if (condition) {
-    setTimeout(() => {
-     
-    }, 5000); // 2-second delay
-  }
-
-
   const handleSave = async () => {
-    setTimeout(() => {
+    setIsSaveDisabled(true)
     try{ 
     const formData = new FormData();
 
@@ -114,17 +107,24 @@ const subCategoryData = async () => {
       formData.append("image", image);
     }
    
-        SubcategoryPost(formData)
+        await SubcategoryPost(formData)
         navigate('/sub-categories');
        
-        
-        
       }catch(error){
-        setError(error)
-        console.error("Error saving sub-category:", error);
-
+        
+        for (const key in error) {
+          if (Object.prototype.hasOwnProperty.call(error, key)) {
+            
+            setError(`${key}: ${error[key]}`);
+            console.error(`${key}:`, error[key]);
+          }
+         
+        }
+        
+      }finally{
+        setIsSaveDisabled(false)
       }
-    }, 2000); // 2-second delay
+    
   };
 
   const handleEdit = async () => {
@@ -133,9 +133,12 @@ const subCategoryData = async () => {
         await SubcategoryEdit(subCategoryId, formData);
         navigate('/sub-categories'); 
     } catch (error) {
-      setError(error)
-      console.error("Error edit sub-category:", error);
-      
+      for (const key in error) {
+        if (Object.prototype.hasOwnProperty.call(error, key)) {
+          setError(`${key}: ${error[key]}`);
+          console.error(`${key}:`, error[key]);
+        }
+      }
     }
   };
 
@@ -185,6 +188,7 @@ const subCategoryData = async () => {
         handleDelete={handleDelete} 
         handleSave={handleSave} 
         handleEdit={handleEdit} 
+        isSaveDisabled={isSaveDisabled}
         id={subCategoryId}
         setIsModalOpen={setIsModalOpen}
         isModalOpen={isModalOpen}
