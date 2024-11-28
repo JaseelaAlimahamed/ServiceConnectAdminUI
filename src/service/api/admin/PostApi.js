@@ -101,11 +101,7 @@ export const createFranchiseeType = async (frachiseeTypeData) => {
 export const SubcategoryPost = async (data) => {
   
   try {
-    // Log FormData before sending
-    console.log("Data sent to API:");
-    for (const [key, value] of data.entries()) {
-      console.log(`${key}:`, value);
-    }
+   
 
     const response = await apiInstance.post(`subcategories/`, data, {
       headers: { "Content-Type": "multipart/form-data" },

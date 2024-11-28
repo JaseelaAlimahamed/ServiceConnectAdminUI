@@ -1,7 +1,7 @@
 
 import DeleteModal from '../CategoryComponents/DeleteModal'
 
-const Buttons = ({ handleDelete, handleSave,handleEdit,id,isModalOpen,setIsModalOpen}) => {
+const Buttons = ({ handleDelete, handleSave,handleEdit,id,isModalOpen,setIsModalOpen,isSaveDisabled}) => {
 
   
     return (
@@ -22,10 +22,11 @@ const Buttons = ({ handleDelete, handleSave,handleEdit,id,isModalOpen,setIsModal
            Update
         </button>:
         <button
+          disabled={isSaveDisabled}
           onClick={handleSave}
           className="w-24 bg-violet text-primary border border-violet  px-3 py-1 rounded-full flex"
         >
-          Save
+         {isSaveDisabled ? "Processing..." : "Save"}
         </button>}
 
        {id? <DeleteModal

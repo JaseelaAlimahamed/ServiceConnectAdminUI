@@ -27,6 +27,9 @@ const AddEditSubCategory = () => {
   const [image, setImage] = useState(null);
   const [error,setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSaveDisabled, setIsSaveDisabled] = useState(false);
+
+  
   // Load existing sub-category data if subCategoryId exists
   useEffect(() => {
     if (subCategoryId) {
@@ -88,7 +91,8 @@ const subCategoryData = async () => {
 };
 
   const handleSave = async () => {
-    
+    setIsSaveDisabled(true)
+    try{ 
     const formData = new FormData();
 
     // Append fields to FormData
@@ -102,25 +106,39 @@ const subCategoryData = async () => {
     if (image instanceof File) {
       formData.append("image", image);
     }
-      if(status==="Active"){
-        await SubcategoryPost(formData)
-        navigate('/sub-categories'); 
-        }setError(`Not Allowd Status ${status} Please use Active Status`)
-     
    
+        await SubcategoryPost(formData)
+        navigate('/sub-categories');
+       
+      }catch(error){
+        
+        for (const key in error) {
+          if (Object.prototype.hasOwnProperty.call(error, key)) {
+            
+            setError(`${key}: ${error[key]}`);
+            console.error(`${key}:`, error[key]);
+          }
+         
+        }
+        
+      }finally{
+        setIsSaveDisabled(false)
+      }
+    
   };
 
   const handleEdit = async () => {
     try {
       const formData = await subCategoryData();
-      
-      if(status==="Active"){
         await SubcategoryEdit(subCategoryId, formData);
         navigate('/sub-categories'); 
-        }setError(`Not Allowd Status ${status} Please use Active Status`)
-     
     } catch (error) {
-      console.error("Error saving sub-category:", error);
+      for (const key in error) {
+        if (Object.prototype.hasOwnProperty.call(error, key)) {
+          setError(`${key}: ${error[key]}`);
+          console.error(`${key}:`, error[key]);
+        }
+      }
     }
   };
 
@@ -170,6 +188,7 @@ const subCategoryData = async () => {
         handleDelete={handleDelete} 
         handleSave={handleSave} 
         handleEdit={handleEdit} 
+        isSaveDisabled={isSaveDisabled}
         id={subCategoryId}
         setIsModalOpen={setIsModalOpen}
         isModalOpen={isModalOpen}

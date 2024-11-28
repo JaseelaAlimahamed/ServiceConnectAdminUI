@@ -10,6 +10,9 @@ const EditCategory = () => {
   const navigate = useNavigate();
   const { id: CategoryId } = useParams();
 
+  const [isUpdateDisabled, setIsUpdateDisabled] = useState(false);
+  const [isDeleteDisabled, setIsDeleteDisabled] = useState(false);
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("Active");
@@ -51,6 +54,8 @@ const EditCategory = () => {
   // Function to save or update the category
   const handleSave = async () => {
     try{
+      setIsUpdateDisabled(true);
+
       const formData=new FormData()
 
       // Append fields to FormData
@@ -62,24 +67,32 @@ const EditCategory = () => {
       if (newImage instanceof File) {
         formData.append("image", newImage); 
       }
-      if(status==="Active"){
-        await editCategory(formData);
-         navigate("/categories")
-        }setError(`Not Allowd Status ${status} Please use Active Status`)
+      await editCategory(formData);
+      navigate("/categories")
       
-    } catch (err){
-      console.log(err)
-      setError(`Not Allowd Status ${status} `)
+    } catch (error){
+      for (const key in error) {
+        if (Object.prototype.hasOwnProperty.call(error, key)) {
+          setError(`${key}: ${error[key]}`);
+          console.error(`${key}:`, error[key]);
+        }
+      }
+    } finally {
+      // setTimeout(() => setIsUpdateDisabled(false), 2000);
+      setIsUpdateDisabled(false); // Re-enable the button after the operation
     }
   };
 
   const handleDelete = async() => {
     try{
+      setIsDeleteDisabled(true);
       const response=await categorydelete(CategoryId);
       navigate("/categories");
     }catch(error){
       console.log(error)
       alert("err deleting")
+    } finally {
+      setIsDeleteDisabled(false); // Re-enable the button after the operation
     }
   };
 
@@ -155,10 +168,11 @@ const EditCategory = () => {
         </select>
 
           <button
+             disabled={isDeleteDisabled}
             onClick={()=>setIsModalOpen(true)}
             className="bg-red text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600 hover:bg-red-600"
           >
-            Delete
+            {isDeleteDisabled ? "Processing..." : "Delete"}
           </button>
           <DeleteModal
         isOpen={isModalOpen}
@@ -166,10 +180,11 @@ const EditCategory = () => {
         onConfirm={() => handleDelete(CategoryId)}
         />
         <button
+          disabled={isUpdateDisabled}
           onClick={handleSave}
           className="bg-purple text-white px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 hover:bg-purple-800"
         >
-          Update
+          {isUpdateDisabled ? "Processing..." : "Update"}
         </button>
         <button
             onClick={()=>navigate("/categories")}
