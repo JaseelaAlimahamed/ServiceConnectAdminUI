@@ -11,8 +11,10 @@ import { createServiceProviders } from "../../service/api/franchise/PostApi";
 import ReUsableModal from "../../components/reUsableComponents/ReusableModal";
 import InputComponent from "../../components/franchiseComponents/addServiceProvider/InputComponent";
 import DropDown from "../../components/reUsableComponents/DropDown";
-
+import DeleteModal from "../../components/adminComponents/CategorySubCategory/CategoryComponents/DeleteModal";
+import { useNavigate } from "react-router-dom";
 function AddServiceProvider() {
+  const navigate = useNavigate();
   const [stateList, setStateList] = useState([]);
   const [districtList, setDistrictList] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState([]);
@@ -22,6 +24,8 @@ function AddServiceProvider() {
   const [image, setImage] = useState();
   const [dragActive, setDragActive] = useState(false);
   const [formErros, setFormErrors] = useState({});
+  const [isSaveDisabled, setIsSaveDisabled] = useState(false);
+  const [isdeletmodal, setIsdeletemodal] = useState(false);
   const handleDragOver = (event) => {
     event.preventDefault(); // Prevent the browser's default drag-over behavior
     setDragActive(true); // Set drag active state
@@ -90,19 +94,17 @@ function AddServiceProvider() {
       newError.mobile = "Enter a valid mobile number";
     }
 
-    if (!formData.watsapp.trim()) {
+    if (!formData.whatsapp.trim()) {
       newError.whatsapp = "whatsapp number is required";
-    } else if (!mobileRegex.test(formData.watsapp)) {
-      newError.whatsapp= "Enter a valid whatsapp number";
+    } else if (!mobileRegex.test(formData.whatsapp)) {
+      newError.whatsapp = "Enter a valid whatsapp number";
     }
     if (!formData.password) {
       newError.password = "Please enter password";
     }
     if (!formData.pincode) {
       newError.pincode = "Please enter pincode";
-    }
-    else if(isNaN(formData.pincode))
-    {
+    } else if (isNaN(formData.pincode)) {
       newError.pincode = "Please enter a valid pincode";
     }
     if (!formData.landmark) {
@@ -124,34 +126,64 @@ function AddServiceProvider() {
     if (!formData.district) {
       newError.district = "Please enter district";
     }
-    if (!formData.type) {
-      newError.type = "Please enter service type";
+    if (!formData.service_type) {
+      newError.service_type = "Please enter service type";
     }
-    
+
     if (!formData.dealer) {
       newError.dealer = "Please enter dealer";
     }
-    if (!formData.accepted_terms) {
-      newError.terms = "Please accept term and condition";
-    }
+
     setFormErrors(newError);
     return Object.keys(newError).length === 0;
   };
-  const HandleSubmit = (e) => {
-    if (formValidation()) {
-    }
-    console.log(formErros);
-    e.preventDefault();
-    console.log("Form submitted:", formData);
 
-    const create = async () => {
-      const response = await createServiceProviders(formData);
-      console.log(response);
-      if (response.status == 201) {
-        setModelOpen(true);
-      }
-    };
-    create();
+  const handleClearForm = () => {
+    setFormData({
+      photo: "",
+      fullname: "",
+      franchisee: "",
+      accepted_terms: "",
+      country_code: "+91",
+      address: "",
+      service_type: "",
+      dob: "",
+      email: "",
+      mobile: "",
+      whatsapp: "",
+      gender: "",
+      housename: "",
+      landmark: "",
+      pincode: "",
+      district: "",
+      state: "",
+      about: "",
+      payout_required: "",
+      dealer: "",
+      password: "",
+    });
+    setFormErrors({});
+    setIsdeletemodal(false);
+  };
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formValidation()) {
+      const create = async () => {
+        const response = await createServiceProviders(formData);
+        console.log(response);
+        if (response.status == 201) {
+          setModelOpen(true);
+          setIsSaveDisabled(true);
+          handleClearForm();
+
+          setTimeout(() => setIsSaveDisabled(false), 3000);
+        }
+      };
+      create();
+    }
+
+    console.log("Form submitted:", formData);
   };
   const handleStateChange = (e) => {
     setFormData({
@@ -161,6 +193,10 @@ function AddServiceProvider() {
     const stateId = e.target.value;
     const district = districtList.filter((each) => each.state.id == stateId);
     setSelectedDistrict(district);
+    console.log(e.target.name);
+    if (formErros[e.target.name]) {
+      setFormErrors((prev) => ({ ...prev, [e.target.name]: null }));
+    }
   };
 
   const getFranchisee = (e) => {
@@ -175,19 +211,24 @@ function AddServiceProvider() {
       [e.target.name]: e.target.value,
       franchisee: franchisee ? franchisee.franchisee : null, // Default to null if no match is found
     });
+
+    if (formErros[e.target.name]) {
+      setFormErrors((prev) => ({ ...prev, [e.target.name]: null }));
+    }
   };
 
   const [formData, setFormData] = useState({
     photo: "",
     fullname: "",
     franchisee: "",
-    accepted_terms:"",
+    accepted_terms: "",
     country_code: "+91",
     address: "",
+    service_type: "",
     dob: "",
     email: "",
     mobile: "",
-    watsapp:"",
+    whatsapp: "",
     gender: "",
     housename: "",
     landmark: "",
@@ -197,7 +238,6 @@ function AddServiceProvider() {
     about: "",
     payout_required: "",
     dealer: "",
-    
   });
 
   const inputRef = useRef(null);
@@ -216,11 +256,17 @@ function AddServiceProvider() {
   };
 
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+
+    if (formErros[e.target.name]) {
+      setFormErrors((prev) => ({ ...prev, [e.target.name]: null }));
+    }
+  };
+  const deleteModalopen = () => {
+    setIsdeletemodal(true);
   };
 
   const fieldConfig = [
@@ -247,6 +293,7 @@ function AddServiceProvider() {
     {
       type: "button",
       children: "Delete",
+      onClick: deleteModalopen,
       className:
         "my-6  h-12 px-8 py-2 flex bg-[#E20000] border-2 text-white text-md rounded-3xl lg:w-18 hover:bg-white hover:text-[#E20000]",
     },
@@ -260,9 +307,13 @@ function AddServiceProvider() {
     {
       type: "submit",
       onClick: HandleSubmit,
+      disabled: isSaveDisabled,
       children: "Submit",
-      className:
-        "my-4  h-12 px-4 py-2 flex bg-[#4D44B5] border-2 text-white text-md rounded-3xl hover:bg-white hover:text-[#4D44B5]",
+      className: `my-4  h-12 px-4 py-2 flex border-2 text-white  text-md rounded-3xl   ${
+        isSaveDisabled
+          ? "bg-slate-500 cursor-not-allowed"
+          : "bg-[#4D44B5]  hover:bg-white hover:text-[#4D44B5] "
+      }  `,
     },
   ];
 
@@ -276,6 +327,7 @@ function AddServiceProvider() {
         confirm_label="OK"
         onConfirm={() => {
           setModelOpen(false);
+          navigate("/service-providers");
         }}
       ></ReUsableModal>
       <div className="max-w-6xl mt-4 mx-auto bg-lite_blue2 rounded-b-md shadow-md">
@@ -332,6 +384,7 @@ function AddServiceProvider() {
             <InputComponent
               name={"fullname"}
               placeholder={"Full name"}
+              value={formData.fullname}
               className={
                 "my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               }
@@ -343,6 +396,7 @@ function AddServiceProvider() {
             <InputComponent
               name={"address"}
               placeholder={"Address"}
+              value={formData.address}
               className={
                 "my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               }
@@ -354,6 +408,7 @@ function AddServiceProvider() {
 
             <InputComponent
               name={"dob"}
+              value={formData.dob}
               type={"Date"}
               placeholder={"Enter date of birth"}
               className={
@@ -365,6 +420,7 @@ function AddServiceProvider() {
 
             <InputComponent
               name={"email"}
+              value={formData.email}
               placeholder={"Email"}
               className={
                 "my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
@@ -375,6 +431,7 @@ function AddServiceProvider() {
 
             <InputComponent
               name={"mobile"}
+              value={formData.mobile}
               placeholder={"Mobile number"}
               className={
                 "my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
@@ -383,18 +440,21 @@ function AddServiceProvider() {
             ></InputComponent>
             {formErros.mobile && <p className="text-red">{formErros.mobile}</p>}
 
-
             <InputComponent
-              name={"watsapp"}
+              name={"whatsapp"}
+              value={formData.watsapp}
               placeholder={"Whatsapp number"}
               className={
                 "my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               }
               onChange={handleChange}
             ></InputComponent>
-            {formErros.whatsapp && <p className="text-red">{formErros.whatsapp}</p>}
+            {formErros.whatsapp && (
+              <p className="text-red">{formErros.whatsapp}</p>
+            )}
             <InputComponent
               name={"password"}
+              value={formData.password}
               placeholder={"Password"}
               type={"password"}
               className={
@@ -407,6 +467,7 @@ function AddServiceProvider() {
             )}
             <InputComponent
               name={"landmark"}
+              value={formData.landmark}
               placeholder={"Landmark"}
               className={
                 "my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
@@ -419,6 +480,7 @@ function AddServiceProvider() {
 
             <InputComponent
               name={"pincode"}
+              value={formData.pincode}
               placeholder={"Pincode"}
               className={
                 "my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
@@ -431,6 +493,7 @@ function AddServiceProvider() {
 
             <InputComponent
               name={"about"}
+              value={formData.about}
               type={"Textarea"}
               placeholder={"About"}
               className={
@@ -449,6 +512,7 @@ function AddServiceProvider() {
               name="payout_required"
               className="my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               onChange={handleChange}
+              value={formData.payout_required}
               required
             >
               <option value="" disabled selected>
@@ -465,6 +529,7 @@ function AddServiceProvider() {
             <select
               name="gender"
               id=""
+              value={formData.gender}
               className="my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               onChange={handleStateChange}
             >
@@ -480,6 +545,7 @@ function AddServiceProvider() {
               id=""
               className="my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               onChange={handleStateChange}
+              value={formData.state}
             >
               <option value="" selected disabled>
                 State
@@ -493,6 +559,7 @@ function AddServiceProvider() {
             <select
               name="district"
               id=""
+              value={formData.district}
               className="my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               onChange={handleChange}
             >
@@ -508,28 +575,30 @@ function AddServiceProvider() {
             )}
 
             <select
-              name=""
+              name="service_type"
+              value={formData.service_type}
               id=""
               className="my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               onChange={handleChange}
             >
-              <option value="category" selected disabled>
-                Type
+              <option value="" selected disabled>
+                Service Type
               </option>
               {categories.map((each) => {
                 return <option value={each.id}>{each.title}</option>;
               })}
             </select>
-            {formErros.type && (
-              <p className="text-red">{formErros.type}</p>
+            {formErros.service_type && (
+              <p className="text-red">{formErros.service_type}</p>
             )}
             <select
               name="dealer"
+              value={formData.dealer}
               id=""
               className="my-3 p-2 h-10 w-full bg-white border-none rounded-xl text-justify flex text-[#505050]"
               onChange={getFranchisee}
             >
-              <option value="dealer" selected disabled>
+              <option value="" selected disabled>
                 Select dealer
               </option>
               {dealerList.map((each) => {
@@ -537,18 +606,6 @@ function AddServiceProvider() {
               })}
             </select>
             {formErros.dealer && <p className="text-red">{formErros.dealer}</p>}
-            <label>
-          <input
-            type="checkbox"
-           name="accepted_terms"
-            onChange={handleChange}
-          />
-          I accept the <a href="/terms">Terms and Conditions</a>
-        </label>
-        {formErros.terms && <p className="text-red">{formErros.terms}</p>}
-            <p className="font-semibold text-sm flex justify-center p-2">
-              #Other info as required
-            </p>
           </div>
         </div>
       </div>
@@ -563,6 +620,14 @@ function AddServiceProvider() {
           />
         ))}
       </div>
+
+      <DeleteModal
+        isOpen={isdeletmodal}
+        onClose={() => {
+          setIsdeletemodal(false);
+        }}
+        onConfirm={handleClearForm}
+      ></DeleteModal>
     </div>
   );
 }

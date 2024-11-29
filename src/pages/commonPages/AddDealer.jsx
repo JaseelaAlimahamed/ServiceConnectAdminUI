@@ -9,16 +9,15 @@ import {
   getDistrictsByState,
 } from "../../service/api/franchise/GetApi.js";
 import { BsPaperclip } from "react-icons/bs";
+import DeleteModal from "../../components/adminComponents/CategorySubCategory/CategoryComponents/DeleteModal.jsx";
+import ReUsableModal from "../../components/reUsableComponents/ReusableModal.jsx";
 
 function AddDealer() {
   const navigate = useNavigate(); // Correctly call useNavigate inside the component
   const [states, setStates] = useState([]);
   const [districts, setDistricts] = useState([]);
-
-  const [errors, setErrors] = useState({
-    phoneNumber: false,
-    watsapp: false,
-  });
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Fetch states when the component loads
@@ -139,32 +138,48 @@ function AddDealer() {
   }, [postData]); // Dependency array e
 
   const handleSave = async (e) => {
-    e.preventDefault();
-
-    // Validate phone numbers before proceeding
-    const newErrors = {
-      phoneNumber: !isValidPhoneNumber(formData.phoneNumber),
-      watsapp: !isValidPhoneNumber(formData.watsapp),
-    };
-
-    setErrors(newErrors);
-
-    const hasErrors = Object.values(newErrors).some((error) => error);
-    if (hasErrors) {
-      console.log("Validation errors:", newErrors);
-      alert("Please fix the errors before submitting the form.");
-      return;
-    }
+    e.preventDefault(); // Prevent default form submission
 
     try {
+      if (!validate()) {
+        // Exit if validation fails
+        return;
+      }
+
+      // Prepare the form data for submission
       const updatedFormData = {
         ...formData,
-        franchisee: Number(formData.franchisee),
+        image: formData.image || null, // Ensure proper handling of optional fields
+        idCopy: formData.idCopy || null,
       };
 
-      // console.log(updatedFormData);
+      // Uncomment and use your API call
+      const response = await createDealer(updatedFormData);
+      // console.log(formData.idCopy)
+      // console.log(formData.image)
+      // console.log(updatedFormData)
 
-      // CLEAR THE FORM
+      if (response && response.status === 201) {
+        // Handle successful response
+        // alert("Dealer created successfully");
+        setIsModalOpen(true);
+        // Optionally reset errors
+        setErrors({
+          phoneNumber: false,
+          watsapp: false,
+        });
+      }
+    } catch (error) {
+      console.error("Error creating dealer:", error);
+      // Handle errors appropriately
+      alert("An error occurred while creating the dealer. Please try again.");
+    }
+  };
+
+  const handleCloseConModal = () => {
+    setIsModalOpen(false);
+
+    setTimeout(() => {
       setFormData({
         fullName: "",
         address: "",
@@ -182,63 +197,64 @@ function AddDealer() {
         verificationId: "",
         verificationIdNumber: "",
         serviceProviders: "",
-        image: "", // Include image field
-        idCopy: "", // Include id field
+        image: null,
+        idCopy: null,
       });
 
-      // Optionally reset errors
-      setErrors({
-        phoneNumber: false,
-        watsapp: false,
-      });
+      setErrors({});
+    }, 1000);
 
-      // Uncomment and use your API call
-      const response = await createDealer(updatedFormData);
-
-      if (response.status === 201) {
-        // console.log("Dealer created successfully:", response);
-        alert("Dealer created successfully");
-        setTimeout(() => {
-          navigate("/Dealers");
-        }, 500);
-      }
-    } catch (error) {
-      console.error("Error creating dealer:", error);
-    }
+    setTimeout(() => {
+      navigate("/Dealers");
+    }, 500); // Navigate after clearing fields
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    // Clear error for the field
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: null }));
+    }
   };
 
   const handlePhoneChange = (value, name) => {
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: false }); // Reset error for this field
   };
-  const isValidPhoneNumber = (phone) => {
-    // Example validation (you can use a library for better validation)
-    return phone && phone.length >= 10;
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!formData.idCopy) newErrors.idCopy = "ID Copy is required";
+    if (!formData.image) newErrors.image = "Image is required";
+    if (!formData.fullName) newErrors.fullName = "Full Name is required";
+    if (!formData.address) newErrors.address = "Address is required";
+    if (!formData.about) newErrors.about = "About is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.phoneNumber)
+      newErrors.phoneNumber = "Phone Number is required";
+    if (!formData.watsapp) newErrors.watsapp = "Phone Number is required";
+    if (!formData.landmark) newErrors.landmark = "LandMark Code is required";
+    if (!formData.pinCode) newErrors.pinCode = "Pin Code is required";
+    if (!formData.state) newErrors.state = "State is required";
+    if (!formData.district) newErrors.district = "District is required";
+    if (!formData.verificationId)
+      newErrors.verificationId = "Select a Verification ID";
+    if (!formData.verificationIdNumber)
+      newErrors.verificationIdNumber = "Verification Number is required";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0; // Return true if no errors
   };
 
   const handleFileChange = (event, field) => {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
-      console.log(`Selected file for ${field}:`, file);
+      // console.log(`Selected file for ${field}:`, file);
       setFormData((prevState) => ({
         ...prevState,
-        idCopy: file, // Dynamically update the correct field (e.g., idCopy)
-      }));
-    }
-  };
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0]; // Get the selected image file
-    if (file) {
-      console.log("Selected image file:", file);
-      setFormData((prevState) => ({
-        ...prevState,
-        image: file, // Store image file in formData
+        [field]: file, // Dynamically update the correct field using the `field` parameter
       }));
     }
   };
@@ -246,11 +262,37 @@ function AddDealer() {
   const handleSaveDraft = () => {
     console.log("Draft saved:", formData);
   };
-  const handleDelete = () => {
-    setTimeout(() => {
-      navigate("/Dealers");
-    }, 500);
+  const handleClear = () => {
+    setFormData({
+      fullName: "",
+      address: "",
+      email: "",
+      phoneNumber: "",
+      watsapp: "",
+      countryCode: "",
+      landmark: "",
+      pinCode: "",
+      state: "",
+      district: "",
+      about: "",
+      franchisee: "",
+      status: "",
+      verificationId: "",
+      verificationIdNumber: "",
+      serviceProviders: "",
+      image: "", // Include image field
+      idCopy: "", // Include id field
+    });
+    setDeleteModalOpen(false);
   };
+  const handleOpenModal = () => {
+    setDeleteModalOpen(true); // Open the modal
+  };
+  const handleCloseModal = () => {
+    setDeleteModalOpen(false); // Close the modal without clearing
+  };
+
+  const [errors, setErrors] = useState({});
 
   return (
     <div className="flex flex-col md:flex-row bg-gray min-h-screen h-full p-4">
@@ -268,7 +310,7 @@ function AddDealer() {
               accept=".pdf, .docx, .txt, .png, .jpg, .jpeg" // Limit to document types
               className="hidden"
               id="imageUpload"
-              onChange={(event) => handleImageChange(event)}
+              onChange={(e) => handleFileChange(e, "image")}
               name="image"
             />
             <label
@@ -289,6 +331,7 @@ function AddDealer() {
               )}
             </label>
           </div>
+          {errors.image && <p className="text-red text-sm">{errors.image}</p>}
         </div>
 
         <div className="space-y-4 w-full md:w-2/3">
@@ -301,6 +344,9 @@ function AddDealer() {
             onChange={handleInputChange}
             className="w-full h-10 text-center placeholder-secondary "
           />
+          {errors.fullName && (
+            <p className="text-red text-sm">{errors.fullName}</p>
+          )}
           <InputFieldComponent
             color="bg-gray"
             type="text"
@@ -310,6 +356,9 @@ function AddDealer() {
             onChange={handleInputChange}
             className="w-full h-10 text-center placeholder-secondary"
           />
+          {errors.address && (
+            <p className="text-red text-sm ">{errors.address}</p>
+          )}
           <InputFieldComponent
             color="bg-gray"
             type="text"
@@ -328,6 +377,7 @@ function AddDealer() {
             onChange={handleInputChange}
             className="w-full h-10 text-center placeholder-secondary"
           />
+          {errors.about && <p className="text-red text-sm">{errors.about}</p>}
           <InputFieldComponent
             color="bg-gray"
             type="email"
@@ -337,6 +387,7 @@ function AddDealer() {
             onChange={handleInputChange}
             className="w-full h-10 text-center placeholder-secondary"
           />
+          {errors.email && <p className="text-red text-sm">{errors.email}</p>}
           <PhoneInput
             country={"in"}
             value={formData.phoneNumber}
@@ -386,6 +437,9 @@ function AddDealer() {
             onChange={handleInputChange}
             className="w-[80%] h-9 text-center placeholder-secondary"
           />
+          {errors.landmark && (
+            <p className="text-red text-sm">{errors.landmark}</p>
+          )}
           <InputFieldComponent
             color="bg-gray"
             type="text"
@@ -395,7 +449,9 @@ function AddDealer() {
             onChange={handleInputChange}
             className="w-[80%] h-9 text-center placeholder-secondary"
           />
-
+          {errors.pinCode && (
+            <p className="text-red text-sm">{errors.pinCode}</p>
+          )}
           <InputFieldComponent
             color="bg-gray"
             type="dropdown"
@@ -410,7 +466,7 @@ function AddDealer() {
             options={states.map((state) => state.name)} // Transform `states` into an array of names
             className="w-[80%] h-9 text-center placeholder-secondary"
           />
-
+          {errors.state && <p className="text-red text-sm">{errors.state}</p>}
           <InputFieldComponent
             color="bg-gray"
             type="dropdown"
@@ -426,7 +482,9 @@ function AddDealer() {
             options={districts.map((district) => district.name)} // Use only the name as the option
             className="w-[80%] h-9 text-center placeholder-secondary"
           />
-
+          {errors.district && (
+            <p className="text-red text-sm">{errors.district}</p>
+          )}
           <InputFieldComponent
             type="dropdown"
             name="verificationId"
@@ -438,6 +496,9 @@ function AddDealer() {
             options={["Aadhar", "Voter-ID", "Passport", "Pan-card", "License"]}
             color="bg-gray"
           />
+          {errors.verificationId && (
+            <p className="text-red text-sm">{errors.verificationId}</p>
+          )}
           <InputFieldComponent
             color="bg-gray"
             type="text"
@@ -447,6 +508,9 @@ function AddDealer() {
             onChange={handleInputChange}
             className="w-[80%] h-9 text-center placeholder-secondary"
           />
+          {errors.verificationIdNumber && (
+            <p className="text-red text-sm">{errors.verificationIdNumber}</p>
+          )}
           <div className="flex flex-col items-center w-full">
             <div className="flex justify-center items-center bg-gray w-full h-14 rounded-xl">
               {/* File Upload */}
@@ -455,7 +519,7 @@ function AddDealer() {
                 accept=".pdf, .docx, .txt, .png, .jpg, .jpeg" // Limit to document types
                 className="hidden"
                 id="fileUpload"
-                onChange={(event) => handleFileChange(event, "idCopy")}
+                onChange={(e) => handleFileChange(e, "idCopy")}
                 name="idCopy"
               />
               <label
@@ -464,10 +528,10 @@ function AddDealer() {
               >
                 {formData.idCopy ? (
                   <p className="mt-2 text-sm text-gray-500">
-                    {formData.idCopy.name} 
+                    {formData.idCopy.name}
                   </p>
                 ) : (
-                  "ID Copy" 
+                  "ID Copy"
                 )}
               </label>
               <div className="mr-3">
@@ -475,6 +539,7 @@ function AddDealer() {
               </div>
             </div>
           </div>
+          {errors.idCopy && <p className="text-red text-sm">{errors.idCopy}</p>}
 
           <InputFieldComponent
             type="dropdown"
@@ -490,12 +555,18 @@ function AddDealer() {
 
           <div className="flex justify-end space-x-4">
             <button
-              onClick={handleDelete}
+              onClick={handleOpenModal}
               type="button"
               className="w-36 h-10 border bg-[#e20202] border-[#e20202] text-white rounded-full"
             >
               Delete
             </button>
+
+            <DeleteModal
+              isOpen={deleteModalOpen}
+              onClose={handleCloseModal}
+              onConfirm={handleClear}
+            />
             <button
               onClick={handleSaveDraft}
               type="button"
@@ -506,9 +577,18 @@ function AddDealer() {
             <button
               type="submit"
               className="w-24 h-10 bg-violet text-white rounded-full"
+              onClick={handleSave}
             >
               Save
             </button>
+            <ReUsableModal
+              isOpen={isModalOpen}
+              onConfirm={handleCloseConModal}
+              heading="Success!"
+              message="Dealer details have been successfully saved."
+              confirm={true}
+              confirm_label="OK"
+            ></ReUsableModal>
           </div>
         </div>
       </form>

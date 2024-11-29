@@ -39,17 +39,15 @@ export const createDealer = async (dealerData) => {
     formData.append("status", dealerData.status);
     formData.append("verification_id", dealerData.verificationId);
     formData.append("verificationid_number", dealerData.verificationIdNumber);
-
-    // Add file fields if they exist
-    if (dealerData.image) {
-      formData.append("profile_image", dealerData.image); // Profile image
-    }
-    if (dealerData.idCopy) {
-      formData.append("id_copy", dealerData.idCopy); // ID copy
-    }
-
+    formData.append("profile_image", dealerData.image); // Profile image
+    formData.append("id_copy", dealerData.idCopy); // ID copy
+    
     // Make the API call with FormData
-    const response = await apiInstance.post("dealers/create/", formData);
+    const response = await apiInstance.post("dealers/create/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
     return response; // Return the API response
   } catch (error) {

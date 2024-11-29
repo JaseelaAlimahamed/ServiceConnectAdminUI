@@ -7,6 +7,8 @@ import ReUsableModal from "../../reUsableComponents/ReusableModal";
 const FranchiseeCategory = () => {
   const [franchiseeTypes, setFranchiseeTypes] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalSuccess,setModalSucess] = useState(false)
+  const [successModalHeading,setSuccessModalHeading] = useState('')
   const [selectedFranchisee, setSelectedFranchisee] = useState({
     name: "",
     details: "",
@@ -20,6 +22,7 @@ const FranchiseeCategory = () => {
     currency: "",
   });
   const [formErrors, setFormErrors] = useState({});
+  const [isSaveDisabled, setIsSaveDisabled] = useState(false);
   useEffect(() => {
     const fetchFranchiseeTypes = async () => {
       try {
@@ -68,7 +71,7 @@ const FranchiseeCategory = () => {
       newError.currency = "Currency is required";
     } else if (
       !validCurrencies.includes(
-        selectedFranchisee.currency.trim().toUpperCase()
+        selectedFranchisee.currency.trim()
       )
     ) {
       newError.currency = "Currency must be one of 'USD', 'EUR', 'INR', 'GBP', 'AUD', 'CAD', 'JPY', 'CNY', 'CHF', 'SGD'";
@@ -85,14 +88,14 @@ const FranchiseeCategory = () => {
       setFranchiseeTypes((prev) =>
         prev.filter((item) => item.id !== selectedFranchisee.id)
       );
-
+      
       setModalOpen(false);
     }
   };
 
   const handleSave = () => {
     if (formValidation()) {
-      alert("Form submitted successfully!");
+    
       const exist = franchiseeTypes.find(
         (item) => item.id === selectedFranchisee.id
       );
@@ -107,6 +110,10 @@ const FranchiseeCategory = () => {
                 item.id === selectedFranchisee.id ? response.data : item
               )
             );
+            setSuccessModalHeading("Franchisee Upated")
+            setModalSucess(true)
+            setIsSaveDisabled(true);
+            setTimeout(() => setIsSaveDisabled(false), 3000);
           }
         };
 
@@ -120,6 +127,10 @@ const FranchiseeCategory = () => {
 
             setFranchiseeTypes((prev) => [...prev, response.data]);
           }
+          setSuccessModalHeading("Franchisee Created")
+          setModalSucess(true)
+          setIsSaveDisabled(true);
+          setTimeout(() => setIsSaveDisabled(false), 3000);
         };
         return add();
       }
@@ -148,7 +159,7 @@ const FranchiseeCategory = () => {
     <div className="flex flex-col md:flex-row bg-gray min-h-screnn h-full  p-4 ">
       <ReUsableModal
         isOpen={modalOpen}
-        heading={"Are you want to delete"}
+        heading={"Do you want to delete"}
         confirm={true}
         confirm_label="YES"
         cancel={true}
@@ -158,6 +169,17 @@ const FranchiseeCategory = () => {
           setModalOpen(false);
         }}
       ></ReUsableModal>
+  <ReUsableModal
+        isOpen={modalSuccess}
+        heading={successModalHeading}
+        confirm={true}
+        confirm_label="Ok"
+        onConfirm={() =>{
+          setModalSucess(false)
+        }}
+    
+      ></ReUsableModal>
+      
       {/* Type Section */}
       <div className="w-full md:w-1/4 h-auto bg-primary rounded-lg shadow-lg  mr-0 md:mr-4  md:mb-0">
         <div className="flex justify-between items-center mb-10">
@@ -287,7 +309,12 @@ const FranchiseeCategory = () => {
 
         <button
           onClick={handleSave}
-          className="w-full md:w-24 h-10 bg-violet text-primary px-3 py-1 rounded-full flex justify-center items-center"
+          disabled={isSaveDisabled}
+          className={`w-full md:w-24 h-10 ${
+            isSaveDisabled
+              ? "bg-slate-500 cursor-not-allowed"
+              : "bg-violet text-primary"
+          } px-3 py-1 rounded-full flex justify-center items-center`}
         >
           Save
         </button>
