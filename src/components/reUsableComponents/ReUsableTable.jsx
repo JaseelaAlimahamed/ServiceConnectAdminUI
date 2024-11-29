@@ -153,7 +153,7 @@ const ReUsableTable = ({
                 />
                 <div>
                   <p className="text-lg font-bold">{data.name}</p>
-                  <p>ID: {data.id}</p>
+                  <p>ID: {data.custom_id}</p>
                 </div>
               </div>
             )}
@@ -188,7 +188,7 @@ const ReUsableTable = ({
 
                 {/* Actions dropdown */}
                 <div className="relative inline-block">
-                  <span onClick={() => toggleAction(data.id)}>
+                  <span onClick={() => toggleAction(data.custom_id)}>
                     <img
                       className="w-5 m-auto cursor-pointer"
                       src="/actions-icon.svg"
@@ -197,7 +197,7 @@ const ReUsableTable = ({
                   </span>
                   <ul
                     className={`absolute z-20 right-4 top-2 shadow-lg rounded-lg overflow-hidden ${
-                      openActionId === data.id ? "block" : "hidden"
+                      openActionId === data.custom_id ? "block" : "hidden"
                     }`}
                   >
                     {role === "dealer" ? (
@@ -286,8 +286,8 @@ const ReUsableTable = ({
                 <td className="p-4">
                   <input
                     type="checkbox"
-                    checked={selectedRows.includes(data.id)}
-                    onChange={() => handleCheckboxChange(data.id)}
+                    checked={selectedRows.includes(data.custom_id)}
+                    onChange={() => handleCheckboxChange(data.custom_id)}
                   />
                 </td>
 
@@ -373,20 +373,20 @@ const ReUsableTable = ({
                   <div className="relative">
                     <span
                       className="h-3 inline-block cursor-pointer"
-                      onClick={() => toggleAction(data.id)}
+                      onClick={() => toggleAction(data.custom_id)}
                     >
                       <img src="/actions-icon.svg" alt="action" />
                     </span>
                     <ul
                       className={`absolute z-20 top-6 right-6 shadow-lg rounded-md overflow-hidden ${
-                        openActionId === data.id ? "block" : "hidden"
+                        openActionId === data.custom_id ? "block" : "hidden"
                       }`}
                     >
                       {role === "dealer" ? (
                         <>
                           <li
                             className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
-                            onClick={() => handleView(data.id)}
+                            onClick={() => handleView(data.custom_id)}
                           >
                             View
                           </li>
@@ -400,7 +400,7 @@ const ReUsableTable = ({
                         <>
                           <li
                             className="bg-primary text-sm cursor-pointer hover:bg-slate-100 px-7 py-1 border-b border-gray"
-                            onClick={() => handleView(data.id)}
+                            onClick={() => handleView(data.custom_id)}
                           >
                             View
                           </li>
