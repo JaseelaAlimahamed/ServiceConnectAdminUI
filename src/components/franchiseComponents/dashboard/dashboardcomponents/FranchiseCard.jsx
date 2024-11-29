@@ -4,6 +4,7 @@ import { FiMail } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 import { HiLocationMarker, HiPhone, HiUser } from "react-icons/hi";
 import { SlOptions } from "react-icons/sl";
+import { Link } from "react-router-dom";
 // Example Profile with Picture
 const FranchiseCard = () => (
   
@@ -51,7 +52,7 @@ const ProfileCard = ({ name, franchise, address, phone, email, profilePicture })
                                     Delete
                                     </li>
                                     <li className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
-                                    View
+                                    <Link to={"/profile"}>View</Link>
                                     </li>
                                 </ul>
                             </div>

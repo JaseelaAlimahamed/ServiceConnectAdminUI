@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormik } from "formik";
+import addNewUserSchema from "../../../validationSchema/addNewUserSchema";
 import InputFieldComponent from "../../reUsableComponents/InputFieldComponent";
 import DropDown from "../../reUsableComponents/DropDown";
 import DatePicker from "react-datepicker";
@@ -6,268 +8,234 @@ import "react-datepicker/dist/react-datepicker.css";
 import ImageUploader from "../../reUsableComponents/ImageUploader";
 import { useParams } from "react-router-dom";
 import { addNewUser } from "../../../service/api/admin/PostApi";
+import CountryCodeSelect from "./CountryCodeSelect";
 
 const AddNewUser = () => {
-  const [formData, setFormData] = useState({
-    // Initial file state set to null
-    fullName: "",
-    address: "",
-    dob: "",
-    email: "",
-    phone_number: "",
-    gender: "",
-    watsapp: "",
-    landmark: "",
-    pincode: "",
-    district: "",
-    state: "",
-    password: "",
-    profile_image: null,
-  });
-
   const { id: userId } = useParams();
 
-  const handleChangeGender = (event) => {
-    const { name, value } = event.target;
+  const formik = useFormik({
+    initialValues: {
+      full_name: "",
+      address: "",
+      date_of_birth: "",
+      email: "",
+      country_code: "",
+      phone_number: "",
+      watsapp: "",
+      gender: "",
+      landmark: "",
+      pincode: "",
+      district: "",
+      state: "",
+      password: "",
+      profile_image: null,
+    },
+    validationSchema: addNewUserSchema,
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        const submissionData = new FormData();
+        Object.entries(values).forEach(([key, value]) => {
+          submissionData.append(key, value);
+        });
 
-    // Map selected gender to specific values
-    const genderMap = {
-      Male: "M",
-      Female: "F",
-      Other: "O",
-    };
+        const response = await addNewUser(submissionData);
+        console.log("User added successfully:", response);
+        alert("User added successfully!");
+        resetForm();
+      } catch (error) {
+        console.error("Error adding user:", error.response || error.message);
+        alert("Error: " + (error.response?.data?.message || "Unexpected error"));
+      }
+    },
+  });
 
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: genderMap[value] || value, // Map value or fallback to the original value
-    }));
-  };
-
-  // Handle date selection and formatting
   const handleDateChange = (date) => {
-    const formattedDate = date ? date.toISOString().split("T")[0] : ""; // Convert to YYYY-MM-DD format
-    setFormData({ ...formData, dob: formattedDate });
+    formik.setFieldValue("date_of_birth", date ? date.toISOString().split("T")[0] : "");
   };
 
-  // Handle generic input change including file input
-  const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    if (type === "file") {
-      setFormData({ ...formData, file: files[0] }); // Handle file input
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-
-    // Check if the field is for phone numbers, allow only digits
-    if (name === "phone") {
-      const numericValue = value.replace(/\D/g, ""); // Remove any non-digit characters
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [name]: numericValue,
-      }));
-    } else {
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [name]: value,
-      }));
-    }
-  };
-
-  // Handle file selection from ImageUploader component
   const handleFileSelect = (file) => {
-    console.log("Selected file:", file); // Debug to check if the file is being passed
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      file: file, // Set the file to formData
-    }));
+    formik.setFieldValue("profile_image", file);
   };
-
-  // Form submission
- 
-
-  // const onFormSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   // Prepare the FormData object for file uploads
-  //   const submissionData = new FormData();
-  //   submissionData.append("full_name", formData.fullName || "");
-  //   submissionData.append("address", formData.address || "");
-  //   submissionData.append("landmark", formData.landmark || "");
-  //   submissionData.append("pin_code", formData.pincode || "");
-  //   submissionData.append("watsapp", formData.watsapp || "");
-  //   submissionData.append("date_of_birth", formData.dob || "");
-  //   submissionData.append("email", formData.email || "");
-  //   submissionData.append("phone_number", formData.phone_number || "");
-  //   submissionData.append("password", formData.password || "");
-  //   submissionData.append("gender", formData.gender || "M");
-  //   if (formData.profile_image) {
-  //     submissionData.append("profile_image", formData.profile_image);
-  //   }
-
-  //   console.log("Submitting data:", submissionData);
-
-  //   try {
-  //     const response = await addNewUser(submissionData);
-  //     console.log("User added successfully:", response);
-  //     alert("User added successfully!");
-
-  //     // Reset the form
-  //     setFormData({
-  //       fullName: "",
-  //       address: "",
-  //       dob: "",
-  //       email: "",
-  //       phone_number: "",
-  //       gender: "",
-  //       watsapp: "",
-  //       landmark: "",
-  //       pincode: "",
-  //       district: "",
-  //       state: "",
-  //       password: "",
-  //       profile_image: null,
-  //     });
-  //   } catch (error) {
-  //     console.error("Error adding user:", error.response || error.message);
-
-  //     // Display appropriate error message
-  //     const errorMessage =
-  //       error.response?.data?.message || "An unexpected error occurred.";
-  //     alert(`Error: ${errorMessage}`);
-  //   }
-  // };
-
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-4xl w-full"
-        // onSubmit={onFormSubmit}
+        onSubmit={formik.handleSubmit} noValidate
       >
         <h1 className="text-2xl font-bold text-center mb-8">
-          {" "}
           {userId ? "Edit User" : "Add New User"}
         </h1>
 
-        {/* Responsive Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* File Upload */}
+          {/* Profile Image Upload */}
           <div>
-            {/* Hide terms and conditions for this specific page */}
             <ImageUploader
               title="Upload Profile Picture"
               showTerms={false}
               onFileSelect={handleFileSelect}
             />
+            {formik.errors.profile_image && formik.touched.profile_image && (
+              <div className="text-red text-sm">{formik.errors.profile_image}</div>
+            )}
           </div>
 
-          {/* Right-side form fields */}
+          {/* Form Fields */}
           <div className="space-y-4">
-            {/* Add other input fields like name, address, etc. */}
             <InputFieldComponent
-              color="bg-primary"
-              type="text"
-              name="fullName"
+              name="full_name"
               placeholder="Full Name"
-              value={formData.fullName}
-              onChange={handleChange}
-            />
-            <InputFieldComponent
+              value={formik.values.full_name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               color="bg-primary"
-              type="text"
+            />
+            {formik.errors.full_name && formik.touched.full_name && (
+              <div className="text-red text-sm">{formik.errors.full_name}</div>
+            )}
+
+            <InputFieldComponent
               name="address"
               placeholder="Address"
-              value={formData.address}
-              onChange={handleChange}
+              value={formik.values.address}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              color="bg-primary"
             />
+            {formik.errors.address && formik.touched.address && (
+              <div className="text-red text-sm">{formik.errors.address}</div>
+            )}
 
-            {/* Date of Birth Field */}
             <DatePicker
-              selected={formData.dob ? new Date(formData.dob) : null}
+              selected={formik.values.date_of_birth ? new Date(formik.values.date_of_birth) : null}
               onChange={handleDateChange}
               placeholderText="Select DOB"
-              className="p-4 w-full rounded-2xl pl-5"
+              className="p-4 w-full rounded-2xl pl-5 border border-gray-400"
               wrapperClassName="w-full"
               isClearable
             />
+            {formik.errors.date_of_birth && formik.touched.date_of_birth && (
+              <div className="text-red text-sm">{formik.errors.date_of_birth}</div>
+            )}
 
             <InputFieldComponent
+              name="email"
               placeholder="Email"
               type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               color="bg-primary"
             />
+            {formik.errors.email && formik.touched.email && (
+              <div className="text-red text-sm">{formik.errors.email}</div>
+            )}
 
-            {/* Phone Input Field */}
-            <InputFieldComponent
-              type="text"
-              value={formData.phone_number}
-              onChange={handleChange}
-              placeholder="Enter phone number with country code"
-              color="bg-primary"
-              name="phone"
+            <CountryCodeSelect
+              name="country_code"
+              value={formik.country_code}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {/* {formik.errors.country_code && formik.touched.country_code && (
+              <div className="text-red text-sm">{formik.errors.country_code}</div>
+            )} */}
+
             <InputFieldComponent
-              type="text"
-              value={formData.watsapp}
-              onChange={handleChange}
-              placeholder="Enter phone number with country code"
+              name="phone_number"
+              placeholder="Phone Number"
+              value={formik.values.phone_number}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               color="bg-primary"
+            />
+            {formik.errors.phone_number && formik.touched.phone_number && (
+              <div className="text-red text-sm">{formik.errors.phone_number}</div>
+            )}
+
+            <InputFieldComponent
               name="watsapp"
+              placeholder="WhatsApp Number"
+              value={formik.values.watsapp}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              color="bg-primary"
             />
+            {formik.errors.watsapp && formik.touched.watsapp && (
+              <div className="text-red text-sm">{formik.errors.watsapp}</div>
+            )}
 
             <DropDown
-              label="Gender"
               name="gender"
               placeholder="Gender"
-              value={formData.gender}
               options={["Male", "Female", "Other"]}
-              onChange={handleChangeGender}
+              value={formik.values.gender}
+              onChange={(event) => formik.setFieldValue("gender", event.target.value)}
             />
+            {formik.errors.gender && formik.touched.gender && (
+              <div className="text-red text-sm">{formik.errors.gender}</div>
+            )}
 
-            {/* <InputFieldComponent placeholder="House Name" color="bg-primary" type="text" name="houseName" value={formData.houseName} onChange={handleChange} /> */}
             <InputFieldComponent
-              placeholder="Landmark"
-              color="bg-primary"
-              type="text"
               name="landmark"
-              value={formData.landmark}
-              onChange={handleChange}
-            />
-            <InputFieldComponent
-              placeholder="Pincode"
+              placeholder="Landmark"
+              value={formik.values.landmark}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               color="bg-primary"
-              type="text"
+            />
+            {formik.errors.landmark && formik.touched.landmark && (
+              <div className="text-red text-sm">{formik.errors.landmark}</div>
+            )}
+
+            <InputFieldComponent
               name="pincode"
-              value={formData.pincode}
-              onChange={handleChange}
-            />
-            <InputFieldComponent
-              placeholder="District"
+              placeholder="Pincode"
+              value={formik.values.pincode}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               color="bg-primary"
-              type="text"
+            />
+            {formik.errors.pincode && formik.touched.pincode && (
+              <div className="text-red text-sm">{formik.errors.pincode}</div>
+            )}
+
+            <InputFieldComponent
               name="district"
-              value={formData.district}
-              onChange={handleChange}
-            />
-            <InputFieldComponent
-              placeholder="State"
+              placeholder="District"
+              value={formik.values.district}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               color="bg-primary"
-              type="text"
+            />
+            {formik.errors.district && formik.touched.district && (
+              <div className="text-red text-sm">{formik.errors.district}</div>
+            )}
+
+            <InputFieldComponent
               name="state"
-              value={formData.state}
-              onChange={handleChange}
-            />
-            <InputFieldComponent
-              placeholder="Password"
+              placeholder="State"
+              value={formik.values.state}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               color="bg-primary"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
             />
+            {formik.errors.state && formik.touched.state && (
+              <div className="text-red text-sm">{formik.errors.state}</div>
+            )}
+
+            <InputFieldComponent
+              name="password"
+              type="password"
+              placeholder="Password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              color="bg-primary"
+            />
+            {formik.errors.password && formik.touched.password && (
+              <div className="text-red text-sm">{formik.errors.password}</div>
+            )}
           </div>
         </div>
 
@@ -277,7 +245,7 @@ const AddNewUser = () => {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Submit
+            {userId ? "Update" : "Submit"}
           </button>
         </div>
       </form>

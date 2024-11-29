@@ -58,7 +58,7 @@ const InputFieldComponent = ({
             value={file ? file.name : value}
             readOnly // Make it read-only since we show file name after selection
             placeholder={placeholder}
-            className={`p-4 w-full rounded-2xl ${color} pr-12`} // Right padding for the pin icon
+            className={`p-4 w-full rounded-2xl ${color} pr-12 border border-gray-400`} // Right padding for the pin icon
           />
           {/* Pin icon at the end of the input */}
           <div className="absolute right-3 top-5 cursor-pointer">
@@ -105,7 +105,7 @@ const InputFieldComponent = ({
             value={value}
             name={name || ""} // Pass name prop correctly
             onChange={handleInputChange}
-            className={`p-4 w-full rounded-2xl ${color}`}
+            className={`p-4 w-full rounded-2xl ${color} border border-gray-400`}
             required
           />
           <span
@@ -122,7 +122,7 @@ const InputFieldComponent = ({
           value={value}
           name={name || ""}
           onChange={handleInputChange} // Update parent with onChange
-          className={`p-4 w-full rounded-2xl ${color}`}
+          className={`p-4 w-full rounded-2xl ${color} border border-gray-400`}
           required
         />
       )}

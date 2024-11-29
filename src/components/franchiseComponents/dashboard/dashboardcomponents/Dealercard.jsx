@@ -1,6 +1,7 @@
 import React from 'react'
 
-function DealerCard({ icon, title, count, percentage, percentageColor , iconBackgroundColor }) {
+function DealerCard({ icon, title, count, percentage, iconBackgroundColor }) {
+  const percentageColor = percentage < 0 ? "text-rose-600" : "text-green-500";
     return (
         <div className="bg-white flex justify-center items-center gap-4 shadow-sm p-4 rounded-lg font-poppins">
           <div className={`w-12 h-12 ${iconBackgroundColor} flex items-center justify-center  rounded-full`}>

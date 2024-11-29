@@ -40,7 +40,7 @@ const DashboardPage = () => {
         const count = await getDashboardCount();
         setCountDashboardConfig(count);
       } catch (error){
-        console.error(error,"Failed to fetch Complaints");
+        console.error(error,"Failed to fetch Dashboard tiles");
         setCountDashboardConfig([]);
       }
     };
@@ -56,7 +56,7 @@ const DashboardPage = () => {
         const count = await getTotalComplaints();
         setComplaintsCountConfig(count);
       } catch (error){
-        console.error(error,"Failed to fetch Complaints");
+        console.error(error,"Failed to fetch Complaints tiles");
         setComplaintsCountConfig([]);
       }
     };
@@ -69,14 +69,14 @@ const DashboardPage = () => {
     <div className=''>
       <div className='p-5'>
       <div className="grid grid-rows-2 grid-cols-1  md:grid-cols-2  lg:grid-cols-4 gap-4">
- <DealerCard icon={<FaRegUser className=' text-white'/>} iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Total Service Providers"  count={countDashboardConfig.total_approved_service_providers} percentage={countDashboardConfig.percentage_change_service_provider} />
- <DealerCard icon={<FaRegUser className=' text-white'/>} iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Total Dealers"  count={countDashboardConfig.total_dealers_count} percentage= {countDashboardConfig.percentage_change_dealers} />
- <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Total Services"  count={932}/>
- <DealerCard icon={<FaRegUser className=' text-white'/>}  iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Complaints"  count={complaintsCountConfig.total_complaints} percentage={complaintsCountConfig.percentage_change} />
- <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Total Ads"  count={932}/>
- <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Registration Earnings"  count={932}/>
- <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Commission Earnings"  count={932}/>
- <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" percentageColor="text-green-500" title="Ads Earnings"  count={932}/>
+ <DealerCard icon={<FaRegUser className=' text-white'/>} iconBackgroundColor="bg-blue-700" title="Total Service Providers"  count={countDashboardConfig.total_approved_service_providers} percentage={countDashboardConfig.percentage_change_service_provider} />
+ <DealerCard icon={<FaRegUser className=' text-white'/>} iconBackgroundColor="bg-[#FB7D5B]" title="Total Dealers"  count={countDashboardConfig.total_dealers_count} percentage= {countDashboardConfig.percentage_change_dealers} />
+ <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" title="Total Services"  count={932}/>
+ <DealerCard icon={<FaRegUser className=' text-white'/>} iconBackgroundColor="bg-[#FB7D5B]" title="Complaints"  count={complaintsCountConfig.total_complaints} percentage={complaintsCountConfig.percentage_change} />
+ <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" title="Total Ads"  count={932}/>
+ <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="-10" iconBackgroundColor="bg-[#FB7D5B]" title="Registration Earnings"  count={932}/>
+ <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="+10" iconBackgroundColor="bg-blue-700" title="Commission Earnings"  count={932}/>
+ <DealerCard icon={<FaRegUser className=' text-white'/>} percentage="-10" iconBackgroundColor="bg-[#FB7D5B]" title="Ads Earnings"  count={932}/>
 </div>
       </div>
       <div className=' flex gap-4 '>
