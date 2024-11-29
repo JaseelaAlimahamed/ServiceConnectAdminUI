@@ -12,7 +12,8 @@ import ComplaintsLog from "./ComplaintsLog";
 import InCompleteBookings from "./InCompleteBookings";
 import { DashboardDetails, TotalUsers } from "../../../service/api/admin/GetApi";
 import { FinanceReport } from "../../../service/api/admin/PostApi";
-
+import MyCalendar from "./Calender";
+import Calendar from 'react-calendar'
 const DashBoardLayout = ({ role }) => {
   const [state, setState] = useState({
     Total_Franchisees: 0,
@@ -86,8 +87,8 @@ const DashBoardLayout = ({ role }) => {
             <div className="p-3">
               <Finance monthly_data={monthly_data} />
             </div>
-            <div className="p-3">
-              <Finance monthly_data={monthly_data} />
+            <div className='p-3'>
+          <MyCalendar/>
             </div>
           </div>
 
